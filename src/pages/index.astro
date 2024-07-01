@@ -14,6 +14,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
+			<img class="profile-image"src="./photos/profile.jpg" alt="">
 			<h1>🧑‍🚀 Hello, Astronaut!</h1>
 			<p>
 				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
@@ -49,3 +50,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<Footer />
 	</body>
 </html>
+
+<style lang="scss">
+	.profile-image {
+		border-radius: 50%;
+		width: 200px;
+		height: 200px;
+		margin: 0 auto;
+		display: block;
+		margin-bottom: 1rem;
+	}
+	
+</style>
