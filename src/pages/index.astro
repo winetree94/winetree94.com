@@ -17,12 +17,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       <h5>winetree94</h5>
       <p>Hi there! I’m a frontend developer from South Korea.</p>
       <div class="tw-flex">
-        <a href="https://github.com/winetree94" target="_blank">
+        <a class="link-button" href="https://github.com/winetree94" target="_blank">
           <i class="ri-github-line"></i>
-		</a>
-        <a href="mailto: winetree94@gmail.com" target="_blank">
+        </a>
+        <a class="link-button" href="mailto: winetree94@gmail.com" target="_blank">
           <i class="ri-mail-line"></i>
-		</a>
+        </a>
       </div>
     </main>
     <Footer />
@@ -38,6 +38,25 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         margin: 0 auto;
         display: block;
         margin-bottom: 1rem;
+      }
+
+      .link-button {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+
+        &:hover {
+          border-radius: 50%;
+          color: white;
+          background-color: black;
+        }
+
+        &:active {
+          transform: scale(0.9);
+        }
       }
     </style>
   </body>
