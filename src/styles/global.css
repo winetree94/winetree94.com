@@ -36,17 +36,9 @@
 }
 
 @font-face {
-	font-family: 'Gowun Batang';
-	src: url('/fonts/GowunBatang-Regular.ttf') format('woff');
+	font-family: 'Gowun Dodum';
+	src: url('/fonts/GowunDodum-Regular.ttf') format('woff');
 	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Gowun Batang';
-	src: url('/fonts/GowunBatang-Bold.ttf') format('woff');
-	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
 }
