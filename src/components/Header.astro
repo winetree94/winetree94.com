@@ -8,9 +8,9 @@ const langPath = getLangAbsolutePath(Astro.url);
 
 <header>
   <nav>
-    <h2><a href={`${langPath}/`}>{SITE_TITLE}</a></h2>
+    <h2><a href={`${langPath || '/'}`}>{SITE_TITLE}</a></h2>
     <div class="internal-links">
-      <HeaderLink href={`${langPath}/`}>Home</HeaderLink>
+      <!-- <HeaderLink href={`${langPath || '/'}`}>Home</HeaderLink> -->
       <HeaderLink href={`${langPath}/about`}>About</HeaderLink>
       <HeaderLink href={`${langPath}/projects`}>Projects</HeaderLink>
       <!-- <HeaderLink href={getLocalePath('/blog')}>Blog</HeaderLink> -->
