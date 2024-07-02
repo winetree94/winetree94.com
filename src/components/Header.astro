@@ -11,8 +11,8 @@ const langPath = getLangAbsolutePath(Astro.url);
     <h2><a href={`${langPath}/`}>{SITE_TITLE}</a></h2>
     <div class="internal-links">
       <HeaderLink href={`${langPath}/`}>Home</HeaderLink>
-      <!-- <HeaderLink href="/resume/">Resume</HeaderLink> -->
       <HeaderLink href={`${langPath}/about`}>About</HeaderLink>
+      <HeaderLink href={`${langPath}/projects`}>Projects</HeaderLink>
       <!-- <HeaderLink href={getLocalePath('/blog')}>Blog</HeaderLink> -->
     </div>
     <!-- <div class="social-links">
@@ -79,7 +79,7 @@ const langPath = getLangAbsolutePath(Astro.url);
   }
   nav a.active {
     text-decoration: none;
-    border-bottom-color: var(--accent);
+    /* border-bottom-color: var(--accent); */
   }
   .social-links,
   .social-links a {
