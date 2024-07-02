@@ -2,7 +2,14 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION, GITHUB_URL, EMAIL } from "../consts";
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  GITHUB_URL,
+  NPM_URL,
+  EMAIL,
+  LINKEDIN_URL,
+} from "../consts";
 import { getLangAbsolutePath } from '../i18n/utils';
 import { languages } from '../i18n/ui';
 
@@ -33,12 +40,18 @@ const currentLangPath = getLangAbsolutePath(Astro.url);
         <a class="link-button" href={`mailto: ${EMAIL}`} target="_blank">
           <i class="ri-mail-line"></i>
         </a>
+        <a class="link-button" href={NPM_URL} target="_blank">
+          <i class="ri-npmjs-line"></i>
+        </a>
+        <a class="link-button" href={LINKEDIN_URL} target="_blank">
+          <i class="ri-linkedin-box-line"></i>
+        </a>
       </div>
 
       <div class="tw-flex tw-gap-2 tw-mt-4 tw-items-center tw-justify-center">
         {Object.values(languages).map((lang) => (
           <a
-            href={lang.path}
+            href={lang.path || '/'}
             class={`lang-link tw-text-black ${lang.path === currentLangPath ? 'disabled' : ''}`}
           >
             {lang.name}
