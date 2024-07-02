@@ -5,8 +5,11 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 
-const defaultLocale = "en";
-const locales = ['en', 'ko'];
+const defaultLocale = "ko";
+const locales = {
+  en: 'en-US',
+  ko: 'ko-KR',
+};
 
 export default defineConfig({
   site: 'https://winetree94.com',
@@ -16,7 +19,7 @@ export default defineConfig({
   },
   i18n: {
     defaultLocale,
-    locales,
+    locales: Object.keys(locales),
     routing: {
       prefixDefaultLocale: true,
     },
@@ -31,7 +34,9 @@ export default defineConfig({
         },
       }
     ),
-    react(),
+    react({
+      include: ["./src/**/*.{jsx,tsx}"],
+    }),
     tailwind()
   ]
 });
