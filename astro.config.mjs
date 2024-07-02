@@ -6,31 +6,29 @@ import tailwind from "@astrojs/tailwind";
 import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 
 const defaultLocale = "en";
-const locales = {
-  en: "en-US", // the `defaultLocale` value must present in `locales` keys
-  ko: "ko-KR",
-};
+const locales = ['en', 'ko'];
 
-// https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
-  trailingSlash: "always",
+  site: 'https://winetree94.com',
+  output: 'static',
   build: {
     format: "directory",
   },
+  i18n: {
+    defaultLocale,
+    locales,
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
   integrations: [
     mdx(),
-    i18n({
-      locales,
-      defaultLocale,
-    }),
     sitemap(
       {
         i18n: {
-          locales,
-          defaultLocale,
+          locales: locales,
+          defaultLocale: defaultLocale,
         },
-        filter: filterSitemapByDefaultLocale({ defaultLocale }),
       }
     ),
     react(),
