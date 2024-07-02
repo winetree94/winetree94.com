@@ -1,7 +1,7 @@
 export const languages = {
   en: {
     name: 'English',
-    path: '/',
+    path: '',
   },
   ko: {
     name: '한국어',

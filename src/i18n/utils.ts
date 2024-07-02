@@ -5,5 +5,5 @@ export function getLangAbsolutePath(url: URL) {
     if (lang in languages && lang !== defaultLang) {
         return '/' + lang as keyof typeof languages;
     }
-    return '/';
+    return '';
 }
