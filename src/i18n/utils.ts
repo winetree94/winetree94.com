@@ -8,7 +8,7 @@ export const getCurrentLangCode = (url: URL) => {
     return defaultLangCode;
 }
 
-export function getLangAbsolutePath(url: URL) {
+export function getLangBasePath(url: URL) {
     const [, lang] = url.pathname.split('/');
     if (lang in languages && lang !== defaultLangCode) {
         return '/' + lang as keyof typeof languages;

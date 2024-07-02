@@ -1,9 +1,9 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import { SITE_TITLE } from "../consts";
-import { getLangAbsolutePath } from '../i18n/utils';
+import { getLangBasePath } from '../i18n/utils';
 
-const langPath = getLangAbsolutePath(Astro.url);
+const langPath = getLangBasePath(Astro.url);
 ---
 
 <header>
