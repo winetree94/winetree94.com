@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'select'>;
+
+const { class: className, children,...props } = Astro.props;
+
+// const { pathname } = Astro.url;
+// const subpath = pathname.match(/[^\/]+/g);
+// const isActive = href === pathname || href === '/' + subpath?.[0];
+---
+<select {...props} class={className}>
+  <slot></slot>
+</select>
+<style lang="scss">
+
+</style>
