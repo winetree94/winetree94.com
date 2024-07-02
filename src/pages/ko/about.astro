@@ -17,7 +17,7 @@ const currentLangCode = getCurrentLangCode(Astro.url);
     <main>
       <div class="tw-flex">
         <div class="tw-flex-shrink-0">
-          <img class="profile-image" src="https://via.placeholder.com/200" alt="프로필 사진" />
+          <img class="profile-image" src="/photos/200.png" alt="프로필 사진" />
         </div>
         <div class="tw-flex tw-flex-col tw-ml-4">
           <h5>창의적인 문제 해결을 위해 기술을 사용합니다.</h5>
@@ -104,8 +104,10 @@ const currentLangCode = getCurrentLangCode(Astro.url);
 
     <style>
       .profile-image {
-        width: 200px;
-        height: 200px;
+        max-width: 200px;
+        max-height: 200px;
+        min-width: 200px;
+        min-height: 200px;
         border-radius: 15%;
       }
     </style>
