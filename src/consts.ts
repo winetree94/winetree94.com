@@ -3,3 +3,5 @@
 
 export const SITE_TITLE = 'winetree94';
 export const SITE_DESCRIPTION = 'winetree94 world';
+export const GITHUB_URL = 'https://github.com/winetree94';
+export const EMAIL = 'winetree94@gmail.com';
