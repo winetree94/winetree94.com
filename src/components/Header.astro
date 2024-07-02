@@ -1,20 +1,18 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import { SITE_TITLE } from "../consts";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLangAbsolutePath } from '../i18n/utils';
 
-const getLocalePath = (path: string) => {
-  return getRelativeLocaleUrl(Astro.currentLocale!, path);
-};
+const langPath = getLangAbsolutePath(Astro.url);
 ---
 
 <header>
   <nav>
-    <h2><a href={getLocalePath('/')}>{SITE_TITLE}</a></h2>
+    <h2><a href={`${langPath}/`}>{SITE_TITLE}</a></h2>
     <div class="internal-links">
-      <HeaderLink href={getLocalePath('/')}>Home</HeaderLink>
+      <HeaderLink href={`${langPath}/`}>Home</HeaderLink>
       <!-- <HeaderLink href="/resume/">Resume</HeaderLink> -->
-      <HeaderLink href={getLocalePath("/about")}>About</HeaderLink>
+      <HeaderLink href={`${langPath}/about`}>About</HeaderLink>
       <!-- <HeaderLink href={getLocalePath('/blog')}>Blog</HeaderLink> -->
     </div>
     <!-- <div class="social-links">
