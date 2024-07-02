@@ -10,11 +10,12 @@ import {
   EMAIL,
   LINKEDIN_URL,
 } from "../consts";
-import { getCurrentLangCode, getLangBasePath } from "../i18n/utils";
+import { getCurrentLangCode, getLangBasePath, useTranslation } from "../i18n/utils";
 import { languages } from "../i18n/ui";
 
 const currentLangPath = getLangBasePath(Astro.url);
 const currentLangCode = getCurrentLangCode(Astro.url);
+const t = useTranslation(currentLangCode);
 ---
 
 <!doctype html>
@@ -28,11 +29,7 @@ const currentLangCode = getCurrentLangCode(Astro.url);
       <img class="profile-image" src="/photos/profile.jpg" alt="" />
       <h5>winetree94</h5>
       <p class="tw-text-center">
-        Hi there! I’m a frontend developer from South Korea.
-        <br />
-        I love photography, embedded Linux, and home labs.
-        <br />
-        I am also an amateur theater actor.
+        <Fragment set:html={t("home.introduction")} />
       </p>
       <div class="tw-flex">
         <a class="link-button" href={GITHUB_URL} target="_blank">

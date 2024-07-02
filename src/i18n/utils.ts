@@ -1,4 +1,4 @@
-import { languages, defaultLangCode } from './ui';
+import { languages, defaultLangCode, translations } from './ui';
 
 export const getCurrentLangCode = (url: URL) => {
     const [, lang] = url.pathname.split('/');
@@ -7,6 +7,10 @@ export const getCurrentLangCode = (url: URL) => {
     }
     return defaultLangCode;
 }
+
+export const useTranslation = (lang: keyof typeof languages) => (key: string) => {
+    return translations[lang][key];
+};
 
 export function getLangBasePath(url: URL) {
     const [, lang] = url.pathname.split('/');
