@@ -1,3 +1,6 @@
+import ko from './translations/ko.json';
+import en from './translations/en.json';
+
 export const languages = {
   en: {
     name: 'English',
@@ -7,17 +10,13 @@ export const languages = {
     name: '한국어',
     path: '/ko',
   },
-};
-  
-export const defaultLangCode = 'en';
-  
-export const ui = {
-  en: {
-    'nav.home': 'Home',
-    'nav.about': 'About',
-  },
-  ko: {
-    'nav.home': 'Home',
-    'nav.about': 'About',
-  },
+} as const;
+
+export const defaultLangCode: keyof typeof languages = 'en';
+
+export const translations: {
+  [key in keyof typeof languages]: Record<string, string>;
+} = {
+  en: en,
+  ko: ko,
 } as const;
