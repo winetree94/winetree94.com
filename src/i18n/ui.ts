@@ -9,7 +9,7 @@ export const languages = {
   },
 };
   
-export const defaultLang = 'en';
+export const defaultLangCode = 'en';
   
 export const ui = {
   en: {
