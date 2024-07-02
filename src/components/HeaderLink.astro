@@ -1,10 +1,10 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import { getLangAbsolutePath } from '../i18n/utils';
+import { getLangBasePath } from '../i18n/utils';
 
 type Props = HTMLAttributes<'a'>;
 
-const langPath = getLangAbsolutePath(Astro.url);
+const langPath = getLangBasePath(Astro.url);
 const { href, class: className, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
