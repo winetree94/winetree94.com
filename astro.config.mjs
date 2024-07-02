@@ -21,7 +21,7 @@ export default defineConfig({
     defaultLocale,
     locales: Object.keys(locales),
     routing: {
-      prefixDefaultLocale: true,
+      prefixDefaultLocale: false,
     },
   },
   integrations: [
