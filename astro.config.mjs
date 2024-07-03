@@ -3,9 +3,8 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
-import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 
-const defaultLocale = "ko";
+const defaultLocale = "en";
 const locales = {
   en: 'en-US',
   ko: 'ko-KR',
