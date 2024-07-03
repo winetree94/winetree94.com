@@ -132,4 +132,16 @@ hr {
       padding-left: 20px;
     }
   }
+
+  blockquote {
+    margin: 0;
+    padding: 0;
+    border-left: 4px solid theme("colors.black.200");
+    padding-left: theme("padding.4");
+    margin-left: theme("margin.4");
+
+    &:not(:last-child) {
+      margin-bottom: theme("margin.4");
+    }
+  }
 }
