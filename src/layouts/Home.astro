@@ -10,7 +10,11 @@ import {
   EMAIL,
   LINKEDIN_URL,
 } from "../consts";
-import { getCurrentLangCode, getLangBasePath, useTranslation } from "../i18n/utils";
+import {
+  getCurrentLangCode,
+  getLangBasePath,
+  useTranslation,
+} from "../i18n/utils";
 import { languages } from "../i18n/ui";
 
 const currentLangPath = getLangBasePath(Astro.url);

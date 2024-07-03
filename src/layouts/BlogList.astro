@@ -9,7 +9,7 @@ import { getCurrentLangCode, getLangBasePath } from "../i18n/utils";
 
 const langCode = getCurrentLangCode(Astro.url);
 const langPath = getLangBasePath(Astro.url);
-const posts = (await getCollection("projects"))
+const posts = (await getCollection("blog"))
   .filter((post) => post.slug.startsWith(langCode))
   .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
 ---
@@ -96,7 +96,7 @@ const posts = (await getCollection("projects"))
           {
             posts.map((post) => (
               <li>
-                <a href={`${langPath}/projects/${post.slug.slice(3)}/`}>
+                <a href={`${langPath}/blog/${post.slug.slice(3)}/`}>
                   <img
                     width={720}
                     height={360}
