@@ -1,0 +1,31 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import ProjectPost from "../../layouts/ProjectPost.astro";
+
+export async function getStaticPaths() {
+  const pages = (await getCollection("projects")).filter(
+	(page) => page.slug.startsWith('ko')
+  );
+
+  const paths = pages.map((page) => {
+    const [lang, ...slug] = page.slug.split("/");
+    return {
+      params: {
+        lang,
+        slug: slug.join("/") || undefined,
+      },
+      props: page,
+    };
+  });
+
+  return paths;
+}
+
+type Props = CollectionEntry<"projects">;
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<ProjectPost {...post.data}>
+  <Content />
+</ProjectPost>

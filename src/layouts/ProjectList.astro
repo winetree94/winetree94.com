@@ -1,18 +1,23 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import { getCurrentLangCode, getLangBasePath } from "../i18n/utils";
 
-const posts = (await getCollection("en")).sort(
+const langCode = getCurrentLangCode(Astro.url);
+const langPath = getLangBasePath(Astro.url);
+const posts = (await getCollection('projects')).filter(
+  (post) => post.slug.startsWith(langCode)
+).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={langCode}>
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
@@ -93,7 +98,7 @@ const posts = (await getCollection("en")).sort(
           {
             posts.map((post) => (
               <li>
-                <a href={`/blog/${post.slug}/`}>
+                <a href={`${langPath}/projects/${post.slug.slice(3)}/`}>
                   <img
                     width={720}
                     height={360}

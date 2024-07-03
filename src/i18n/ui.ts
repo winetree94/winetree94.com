@@ -1,6 +1,11 @@
 import ko from './translations/ko.json';
 import en from './translations/en.json';
 
+export const LANG_CODE = {
+  EN: 'en',
+  KO: 'ko',
+} as const;
+
 export const languages = {
   en: {
     name: 'English',
