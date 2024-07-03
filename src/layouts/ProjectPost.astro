@@ -8,63 +8,32 @@ import { getCurrentLangCode } from "../i18n/utils";
 
 type Props = CollectionEntry<"projects">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate } = Astro.props;
 const currentLangCode = getCurrentLangCode(Astro.url);
 ---
 
 <html lang={currentLangCode}>
   <head>
     <BaseHead title={title} description={description} />
-    <style>
-      main {
-        /* width: calc(100% - 2em); */
-        width: calc(100%);
-        max-width: 100%;
-        margin: 0;
-      }
-      .prose {
-        width: 720px;
-        max-width: calc(100% - 2em);
-        margin: auto;
-        padding: 1em;
-        color: rgb(var(--gray-dark));
-      }
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
-      .title h1 {
-        margin: 0 0 0.5em 0;
-      }
-      .date {
-        margin-bottom: 0.5em;
-        color: rgb(var(--gray));
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
   </head>
 
   <body>
     <Header />
-    <main>
+    <main class="tw-w-full tw-max-w-full">
       <article>
-        <div class="prose">
-          <div class="title">
+        <div class="prose tw-text-black-800 tw-max-w-[720px] tw-m-auto">
+          <div class="tw-text-center tw-mb-8">
             <div class="date">
               <FormattedDate date={pubDate} />
               {
                 updatedDate && (
-                  <div class="last-updated-on">
+                  <div class="tw-italic">
                     Last updated on <FormattedDate date={updatedDate} />
                   </div>
                 )
               }
             </div>
-            <h1>{title}</h1>
+            <h1 class="tw-my-4">{title}</h1>
             <hr />
           </div>
           <slot />

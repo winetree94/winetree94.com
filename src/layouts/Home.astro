@@ -26,6 +26,45 @@ const t = useTranslation(currentLangCode);
 <html lang={currentLangCode}>
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style lang="scss">
+      main {
+        margin: 80px auto;
+      }
+
+      .profile-image {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .link-button {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+
+        &:hover {
+          border-radius: 50%;
+          color: white;
+          background-color: black;
+        }
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+      .lang-link {
+        &.disabled {
+          pointer-events: none;
+          color: #b3b3b3;
+        }
+      }
+    </style>
   </head>
   <body>
     <Header />
@@ -63,46 +102,5 @@ const t = useTranslation(currentLangCode);
       </div>
     </main>
     <Footer />
-    <style lang="scss">
-      main {
-        margin: 80px auto;
-      }
-
-      .profile-image {
-        border-radius: 50%;
-        width: 200px;
-        height: 200px;
-        margin: 0 auto;
-        display: block;
-        margin-bottom: 1rem;
-      }
-
-      .link-button {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: black;
-
-        &:hover {
-          border-radius: 50%;
-          color: white;
-          background-color: black;
-        }
-
-        &:active {
-          transform: scale(0.9);
-        }
-      }
-    </style>
-    <style lang="scss">
-      .lang-link {
-        &.disabled {
-          pointer-events: none;
-          color: #b3b3b3;
-        }
-      }
-    </style>
   </body>
 </html>

@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import IndentLine from "../components/IndentLine.astro";
 import { getCurrentLangCode } from "../i18n/utils";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
@@ -29,10 +30,7 @@ const experience: {
     companyName: "이파피루스",
     position: "연구개발실 / 선임연구원",
     period: "2021.03 - 2021.10",
-    description: [
-      "디지타이저 펜 입력 기능 개발",
-      "전자서명 서비스 연동",
-    ],
+    description: ["디지타이저 펜 입력 기능 개발", "전자서명 서비스 연동"],
   },
   {
     companyName: "플레이오토",
@@ -48,9 +46,7 @@ const experience: {
     companyName: "주식회사종달랩",
     position: "개발팀 / 매니저",
     period: "2019.01 - 2019.09",
-    description: [
-      "안드로이드"
-    ],
+    description: ["안드로이드"],
   },
 ];
 
@@ -80,7 +76,6 @@ const opensourceExperience: {
     period: "2019.01 - 2019.09",
   },
 ];
-
 ---
 
 <html lang={currentLangCode}>
@@ -92,7 +87,11 @@ const opensourceExperience: {
     <main>
       <div class="tw-flex tw-flex-col sm:tw-flex-row">
         <div class="tw-flex-shrink-0 tw-flex tw-justify-center">
-          <img class="profile-image" src="/photos/profile.jpg" alt="프로필 사진" />
+          <img
+            class="tw-rounded-full profile-image tw-max-w-[200px] tw-min-w-[200px] tw-min-h-[200px] tw-max-h-[200px]"
+            src="/photos/profile.jpg"
+            alt="프로필 사진"
+          />
         </div>
         <div class="tw-flex tw-flex-col sm:tw-ml-4 tw-mt-8 sm:tw-mt-0">
           <h5>창의적인 문제 해결을 위해 기술을 사용합니다.</h5>
@@ -122,7 +121,7 @@ const opensourceExperience: {
             저는 온라인에서 winetree94 라는 닉네임으로 활동하고 있습니다. 제가
             활동하고 있는 플랫폼들입니다.
           </p>
-          <ul class="list">
+          <ul class="tw-list-disc tw-list-inside">
             <li>
               <a>Github</a>
             </li>
@@ -146,114 +145,73 @@ const opensourceExperience: {
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
         <h4>기술</h4>
-        <div class="line">
+        <IndentLine>
           <div>
             <h5>프론트엔드</h5>
-            <ul class="list tw-mt-2">
+            <ul class="tw-list-disc tw-list-inside tw-mt-2">
               <li>
                 Angular / React 기반의 웹 애플리케이션(CRA/SSG/SSR) 설계 및 개발
               </li>
-              <li>
-                ECMAScript / DOM API 기반의 프로젝트 설계 및 개발
-              </li>
-              <li>
-                CommonJS / ES Module 모듈 라이브러리 개발
-              </li>
+              <li>ECMAScript / DOM API 기반의 프로젝트 설계 및 개발</li>
+              <li>CommonJS / ES Module 모듈 라이브러리 개발</li>
             </ul>
           </div>
           <div class="tw-mt-4">
             <h5>기타</h5>
           </div>
-          <ul class="list tw-mt-2">
+          <ul class="tw-list-disc tw-list-inside tw-mt-2">
             <li>
-              Cloudflare / AWS / Azure 등 클라우드 플랫폼 배포 시스템 구축 및 비용 최적화
+              Cloudflare / AWS / Azure 등 클라우드 플랫폼 배포 시스템 구축 및
+              비용 최적화
             </li>
-            <li>
-              Docker 기반의 컨테이너 배포 시스템 구축 및 관리
-            </li>
+            <li>Docker 기반의 컨테이너 배포 시스템 구축 및 관리</li>
           </ul>
-        </div>
+        </IndentLine>
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
         <h4>경력</h4>
-        <div class="line tw-flex tw-flex-col tw-gap-4">
-          {experience.map((exp) => (
-            <div class="card">
-              <div class="tw-flex tw-justify-between">
-                <div>
-                  <h5>{exp.companyName}</h5>
-                  <p class="tw-mt-2 tw-text-sm">{exp.position}</p>
+        <IndentLine>
+          <div class="tw-list-disc tw-list-inside tw-flex tw-flex-col tw-gap-4">
+            {
+              experience.map((exp) => (
+                <div class="tw-p-3 tw-bg-white-100 tw-rounded-lg">
+                  <div class="tw-flex tw-justify-between">
+                    <div>
+                      <h5>{exp.companyName}</h5>
+                      <p class="tw-mt-2">{exp.position}</p>
+                    </div>
+                    <span>{exp.period}</span>
+                  </div>
+                  <ul class="tw-list-disc tw-list-inside">
+                    {exp.description.map((desc) => (
+                      <li>{desc}</li>
+                    ))}
+                  </ul>
                 </div>
-                <span>{exp.period}</span>
-              </div>
-              <ul class="list">
-                {exp.description.map((desc) => (
-                  <li>{desc}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+              ))
+            }
+          </div>
+        </IndentLine>
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
         <h4>오픈소스 활동</h4>
-        <div class="line tw-flex tw-flex-col tw-gap-4">
-          {opensourceExperience.map((exp) => (
-            <div class="card">
-              <div class="tw-flex tw-justify-between">
-                <div>
-                  <h5>{exp.projectName}</h5>
-                  <p class="tw-mt-2 tw-text-sm">{exp.description}</p>
+        <IndentLine class="tw-flex tw-flex-col tw-gap-4">
+          {
+            opensourceExperience.map((exp) => (
+              <div class="tw-p-3 tw-bg-white-100 tw-rounded-lg">
+                <div class="tw-flex tw-justify-between">
+                  <div>
+                    <h5>{exp.projectName}</h5>
+                    <p class="tw-mt-2">{exp.description}</p>
+                  </div>
+                  <span>{exp.period}</span>
                 </div>
-                <span>{exp.period}</span>
               </div>
-            </div>
-          ))}
-        </div>
+            ))
+          }
+        </IndentLine>
       </div>
     </main>
     <Footer />
-
-    <style>
-      .profile-image {
-        max-width: 200px;
-        max-height: 200px;
-        min-width: 200px;
-        min-height: 200px;
-        border-radius: 15%;
-      }
-
-      .line {
-        border-left: 1px solid #cccccc;
-        margin-top: 8px;
-        margin-left: 8px;
-        padding-left: 16px;
-        position: relative;
-        padding-bottom: 8px;
-
-        &::before {
-          position: absolute;
-          bottom: 0px;
-          left: 0px;
-          display: block;
-          content: " ";
-          position: absolute;
-          width: 10px;
-          height: 10px;
-          border-bottom: 1px solid #cccccc;
-        }
-      }
-
-      .card {
-        padding: 12px;
-        background-color: #efefef;
-        border-radius: 8px;
-      }
-
-      .list {
-        list-style: circle;
-        margin-left: 24px;
-      }
-    </style>
   </body>
 </html>
