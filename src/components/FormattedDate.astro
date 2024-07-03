@@ -1,14 +1,23 @@
 ---
+import { getCurrentLangCode } from '../i18n/utils';
+
 interface Props {
 	date: Date;
 }
 
 const { date } = Astro.props;
+const langCode = getCurrentLangCode(Astro.url);
 ---
+
+<style lang="scss">
+	time {
+		color: rgb(var(--gray));;
+	}
+</style>
 
 <time datetime={date.toISOString()}>
 	{
-		date.toLocaleDateString('en-us', {
+		date.toLocaleDateString(langCode, {
 			year: 'numeric',
 			month: 'short',
 			day: 'numeric',
