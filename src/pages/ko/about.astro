@@ -6,6 +6,81 @@ import { getCurrentLangCode } from "../../i18n/utils";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 
 const currentLangCode = getCurrentLangCode(Astro.url);
+
+const experience: {
+  companyName: string;
+  position: string;
+  period: string;
+  description: string[];
+}[] = [
+  {
+    companyName: "스윗 코리아",
+    position: "프론트엔드 / 개발자",
+    period: "2021.10 - 2024.06",
+    description: [
+      "크로스 플랫폼(Web, IOS, Android) 텍스트 에디터 라이브러리 리드 개발",
+      "크로스 플랫폼(Web, IOS, Android) 통합 인증 솔루션 리드 개발",
+      "디자인 시스템 리드 개발",
+      "ICU MessageFormat 기반의 다국어 지원 시스템 구축",
+      "업무 관리 시스템 리뉴얼 및 대규모 성능 최적화",
+    ],
+  },
+  {
+    companyName: "이파피루스",
+    position: "연구개발실 / 선임연구원",
+    period: "2021.03 - 2021.10",
+    description: [
+      "디지타이저 펜 입력 기능 개발",
+      "전자서명 서비스 연동",
+    ],
+  },
+  {
+    companyName: "플레이오토",
+    position: "글로벌 개발팀 / 풀스택 개발",
+    period: "2019.09 - 2021.02",
+    description: [
+      "점진적 프레임워크 교체를 위한 멀티 프레임워크 아키텍쳐 개발",
+      "고성능 데이터테이블 라이브러리 개발",
+      "Ebay, Shopee, Lazada 등 다수의 해외 쇼핑몰 연동",
+    ],
+  },
+  {
+    companyName: "주식회사종달랩",
+    position: "개발팀 / 매니저",
+    period: "2019.01 - 2019.09",
+    description: [
+      "안드로이드"
+    ],
+  },
+];
+
+const opensourceExperience: {
+  projectName: string;
+  description: string;
+  period: string;
+}[] = [
+  {
+    projectName: "Edybara",
+    description: "ProseMirror 기반의 리치 텍스트 에디터 라이브러리",
+    period: "2019.01 - 2019.09",
+  },
+  {
+    projectName: "Qdocs",
+    description: "영상미에 특화된 온라인 프레젠테이션 도구",
+    period: "2019.01 - 2019.09",
+  },
+  {
+    projectName: "Curves",
+    description: "웹에서 자연스러운 펜 필기 입력을 위한 라이브러리",
+    period: "2019.01 - 2019.09",
+  },
+  {
+    projectName: "VanilaRecyclerView",
+    description: "UI 최적화를 위한 가상 스크롤 라이브러리",
+    period: "2019.01 - 2019.09",
+  },
+];
+
 ---
 
 <html lang={currentLangCode}>
@@ -17,7 +92,7 @@ const currentLangCode = getCurrentLangCode(Astro.url);
     <main>
       <div class="tw-flex tw-flex-col sm:tw-flex-row">
         <div class="tw-flex-shrink-0 tw-flex tw-justify-center">
-          <img class="profile-image" src="/photos/200.png" alt="프로필 사진" />
+          <img class="profile-image" src="/photos/profile.jpg" alt="프로필 사진" />
         </div>
         <div class="tw-flex tw-flex-col sm:tw-ml-4 tw-mt-8 sm:tw-mt-0">
           <h5>창의적인 문제 해결을 위해 기술을 사용합니다.</h5>
@@ -74,136 +149,72 @@ const currentLangCode = getCurrentLangCode(Astro.url);
         <div class="line">
           <div>
             <h5>프론트엔드</h5>
-            <ul class="list">
-              <li>Angular / React 기반의 웹 애플리케이션 설계 및 개발</li>
-              <li>SSR / SSG / CRA 등 요구사항에 맞는 프로젝트 운용</li>
-              <li>디자인 시스템 설계</li>
+            <ul class="list tw-mt-2">
+              <li>
+                Angular / React 기반의 웹 애플리케이션(CRA/SSG/SSR) 설계 및 개발
+              </li>
+              <li>
+                ECMAScript / DOM API 기반의 프로젝트 설계 및 개발
+              </li>
+              <li>
+                CommonJS / ES Module 모듈 라이브러리 개발
+              </li>
             </ul>
           </div>
           <div class="tw-mt-4">
             <h5>기타</h5>
-            <ul class="list">
-              <li>lkajsd</li>
-              <li>lkajsd</li>
-            </ul>
           </div>
-          <ul class="list">
-            <li>Angular / React 기반의 웹 애플리케이션 설계 및 개발</li>
-            <li>SSR / SSG / CRA 등 요구사항에 맞는 프로젝트 전략 수립</li>
+          <ul class="list tw-mt-2">
             <li>
-              Cloudflare / AWS / Azure 등 클라우드 플랫폼 배포 시스템 구축
+              Cloudflare / AWS / Azure 등 클라우드 플랫폼 배포 시스템 구축 및 비용 최적화
             </li>
-            <li>클라우드 비용 및 성능 최적화</li>
-            <li></li>
-            <li>MongoDB</li>
-            <li>Git</li>
+            <li>
+              Docker 기반의 컨테이너 배포 시스템 구축 및 관리
+            </li>
           </ul>
         </div>
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
         <h4>경력</h4>
         <div class="line tw-flex tw-flex-col tw-gap-4">
-          <div class="card">
-            <div class="tw-flex tw-justify-between">
-              <div>
-                <h5>스윗 코리아</h5>
-                <p class="tw-text-sm">프론트엔드 / 개발자</p>
+          {experience.map((exp) => (
+            <div class="card">
+              <div class="tw-flex tw-justify-between">
+                <div>
+                  <h5>{exp.companyName}</h5>
+                  <p class="tw-mt-2 tw-text-sm">{exp.position}</p>
+                </div>
+                <span>{exp.period}</span>
               </div>
-              <span>2021.10 - 2024.06</span>
-            </div>
-            <div class="tw-flex tw-justify-end">
-              <span>더보기</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="tw-flex tw-justify-between">
-              <div>
-                <h5>이파피루스</h5>
-                <p class="tw-text-sm">연구개발실 / 선임연구원</p>
+              <div class="tw-flex tw-justify-end">
+                <span>더보기</span>
               </div>
-              <span>2021.03 - 2021.10</span>
+              <ul class="list">
+                {exp.description.map((desc) => (
+                  <li>{desc}</li>
+                ))}
+              </ul>
             </div>
-            <div class="tw-flex tw-justify-end">
-              <span>더보기</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="tw-flex tw-justify-between">
-              <div>
-                <h5>플레이오토</h5>
-                <p class="tw-text-sm">글로벌 개발팀 / 매니저</p>
-              </div>
-              <span>2019.09 - 2021.02</span>
-            </div>
-            <div class="tw-flex tw-justify-end">
-              <span>더보기</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="tw-flex tw-justify-between">
-              <div>
-                <h5>주식회사종달랩</h5>
-                <p class="tw-text-sm">개발팀 / 매니저</p>
-              </div>
-              <span>2019.01 - 2019.09</span>
-            </div>
-            <div class="tw-flex tw-justify-end">
-              <span>더보기</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
         <h4>오픈소스 활동</h4>
         <div class="line tw-flex tw-flex-col tw-gap-4">
-          <div class="card">
-            <div class="tw-flex tw-justify-between">
-              <div>
-                <h5>Edybara</h5>
-                <p class="tw-text-sm">ProseMirror 기반의 리치 텍스트 에디터 라이브러리</p>
+          {opensourceExperience.map((exp) => (
+            <div class="card">
+              <div class="tw-flex tw-justify-between">
+                <div>
+                  <h5>{exp.projectName}</h5>
+                  <p class="tw-mt-2 tw-text-sm">{exp.description}</p>
+                </div>
+                <span>{exp.period}</span>
               </div>
-              <span>2019.01 - 2019.09</span>
-            </div>
-            <div class="tw-flex tw-justify-end">
-              <span>더보기</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="tw-flex tw-justify-between">
-              <div>
-                <h5>Qdocs</h5>
-                <p class="tw-text-sm">영상미에 특화된 온라인 프레젠테이션 도구</p>
+              <div class="tw-flex tw-justify-end">
+                <span>더보기</span>
               </div>
-              <span>2019.01 - 2019.09</span>
             </div>
-            <div class="tw-flex tw-justify-end">
-              <span>더보기</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="tw-flex tw-justify-between">
-              <div>
-                <h5>Curves</h5>
-                <p class="tw-text-sm">웹에서 자연스러운 펜 필기 입력을 위한 라이브러리</p>
-              </div>
-              <span>2019.01 - 2019.09</span>
-            </div>
-            <div class="tw-flex tw-justify-end">
-              <span>더보기</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="tw-flex tw-justify-between">
-              <div>
-                <h5>VanilaRecyclerView</h5>
-                <p class="tw-text-sm">UI 최적화를 위한 가상 스크롤 라이브러리</p>
-              </div>
-              <span>2019.01 - 2019.09</span>
-            </div>
-            <div class="tw-flex tw-justify-end">
-              <span>더보기</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </main>
