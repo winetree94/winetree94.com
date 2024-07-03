@@ -9,13 +9,7 @@ const { date } = Astro.props;
 const langCode = getCurrentLangCode(Astro.url);
 ---
 
-<style lang="scss">
-	time {
-		color: rgb(var(--gray));;
-	}
-</style>
-
-<time datetime={date.toISOString()}>
+<time class="tw-text-black-700" datetime={date.toISOString()}>
 	{
 		date.toLocaleDateString(langCode, {
 			year: 'numeric',

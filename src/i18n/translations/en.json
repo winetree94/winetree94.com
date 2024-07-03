@@ -1,5 +1,8 @@
 {
     "nav.home": "Home",
     "nav.about": "About",
-    "home.introduction": "Hi! I'm a front-end developer from South Korea.<br>I have learned from open source and love to give back to open source.<br>I'm also interested in backend, networking, systems programming, and more."
+    "home.introduction": "Hi! I'm a front-end developer from South Korea.<br>I have learned from open source and love to give back to open source.<br>I'm also interested in backend, networking, systems programming, and more.",
+    "global.empty": "Oops! nothing there yet.",
+    "projects.title": "Just a little something: these are the projects I’ve created or am currently working on.",
+    "projects.description": "I usually kick off these projects to tackle issues I encounter in my work or daily life."
 }
