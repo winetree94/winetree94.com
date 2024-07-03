@@ -21,7 +21,7 @@ const currentLangCode = getCurrentLangCode(Astro.url);
         </div>
         <div class="tw-flex tw-flex-col sm:tw-ml-4 tw-mt-8 sm:tw-mt-0">
           <h5>창의적인 문제 해결을 위해 기술을 사용합니다.</h5>
-          <p>
+          <p class="tw-mt-4">
             저는 소규모 웹사이트부터 대형 애플리케이션까지 확장성과 성능을 갖춘
             프론트엔드 프로젝트를 전문적으로 개발합니다.<br />Angular 와 React
             를 주로 활용하지만 문제 해결에 가장 효율적인 기술을 선정하는 것을
@@ -102,36 +102,72 @@ const currentLangCode = getCurrentLangCode(Astro.url);
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
         <h4>경력</h4>
-        <div class="line">
-          <ul class="list">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>React</li>
-            <li>Angular</li>
-            <li>Node.js</li>
-            <li>Express</li>
-            <li>MySQL</li>
-            <li>MongoDB</li>
-            <li>Git</li>
-          </ul>
+        <div class="line tw-flex tw-flex-col tw-gap-4">
+          <div class="card">
+            <div class="tw-flex tw-justify-between">
+              <div>
+                <h5>스윗 코리아</h5>
+                <p class="tw-text-sm">프론트엔드 / 개발자</p>
+              </div>
+              <span>2021.10 - 2024.06</span>
+            </div>
+            <div class="tw-flex tw-justify-end">
+              <span>더보기</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="tw-flex tw-justify-between">
+              <div>
+                <h5>이파피루스</h5>
+                <p class="tw-text-sm">연구개발실 / 선임연구원</p>
+              </div>
+              <span>2021.03 - 2021.10</span>
+            </div>
+            <div class="tw-flex tw-justify-end">
+              <span>더보기</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="tw-flex tw-justify-between">
+              <div>
+                <h5>플레이오토</h5>
+                <p class="tw-text-sm">글로벌 개발팀 / 매니저</p>
+              </div>
+              <span>2019.09 - 2021.02</span>
+            </div>
+            <div class="tw-flex tw-justify-end">
+              <span>더보기</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="tw-flex tw-justify-between">
+              <div>
+                <h5>주식회사종달랩</h5>
+                <p class="tw-text-sm">개발팀 / 매니저</p>
+              </div>
+              <span>2019.01 - 2019.09</span>
+            </div>
+            <div class="tw-flex tw-justify-end">
+              <span>더보기</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
         <h4>오픈소스 활동</h4>
-        <div class="line">
-          <ul class="list">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>React</li>
-            <li>Angular</li>
-            <li>Node.js</li>
-            <li>Express</li>
-            <li>MySQL</li>
-            <li>MongoDB</li>
-            <li>Git</li>
-          </ul>
+        <div class="line tw-flex tw-flex-col tw-gap-4">
+          <div class="card">
+            <h5>Edybara</h5>
+          </div>
+          <div class="card">
+            <h5>Qdocs</h5>
+          </div>
+          <div class="card">
+            <h5>Curves</h5>
+          </div>
+          <div class="card">
+            <h5>VanilaRecyclerView</h5>
+          </div>
         </div>
       </div>
     </main>
@@ -165,6 +201,12 @@ const currentLangCode = getCurrentLangCode(Astro.url);
           height: 10px;
           border-bottom: 1px solid #cccccc;
         }
+      }
+
+      .card {
+        padding: 12px;
+        background-color: #efefef;
+        border-radius: 8px;
       }
 
       .list {
