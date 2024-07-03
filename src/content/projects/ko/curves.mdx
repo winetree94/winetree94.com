@@ -1,8 +1,46 @@
 ---
 title: '사용자의 펜 입력을 자연스럽게, Curves'
 description: 'Curves'
-pubDate: 'Jul 08 2022'
-heroImage: '/projects/curves/hero.gif'
+pubDate: "Jan 16 2023"
+heroImage: "/projects/curves/hero.gif"
 ---
 
-# Curves
+import Warning from "../../../components/Warning.astro";
+import Windows from "../../../components/Windows.astro";
+
+<Warning>
+  이 프로젝트는 Public Archive 상태로 더 이상 유지보수되지 않습니다.
+</Warning>
+
+![Curves](/projects/curves/hero.gif)
+
+이 프로젝트는 [Bobby Fraser's 'Curves' C# Project](https://gitlab.com/burningmime/curves) 를 Javascript / Typescript 로 재구현한 것입니다.
+
+Curves 는 벡터 최적화 유틸리티이며, 저는 이것을 브라우저와 Node.js 환경에서 동작할 수 있도록 재작성하였습니다.
+
+### 어떻게 동작하나요?
+
+만약 사용자가 브라우저에서 펜이나 마우스를 사용해 선을 그린다면, 점선은 아래와 같이 나타날 것 입니다.
+
+![Original Points](https://user-images.githubusercontent.com/51369962/155883128-315afbb4-f179-4391-80a7-91b9b64fb8ba.png)
+
+그리고 이 선들을 직선으로 잇는다면, 선은 아래와 같이 표현됩니다.
+
+![Original Lines](https://user-images.githubusercontent.com/51369962/155883127-f34fffd8-8aaa-4a9a-bc26-b8aa5f2fc82e.png)
+
+이는 어느 정도는 의도된 모양대로 나오지만, 점이 너무 많으며 선의 이음이 부자연스럽게 보입니다.
+
+이 프로젝트를 사용하면 아래와 같이 점의 개수를 줄이고, 자연스러운 곡선 형태를 만들 수 있게 됩니다.
+
+![Linearized Points](https://user-images.githubusercontent.com/51369962/155883126-8cb76bec-7a48-4378-91c0-5515f1767781.png)
+
+![Optimized Curves](https://user-images.githubusercontent.com/51369962/155883123-888eb0a2-8bb2-4034-93df-03088a4651a7.png)
+
+---
+
+### Links
+
+- [GitHub](https://github.com/winetree94/VectorOptimizer)
+- [NPM](https://www.npmjs.com/package/vector-optimizer)
+- [Live Preview](https://winetree94.github.io/VectorOptimizer)
+

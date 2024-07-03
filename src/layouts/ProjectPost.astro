@@ -15,12 +15,24 @@ const currentLangCode = getCurrentLangCode(Astro.url);
 <html lang={currentLangCode}>
   <head>
     <BaseHead title={title} description={description} />
+
+    <!-- markdown style -->
+    <style lang="scss">
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-bottom: 8px
+      }
+    </style>
   </head>
 
   <body>
     <Header />
     <main class="tw-w-full tw-max-w-full">
-      <article>
+      <article class="markdown">
         <div class="prose tw-text-black-800 tw-max-w-[720px] tw-m-auto">
           <div class="tw-text-center tw-mb-8">
             <div class="date">

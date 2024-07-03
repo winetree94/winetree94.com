@@ -4,7 +4,7 @@ import ProjectPost from "../../layouts/ProjectPost.astro";
 
 export async function getStaticPaths() {
   const pages = (await getCollection("projects")).filter(
-	(page) => page.slug.startsWith('ko')
+	(page) => page.slug.startsWith('en')
   );
 
   const paths = pages.map((page) => {

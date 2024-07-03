@@ -85,3 +85,51 @@ hr {
   /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
 }
+
+// Markdown Style
+
+.markdown {
+  h1:not(:last-child),
+  h2:not(:last-child),
+  h3:not(:last-child),
+  h4:not(:last-child),
+  h5:not(:last-child),
+  h6:not(:last-child) {
+    margin-bottom: theme("margin.4");
+  }
+
+  p:not(:last-child) {
+    margin-bottom: theme("margin.4");
+  }
+
+  hr:not(:last-child) {
+    margin-top: theme("margin.4");
+    margin-bottom: theme("margin.4");
+  }
+
+  ul {
+    list-style: disc;
+    list-style-position: inside;
+
+    &:not(:last-child) {
+      margin-bottom: theme("margin.4");
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+  }
+
+  ol {
+    list-style: decimal;
+    list-style-position: inside;
+
+    &:not(:last-child) {
+      margin-bottom: theme("margin.4");
+    }
+
+    ol {
+      padding-left: 20px;
+    }
+  }
+}
