@@ -5,6 +5,7 @@ import { getLangBasePath } from '../i18n/utils';
 type Props = HTMLAttributes<'a'>;
 
 const langPath = getLangBasePath(Astro.url);
+
 const { href, class: className, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
