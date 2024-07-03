@@ -44,15 +44,6 @@ const posts = (await getCollection("projects"))
       ul li a {
         display: block;
       }
-      .title {
-        margin: 0;
-        color: rgb(var(--black));
-        line-height: 1;
-      }
-      .date {
-        margin: 0;
-        color: rgb(var(--gray));
-      }
       ul li a:hover h4,
       ul li a:hover .date {
         color: rgb(var(--accent));
@@ -75,22 +66,31 @@ const posts = (await getCollection("projects"))
     <Header />
     <main>
       <div class="tw-flex tw-flex-col">
-        <div class="tw-m-8">
-          sdf
+        <div
+          class="tw-p-8 tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-8"
+        >
+          <h5>별 건 아니지만 제가 만들었거나 만들고 있는 프로젝트들 입니다.</h5>
+          <p class="tw-mt-4">
+            저는 주로 업무나 일상에서의 문제를 해결하기 위해 프로젝트로
+            생성합니다.
+          </p>
         </div>
         {
           posts.length ? (
             <ul>
               {posts.map((post) => (
                 <li>
-                  <a href={`${langPath}/projects/${post.slug.slice(3)}/`}>
+                  <a
+                    class="tw-flex tw-flex-col"
+                    href={`${langPath}/projects/${post.slug.slice(3)}/`}
+                  >
                     <img
                       width={720}
                       height={360}
                       src={post.data.heroImage}
                       alt=""
                     />
-                    <h4 class="title">{post.data.title}</h4>
+                    <h6 class="title tw-mt-4">{post.data.title}</h6>
                     <p class="date">
                       <FormattedDate date={post.data.pubDate} />
                     </p>
@@ -99,8 +99,8 @@ const posts = (await getCollection("projects"))
               ))}
             </ul>
           ) : (
-            <div>
-              <p>Nothing Exist</p>
+            <div class="tw-flex tw-justify-center">
+              <p>앗! 아직 아무것도 없네요.</p>
             </div>
           )
         }
