@@ -15,33 +15,36 @@ import Windows from "../../../components/Windows.astro";
 
 <Image width={802} height={408} src="/projects/curves/hero.gif" />
 
-이 프로젝트는 [Bobby Fraser's 'Curves' C# Project](https://gitlab.com/burningmime/curves) 를 Javascript / Typescript 로 재구현한 것입니다.
+Curves 는 벡터 최적화 유틸리티입니다. 점들의 상관관계를 파악하고 이를 최적화하여 자연스러운 곡선을 만들어줍니다. 프로젝트는 [Github](https://github.com/winetree94/VectorOptimizer) 에서 관리되며, [NPM](https://www.npmjs.com/package/vector-optimizer)을 통해 배포됩니다. [Live Preview](https://winetree94.github.io/VectorOptimizer) 를 통해 프로젝트를 직접 사용해볼 수 있습니다.
 
-Curves 는 벡터 최적화 유틸리티이며, 저는 이것을 브라우저와 Node.js 환경에서 동작할 수 있도록 재작성하였습니다.
+> 이 프로젝트는 [Bobby Fraser's 'Curves' C# Project](https://gitlab.com/burningmime/curves) 를 Javascript / Typescript 로 재구현한 것입니다.
 
-### 어떻게 동작하나요?
-
-만약 사용자가 브라우저에서 펜이나 마우스를 사용해 선을 그린다면, 점선은 아래와 같이 나타날 것 입니다.
-
-<Image width={402} height={327} src="/projects/curves/1.png" />
-
-그리고 이 선들을 직선으로 잇는다면, 선은 아래와 같이 표현됩니다.
-
-<Image width={395} height={325} src="/projects/curves/2.png" />
-
-이는 어느 정도는 의도된 모양대로 나오지만, 점이 너무 많으며 선의 이음이 부자연스럽게 보입니다.
-
-이 프로젝트를 사용하면 아래와 같이 점의 개수를 줄이고, 자연스러운 곡선 형태를 만들 수 있게 됩니다.
-
-<Image width={393} height={319} src="/projects/curves/3.png" />
-
-<Image width={396} height={326} src="/projects/curves/4.png" />
+<br />
 
 ---
 
-### Links
+### 동작 원리
 
-- [GitHub](https://github.com/winetree94/VectorOptimizer)
-- [NPM](https://www.npmjs.com/package/vector-optimizer)
-- [Live Preview](https://winetree94.github.io/VectorOptimizer)
+먼저, 사용자가 브라우저에서 펜이나 마우스를 사용해 무언가를 그리는 기능을 제공한다고 가정해봅시다. 보통은 사용자의 커서 움직임을 추적하여 점들을 기록하게 되고 점들은 아래와 같이 기록됩니다.
 
+<Image width={402} height={327} src="/projects/curves/1.png" />
+
+사용자가 원하는 결과는 점이 아니라 하나의 선일 것입니다. 그림을 완성하기 위해 이 점들을 직선으로 잇는다면 결과는 아래와 같이 표현됩니다.
+
+<Image width={395} height={325} src="/projects/curves/2.png" />
+
+이는 어느 정도는 볼만 합니다. 하지만 몇가지 문제가 발생합니다.
+
+- 점과 선의 수가 너무 많아서 그림의 데이터 크기가 커집니다. 이는 저장 비용의 증가입니다.
+- 벡터 연산이 크게 증가하므로 복잡한 그림을 그릴수록 성능이 저하됩니다.
+- 사용자는 곡선을 그렸음에도 곡선이 아닌 삐뚤삐뚤한 선이 만들어집니다.
+
+Curves 는 위 문제를 해결합니다. 먼저 사용자가 그린 점들의 상관관계를 파악하고, 이를 최적화하여 일정한 간격으로 점을 줄입니다. 이 과정에서 선형 보간법(Linear Interpolation)을 사용합니다. 최적화된 점의 모습은 다음과 같습니다.
+
+<Image width={393} height={319} src="/projects/curves/3.png" />
+
+그리고 이전 과정을 바탕으로 가장 최적화된 3차 베지어 곡선(Cubic Bézier Curve)을 찾아 최종적인 그림을 완성합니다. 완성된 그림은 다음과 같습니다.
+
+<Image width={396} height={326} src="/projects/curves/4.png" />
+
+최종 결과를 보면 선의 개수가 크게 감소했으면서도 사용자가 그린 곡선을 잘 표현하고 있음을 볼 수 있습니다. 필요하다면 최적화 정도를 조절하여 사용자의 입력을 더욱 자연스럽게 표현할 수 있습니다.
