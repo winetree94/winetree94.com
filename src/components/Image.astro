@@ -1,7 +1,28 @@
 ---
-import type { HTMLAttributes } from "astro/types"
+type Prop = {
+  align?: 'left' | 'right' | 'center';
+  src: string;
+  alt?: string;
+  width: number | string;
+  height: number | string;
+};
 
-type Prop = HTMLAttributes<'img'>;
+const props = Astro.props;
 
+const alignClassName =
+  props.align === 'left' ? 'tw-justify-start' : props.align === 'right' ? 'tw-justify-end' : 'tw-justify-center';
+
+console.log(props);
 ---
-<img src="" alt="">
+
+<div class={`image-container tw-flex ${alignClassName}`}>
+  <img class="image" src={props.src} alt={props.alt} width={props.width} height={props.height}/>
+</div> 
+
+<style lang="scss">
+  .image-container {
+    &:not(:last-child) {
+      margin-bottom: theme('margin.4');
+    }
+  }
+</style>
