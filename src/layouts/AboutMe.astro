@@ -9,72 +9,72 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 const currentLangCode = getCurrentLangCode(Astro.url);
 
 const experience: {
-  companyName: string;
-  position: string;
-  period: string;
-  description: string[];
+	companyName: string;
+	position: string;
+	period: string;
+	description: string[];
 }[] = [
-  {
-    companyName: "스윗 코리아",
-    position: "프론트엔드 / 개발자",
-    period: "2021.10 - 2024.06",
-    description: [
-      "크로스 플랫폼(Web, IOS, Android) 텍스트 에디터 라이브러리 리드 개발",
-      "크로스 플랫폼(Web, IOS, Android) 통합 인증 솔루션 리드 개발",
-      "디자인 시스템 리드 개발",
-      "ICU MessageFormat 기반의 다국어 지원 시스템 구축",
-      "업무 관리 시스템 리뉴얼 및 대규모 성능 최적화",
-    ],
-  },
-  {
-    companyName: "이파피루스",
-    position: "연구개발실 / 선임연구원",
-    period: "2021.03 - 2021.10",
-    description: ["디지타이저 펜 입력 기능 개발", "전자서명 서비스 연동"],
-  },
-  {
-    companyName: "플레이오토",
-    position: "글로벌 개발팀 / 풀스택 개발",
-    period: "2019.09 - 2021.02",
-    description: [
-      "점진적 프레임워크 교체를 위한 멀티 프레임워크 아키텍쳐 개발",
-      "고성능 데이터테이블 라이브러리 개발",
-      "Ebay, Shopee, Lazada 등 다수의 해외 쇼핑몰 연동",
-    ],
-  },
-  {
-    companyName: "주식회사종달랩",
-    position: "개발팀 / 매니저",
-    period: "2019.01 - 2019.09",
-    description: ["안드로이드"],
-  },
+	{
+		companyName: "스윗 코리아",
+		position: "프론트엔드 / 개발자",
+		period: "2021.10 - 2024.06",
+		description: [
+			"크로스 플랫폼(Web, IOS, Android) 텍스트 에디터 라이브러리 리드 개발",
+			"크로스 플랫폼(Web, IOS, Android) 통합 인증 솔루션 리드 개발",
+			"디자인 시스템 리드 개발",
+			"ICU MessageFormat 기반의 다국어 지원 시스템 구축",
+			"업무 관리 시스템 리뉴얼 및 대규모 성능 최적화",
+		],
+	},
+	{
+		companyName: "이파피루스",
+		position: "연구개발실 / 선임연구원",
+		period: "2021.03 - 2021.10",
+		description: ["디지타이저 펜 입력 기능 개발", "전자서명 서비스 연동"],
+	},
+	{
+		companyName: "플레이오토",
+		position: "글로벌 개발팀 / 풀스택 개발",
+		period: "2019.09 - 2021.02",
+		description: [
+			"점진적 프레임워크 교체를 위한 멀티 프레임워크 아키텍쳐 개발",
+			"고성능 데이터테이블 라이브러리 개발",
+			"Ebay, Shopee, Lazada 등 다수의 해외 쇼핑몰 연동",
+		],
+	},
+	{
+		companyName: "주식회사종달랩",
+		position: "개발팀 / 매니저",
+		period: "2019.01 - 2019.09",
+		description: ["안드로이드"],
+	},
 ];
 
 const opensourceExperience: {
-  projectName: string;
-  description: string;
-  period: string;
+	projectName: string;
+	description: string;
+	period: string;
 }[] = [
-  {
-    projectName: "Edybara",
-    description: "ProseMirror 기반의 리치 텍스트 에디터 라이브러리",
-    period: "2019.01 - 2019.09",
-  },
-  {
-    projectName: "Qdocs",
-    description: "영상미에 특화된 온라인 프레젠테이션 도구",
-    period: "2019.01 - 2019.09",
-  },
-  {
-    projectName: "Curves",
-    description: "웹에서 자연스러운 펜 필기 입력을 위한 라이브러리",
-    period: "2019.01 - 2019.09",
-  },
-  {
-    projectName: "VanilaRecyclerView",
-    description: "UI 최적화를 위한 가상 스크롤 라이브러리",
-    period: "2019.01 - 2019.09",
-  },
+	{
+		projectName: "Edybara",
+		description: "ProseMirror 기반의 리치 텍스트 에디터 라이브러리",
+		period: "2019.01 - 2019.09",
+	},
+	{
+		projectName: "Qdocs",
+		description: "영상미에 특화된 온라인 프레젠테이션 도구",
+		period: "2019.01 - 2019.09",
+	},
+	{
+		projectName: "Curves",
+		description: "웹에서 자연스러운 펜 필기 입력을 위한 라이브러리",
+		period: "2019.01 - 2019.09",
+	},
+	{
+		projectName: "VanilaRecyclerView",
+		description: "UI 최적화를 위한 가상 스크롤 라이브러리",
+		period: "2019.01 - 2019.09",
+	},
 ];
 ---
 
