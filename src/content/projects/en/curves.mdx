@@ -1,48 +1,50 @@
 ---
-
-title: "Natural Pen Input with Curves"
-description: "Curves"
+title: 'Smooth Pen Input with Curves'
+description: 'Curves'
 pubDate: "Jan 16 2023"
 heroImage: "/projects/curves/hero.gif"
-
 ---
 
+import Image from "../../../components/Image.astro";
 import Warning from "../../../components/Warning.astro";
 import Windows from "../../../components/Windows.astro";
 
 <Warning>
-  This project is now in Public Archive status and is no longer maintained.
+  This project is in Public Archive status and is no longer maintained.
 </Warning>
 
-![Curves](/projects/curves/hero.gif)
+<Image width={802} height={408} src="/projects/curves/hero.gif" />
 
-This project is a JavaScript/TypeScript reimplementation of [Bobby Fraser's 'Curves' C# Project](https://gitlab.com/burningmime/curves).
+Curves is a vector optimization utility that analyzes the relationships between points and optimizes them to create smooth curves. The project is managed on [Github](https://github.com/winetree94/VectorOptimizer) and is available via [NPM](https://www.npmjs.com/package/vector-optimizer). You can try out the project with the [Live Preview](https://winetree94.github.io/VectorOptimizer).
 
-Curves is a vector optimization utility that I have rewritten to work in both browser and Node.js environments.
+> This project is a JavaScript/TypeScript reimplementation of [Bobby Fraser's 'Curves' C# Project](https://gitlab.com/burningmime/curves).
 
-### How Does It Work?
-
-If a user draws a line with a pen or mouse in the browser, the points will appear as shown below.
-
-![Original Points](https://user-images.githubusercontent.com/51369962/155883128-315afbb4-f179-4391-80a7-91b9b64fb8ba.png)
-
-Connecting these points with straight lines results in the following representation.
-
-![Original Lines](https://user-images.githubusercontent.com/51369962/155883127-f34fffd8-8aaa-4a9a-bc26-b8aa5f2fc82e.png)
-
-While this somewhat resembles the intended shape, it contains too many points and the connections between lines appear unnatural.
-
-Using this project, you can reduce the number of points and create smooth curves as shown below.
-
-![Linearized Points](https://user-images.githubusercontent.com/51369962/155883126-8cb76bec-7a48-4378-91c0-5515f1767781.png)
-
-![Optimized Curves](https://user-images.githubusercontent.com/51369962/155883123-888eb0a2-8bb2-4034-93df-03088a4651a7.png)
+<br />
 
 ---
 
-### Links
+### How It Works
 
-- [GitHub](https://github.com/winetree94/VectorOptimizer)
-- [NPM](https://www.npmjs.com/package/vector-optimizer)
-- [Live Preview](https://winetree94.github.io/VectorOptimizer)
+Imagine providing users the ability to draw something in a browser using a pen or mouse. Typically, the cursor movements are tracked, and points are recorded as shown below.
 
+<Image width={402} height={327} src="/projects/curves/1.png" />
+
+Users, however, expect a continuous line, not just a series of points. If we simply connect these points with straight lines, the result looks like this:
+
+<Image width={395} height={325} src="/projects/curves/2.png" />
+
+While this is somewhat acceptable, there are several issues:
+
+- The large number of points and lines increases the data size of the drawing, leading to higher storage costs.
+- Complex drawings result in significant performance degradation due to the increased vector calculations.
+- Users draw curves, but end up with jagged lines instead.
+
+Curves addresses these issues by analyzing the relationships between the points and optimizing them to reduce the number of points at regular intervals using linear interpolation. The optimized points look like this:
+
+<Image width={393} height={319} src="/projects/curves/3.png" />
+
+Based on this, it then finds the most optimized cubic Bézier curve to complete the drawing. The final result is shown below:
+
+<Image width={396} height={326} src="/projects/curves/4.png" />
+
+As you can see, the number of lines has significantly decreased while still accurately representing the user's drawn curve. If needed, the level of optimization can be adjusted to make the user's input appear even more natural.
