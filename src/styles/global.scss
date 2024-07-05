@@ -37,7 +37,7 @@ p {
 
 hr {
   border: 0;
-  border-top: 1px solid theme("colors.black.200");
+  border-top: theme("borderWidth.DEFAULT") solid theme("colors.black.200");
 }
 
 .sr-only {
