@@ -42,7 +42,7 @@ const posts = (await getCollection('projects'))
                     href={`${langPath}/projects/${post.slug.slice(3)}/`}
                   >
                     <img
-                      class="tw-rounded-xl "
+                      class="tw-rounded-xl tw-aspect-video tw-object-cover"
                       width={720}
                       height={360}
                       src={post.data.heroImage}
