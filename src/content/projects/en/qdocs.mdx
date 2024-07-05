@@ -1,51 +1,60 @@
 ---
-title: "Make Your Presentations More Dynamic with QDocs"
-description: "Qdocs"
-pubDate: "Jul 22 2023"
-heroImage: "/projects/qdocs/hero.gif"
+title: 'Make Your Presentations More Dynamic with QDocs!'
+description: 'Qdocs'
+pubDate: 'Jul 22 2023'
+heroImage: '/projects/qdocs/hero.gif'
 ---
 
 import Warning from "../../../components/Warning.astro";
 import Windows from "../../../components/Windows.astro";
+import Image from "../../../components/Image.astro";
 
 <Warning>
-  This project is currently under development, and the links provided are for concept validation purposes. The links and features may change without notice.
+  This project is currently in development, and the provided links are intended for concept validation. Features and links may change without notice.
 </Warning>
 
-![hero](/projects/qdocs/hero.gif)
+<Image width={720} height={399} src="/projects/qdocs/hero.gif" />
 
-**Qdocs** is a tool designed to make presentations more dynamic. Unlike traditional presentation tools, Qdocs allows you to manage and edit animations on a scene-by-scene basis. This enables users to precisely control the flow of their presentations and easily define more complex animation sequences.
+**Qdocs** is a tool designed to make presentations more dynamic. It allows you to manage and edit animations on a scene-by-scene basis. This gives users precise control over the flow of their presentations and makes it easier to define complex animation movements.
 
-The project is managed on [Github](https://github.com/winetree94/qdocs) and you can try it out via the [Live Preview](https://winetree94.github.io/VectorOptimizer). For more detailed information, please refer to the project [WIKI](https://github.com/winetree94/qdocs/wiki).
+The project is managed on [Github](https://github.com/winetree94/qdocs), and you can try it out through the [Live Preview](https://qdocs.winetree94.com). For more detailed information about the project, please refer to the [WIKI](https://github.com/winetree94/qdocs/wiki).
 
 <br />
 
 ---
 
-### Core Concept
+### What's Different
 
-The goal of a presentation is to captivate the audience within a limited time frame. While eloquence is important, engaging visuals are equally crucial in maintaining the audience's attention.
+The goal of a presentation is to captivate the audience within a limited time. While good speaking skills are important, visually engaging materials are also crucial.
 
-One feature I frequently use in presentations is **animation**. Animating diagrams or charts can significantly enhance audience comprehension.
+One feature I often use in presentations is '**animation**'. Showing diagrams or charts with animation can help increase the audience's understanding.
 
-However, creating such content with traditional presentation tools is not easy. Below is a snippet from a presentation I delivered at an internal seminar.
-
-<br />
-
-![shot1](https://github.com/winetree94/TheQueue/assets/51369962/758a3c39-e422-4b2e-91fd-84d7402eacfc)
-
-The animations used in this presentation primarily involve object movement and Fade In/Out effects. However, if you open the actual PPT file used to create it, you'll see something like this:
+However, creating such content with existing presentation tools isn't easy. Below is a part of a presentation I used during an internal seminar.
 
 <br />
 
-![shot2](https://github.com/winetree94/TheQueue/assets/51369962/36cce796-352f-420f-ae5f-ccd2c8e03c0f)
+<Image width={720} height={428} src="/projects/qdocs/1.gif" />
 
-In most tools like PowerPoint or Keynote, object animations are managed and displayed simultaneously within a single page. This makes it difficult to see the specific appearance of each **scene** during the editing process. As a result, even slightly complex animations can make the UI cluttered and hard to edit.
+The animations used in the presentation above mainly involve moving objects and fade-in/out effects. But if you open the actual PPT file, it looks like this:
 
 <br />
 
-The Queue aims to solve these animation management issues by allowing presentations to be created on an animation scene basis rather than a page basis. Each of these scenes is managed using the term **‘Queue’**. The image below is an example of an edited document.
+<Image width={720} height={379} src="/projects/qdocs/2.png" />
 
-![hero](/projects/qdocs/hero.gif)
+In tools like PowerPoint or Keynote, animations for objects are managed and displayed all at once within the same page. This makes it hard to see how a specific '**scene**' will look during the editing process. As a result, the UI becomes cluttered and difficult to manage as soon as the animations get a bit complex.
 
-One of the key objectives is to enable editing based on animation scenes rather than specific pages, as shown above. This approach allows users to accurately understand and control the document flow, making it easier to define more complex animation sequences.
+<br />
+
+Qdocs addresses this issue by allowing you to create presentations based on animation scenes rather than pages.
+
+<Image width={720} height={399} src="/projects/qdocs/hero.gif" />
+
+One of the key goals is to enable editing by animation scenes rather than by document pages, as shown above. This approach allows users to precisely understand and control the document flow, making it easier to define complex animation movements.
+
+<br />
+
+---
+
+### Current Status
+
+Qdocs started as a project to enter an open-source software competition with my colleagues. Unfortunately, we didn't win, and the team members have since dispersed, leaving me to continue working on it alone. I personally find this project very promising and plan to continue developing it in my spare time.
