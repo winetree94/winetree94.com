@@ -1,33 +1,5 @@
 @import "remixicon/fonts/remixicon.css";
 
-@font-face {
-  font-family: "Agave";
-  src: url("/fonts/AgaveNerdFontMono-Regular.ttf") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Agave";
-  src: url("/fonts/AgaveNerdFontMono-Bold.ttf") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Gowun Dodum";
-  src: url("/fonts/GowunDodum-Regular.ttf") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-body {
-  font-family: "Agave", "Gowun Dodum", sans-serif;
-}
-
 main {
   width: 720px;
   max-width: calc(100% - 2em);
@@ -138,7 +110,10 @@ hr {
   }
 
   code {
-    font-family: inherit monospace;
+    font-family: inherit;
+    background-color: theme("colors.black.50");
+    padding: 2px 4px;
+    border-radius: theme("borderRadius.md");
   }
 
   blockquote {
