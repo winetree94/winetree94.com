@@ -137,6 +137,10 @@ hr {
     color: theme("colors.blue.400");
   }
 
+  code {
+    font-family: inherit monospace;
+  }
+
   blockquote {
     margin: 0;
     padding: 0;
