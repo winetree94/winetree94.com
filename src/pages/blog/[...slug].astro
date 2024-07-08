@@ -3,9 +3,9 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
-  const pages = (await getCollection("blog")).filter(
-	(page) => page.slug.startsWith('ko')
-  );
+  const pages = (await getCollection("blog"))
+    .filter((page) => page.slug.startsWith("ko"))
+    .filter((page) => !page.data.hidden);
 
   const paths = pages.map((page) => {
     const [lang, ...slug] = page.slug.split("/");
