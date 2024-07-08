@@ -1,20 +1,30 @@
 ---
-title: '확장성을 갖춘 텍스트 에디터, Edybara'
+title: 'Edybara: A Simple and Scalable Text Editor'
 description: 'Edybara'
 pubDate: 'Jan 08 2024'
 heroImage: '/projects/edybara/hero.gif'
 ---
 
+import Image from "../../../components/Image.astro";
 import Warning from "../../../components/Warning.astro";
 
 <Warning>
-  이 프로젝트는 현재 개발중으로, 현재 공개된 링크는 제품의 컨셉을 확인하기 위한 용도입니다. 제공되는 링크나 기능은 고지 없이 변경될 수 있습니다.
+  This project is currently under development. The provided links and features are for concept verification purposes and may change without notice.
 </Warning>
 
-Edybara 는 브라우저에서 사용 가능한 리치 텍스트 에디터 라이브러리입니다. 프로젝트는 [Github](https://github.com/winetree94/edybara) 에서 관리되며, [NPM](https://www.npmjs.com/package/edybara)을 통해 배포됩니다. [공식 홈페이지](https://edybara.com) 를 통해 자세한 문서를 확인할 수 있습니다.
+<Image width={720} height={332} src="/projects/edybara/hero.gif" />
+
+Edybara is an open-source rich text editor based on ProseMirror. It offers a variety of pre-defined formats and plugins compatible with ProseMirror. The project is managed on [Github](https://github.com/winetree94/edybara) and detailed documentation can be found on the [official website](https://edybara.com).
 
 <br />
 
 ---
-### ProseMirror 를 직접 사용하는 것과의 차이
+### Core Concept
 
+ProseMirror is a powerful tool that allows users to create almost anything they can imagine in a text editor. You can customize nearly every aspect of formatting and UI/UX to meet business requirements.
+
+However, ProseMirror is more of a framework for building editors than a ready-to-use library. It requires significant additional development to be usable, and its extensive API can be challenging to learn.
+
+Edybara addresses these issues. It provides pre-defined formats and plugins that make ProseMirror easy to start with. This allows users to quickly implement and deploy a ProseMirror-based editor.
+
+Edybara is developed and distributed independently for each feature, providing standard ProseMirror API endpoints (Schema, Plugin). This means that even existing ProseMirror projects can incorporate parts of Edybara’s functionality.

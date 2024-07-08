@@ -1,0 +1,11 @@
+---
+export type Props = {
+  name: string;
+};
+
+const props = Astro.props;
+---
+<span class="tw-inline-flex tw-items-center tw-px-2 tw-py-1 tw-bg-black-100 tw-rounded-2xl tw-text-sm">
+  <img class="tw-w-4 tw-h-4 tw-mr-2" src={`/favicons/${props.name.toLowerCase()}.png`} alt=`${props.name} favicon`> 
+  {props.name}
+</span>
