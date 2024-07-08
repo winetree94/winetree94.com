@@ -8,13 +8,13 @@ import { getCurrentLangCode } from '../i18n/utils';
 
 type Props = CollectionEntry<'projects'>['data'];
 
-const { title, description, pubDate, updatedDate } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 const currentLangCode = getCurrentLangCode(Astro.url);
 ---
 
 <html lang={currentLangCode}>
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} image={heroImage} />
 
     <!-- markdown style -->
     <style lang="scss">
