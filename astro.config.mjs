@@ -1,8 +1,8 @@
-import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
+import sitemap from '@astrojs/sitemap';
 import tailwind from "@astrojs/tailwind";
+import { defineConfig } from 'astro/config';
 
 const defaultLocale = "en";
 const locales = {
@@ -37,6 +37,8 @@ export default defineConfig({
     react({
       include: ["./src/**/*.{jsx,tsx}"],
     }),
-    tailwind()
+    tailwind({
+      applyBaseStyles: false,
+    })
   ]
 });

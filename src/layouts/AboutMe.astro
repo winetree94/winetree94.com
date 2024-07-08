@@ -4,9 +4,10 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import IndentLine from '../components/IndentLine.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { getCurrentLangCode } from '../i18n/utils';
+import { getCurrentLangCode, getLangBasePath } from '../i18n/utils';
 
 const currentLangCode = getCurrentLangCode(Astro.url);
+const langPath = getLangBasePath(Astro.url);
 
 const experience: {
   companyName: string;
@@ -54,26 +55,31 @@ const opensourceExperience: {
   projectName: string;
   description: string;
   period: string;
+  link: string;
 }[] = [
   {
     projectName: 'Edybara',
     description: 'ProseMirror 기반의 리치 텍스트 에디터 라이브러리',
     period: '2019.01 - 2019.09',
+    link: '/projects/edybara',
   },
   {
     projectName: 'Qdocs',
     description: '영상미에 특화된 온라인 프레젠테이션 도구',
     period: '2019.01 - 2019.09',
+    link: '/projects/qdocs',
   },
   {
-    projectName: 'Curves',
+    projectName: 'Vector Optimizer',
     description: '웹에서 자연스러운 펜 필기 입력을 위한 라이브러리',
     period: '2019.01 - 2019.09',
+    link: '/projects/vector-optimizer',
   },
   {
     projectName: 'VanilaRecyclerView',
     description: 'UI 최적화를 위한 가상 스크롤 라이브러리',
     period: '2019.01 - 2019.09',
+    link: '/projects/vanilla-recycler-view',
   },
 ];
 ---
@@ -205,6 +211,9 @@ const opensourceExperience: {
                     <p class="tw-mt-2">{exp.description}</p>
                   </div>
                   <span>{exp.period}</span>
+                </div>
+                <div class="tw-flex tw-justify-end">
+                  <a href={langPath + exp.link}>자세히 보기</a>
                 </div>
               </div>
             ))

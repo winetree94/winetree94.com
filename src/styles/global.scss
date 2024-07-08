@@ -1,44 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "remixicon/fonts/remixicon.css";
-
-main {
-  width: 720px;
-  max-width: calc(100% - 2em);
-  margin: auto;
-  padding: 3em 1em;
-}
-
-h1 {
-  font-size: theme("fontSize.4xl");
-}
-
-h2 {
-  font-size: theme("fontSize.3xl");
-}
-
-h3 {
-  font-size: theme("fontSize.2xl");
-}
-
-h4 {
-  font-size: theme("fontSize.xl");
-}
-
-h5 {
-  font-size: theme("fontSize.lg");
-}
-
-h6 {
-  font-size: theme("fontSize.base");
-}
-
-p {
-  font-size: theme("fontSize.base");
-}
-
-hr {
-  border: 0;
-  border-top: theme("borderWidth.DEFAULT") solid theme("colors.black.200");
-}
 
 .sr-only {
   border: 0;
@@ -58,7 +22,7 @@ hr {
   white-space: nowrap;
 }
 
-// Markdown Style
+// -------- Markdown Style ---------
 
 .markdown {
   h1:not(:last-child),

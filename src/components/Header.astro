@@ -1,13 +1,13 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
-import { SITE_TITLE } from "../consts";
-import { getLangBasePath } from "../i18n/utils";
+import { SITE_TITLE } from '../consts';
+import { getLangBasePath } from '../i18n/utils';
+import HeaderLink from './HeaderLink.astro';
 const langPath = getLangBasePath(Astro.url);
 ---
 
 <header class="tw-px-5 tw-shadow tw-flex tw-justify-center">
   <nav class="tw-flex tw-items-center tw-justify-between tw-w-full tw-max-w-[1280px] tw-h-14">
-    <h2 class="tw-text-base"><a href={`${langPath || "/"}`}>{SITE_TITLE}</a></h2>
+    <h2 class="tw-text-base"><a class="tw-text-black-950" href={`${langPath || "/"}`}>{SITE_TITLE}</a></h2>
     <div>
       <HeaderLink class="tw-px-2 tw-py-2" href={`${langPath}/about`}
         >About</HeaderLink
