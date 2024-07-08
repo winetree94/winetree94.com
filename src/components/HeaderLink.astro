@@ -1,20 +1,14 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
-import { getLangBasePath } from '../i18n/utils';
+type Props = {
+  pathname: string;
+};
 
-type Props = HTMLAttributes<'a'>;
-
-const langPath = getLangBasePath(Astro.url);
-
-const { href, class: className, ...props } = Astro.props;
-
-const { pathname } = Astro.url;
-const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === langPath + subpath?.[0];
+const path = Astro.url.pathname;
+const { pathname } = Astro.props;
+const active = path.includes(pathname);
 ---
 
-<a href={href} class:list={['tw-inline tw-no-underline tw-text-black-950', className, { active: isActive }]} {...props}>
-  <slot />
+<a href={pathname} class:list={['tw-inline tw-no-underline tw-text-black-950, tw-px-2 tw-py-2 tw-text-black-950',  { active: active }]}> <slot />
 </a>
 
 <style>

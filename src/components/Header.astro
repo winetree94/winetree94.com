@@ -9,13 +9,13 @@ const langPath = getLangBasePath(Astro.url);
   <nav class="tw-flex tw-items-center tw-justify-between tw-w-full tw-max-w-[1280px] tw-h-14">
     <h2 class="tw-text-base"><a class="tw-text-black-950" href={`${langPath || "/"}`}>{SITE_TITLE}</a></h2>
     <div>
-      <HeaderLink class="tw-px-2 tw-py-2" href={`${langPath}/about`}
+      <HeaderLink pathname={`${langPath}/about`}
         >About</HeaderLink
       >
-      <HeaderLink class="tw-px-2 tw-py-2" href={`${langPath}/projects`}
+      <HeaderLink pathname={`${langPath}/projects`}
         >Projects</HeaderLink
       >
-      <HeaderLink class="tw-px-2 tw-py-2" href={`${langPath}/blog`}
+      <HeaderLink pathname={`${langPath}/blog`}
         >Blog</HeaderLink
       >
     </div>
