@@ -12,13 +12,6 @@ const langCode = getCurrentLangCode(Astro.url);
 const t = useTranslation(langCode);
 const langPath = getLangBasePath(Astro.url);
 
-const scrollTo = (id: string) => {
-  const element = document.getElementById(id);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
 const badges = ['Typescript', 'Angular', 'React', 'Webpack', 'Vite', 'Jest', 'Storybook', 'Aws', 'Docker'];
 
 const links = [
@@ -248,7 +241,7 @@ const opensourceExperience: {
                           based in {exp.country}
                         </span>
                       </h4>
-                      <p>{exp.position}</p>
+                      <p class="tw-text-sm">{exp.position}</p>
                     </div>
                     <span>{exp.period}</span>
                   </div>

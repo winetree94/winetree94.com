@@ -4,6 +4,30 @@
 
 @import "remixicon/fonts/remixicon.css";
 
+@font-face {
+  font-family: "Agave";
+  src: url("/fonts/Agave-Regular.ttf") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Agave";
+  src: url("/fonts/Agave-Bold.ttf") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Gowun Dodum";
+  src: url("/fonts/GowunDodum-Regular.ttf") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 .sr-only {
   border: 0;
   padding: 0;
