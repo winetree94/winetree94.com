@@ -5,11 +5,14 @@ pubDate: 'Jan 08 2024'
 heroImage: '/projects/edybara/hero.gif'
 ---
 
+import Image from "../../../components/Image.astro";
 import Warning from "../../../components/Warning.astro";
 
 <Warning>
   이 프로젝트는 현재 개발중으로, 현재 공개된 링크는 제품의 컨셉을 확인하기 위한 용도입니다. 제공되는 링크나 기능은 고지 없이 변경될 수 있습니다.
 </Warning>
+
+<Image width={720} height={332} src="/projects/edybara/hero.gif" />
 
 Edybara 는 브라우저에서 사용 가능한 리치 텍스트 에디터 라이브러리입니다. 프로젝트는 [Github](https://github.com/winetree94/edybara) 에서 관리되며, [NPM](https://www.npmjs.com/package/edybara)을 통해 배포됩니다. [공식 홈페이지](https://edybara.com) 를 통해 자세한 문서를 확인할 수 있습니다.
 
@@ -17,4 +20,3 @@ Edybara 는 브라우저에서 사용 가능한 리치 텍스트 에디터 라�
 
 ---
 ### ProseMirror 를 직접 사용하는 것과의 차이
-
