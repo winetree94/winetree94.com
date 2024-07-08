@@ -12,6 +12,7 @@ const langPath = getLangBasePath(Astro.url);
 const t = useTranslation(langCode);
 const posts = (await getCollection('blog'))
   .filter((post) => post.slug.startsWith(langCode))
+  .filter((post) => !post.data.hidden)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 

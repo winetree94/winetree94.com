@@ -5,7 +5,6 @@ const blog = defineCollection({
   // Type-check frontmatter using a schema
   schema: z.object({
     title: z.string(),
-    description: z.string(),
     // Transform string to Date object
     pubDate: z.coerce.date(),
     hidden: z.boolean().optional(),
@@ -19,7 +18,6 @@ const projects = defineCollection({
   // Type-check frontmatter using a schema
   schema: z.object({
     title: z.string(),
-    description: z.string(),
     // Transform string to Date object
     pubDate: z.coerce.date(),
     hidden: z.boolean().optional(),
