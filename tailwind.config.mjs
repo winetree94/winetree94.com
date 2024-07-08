@@ -48,44 +48,6 @@ export default {
 	},
 	plugins: [
 		plugin(({ addBase, config }) => {
-
-			// @layer base {
-			//   h1 {
-			//     @apply tw-text-4xl;
-			//   }
-
-			//   h2 {
-			//     @apply tw-text-3xl;
-			//   }
-
-			//   h3 {
-			//     @apply tw-text-2xl;
-			//   }
-
-			//   h4 {
-			//     @apply tw-text-xl;
-			//   }
-
-			//   h5 {
-			//     @apply tw-text-lg;
-			//   }
-
-			//   h6 {
-			//     @apply tw-text-base;
-			//   }
-
-			//   p {
-			//     @apply tw-text-base;
-			//   }
-
-			//   a {
-			//     @apply tw-text-blue-400;
-			//   }
-
-			//   hr {
-			//     @apply tw-border-0 tw-border-t tw-border-black-200;
-			//   }
-			// }
 			addBase({
 				'h1': {
 					fontSize: config('theme.fontSize.4xl'),
