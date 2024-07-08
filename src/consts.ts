@@ -12,8 +12,8 @@ export const SITE_DESCRIPTIONS = {
 };
 
 export const SITE_IMAGES = {
-  en: '/og/en.png',
-  ko: '/og/ko.png',
+  en: '/og/index/en.png',
+  ko: '/og/index/ko.png',
 };
 
 export const SITE_TITLE = 'winetree94';
