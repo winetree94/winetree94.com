@@ -49,6 +49,13 @@ const currentLangCode = getCurrentLangCode(Astro.url)
             <hr />
           </div>
           <slot />
+          <script src="https://utteranc.es/client.js"
+                  repo="winetree94/winetree94.com"
+                  issue-term={Astro.url.pathname}
+                  theme="github-light"
+                  crossorigin="anonymous"
+                  async>
+          </script>
         </div>
       </article>
     </main>
