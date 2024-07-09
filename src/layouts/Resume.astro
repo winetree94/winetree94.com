@@ -58,7 +58,7 @@ const image = SITE_IMAGES[currentLangCode];
     </main>
 
     <script>
-      const MAX_ZOOM_LEVEL = 1.25;
+      const MAX_ZOOM_LEVEL = 1.00;
       const MIN_ZOOM_LEVEL = 0.25;
 
       const VIEWER = document.querySelector('#viewer-root')! as HTMLDivElement;
@@ -96,7 +96,6 @@ const image = SITE_IMAGES[currentLangCode];
       });
 
       // watch screen width
-      window.addEventListener('resize', matchWithScreen);
       matchWithScreen();
       VIEWER.style.visibility = 'visible';
     </script>
