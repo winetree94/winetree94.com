@@ -10,14 +10,24 @@ const t = useTranslation(langCode);
 const badges = ['Typescript', 'Angular', 'React', 'Webpack', 'Vite', 'Jest', 'Storybook', 'Aws', 'Docker'];
 ---
 
-<div class="tw-flex tw-flex-col tw-w-full tw-h-full tw-justify-center tw-text-left">
+<div
+  class="tw-flex tw-flex-col tw-w-full tw-h-full tw-justify-center tw-text-left"
+>
   <div class="tw-flex tw-flex-row">
-    <div class="tw-flex-shrink-0 tw-flex tw-justify-center">
+    <div class="tw-flex-shrink-0 tw-flex tw-justify-center tw-flex-col">
       <img
         class="tw-rounded-full profile-image tw-max-w-[200px] tw-min-w-[200px] tw-min-h-[200px] tw-max-h-[200px]"
         src="/photos/profile.jpg"
         alt="Profile Image"
       />
+      <div class="tw-mt-4">
+        <p>
+          <i class="ri-mail-line tw-mr-2"></i>winetree94@gmail.com
+        </p>
+        <p>
+          <i class="ri-home-3-line tw-mr-2"></i>winetree94.com
+        </p>
+      </div>
     </div>
     <div class="tw-flex tw-flex-col tw-ml-8 tw-mt-0">
       <h5>{t("about.title")}</h5>
