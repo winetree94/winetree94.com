@@ -1,0 +1,70 @@
+---
+import IndentLine from '../../components/IndentLine.astro';
+import { getCurrentLangCode, getLangBasePath } from '../../i18n/utils';
+import { useTranslation } from '../../i18n/utils';
+
+const langPath = getLangBasePath(Astro.url);
+const langCode = getCurrentLangCode(Astro.url);
+const t = useTranslation(langCode);
+
+const opensourceExperience: {
+  projectName: string;
+  description: string;
+  period: string;
+  link: string;
+}[] = [
+  {
+    projectName: t('about.open_source.edybara.title'),
+    description: t('about.open_source.edybara.description'),
+    period: t('about.open_source.edybara.period'),
+    link: '/projects/edybara',
+  },
+  {
+    projectName: t('about.open_source.qdocs.title'),
+    description: t('about.open_source.qdocs.description'),
+    period: t('about.open_source.qdocs.period'),
+    link: '/projects/qdocs',
+  },
+  {
+    projectName: t('about.open_source.vector_optimizer.title'),
+    description: t('about.open_source.vector_optimizer.description'),
+    period: t('about.open_source.vector_optimizer.period'),
+    link: '/projects/vector-optimizer',
+  },
+  {
+    projectName: t('about.open_source.vanilla_recycler_view.title'),
+    description: t('about.open_source.vanilla_recycler_view.description'),
+    period: t('about.open_source.vanilla_recycler_view.period'),
+    link: '/projects/vanilla-recycler-view',
+  },
+];
+---
+
+<div
+  class="tw-flex tw-flex-col tw-w-full tw-h-full tw-justify-start tw-text-left"
+>
+  <h4 id="open_source">
+    {t("about.open_source")}
+  </h4>
+  <IndentLine class="tw-flex tw-flex-col tw-gap-4">
+    {
+      opensourceExperience.map((exp) => (
+        <div class="tw-p-3 tw-bg-white-100 tw-rounded-lg">
+          <div class="tw-flex tw-justify-between tw-flex-col sm:tw-flex-row">
+            <div>
+              <h5>{exp.projectName}</h5>
+            </div>
+            <span class="tw-text-sm">
+              <i class="ri-calendar-line tw-mr-2" />
+              {exp.period}
+            </span>
+          </div>
+          <p class="tw-mt-4">{exp.description}</p>
+          <div class="tw-flex tw-justify-end">
+            <a href={langPath + exp.link}>{t("global.view_details")}</a>
+          </div>
+        </div>
+      ))
+    }
+  </IndentLine>
+</div>
