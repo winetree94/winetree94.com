@@ -1,43 +1,53 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import IndentLine from '../components/IndentLine.astro';
-import TechBadge from '../components/TechBadge.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { getCurrentLangCode, getLangBasePath } from '../i18n/utils';
-import { useTranslation } from '../i18n/utils';
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import IndentLine from "../components/IndentLine.astro";
+import TechBadge from "../components/TechBadge.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { getCurrentLangCode, getLangBasePath } from "../i18n/utils";
+import { useTranslation } from "../i18n/utils";
 
 const langCode = getCurrentLangCode(Astro.url);
 const t = useTranslation(langCode);
 const langPath = getLangBasePath(Astro.url);
 
-const badges = ['Typescript', 'Angular', 'React', 'Webpack', 'Vite', 'Jest', 'Storybook', 'Aws', 'Docker'];
+const badges = [
+  "Typescript",
+  "Angular",
+  "React",
+  "Webpack",
+  "Vite",
+  "Jest",
+  "Storybook",
+  "Aws",
+  "Docker",
+];
 
 const links = [
   {
-    name: 'Github',
-    url: 'https://github.com/winetree94',
+    name: "Github",
+    url: "https://github.com/winetree94",
   },
   {
-    name: 'NPM',
-    url: 'https://www.npmjs.com/~winetree94',
+    name: "NPM",
+    url: "https://www.npmjs.com/~winetree94",
   },
   {
-    name: 'Docker Hub',
-    url: 'https://hub.docker.com/u/winetree94',
+    name: "Docker Hub",
+    url: "https://hub.docker.com/u/winetree94",
   },
   {
-    name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/hansol-park-995380265/',
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/hansol-park-995380265/",
   },
   {
-    name: 'Reddit',
-    url: 'https://www.reddit.com/user/No_Fail_5663/',
+    name: "Reddit",
+    url: "https://www.reddit.com/user/No_Fail_5663/",
   },
   {
-    name: 'Blog (Old)',
-    url: 'https://winetree94.notion.site',
+    name: "Blog (Old)",
+    url: "https://winetree94.notion.site",
   },
 ];
 
@@ -49,43 +59,49 @@ const experience: {
   description: string[];
 }[] = [
   {
-    companyName: t('about.experience.swit.title'),
-    country: t('about.experience.swit.country'),
-    position: t('about.experience.swit.roll'),
-    period: t('about.experience.swit.period'),
+    companyName: t("about.experience.swit.title"),
+    country: t("about.experience.swit.country"),
+    position: t("about.experience.swit.roll"),
+    period: t("about.experience.swit.period"),
     description: [
-      t('about.experience.swit.activity.1'),
-      t('about.experience.swit.activity.2'),
-      t('about.experience.swit.activity.3'),
-      t('about.experience.swit.activity.4'),
-      t('about.experience.swit.activity.5'),
+      t("about.experience.swit.activity.1"),
+      t("about.experience.swit.activity.2"),
+      t("about.experience.swit.activity.3"),
+      t("about.experience.swit.activity.4"),
+      t("about.experience.swit.activity.5"),
     ],
   },
   {
-    companyName: t('about.experience.epapyrus.title'),
-    country: t('about.experience.epapyrus.country'),
-    position: t('about.experience.epapyrus.roll'),
-    period: t('about.experience.epapyrus.period'),
-    description: [t('about.experience.epapyrus.activity.1'), t('about.experience.epapyrus.activity.2')],
-  },
-  {
-    companyName: t('about.experience.playauto.title'),
-    country: t('about.experience.playauto.country'),
-    position: t('about.experience.playauto.roll'),
-    period: t('about.experience.playauto.period'),
+    companyName: t("about.experience.epapyrus.title"),
+    country: t("about.experience.epapyrus.country"),
+    position: t("about.experience.epapyrus.roll"),
+    period: t("about.experience.epapyrus.period"),
     description: [
-      t('about.experience.playauto.activity.1'),
-      t('about.experience.playauto.activity.2'),
-      t('about.experience.playauto.activity.3'),
-      t('about.experience.playauto.activity.4'),
+      t("about.experience.epapyrus.activity.1"),
+      t("about.experience.epapyrus.activity.2"),
     ],
   },
   {
-    companyName: t('about.experience.jdlab.title'),
-    country: t('about.experience.jdlab.country'),
-    position: t('about.experience.jdlab.roll'),
-    period: t('about.experience.jdlab.period'),
-    description: [t('about.experience.jdlab.activity.1'), t('about.experience.jdlab.activity.2')],
+    companyName: t("about.experience.playauto.title"),
+    country: t("about.experience.playauto.country"),
+    position: t("about.experience.playauto.roll"),
+    period: t("about.experience.playauto.period"),
+    description: [
+      t("about.experience.playauto.activity.1"),
+      t("about.experience.playauto.activity.2"),
+      t("about.experience.playauto.activity.3"),
+      t("about.experience.playauto.activity.4"),
+    ],
+  },
+  {
+    companyName: t("about.experience.jdlab.title"),
+    country: t("about.experience.jdlab.country"),
+    position: t("about.experience.jdlab.roll"),
+    period: t("about.experience.jdlab.period"),
+    description: [
+      t("about.experience.jdlab.activity.1"),
+      t("about.experience.jdlab.activity.2"),
+    ],
   },
 ];
 
@@ -96,28 +112,28 @@ const opensourceExperience: {
   link: string;
 }[] = [
   {
-    projectName: t('about.open_source.edybara.title'),
-    description: t('about.open_source.edybara.description'),
-    period: t('about.open_source.edybara.period'),
-    link: '/projects/edybara',
+    projectName: t("about.open_source.edybara.title"),
+    description: t("about.open_source.edybara.description"),
+    period: t("about.open_source.edybara.period"),
+    link: "/projects/edybara",
   },
   {
-    projectName: t('about.open_source.qdocs.title'),
-    description: t('about.open_source.qdocs.description'),
-    period: t('about.open_source.qdocs.period'),
-    link: '/projects/qdocs',
+    projectName: t("about.open_source.qdocs.title"),
+    description: t("about.open_source.qdocs.description"),
+    period: t("about.open_source.qdocs.period"),
+    link: "/projects/qdocs",
   },
   {
-    projectName: t('about.open_source.vector_optimizer.title'),
-    description: t('about.open_source.vector_optimizer.description'),
-    period: t('about.open_source.vector_optimizer.period'),
-    link: '/projects/vector-optimizer',
+    projectName: t("about.open_source.vector_optimizer.title"),
+    description: t("about.open_source.vector_optimizer.description"),
+    period: t("about.open_source.vector_optimizer.period"),
+    link: "/projects/vector-optimizer",
   },
   {
-    projectName: t('about.open_source.vanilla_recycler_view.title'),
-    description: t('about.open_source.vanilla_recycler_view.description'),
-    period: t('about.open_source.vanilla_recycler_view.period'),
-    link: '/projects/vanilla-recycler-view',
+    projectName: t("about.open_source.vanilla_recycler_view.title"),
+    description: t("about.open_source.vanilla_recycler_view.description"),
+    period: t("about.open_source.vanilla_recycler_view.period"),
+    link: "/projects/vanilla-recycler-view",
   },
 ];
 ---
@@ -141,7 +157,7 @@ const opensourceExperience: {
           <h5>{t("about.title")}</h5>
           <p class="tw-mt-4">
             <Fragment set:html={t("about.description")} />
-            <br>
+            <br />
             {t("about.contact_me")}
           </p>
           <p class="tw-text-right tw-mt-4">
@@ -239,18 +255,24 @@ const opensourceExperience: {
           <div class="tw-list-disc tw-list-inside tw-flex tw-flex-col tw-gap-4">
             {
               experience.map((exp) => (
-                <div class="tw-p-3 tw-bg-white-100 tw-rounded-lg">
-                  <div class="tw-flex tw-justify-between tw-flex-col sm:tw-flex-row">
+                <div class="tw-p-3 tw-rounded-lg">
+                  <div class="tw-flex tw-justify-between tw-flex-row">
                     <div>
-                      <h4 class="tw-flex tw-items-start tw-flex-col sm:tw-flex-row sm:tw-items-center">
-                        {exp.companyName},
-                        <span class="tw-text-sm tw-text-black-700 sm:tw-ml-2">
+                      <h2 class="tw-flex tw-flex-row tw-items-center">
+                        {exp.companyName}
+                        <span class="tw-text-sm tw-text-black-700 tw-ml-2">
                           based in {exp.country}
                         </span>
-                      </h4>
-                      <p class="tw-text-sm"><i class="ri-group-line tw-mr-2"></i>{exp.position}</p>
+                      </h2>
+                      <p class="tw-text-sm">
+                        <i class="ri-group-line" />
+                        {exp.position}
+                      </p>
                     </div>
-                    <span class="tw-text-sm"><i class="ri-calendar-line tw-mr-2"></i>{exp.period}</span>
+                    <span class="tw-text-sm">
+                      <i class="ri-calendar-line" />
+                      {exp.period}
+                    </span>
                   </div>
                   <ul class="tw-list-disc tw-list-inside tw-mt-4">
                     {exp.description.map((desc) => (
@@ -275,7 +297,10 @@ const opensourceExperience: {
                   <div>
                     <h5>{exp.projectName}</h5>
                   </div>
-                  <span class="tw-text-sm"><i class="ri-calendar-line tw-mr-2"></i>{exp.period}</span>
+                  <span class="tw-text-sm">
+                    <i class="ri-calendar-line tw-mr-2" />
+                    {exp.period}
+                  </span>
                 </div>
                 <p class="tw-mt-4">{exp.description}</p>
                 <div class="tw-flex tw-justify-end">
