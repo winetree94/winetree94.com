@@ -1,10 +1,10 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Page1 from '../components/printable/page1.astro';
-import Page2 from '../components/printable/page2.astro';
-import Page3 from '../components/printable/page3.astro';
-import { SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from '../consts';
-import { getCurrentLangCode } from '../i18n/utils';
+import BaseHead from "../components/BaseHead.astro";
+import Page1 from "../components/printable/page1.astro";
+import Page2 from "../components/printable/page2.astro";
+import Page3 from "../components/printable/page3.astro";
+import { SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from "../consts";
+import { getCurrentLangCode } from "../i18n/utils";
 const currentLangCode = getCurrentLangCode(Astro.url);
 
 const title = SITE_TITLES[currentLangCode];
@@ -17,8 +17,12 @@ const image = SITE_IMAGES[currentLangCode];
   <head>
     <BaseHead title={title} description={description} image={image} />
   </head>
-  <body class="tw-flex tw-flex-col tw-bg-black-800 tw-m-0 tw-p-0 tw-overflow-y-scroll">
-    <header class="tw-fixed tw-w-full tw-shadow-2xl print:tw-hidden tw-h-12 tw-z-30">
+  <body
+    class="tw-flex tw-flex-col tw-bg-black-800 tw-m-0 tw-p-0 tw-overflow-y-scroll"
+  >
+    <header
+      class="tw-fixed tw-w-full tw-shadow-md print:tw-hidden tw-h-12 tw-z-30"
+    >
       <nav class="tw-bg-white-50 tw-flex tw-justify-between tw-px-4 tw-h-full">
         <div class="tw-flex tw-items-center">
           <button class="tw-px-4 tw-h-full" onclick="history.back()">
@@ -41,69 +45,100 @@ const image = SITE_IMAGES[currentLangCode];
     <!-- <Header /> -->
     <main
       id="viewer-root"
-      class="tw-m-0 tw-mt-12 tw-p-0 tw-w-full tw-max-w-full tw-overflow-x-auto tw-box-border tw-text-center print:tw-p-0 print:tw-m-0 print:tw-mt-0"
-      style="visibility: hidden;"
+      class="tw-m-0 tw-mt-12 tw-p-0 tw-w-full tw-max-w-full tw-text-center print:tw-p-0 print:tw-m-0 print:tw-mt-0"
+      style="visibility: hidden; --scaling-factor: 1; --doc-width: 210mm; --doc-height: 297mm;"
     >
-      <div id="zoom-container" class="tw-inline-block tw-p-16 print:tw-p-0">
-        <div class="page">
-          <Page1 />
-        </div>
-        <div class="page">
-          <Page2 />
-        </div>
-        <div class="page">
-          <Page3 />
+      <div id="size-container" class="tw-inline-block tw-overflow-hidden">
+        <div
+          id="zoom-container"
+          class="tw-origin-top-left tw-p-16 print:tw-p-0"
+        >
+          <div class="page">
+            <Page1 />
+          </div>
+          <div class="page">
+            <Page2 />
+          </div>
+          <div class="page">
+            <Page3 />
+          </div>
         </div>
       </div>
     </main>
 
     <script>
-      const MAX_ZOOM_LEVEL = 1.00;
+      const MAX_ZOOM_LEVEL = 1.0;
       const MIN_ZOOM_LEVEL = 0.25;
 
-      const VIEWER = document.querySelector('#viewer-root')! as HTMLDivElement;
-      const ZOOM_CONTAINER = document.querySelector('#zoom-container')! as HTMLDivElement;
-      const ZOOM_IN_BTN = document.querySelector('#zoom-in-btn')! as HTMLButtonElement;
-      const ZOOM_OUT_BTN = document.querySelector('#zoom-out-btn')! as HTMLButtonElement;
+      // editor elements
+      const VIEWER_ROOT = document.querySelector(
+        "#viewer-root"
+      )! as HTMLDivElement;
+      const ZOOM_CONTAINER = document.querySelector(
+        "#zoom-container"
+      )! as HTMLDivElement;
 
-      // left padding + a4 width + right padding
-      const CONTENT_WIDTH  = 64 + 794 + 64;
+      // buttons
+      const ZOOM_IN_BTN = document.querySelector(
+        "#zoom-in-btn"
+      )! as HTMLButtonElement;
+      const ZOOM_OUT_BTN = document.querySelector(
+        "#zoom-out-btn"
+      )! as HTMLButtonElement;
+
+      const ORIGIN_CONTENT_WIDTH = ZOOM_CONTAINER.offsetWidth;
+      const ORIGIN_CONTENT_HEIGHT = ZOOM_CONTAINER.offsetHeight;
 
       const getScale = () => {
-        return parseFloat(ZOOM_CONTAINER.style.zoom) || 1;
+        const rawValue = window
+          .getComputedStyle(VIEWER_ROOT)
+          .getPropertyValue("--scaling-factor")
+          .trim();
+        return rawValue ? parseFloat(rawValue) : 1;
       };
 
       const setScale = (scale: number) => {
-        const value = Math.max(Math.min(MAX_ZOOM_LEVEL, scale), MIN_ZOOM_LEVEL);
-        ZOOM_CONTAINER.style.zoom = `${(Math.floor(value * 100) / 100).toFixed(2)}`;
+        const targetValue = Math.max(
+          Math.min(MAX_ZOOM_LEVEL, scale),
+          MIN_ZOOM_LEVEL
+        );
+        const currentWidth = ORIGIN_CONTENT_WIDTH * targetValue;
+        const currentHeight = ORIGIN_CONTENT_HEIGHT * targetValue;
+        VIEWER_ROOT.style.setProperty(
+          "--scaling-factor",
+          targetValue.toString()
+        );
+        ZOOM_CONTAINER.style.transform = `scale(${targetValue})`;
+        ZOOM_CONTAINER.style.width = `${currentWidth}px`;
+        ZOOM_CONTAINER.style.height = `${currentHeight}px`;
       };
 
       const matchWithScreen = () => {
-        const screen = document.querySelector('body')!;
+        const screen = document.querySelector("body")!;
         const screenWidth = screen.offsetWidth;
-        const scale = screenWidth / CONTENT_WIDTH;
+        const scale = screenWidth / ORIGIN_CONTENT_WIDTH;
         setScale(scale);
       };
 
-      ZOOM_IN_BTN.addEventListener('click', () => {
+      ZOOM_IN_BTN.addEventListener("click", () => {
         const scale = getScale() + 0.1;
         setScale(scale);
       });
 
-      ZOOM_OUT_BTN.addEventListener('click', () => {
+      ZOOM_OUT_BTN.addEventListener("click", () => {
         const scale = getScale() - 0.1;
         setScale(scale);
       });
 
       // watch screen width
       matchWithScreen();
-      VIEWER.style.visibility = 'visible';
+      VIEWER_ROOT.style.visibility = "visible";
     </script>
 
     <style lang="scss">
       .page {
-        width: 210mm;
-        height: 297mm;
+        width: var(--doc-width);
+        height: var(--doc-height);
         @apply tw-bg-white-50 tw-flex-shrink-0 print:tw-m-0 tw-flex tw-flex-col tw-justify-between tw-p-16;
 
         &:not(:first-child) {
@@ -119,18 +154,30 @@ const image = SITE_IMAGES[currentLangCode];
         }
 
         @page {
-          margin: 0;
+          margin: 0 !important;
+        }
+        header,
+        footer {
+          display: none !important;
+        }
+
+        // reset scaling
+        #zoom-container {
+          transform: unset !important;
+          width: unset !important;
+          height: unset !important;
+        }
+
+        // reset overflow
+        // 해제하지 않으면 1px 이 증가해서 다음 페이지까지 인쇄되는 문제가 발생함
+        #size-container {
+          overflow: unset !important;
         }
 
         .page {
-
           &:not(:first-child) {
             @apply tw-mt-0;
           }
-        }
-
-        #zoom-container {
-          zoom: unset !important;
         }
       }
     </style>
