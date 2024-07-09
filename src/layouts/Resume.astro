@@ -151,14 +151,23 @@ const image = SITE_IMAGES[currentLangCode];
         body {
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
+          margin: 0 !important;
+          padding: 0 !important;
         }
 
         @page {
-          margin: 0 !important;
+          size: 210mm 297mm;
+          margin: 0cm !important;
         }
+
         header,
         footer {
           display: none !important;
+        }
+
+        #viewer-root {
+          width: unset !important;
+          max-width: unset !important;
         }
 
         // reset scaling
