@@ -1,0 +1,74 @@
+---
+import IndentLine from '../../components/IndentLine.astro';
+import TechBadge from '../../components/TechBadge.astro';
+import { getCurrentLangCode, getLangBasePath } from '../../i18n/utils';
+import { useTranslation } from '../../i18n/utils';
+
+const langCode = getCurrentLangCode(Astro.url);
+const t = useTranslation(langCode);
+
+const badges = ['Typescript', 'Angular', 'React', 'Webpack', 'Vite', 'Jest', 'Storybook', 'Aws', 'Docker'];
+---
+
+<div class="tw-flex tw-flex-col tw-w-full tw-h-full tw-justify-center tw-text-left">
+  <div class="tw-flex tw-flex-row">
+    <div class="tw-flex-shrink-0 tw-flex tw-justify-center">
+      <img
+        class="tw-rounded-full profile-image tw-max-w-[200px] tw-min-w-[200px] tw-min-h-[200px] tw-max-h-[200px]"
+        src="/photos/profile.jpg"
+        alt="Profile Image"
+      />
+    </div>
+    <div class="tw-flex tw-flex-col tw-ml-8 tw-mt-0">
+      <h5>{t("about.title")}</h5>
+      <p class="tw-mt-4">
+        <Fragment set:html={t("about.description")} />
+      </p>
+    </div>
+  </div>
+
+  <div class="tw-flex tw-flex-col tw-mt-8">
+    <h4 id="qualifications">{t("about.qualifications")}</h4>
+    <IndentLine>
+      <div>
+        <p>
+          {t("about.qualifications.description")}
+        </p>
+      </div>
+      <div class="tw-mt-4">
+        <h5>{t("about.qualifications.frontend")}</h5>
+        <ul class="tw-list-disc tw-list-inside tw-mt-2">
+          <li class="tw-list-outside tw-ml-6">
+            {t("about.qualifications.frontend.1")}
+          </li>
+          <li class="tw-list-outside tw-ml-6">
+            {t("about.qualifications.frontend.2")}
+          </li>
+          <li class="tw-list-outside tw-ml-6">
+            {t("about.qualifications.frontend.3")}
+          </li>
+          <li class="tw-list-outside tw-ml-6">
+            {t("about.qualifications.frontend.4")}
+          </li>
+        </ul>
+      </div>
+      <div class="tw-mt-4">
+        <h5>{t("about.qualifications.others")}</h5>
+      </div>
+      <ul class="tw-list-disc tw-list-inside tw-mt-2">
+        <li class="tw-list-outside tw-ml-6">
+          {t("about.qualifications.others.1")}
+        </li>
+        <li class="tw-list-outside tw-ml-6">
+          {t("about.qualifications.others.2")}
+        </li>
+      </ul>
+      <h5 class="tw-mt-4">
+        {t("about.qualifications.key_technology_keywords")}
+      </h5>
+      <div class="tw-flex tw-gap-2 tw-flex-wrap tw-mt-2">
+        {badges.map((badge) => <TechBadge name={badge} />)}
+      </div>
+    </IndentLine>
+  </div>
+</div>
