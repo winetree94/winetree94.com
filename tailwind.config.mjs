@@ -44,7 +44,11 @@ export default {
 				500: '#1781FE',
 			},
 		},
-		extend: {},
+		extend: {
+			screens: {
+				'print': { 'raw': 'print' },
+			}
+		},
 	},
 	plugins: [
 		plugin(({ addBase, config }) => {
