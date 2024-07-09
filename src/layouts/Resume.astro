@@ -33,10 +33,13 @@ const image = SITE_IMAGES[currentLangCode];
           <button class="tw-px-4 tw-h-full" onclick="window.print()">
             <i class="ri-printer-line"></i>
           </button>
-          <button id="zoom-in-btn" class="tw-px-4 tw-h-full">
+          <button id="fullscreen-btn" class="tw-px-4 tw-h-full disabled:tw-text-black-300">
+            <i class="ri-fullscreen-line"></i>
+          </button>
+          <button id="zoom-in-btn" class="tw-px-4 tw-h-full disabled:tw-text-black-300">
             <i class="ri-zoom-in-line"></i>
           </button>
-          <button id="zoom-out-btn" class="tw-px-4 tw-h-full">
+          <button id="zoom-out-btn" class="tw-px-4 tw-h-full disabled:tw-text-black-300">
             <i class="ri-zoom-out-line"></i>
           </button>
         </div>
@@ -79,6 +82,9 @@ const image = SITE_IMAGES[currentLangCode];
       )! as HTMLDivElement;
 
       // buttons
+      const FULLSCREEN_BTN = document.querySelector(
+        "#fullscreen-btn"
+      )! as HTMLButtonElement;
       const ZOOM_IN_BTN = document.querySelector(
         "#zoom-in-btn"
       )! as HTMLButtonElement;
@@ -102,6 +108,12 @@ const image = SITE_IMAGES[currentLangCode];
           Math.min(MAX_ZOOM_LEVEL, scale),
           MIN_ZOOM_LEVEL
         );
+        ZOOM_IN_BTN.disabled = targetValue === MAX_ZOOM_LEVEL;
+        ZOOM_OUT_BTN.disabled = targetValue === MIN_ZOOM_LEVEL;
+        const screen = document.querySelector("body")!;
+        const screenWidth = screen.offsetWidth;
+        const screenMatchedScale = Math.max(Math.min(screenWidth / ORIGIN_CONTENT_WIDTH, MAX_ZOOM_LEVEL), MIN_ZOOM_LEVEL);
+        FULLSCREEN_BTN.disabled = targetValue === screenMatchedScale;
         const currentWidth = ORIGIN_CONTENT_WIDTH * targetValue;
         const currentHeight = ORIGIN_CONTENT_HEIGHT * targetValue;
         VIEWER_ROOT.style.setProperty(
@@ -120,6 +132,10 @@ const image = SITE_IMAGES[currentLangCode];
         setScale(scale);
       };
 
+      FULLSCREEN_BTN.addEventListener("click", () => {
+        matchWithScreen();
+      });
+
       ZOOM_IN_BTN.addEventListener("click", () => {
         const scale = getScale() + 0.1;
         setScale(scale);
@@ -129,6 +145,7 @@ const image = SITE_IMAGES[currentLangCode];
         const scale = getScale() - 0.1;
         setScale(scale);
       });
+
 
       // watch screen width
       matchWithScreen();
