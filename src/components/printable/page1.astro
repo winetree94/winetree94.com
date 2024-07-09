@@ -14,7 +14,9 @@ const badges = ['Typescript', 'Angular', 'React', 'Webpack', 'Vite', 'Jest', 'St
   class="tw-flex tw-flex-col tw-w-full tw-h-full tw-justify-center tw-text-left"
 >
   <div class="tw-flex tw-flex-row">
-    <div class="tw-flex-shrink-0 tw-flex tw-justify-center tw-flex-col tw-items-center">
+    <div
+      class="tw-flex-shrink-0 tw-flex tw-justify-center tw-flex-col tw-items-center"
+    >
       <img
         class="tw-rounded-full profile-image tw-max-w-[125px] tw-min-w-[125px] tw-min-h-[125px] tw-max-h-[125px]"
         src="/photos/profile.jpg"
@@ -43,15 +45,16 @@ const badges = ['Typescript', 'Angular', 'React', 'Webpack', 'Vite', 'Jest', 'St
   <div class="tw-flex tw-flex-col tw-mt-8">
     <h4 id="qualifications">{t("about.qualifications")}</h4>
     <IndentLine>
-      <div>
+      <div class="tw-p-3">
         <h5>Overview</h5>
-        <p class="tw-mt-4">
+        <p class="tw-mt-2">
           {t("about.qualifications.description")}
-          <br>
-          소통 없이는 좋은 제품이 나올 수 없다고 생각합니다. 더 나은 제품을 만들기 위해 적극적으로 생각을 표현합니다.
+          <br />
+          소통 없이는 좋은 제품이 나올 수 없다고 생각합니다. 더 나은 제품을 만들기
+          위해 적극적으로 생각을 표현합니다.
         </p>
       </div>
-      <div class="tw-mt-4">
+      <div class="tw-mt-2 tw-p-3">
         <h5>{t("about.qualifications.frontend")}</h5>
         <ul class="tw-list-disc tw-list-inside tw-mt-2">
           <li class="tw-list-outside tw-ml-6">
@@ -74,25 +77,27 @@ const badges = ['Typescript', 'Angular', 'React', 'Webpack', 'Vite', 'Jest', 'St
           </li>
         </ul>
       </div>
-      <div class="tw-mt-4">
+      <div class="tw-mt-4 tw-p-3">
         <h5>{t("about.qualifications.others")}</h5>
+        <ul class="tw-list-disc tw-list-inside tw-mt-2">
+          <li class="tw-list-outside tw-ml-6">
+            {t("about.qualifications.others.1")}
+          </li>
+          <li class="tw-list-outside tw-ml-6">
+            {t("about.qualifications.others.2")}
+          </li>
+          <li class="tw-list-outside tw-ml-6">
+            Github Actions / Circle CI 등 CI/CD 환경 구축 및 관리
+          </li>
+        </ul>
       </div>
-      <ul class="tw-list-disc tw-list-inside tw-mt-2">
-        <li class="tw-list-outside tw-ml-6">
-          {t("about.qualifications.others.1")}
-        </li>
-        <li class="tw-list-outside tw-ml-6">
-          {t("about.qualifications.others.2")}
-        </li>
-        <li class="tw-list-outside tw-ml-6">
-          Github Actions / Circle CI 등 CI/CD 환경 구축 및 관리
-        </li>
-      </ul>
-      <h5 class="tw-mt-4">
-        {t("about.qualifications.key_technology_keywords")}
-      </h5>
-      <div class="tw-flex tw-gap-2 tw-flex-wrap tw-mt-4">
-        {badges.map((badge) => <TechBadge name={badge} />)}
+      <div class="tw-mt-4 tw-p-3">
+        <h5>
+          {t("about.qualifications.key_technology_keywords")}
+        </h5>
+        <div class="tw-flex tw-gap-2 tw-flex-wrap tw-mt-2">
+          {badges.map((badge) => <TechBadge name={badge} />)}
+        </div>
       </div>
     </IndentLine>
   </div>
