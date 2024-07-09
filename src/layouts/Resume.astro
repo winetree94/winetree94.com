@@ -48,7 +48,7 @@ const image = SITE_IMAGES[currentLangCode];
         <div class="page">
           <Page1 />
         </div>
-        <div class="page">
+        <div class="page double">
           <Page2 />
         </div>
         <div class="page">
@@ -105,6 +105,10 @@ const image = SITE_IMAGES[currentLangCode];
         width: 210mm;
         height: 297mm;
         @apply tw-bg-white-50 tw-flex-shrink-0 print:tw-m-0 tw-flex tw-flex-col tw-justify-between tw-p-16;
+
+        &.double {
+          height: calc(297mm * 2);
+        }
 
         &:not(:first-child) {
           @apply tw-mt-16;
