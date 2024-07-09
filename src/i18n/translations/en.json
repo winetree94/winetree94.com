@@ -11,6 +11,7 @@
     "about.profile.description": "I go by the nickname winetree94 online. Here are the platforms where I'm active.",
     "about.qualifications": "Skills",
     "about.qualifications.description": "I handle frontend projects from start to finish, utilizing optimal technology stacks tailored to different business environments, from On-Premise to PaaS and SaaS.",
+    "about.profile.need-pdf": "Would you prefer PDF documents?",
     "about.qualifications.frontend": "Frontend",
     "about.qualifications.frontend.1": "Design and development of web applications (CRA/SSG/SSR) based on Angular/React",
     "about.qualifications.frontend.2": "Project design and development based on ECMAScript / DOM API",
