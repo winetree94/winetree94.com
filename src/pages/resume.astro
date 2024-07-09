@@ -41,9 +41,9 @@ const image = SITE_IMAGES[currentLangCode];
     </header>
     <!-- <Header /> -->
     <main
-      class="tw-m-0 tw-mt-12 tw-pt-0 tw-pb-16 tw-px-16 tw-w-full tw-max-w-full tw-overflow-auto tw-box-border print:tw-p-0 print:tw-m-0 print:tw-mt-0"
+      class="tw-m-0 tw-mt-12 tw-p-0 tw-w-full tw-max-w-full tw-overflow-auto tw-box-border tw-text-center print:tw-p-0 print:tw-m-0 print:tw-mt-0"
     >
-      <div>
+      <div class="tw-inline-block tw-p-16 print:tw-p-0">
         <div class="page">asldkfj asdflkjasd asdlfkjasdflkj</div>
         <div class="page">asldkfj asdflkjasd asdlfkjasdflkj</div>
       </div>
@@ -60,7 +60,17 @@ const image = SITE_IMAGES[currentLangCode];
       .page {
         width: 210mm;
         height: 297mm;
-        @apply tw-bg-white-50 tw-flex-shrink-0 tw-mx-auto tw-mt-16 print:tw-m-0;
+        @apply tw-bg-white-50 tw-flex-shrink-0 print:tw-m-0;
+
+        &:not(:first-child) {
+          @apply tw-mt-16;
+        }
+
+        @media print {
+          &:not(:first-child) {
+            @apply tw-mt-0;
+          }
+        }
       }
     </style>
   </body>
