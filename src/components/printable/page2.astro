@@ -86,7 +86,7 @@ const experience: {
 <div
   class="tw-flex tw-flex-col tw-w-full tw-h-full tw-justify-start tw-text-left"
 >
-  <h3 id="experience">
+  <h3 id="experience" class="tw-font-bold">
     {t("about.experience")}
   </h3>
   <IndentLine end={false} class="tw-h-full">
@@ -94,7 +94,7 @@ const experience: {
       {
         experience.map((exp) => (
           <div class="tw-p-3 tw-rounded-lg">
-            <div class="tw-flex tw-justify-between tw-flex-col sm:tw-flex-row">
+            <div class="tw-flex tw-justify-between tw-flex-row">
               <div>
                 <h3 class="tw-flex tw-flex-row tw-items-center">
                   {exp.companyName}
