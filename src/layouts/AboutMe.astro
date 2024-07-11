@@ -284,7 +284,7 @@ const opensourceExperience: {
         </div>
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
-        <h4>{t("about.jump_to")}</h4>
+        <h3 class="tw-font-bold">{t("about.jump_to")}</h3>
         <div
           class="tw-mt-4 tw-flex tw-justify-center tw-gap-2 tw-flex-col sm:tw-flex-row sm:tw-gap-4"
         >
@@ -303,7 +303,7 @@ const opensourceExperience: {
         </div>
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
-        <h4 id="profile">{t("about.profile")}</h4>
+        <h3 id="profile" class="tw-font-bold">{t("about.profile")}</h3>
         <IndentLine>
           <p>
             {t("about.profile.description")}
@@ -322,7 +322,9 @@ const opensourceExperience: {
         </IndentLine>
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
-        <h3 id="qualifications">{t("about.qualifications")}</h3>
+        <h3 id="qualifications" class="tw-font-bold">
+          {t("about.qualifications")}
+        </h3>
         <IndentLine>
           <div class="tw-p-3">
             <p class="tw-mt-2">
@@ -374,7 +376,7 @@ const opensourceExperience: {
         </IndentLine>
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
-        <h3 id="experience">
+        <h3 id="experience" class="tw-font-bold">
           {t("about.experience")}
         </h3>
         <IndentLine end={false} class="tw-h-full">
@@ -382,14 +384,14 @@ const opensourceExperience: {
             {
               experience.map((exp) => (
                 <div class="tw-p-3 tw-rounded-lg">
-                  <div class="tw-flex tw-justify-between tw-flex-col sm:tw-flex-row">
+                  <div class="tw-flex tw-justify-between tw-flex-row">
                     <div>
-                      <h3 class="tw-flex tw-flex-row tw-items-center">
+                      <h2 class="tw-flex tw-flex-row tw-items-center">
                         {exp.companyName}
                         <span class="tw-text-sm tw-text-black-700 tw-ml-2">
                           based in {exp.country}
                         </span>
-                      </h3>
+                      </h2>
                       <p class="tw-text-sm tw-mt-0">
                         <i class="ri-group-line" />
                         {exp.position}
@@ -400,11 +402,11 @@ const opensourceExperience: {
                       {exp.period}
                     </span>
                   </div>
-                  <div class="tw-flex tw-flex-col tw-mt-6 tw-gap-6">
+                  <div class="tw-flex tw-flex-col tw-mt-8 tw-gap-8">
                     {exp.projects.map((project) => (
                       <div class="tw-flex tw-flex-row">
-                        <div class="tw-w-1/4 tw-mr-8 tw-text-right tw-break-words">
-                          <h4 class="tw-break-keep">{project.title}</h4>
+                        <div class="tw-w-1/4 tw-mr-8 tw-break-words">
+                          <h5 class="tw-break-keep">{project.title}</h5>
                           <p class="tw-text-sm">{project.period}</p>
                         </div>
                         <div class="tw-flex-1 tw-mt-0">
@@ -425,16 +427,16 @@ const opensourceExperience: {
         </IndentLine>
       </div>
       <div class="tw-flex tw-flex-col tw-mt-8">
-        <h4 id="open_source">
+        <h3 id="open_source" class="tw-font-bold">
           {t("about.open_source")}
-        </h4>
+        </h3>
         <IndentLine class="tw-flex tw-flex-col tw-gap-4">
           {
             opensourceExperience.map((exp) => (
               <div class="tw-p-3">
-                <div class="tw-flex tw-justify-between tw-flex-col sm:tw-flex-row">
+                <div class="tw-flex tw-justify-between tw-flex-row">
                   <div>
-                    <h3 class="tw-break-all">{exp.projectName}</h3>
+                    <h3>{exp.projectName}</h3>
                     <p class="tw-text-sm">
                       <a
                         class="tw-text-black-950 tw-break-all"
@@ -446,14 +448,11 @@ const opensourceExperience: {
                       </a>
                     </p>
                   </div>
-                  <div class="tw-inline-flex tw-flex-col tw-items-start sm:tw-items-end">
+                  <div class="tw-inline-flex tw-flex-col tw-items-end">
                     <span class="tw-text-sm">
                       <i class="ri-calendar-line" />
                       {exp.period}
                     </span>
-                    <a class="tw-mt-2" href={langPath + exp.internalLink}>
-                      {t("global.view_details")}
-                    </a>
                   </div>
                 </div>
                 <p class="tw-mt-4">{exp.description}</p>
