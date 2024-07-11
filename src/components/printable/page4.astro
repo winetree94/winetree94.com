@@ -1,0 +1,104 @@
+---
+import IndentLine from '../../components/IndentLine.astro';
+import { getCurrentLangCode, getLangBasePath } from '../../i18n/utils';
+import { useTranslation } from '../../i18n/utils';
+
+const langPath = getLangBasePath(Astro.url);
+const langCode = getCurrentLangCode(Astro.url);
+const t = useTranslation(langCode);
+
+const opensourceExperience: {
+  projectName: string;
+  description: string;
+  period: string;
+  features: string[];
+  publicLink: string;
+  internalLink: string;
+}[] = [
+  {
+    projectName: t('about.open_source.edybara.title'),
+    description: t('about.open_source.edybara.description'),
+    period: t('about.open_source.edybara.period'),
+    features: [
+      t('about.open_source.edybara.features.1'),
+      t('about.open_source.edybara.features.2'),
+      t('about.open_source.edybara.features.3'),
+    ],
+    publicLink: t('about.open_source.edybara.link'),
+    internalLink: '/projects/edybara',
+  },
+  {
+    projectName: t('about.open_source.qdocs.title'),
+    description: t('about.open_source.qdocs.description'),
+    period: t('about.open_source.qdocs.period'),
+    features: [t('about.open_source.qdocs.features.1'), t('about.open_source.qdocs.features.2')],
+    publicLink: t('about.open_source.qdocs.link'),
+    internalLink: '/projects/qdocs',
+  },
+  {
+    projectName: t('about.open_source.vector_optimizer.title'),
+    description: t('about.open_source.vector_optimizer.description'),
+    period: t('about.open_source.vector_optimizer.period'),
+    features: [t('about.open_source.vector_optimizer.features.1'), t('about.open_source.vector_optimizer.features.2')],
+    publicLink: t('about.open_source.vector_optimizer.link'),
+    internalLink: '/projects/vector-optimizer',
+  },
+  {
+    projectName: t('about.open_source.vanilla_recycler_view.title'),
+    description: t('about.open_source.vanilla_recycler_view.description'),
+    period: t('about.open_source.vanilla_recycler_view.period'),
+    features: [
+      t('about.open_source.vanilla_recycler_view.features.1'),
+      t('about.open_source.vanilla_recycler_view.features.2'),
+    ],
+    publicLink: t('about.open_source.vanilla_recycler_view.link'),
+    internalLink: '/projects/vanilla-recycler-view',
+  },
+];
+---
+
+<div
+  class="tw-flex tw-flex-col tw-w-full tw-h-full tw-justify-start tw-text-left"
+>
+  <h3 id="open_source">
+    {t("about.open_source")}
+  </h3>
+  <IndentLine class="tw-flex tw-flex-col tw-gap-2">
+    {
+      opensourceExperience.map((exp) => (
+        <div class="tw-p-3">
+          <div class="tw-flex tw-justify-between tw-flex-row">
+            <div>
+              <h3>{exp.projectName}</h3>
+              <p class="tw-text-sm">
+                <a
+                  class="tw-text-black-950 tw-break-all"
+                  href={`https://${exp.publicLink}`}
+                  target="_blank"
+                >
+                  <i class="ri-links-line" />
+                  {exp.publicLink}
+                </a>
+              </p>
+            </div>
+            <div class="tw-inline-flex tw-flex-col tw-items-end">
+              <span class="tw-text-sm">
+                <i class="ri-calendar-line" />
+                {exp.period}
+              </span>
+              <a class="tw-mt-2" href={langPath + exp.internalLink}>
+                {t("global.view_details")}
+              </a>
+            </div>
+          </div>
+          <p class="tw-mt-4">{exp.description}</p>
+          <ul class="tw-list-disc tw-list-inside tw-mt-2">
+            {exp.features.map((feature) => (
+              <li class="tw-list-outside tw-ml-6">{feature}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </IndentLine>
+</div>

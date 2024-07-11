@@ -8,49 +8,76 @@ const t = useTranslation(langCode);
 
 const experience: {
   companyName: string;
+  main: string;
   country: string;
   position: string;
   period: string;
-  description: string[];
+  projects: {
+    title: string;
+    description: string;
+    period: string;
+    goals: string[];
+  }[];
 }[] = [
   {
     companyName: t('about.experience.swit.title'),
+    main: t('about.experience.swit.main'),
     country: t('about.experience.swit.country'),
     position: t('about.experience.swit.roll'),
     period: t('about.experience.swit.period'),
-    description: [
-      t('about.experience.swit.activity.1'),
-      t('about.experience.swit.activity.2'),
-      t('about.experience.swit.activity.3'),
-      t('about.experience.swit.activity.4'),
-      t('about.experience.swit.activity.5'),
+    projects: [
+      {
+        title: t('about.experience.swit.features.editor.title'),
+        period: t('about.experience.swit.features.editor.period'),
+        description: t('about.experience.swit.features.editor.description'),
+        goals: [
+          t('about.experience.swit.features.editor.rolls.1'),
+          t('about.experience.swit.features.editor.rolls.2'),
+          t('about.experience.swit.features.editor.rolls.3'),
+          t('about.experience.swit.features.editor.rolls.4'),
+        ],
+      },
+      {
+        title: t('about.experience.swit.features.auth.title'),
+        period: t('about.experience.swit.features.auth.period'),
+        description: t('about.experience.swit.features.auth.description'),
+        goals: [
+          t('about.experience.swit.features.auth.rolls.1'),
+          t('about.experience.swit.features.auth.rolls.2'),
+          t('about.experience.swit.features.auth.rolls.3'),
+          t('about.experience.swit.features.auth.rolls.4'),
+        ],
+      },
+      {
+        title: t('about.experience.swit.features.language.title'),
+        period: t('about.experience.swit.features.language.period'),
+        description: t('about.experience.swit.features.language.description'),
+        goals: [
+          t('about.experience.swit.features.language.rolls.1'),
+          t('about.experience.swit.features.language.rolls.2'),
+        ],
+      },
+      {
+        title: t('about.experience.swit.features.design_system.title'),
+        period: t('about.experience.swit.features.design_system.period'),
+        description: t('about.experience.swit.features.design_system.description'),
+        goals: [
+          t('about.experience.swit.features.design_system.rolls.1'),
+          t('about.experience.swit.features.design_system.rolls.2'),
+          t('about.experience.swit.features.design_system.rolls.3'),
+        ],
+      },
+      {
+        title: t('about.experience.swit.features.task.title'),
+        period: t('about.experience.swit.features.task.period'),
+        description: t('about.experience.swit.features.task.description'),
+        goals: [
+          t('about.experience.swit.features.task.rolls.1'),
+          t('about.experience.swit.features.task.rolls.2'),
+          t('about.experience.swit.features.task.rolls.3'),
+        ],
+      },
     ],
-  },
-  {
-    companyName: t('about.experience.epapyrus.title'),
-    country: t('about.experience.epapyrus.country'),
-    position: t('about.experience.epapyrus.roll'),
-    period: t('about.experience.epapyrus.period'),
-    description: [t('about.experience.epapyrus.activity.1'), t('about.experience.epapyrus.activity.2')],
-  },
-  {
-    companyName: t('about.experience.playauto.title'),
-    country: t('about.experience.playauto.country'),
-    position: t('about.experience.playauto.roll'),
-    period: t('about.experience.playauto.period'),
-    description: [
-      t('about.experience.playauto.activity.1'),
-      t('about.experience.playauto.activity.2'),
-      t('about.experience.playauto.activity.3'),
-      t('about.experience.playauto.activity.4'),
-    ],
-  },
-  {
-    companyName: t('about.experience.jdlab.title'),
-    country: t('about.experience.jdlab.country'),
-    position: t('about.experience.jdlab.roll'),
-    period: t('about.experience.jdlab.period'),
-    description: [t('about.experience.jdlab.activity.1'), t('about.experience.jdlab.activity.2')],
   },
 ];
 ---
@@ -58,23 +85,23 @@ const experience: {
 <div
   class="tw-flex tw-flex-col tw-w-full tw-h-full tw-justify-start tw-text-left"
 >
-  <h4 id="experience">
+  <h3 id="experience">
     {t("about.experience")}
-  </h4>
-  <IndentLine>
+  </h3>
+  <IndentLine end={false} class="tw-h-full">
     <div class="tw-list-disc tw-list-inside tw-flex tw-flex-col tw-gap-4">
       {
         experience.map((exp) => (
           <div class="tw-p-3 tw-rounded-lg">
-            <div class="tw-flex tw-justify-between tw-flex-row">
+            <div class="tw-flex tw-justify-between tw-flex-col sm:tw-flex-row">
               <div>
-                <h2 class="tw-flex tw-flex-row tw-items-center">
+                <h3 class="tw-flex tw-flex-row tw-items-center">
                   {exp.companyName}
                   <span class="tw-text-sm tw-text-black-700 tw-ml-2">
                     based in {exp.country}
                   </span>
-                </h2>
-                <p class="tw-text-sm">
+                </h3>
+                <p class="tw-text-sm tw-mt-0">
                   <i class="ri-group-line" />
                   {exp.position}
                 </p>
@@ -84,11 +111,24 @@ const experience: {
                 {exp.period}
               </span>
             </div>
-            <ul class="tw-list-disc tw-list-inside tw-mt-4">
-              {exp.description.map((desc) => (
-                <li class="tw-list-outside tw-ml-6">{desc}</li>
+            <div class="tw-flex tw-flex-col tw-mt-6 tw-gap-6">
+              {exp.projects.map((project) => (
+                <div class="tw-flex tw-flex-row">
+                  <div class="tw-w-1/4 tw-mr-8 tw-text-right tw-break-words">
+                    <h4 class="tw-break-keep">{project.title}</h4>
+                    <p class="tw-text-sm">{project.period}</p>
+                  </div>
+                  <div class="tw-flex-1 tw-mt-0">
+                    <p>{project.description}</p>
+                    <ul class="tw-list-disc tw-list-inside tw-mt-2">
+                      {project.goals.map((desc) => (
+                        <li class="tw-list-outside tw-ml-6">{desc}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         ))
       }
