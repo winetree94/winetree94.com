@@ -16,15 +16,15 @@ const t = useTranslation(langCode);
       class="tw-flex-shrink-0 tw-flex tw-justify-center tw-flex-col tw-items-center"
     >
       <img
-        class="tw-rounded-full profile-image tw-max-w-[125px] tw-min-w-[125px] tw-min-h-[125px] tw-max-h-[125px]"
+        class="tw-rounded-full profile-image tw-max-w-[150px] tw-min-w-[150px] tw-min-h-[150px] tw-max-h-[150px]"
         src="/photos/profile.jpg"
         alt="Profile Image"
       />
       <div class="tw-mt-4">
-        <p>
+        <p class="tw-text-sm">
           <i class="ri-mail-line tw-mr-2"></i>winetree94@gmail.com
         </p>
-        <p>
+        <p class="tw-text-sm">
           <a
             class="tw-text-black-950"
             target="_blank"
@@ -33,7 +33,7 @@ const t = useTranslation(langCode);
             <i class="ri-home-3-line tw-mr-2"></i>winetree94.com
           </a>
         </p>
-        <p>
+        <p class="tw-text-sm">
           <a
             class="tw-text-black-950"
             target="_blank"
@@ -44,7 +44,7 @@ const t = useTranslation(langCode);
         </p>
       </div>
     </div>
-    <div class="tw-flex tw-flex-col tw-ml-8 tw-mt-0">
+    <div class="tw-flex tw-flex-col tw-ml-8 tw-mt-0 tw-justify-center">
       <h4>{t("about.title")}</h4>
       <p class="tw-mt-4">
         <Fragment set:html={t("about.description")} />
