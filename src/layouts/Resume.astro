@@ -1,10 +1,11 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Page1 from "../components/printable/page1.astro";
-import Page2 from "../components/printable/page2.astro";
-import Page3 from "../components/printable/page3.astro";
-import { SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from "../consts";
-import { getCurrentLangCode } from "../i18n/utils";
+import BaseHead from '../components/BaseHead.astro';
+import Page1 from '../components/printable/page1.astro';
+import Page2 from '../components/printable/page2.astro';
+import Page3 from '../components/printable/page3.astro';
+import Page4 from '../components/printable/page4.astro';
+import { SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from '../consts';
+import { getCurrentLangCode } from '../i18n/utils';
 const currentLangCode = getCurrentLangCode(Astro.url);
 
 const title = SITE_TITLES[currentLangCode];
@@ -64,6 +65,9 @@ const image = SITE_IMAGES[currentLangCode];
           </div>
           <div class="page">
             <Page3 />
+          </div>
+          <div class="page">
+            <Page4 />
           </div>
         </div>
       </div>

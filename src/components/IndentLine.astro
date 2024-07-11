@@ -1,11 +1,12 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+export type Props = {
+  class?: string;
+  end?: boolean;
+};
 
-type Props = HTMLAttributes<'div'>;
-
-const { class: className, ...props } = Astro.props;
+const { class: className, end = true } = Astro.props;
 ---
-<div class={`indent-line ${className || ''}`} {...props}>
+<div class={`indent-line ${end ? 'end' : ''} ${className || ''}`}>
     <slot></slot>
 </div>
 
@@ -18,7 +19,7 @@ const { class: className, ...props } = Astro.props;
     position: relative;
     padding-bottom: 8px;
 
-    &::before {
+    &.end::before {
       position: absolute;
       bottom: 0px;
       left: 0px;
