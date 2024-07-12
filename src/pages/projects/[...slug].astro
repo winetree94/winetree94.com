@@ -1,18 +1,18 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import ProjectPost from "../../layouts/ProjectPost.astro";
+import { type CollectionEntry, getCollection } from 'astro:content';
+import ProjectPost from '../../layouts/ProjectPost.astro';
 
 export async function getStaticPaths() {
-  const pages = (await getCollection("projects"))
-    .filter((page) => page.slug.startsWith("en"))
-    .filter((page) => !page.data.hidden);
+  const pages = (await getCollection('projects'))
+    .filter((page) => page.slug.startsWith('en'))
+    .filter((post) => (import.meta.env.DEV ? true : !post.data.hidden));
 
   const paths = pages.map((page) => {
-    const [lang, ...slug] = page.slug.split("/");
+    const [lang, ...slug] = page.slug.split('/');
     return {
       params: {
         lang,
-        slug: slug.join("/") || undefined,
+        slug: slug.join('/') || undefined,
       },
       props: page,
     };
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
   return paths;
 }
 
-type Props = CollectionEntry<"projects">;
+type Props = CollectionEntry<'projects'>;
 const post = Astro.props;
 const { Content } = await post.render();
 ---
