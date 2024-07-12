@@ -1,27 +1,64 @@
 ---
-title: '맘에 쏙 드는 프론트엔드 프레임워크, Astro'
+title: '맘에 쏙 드는 컨텐츠 중심 웹 프레임워크: Astro'
 hidden: true
-description: '맘에 쏙 드는 프론트엔드 프레임워크, Astro'
+description: '맘에 쏙 드는 컨텐츠 중심 웹 프레임워크, Astro'
 pubDate: 'Aug 08 2024'
-heroImage: '/projects/edybara/hero.gif'
+heroImage: '/content/blog/astro/hero.png'
 ---
 
 import Image from "../../../components/Image.astro";
 import Warning from "../../../components/Warning.astro";
 
-<Image width={720} height={332} src="/projects/edybara/hero.gif" />
+<Image width={720} height={332} src="/content/blog/astro/hero.png" />
 
-Edybara은 ProseMirror 를 기반으로 한 오픈소스 리치 텍스트 에디터입니다. ProseMirror 와 함께 사용 가능한 서식과 플러그인을 제공합니다. 프로젝트는 [Github](https://github.com/winetree94/edybara) 에서 관리되며, [공식 홈페이지](https://edybara.com) 를 통해 자세한 문서를 확인할 수 있습니다.
+최근 웹사이트와 블로그를 만들기 위한 플랫폼을 찾던 중 Astro 프레임워크를 발견했습니다. 몇가지 예제를 구현해 보니 마음에 쏙 들어 결국 이 사이트를 Astro 로 만들게 되었습니다. 앞으로는 Docusaurus 로 만든 기존의 프로젝트까지도 Astro 로 마이그레이션 할 예정입니다.
+
+본문에서는 Astro 에 대한 간단한 소개와 함께 Astro 를 사용하면서 느낀 장단점을 소개하겠습니다.
+
+<br />
+
+# Astro 란?
+
+Astro는 블로그, 마케팅, 전자 상거래와 같은 콘텐츠 중심의 웹사이트를 생성하기 위해 고안된  프레임워크입니다. Astro는 최소한의 JavaScript를 사용하여 더 빠른 로드 시간을 제공하며, 다양한 프레임워크와 호환되어 개발자들이 선호하는 툴을 사용할 수 있게 합니다. Astro 홈페이지에서 소개되는 특징은 다음과 같습니다.
+
+- **아일랜드 아키텍쳐**: 콘텐츠 중심의 웹사이트에 최적화된 컴포넌트 기반 웹 아키텍처.
+- **UI 독립적**: React, Preact, Svelte, Vue, Solid, Lit, HTMX, 웹 컴포넌트 등을 함께 사용할 수 있습니다.
+- **서버사이드 렌더링**: 방문자의 디바이스에서 비싼 렌더링을 제거합니다.
+- **자바스크립트 없음**: 사이트를 느리게 하는 클라이언트 측 자바스크립트가 적습니다.
+- **콘텐츠 컬렉션 지원**: 마크다운 콘텐츠를 구조화하고 타입스크립트 타입 안전성을 제공합니다.
+- **Customizable**: Tailwind, MDX 및 수백 가지의 통합 옵션을 선택할 수 있습니다.
 
 <br />
 
 --- 
-### Core Concept
 
-ProseMirror 는 사용자가 텍스트 에디터에서 상상하는 거의 모든 것들을 만들 수 있는 강력한 도구입니다. 서식이나 UI/UX 의 거의 모든 부분을 비즈니스 요구사항에 맞춰 변경할수 있습니다.
+# 내가 선택한 이유
 
-하지만 ProseMirror 는 즉시 사용 가능한 라이브러리 보다는 에디터를 만들 수 있는 프레임워크에 가깝습니다. 그래서 실제 사용하기까지는 상당한 추가 개발이 필요하며, 에디터를 저수준에서 다룰 수 있도록 만들어진 만큼 API 가 방대하고 러닝 커브도 높은 편입니다.
+### 여전히 SSG(Static Site Generator) 가 좋다.
 
-Edybara 는 이 문제 지점을 해결하기 위해 존재합니다. Edybara 는 ProseMirror 를 사용할 때 Easy-To-Start 가 가능하도록 미리 정의된 서식과 플러그인을 제공합니다. 이를 통해 사용자는 ProseMirror 기반의 에디터를 빠르게 구현하고 제공할 수 있습니다.
+요즘은 SSR 이 대세라지만 동적 렌더링 서버가 별도로 필요하다는 것은 제게 큰 부담이었습니다. 서비스를 유지하는데 비용이 들기 때문입니다. 그래서 Wordpress 나 Ghost 같은 블로깅 플랫폼도 선택에서 제외했습니다.
 
-Edybara 는 기능별로 독립적으로 개발 및 배포되며 ProseMirror 의 표준 API 엔드포인트(Schema, Plugin)를 제공합니다. 그렇기에 기존의 ProseMirror 프로젝트에서도 Edybara 의 일부 기능만을 설치해 사용할 수 있습니다.
+### 추상화 계층이 적다.
+
+### 정말 빠르다.
+
+### 필요한 것들은 다 들어있다.
+
+### 타 라이브러리와 호환성이 좋다.
+
+---
+
+# 선택하지 말아야 할 이유
+
+### 템플릿에 별 기능이 없다.
+
+### SSG 에 대한 번역 지원
+
+### 정적 컨텐츠 중심이 아니라면
+
+---
+
+# 결론
+
+
+
