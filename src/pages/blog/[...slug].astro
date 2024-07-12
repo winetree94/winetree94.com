@@ -4,7 +4,7 @@ import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
   const pages = (await getCollection('blog'))
-    .filter((page) => page.slug.startsWith('ko'))
+    .filter((page) => page.slug.startsWith('en'))
     .filter((post) => (import.meta.env.DEV ? true : !post.data.hidden));
 
   const paths = pages.map((page) => {
