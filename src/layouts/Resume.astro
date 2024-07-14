@@ -1,11 +1,14 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import IconButton from '../components/IconButton.astro';
+import IconLink from '../components/IconLink.astro';
 import Page1 from '../components/printable/page1.astro';
 import Page2 from '../components/printable/page2.astro';
 import Page3 from '../components/printable/page3.astro';
 import Page4 from '../components/printable/page4.astro';
 import { SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from '../consts';
-import { getCurrentLangCode } from '../i18n/utils';
+import { getCurrentLangCode, getLangBasePath } from '../i18n/utils';
+const currentLangPath = getLangBasePath(Astro.url);
 const currentLangCode = getCurrentLangCode(Astro.url);
 
 const title = SITE_TITLES[currentLangCode];
@@ -22,27 +25,18 @@ const image = SITE_IMAGES[currentLangCode];
     class="tw-flex tw-flex-col tw-bg-black-800 tw-m-0 tw-p-0 tw-overflow-y-scroll"
   >
     <header
-      class="tw-fixed tw-top-0 tw-left-0 tw-w-full tw-shadow-md print:tw-hidden tw-h-12 tw-z-30"
+      class="tw-fixed tw-top-0 tw-left-0 tw-w-full tw-shadow print:tw-hidden tw-z-30"
     >
-      <nav class="tw-bg-white-50 tw-flex tw-justify-between tw-px-4 tw-h-full">
+      <nav class="tw-bg-white-50 tw-flex tw-justify-between tw-px-4 tw-h-full tw-py-1 tw-overflow-x-auto">
         <div class="tw-flex tw-items-center">
-          <button class="tw-px-4 tw-h-full" onclick="history.back()">
-            <i class="ri-arrow-left-line"></i>
-          </button>
+          <IconButton icon="ri-arrow-left-line" onclick="history.back()" />
+          <IconLink icon="ri-home-line" href={`${currentLangPath}/`} />
         </div>
         <div class="tw-flex tw-items-center tw-h-full">
-          <button class="tw-px-4 tw-h-full" onclick="window.print()">
-            <i class="ri-printer-line"></i>
-          </button>
-          <button id="fullscreen-btn" class="tw-px-4 tw-h-full disabled:tw-text-black-300">
-            <i class="ri-fullscreen-line"></i>
-          </button>
-          <button id="zoom-in-btn" class="tw-px-4 tw-h-full disabled:tw-text-black-300">
-            <i class="ri-zoom-in-line"></i>
-          </button>
-          <button id="zoom-out-btn" class="tw-px-4 tw-h-full disabled:tw-text-black-300">
-            <i class="ri-zoom-out-line"></i>
-          </button>
+          <IconButton icon="ri-printer-line" onclick="window.print()" />
+          <IconButton id="fullscreen-btn" icon="ri-fullscreen-line" />
+          <IconButton id="zoom-in-btn" icon="ri-zoom-in-line" />
+          <IconButton id="zoom-out-btn" icon="ri-zoom-out-line" />
         </div>
       </nav>
     </header>
@@ -116,7 +110,10 @@ const image = SITE_IMAGES[currentLangCode];
         ZOOM_OUT_BTN.disabled = targetValue === MIN_ZOOM_LEVEL;
         const screen = document.querySelector("body")!;
         const screenWidth = screen.offsetWidth;
-        const screenMatchedScale = Math.max(Math.min(screenWidth / ORIGIN_CONTENT_WIDTH, MAX_ZOOM_LEVEL), MIN_ZOOM_LEVEL);
+        const screenMatchedScale = Math.max(
+          Math.min(screenWidth / ORIGIN_CONTENT_WIDTH, MAX_ZOOM_LEVEL),
+          MIN_ZOOM_LEVEL
+        );
         FULLSCREEN_BTN.disabled = targetValue === screenMatchedScale;
         const currentWidth = ORIGIN_CONTENT_WIDTH * targetValue;
         const currentHeight = ORIGIN_CONTENT_HEIGHT * targetValue;
@@ -149,7 +146,6 @@ const image = SITE_IMAGES[currentLangCode];
         const scale = getScale() - 0.1;
         setScale(scale);
       });
-
 
       // watch screen width
       matchWithScreen();

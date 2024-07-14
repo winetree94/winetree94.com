@@ -58,6 +58,9 @@
   "npm.packageManager": "pnpm",
   "[typescript]": {
     "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[postcss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 
   // eslint options

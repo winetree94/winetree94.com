@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+type Prop = HTMLAttributes<'a'> & {
+  icon: string;
+  size: 'xxs' | 'xs' | 'sm' | '1x' | 'lg' | 'xl' | '2x' | '3x';
+};
+
+const { icon, size = '1x', class: className, ...props } = Astro.props as Prop;
+---
+
+<a class=`${className || ''}` {...props}>
+  <i class={`${icon} ri-${size}`}></i>
+</a>
+<style lang="scss">
+  @import 'IconButton';
+
+  a {
+    @include button-styles;
+  }
+
+  i {
+    @include icon-styles;
+  }
+</style>
