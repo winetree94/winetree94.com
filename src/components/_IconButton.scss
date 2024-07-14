@@ -1,0 +1,21 @@
+// styles/_button.scss
+@mixin button-styles {
+  @apply tw-p-4 tw-text-black-950 tw-cursor-pointer tw-rounded-full;
+
+  &:hover:not(.disabled):not(:disabled) {
+    @apply tw-bg-black-100 tw-text-black-950;
+  }
+
+  &:active:not(.disabled):not(:disabled) {
+    @apply tw-bg-black-200 tw-text-black-950;
+  }
+
+  &.disabled,
+  &:disabled {
+    @apply tw-text-black-300 tw-cursor-default;
+  }
+}
+
+@mixin icon-styles {
+  @apply tw-block tw-leading-none;
+}
