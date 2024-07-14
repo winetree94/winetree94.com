@@ -97,9 +97,18 @@
     color: theme("colors.blue.400");
   }
 
+  pre {
+    margin: 0;
+    padding: 0;
+    border-radius: theme("borderRadius.md");
+    padding: theme("padding.4");
+    margin-bottom: theme("margin.4");
+    overflow-x: auto;
+  }
+
   code {
     font-family: inherit;
-    background-color: theme("colors.black.50");
+    /* background-color: theme("colors.black.50"); */
     padding: 2px 4px;
     border-radius: theme("borderRadius.md");
   }
