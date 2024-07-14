@@ -3,6 +3,7 @@ import react from "@astrojs/react";
 import sitemap from '@astrojs/sitemap';
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from 'astro/config';
+import pagefind from './plugins/pagefind';
 
 const defaultLocale = "en";
 const locales = {
@@ -42,6 +43,7 @@ export default defineConfig({
     }),
     tailwind({
       applyBaseStyles: false,
-    })
+    }),
+    pagefind(),
   ]
 });

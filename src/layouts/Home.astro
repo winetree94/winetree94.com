@@ -1,7 +1,8 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import BlogHeader from '../components/header/BlogHeader.astro';
 import Footer from '../components/Footer.astro';
+import Search from '../components/SearchDaemon.astro';
+import BlogHeader from '../components/header/BlogHeader.astro';
 import IconLink from '../components/icon/IconLink.astro';
 import { EMAIL, GITHUB_URL, LINKEDIN_URL, NPM_URL, SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from '../consts';
 import { languages } from '../i18n/ui';
@@ -47,9 +48,17 @@ const image = SITE_IMAGES[currentLangCode];
       </p>
       <div class="tw-flex tw-mt-4">
         <IconLink icon="ri-github-line" href={GITHUB_URL} target="_blank" />
-        <IconLink icon="ri-mail-line" href={`mailto: ${EMAIL}`} target="_blank" />
+        <IconLink
+          icon="ri-mail-line"
+          href={`mailto: ${EMAIL}`}
+          target="_blank"
+        />
         <IconLink icon="ri-npmjs-line" href={NPM_URL} target="_blank" />
-        <IconLink icon="ri-linkedin-box-line" href={LINKEDIN_URL} target="_blank" />
+        <IconLink
+          icon="ri-linkedin-box-line"
+          href={LINKEDIN_URL}
+          target="_blank"
+        />
       </div>
       <div class="tw-flex tw-gap-2 tw-mt-4 tw-items-center tw-justify-center">
         {
@@ -65,5 +74,6 @@ const image = SITE_IMAGES[currentLangCode];
       </div>
     </main>
     <Footer />
+    <Search />
   </body>
 </html>

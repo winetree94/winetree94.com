@@ -1,0 +1,98 @@
+<div
+  id="search-root"
+  class="tw-hidden tw-top-0 tw-left-0 tw-fixed tw-w-full tw-h-full tw-flex-col tw-justify-center tw-items-center"
+>
+  <div
+    class="tw-mx-4 tw-rounded tw-flex tw-flex-col tw-overflow-hidden tw-h-[60%] tw-max-w-[600px] tw-w-full"
+  >
+    <div
+      id="input-container"
+      class="tw-shrink-0 tw-flex tw-p-4 tw-bg-black-50 tw-rounded"
+    >
+      <input
+        id="search"
+        type="text"
+        placeholder="Search..."
+        class="tw-p-4 tw-w-full tw-outline-none tw-rounded tw-border tw-border-black-200"
+      />
+    </div>
+    <div
+      id="results"
+      class="tw-flex tw-flex-col tw-gap-4 tw-overflow-y-auto tw-px-4 tw-bg-black-50 tw-rounded-b"
+    >
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const INPUT_CONTAINER = document.getElementById("input-container");
+  const INPUT = document.getElementById("search");
+  const SEARCH_ROOT = document.getElementById("search-root");
+  const RESULTS = document.getElementById("results");
+
+  let opened = false;
+
+  const inputListener = async (e) => {
+    if (e.target.dataset.loaded !== "true") {
+      e.target.dataset.loaded = "true";
+      window.pagefind = await import("/pagefind/pagefind.js");
+    }
+
+    const search = await window.pagefind.search(e.target.value);
+    RESULTS.innerHTML = "";
+
+    const results = await Promise.all(
+      search.results.map((result) => result.data())
+    );
+
+    let html = '';
+
+    for (result of results) {
+      html += `
+        <a class="tw-flex tw-flex-col tw-p-4 tw-rounded tw-bg-black-100 tw-text-black-950 last:tw-mb-4" href="${result.url}">
+          <h4 class="tw-text-ellipsis tw-overflow-hidden tw-whitespace-nowrap">${result.meta.title}</h4>
+          <p class="tw-text-sm tw-mt-2">${result.excerpt}</p>
+        </a>
+      `;
+    }
+
+    if (html.length > 0) {
+      INPUT_CONTAINER.classList.add('tw-rounded-b-none')
+    } else {
+      INPUT_CONTAINER.classList.remove('tw-rounded-b-none')
+    }
+
+    RESULTS.innerHTML = html;
+  };
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "/" && !opened) {
+      opened = true;
+      e.preventDefault();
+
+      INPUT.value = "";
+      INPUT.addEventListener("input", inputListener);
+
+      SEARCH_ROOT.classList.add("tw-flex");
+      SEARCH_ROOT.classList.remove("tw-hidden");
+
+      INPUT.focus();
+    }
+
+    if (e.key === "Escape" && opened) {
+      opened = false;
+      SEARCH_ROOT.classList.remove("tw-flex");
+      SEARCH_ROOT.classList.add("tw-hidden");
+
+      INPUT.removeEventListener("input", inputListener);
+      INPUT.value = "";
+      RESULTS.innerHTML = "";
+    }
+  });
+</script>
+
+<style is:inline>
+  #search-root {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+</style>
