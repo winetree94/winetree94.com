@@ -1,9 +1,8 @@
 ---
 import IndentLine from '../../components/IndentLine.astro';
-import { getCurrentLangCode, getLangBasePath } from '../../i18n/utils';
+import { getCurrentLangCode } from '../../i18n/utils';
 import { useTranslation } from '../../i18n/utils';
 
-const langPath = getLangBasePath(Astro.url);
 const langCode = getCurrentLangCode(Astro.url);
 const t = useTranslation(langCode);
 

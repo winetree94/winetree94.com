@@ -1,9 +1,8 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Button from '../components/Button.astro';
+import BlogHeader from '../components/BlogHeader.astro';
 import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import IconLink from '../components/IconLink.astro';
+import IconLink from '../components/icon/IconLink.astro';
 import { EMAIL, GITHUB_URL, LINKEDIN_URL, NPM_URL, SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from '../consts';
 import { languages } from '../i18n/ui';
 import { getCurrentLangCode, getLangBasePath, useTranslation } from '../i18n/utils';
@@ -22,10 +21,6 @@ const image = SITE_IMAGES[currentLangCode];
   <head>
     <BaseHead title={title} description={description} image={image} />
     <style lang="scss">
-      main {
-        margin: 80px auto;
-      }
-
       .profile-image {
         border-radius: 50%;
         width: 200px;
@@ -43,8 +38,8 @@ const image = SITE_IMAGES[currentLangCode];
     </style>
   </head>
   <body>
-    <Header />
-    <main class="tw-flex tw-flex-col tw-items-center">
+    <BlogHeader />
+    <main class="tw-flex tw-flex-col tw-items-center tw-my-[80px]">
       <img class="profile-image" src="/photos/profile.jpg" alt="" />
       <h5>winetree94</h5>
       <p class="tw-text-center tw-mt-4">

@@ -1,0 +1,18 @@
+---
+import { SITE_TITLE } from '../consts';
+import { getLangBasePath } from '../i18n/utils';
+import HeaderLink from './HeaderLink.astro';
+import WHeader from './header/Header.astro';
+const langPath = getLangBasePath(Astro.url);
+---
+
+<WHeader>
+  <h2 class="tw-text-base">
+    <a class="tw-text-black-950" href={`${langPath || "/"}`}>{SITE_TITLE}</a>
+  </h2>
+  <div class="tw-flex">
+    <HeaderLink pathname={`${langPath}/about`}>About</HeaderLink>
+    <HeaderLink pathname={`${langPath}/projects`}>Projects</HeaderLink>
+    <HeaderLink pathname={`${langPath}/blog`}>Blog</HeaderLink>
+  </div>
+</WHeader>
