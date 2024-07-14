@@ -1,0 +1,52 @@
+---
+import IndentLine from '../../components/IndentLine.astro';
+import { getCurrentLangCode } from '../../i18n/utils';
+import { useTranslation } from '../../i18n/utils';
+import type { OpenSourceExperience } from '../../types/open-source';
+
+type Props = {
+  opensourceExperience: OpenSourceExperience[];
+};
+
+const { opensourceExperience } = Astro.props;
+const langCode = getCurrentLangCode(Astro.url);
+const t = useTranslation(langCode);
+---
+<h3 id="open_source" class="tw-font-bold">
+  {t("about.open_source")}
+</h3>
+<IndentLine class="tw-flex tw-flex-col tw-gap-4">
+  {
+    opensourceExperience.map((exp) => (
+      <div class="tw-p-3">
+        <div class="tw-flex tw-justify-between tw-flex-row">
+          <div>
+            <h2>{t(exp.projectName)}</h2>
+            <p class="tw-text-sm">
+              <a
+                class="tw-text-black-950 tw-break-all"
+                href={`https://${exp.publicLink}`}
+                target="_blank"
+              >
+                <i class="ri-links-line" />
+                {t(exp.publicLink)}
+              </a>
+            </p>
+          </div>
+          <div class="tw-inline-flex tw-flex-col tw-items-end">
+            <span class="tw-text-sm">
+              <i class="ri-calendar-line" />
+              {t(exp.period)}
+            </span>
+          </div>
+        </div>
+        <p class="tw-mt-4">{t(exp.description)}</p>
+        <ul class="tw-list-disc tw-list-inside tw-mt-2">
+          {exp.features.map((feature) => (
+            <li class="tw-list-outside tw-ml-6">{t(feature)}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</IndentLine>

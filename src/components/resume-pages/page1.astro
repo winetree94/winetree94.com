@@ -3,6 +3,7 @@ import IndentLine from '../../components/IndentLine.astro';
 import TechBadge from '../../components/TechBadge.astro';
 import { getCurrentLangCode } from '../../i18n/utils';
 import { useTranslation } from '../../i18n/utils';
+import Skills from '../resume/Skills.astro';
 
 const langCode = getCurrentLangCode(Astro.url);
 const t = useTranslation(langCode);
@@ -53,55 +54,6 @@ const t = useTranslation(langCode);
   </div>
 
   <div class="tw-flex tw-flex-col tw-mt-8">
-    <h3 id="qualifications" class="tw-font-bold">{t("about.qualifications")}</h3>
-    <IndentLine>
-      <div>
-        <p class="tw-mt-2">
-          {t("about.qualifications.description")}
-        </p>
-      </div>
-      <div class="tw-mt-8">
-        <h3>{t("about.qualifications.frontend")}</h3>
-        <ul class="tw-list-disc tw-list-inside tw-mt-2">
-          {
-            [1, 2, 3, 4, 5, 6, 7].map((idx) => (
-              <li class="tw-list-outside tw-ml-6">
-                {t(`about.qualifications.frontend.${idx}`)}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="tw-mt-8">
-        <h3>{t("about.qualifications.others")}</h3>
-        <ul class="tw-list-disc tw-list-inside tw-mt-2">
-          {
-            [1, 2, 3].map((idx) => (
-              <li class="tw-list-outside tw-ml-6">
-                {t(`about.qualifications.others.${idx}`)}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="tw-mt-8">
-        <h3>
-          {t("about.qualifications.key_technology_keywords")}
-        </h3>
-        <div class="tw-flex tw-gap-2 tw-flex-wrap tw-mt-2">
-          {
-            [
-              "Typescript",
-              "Angular",
-              "React",
-              "Webpack",
-              "Jest",
-              "Aws",
-              "Docker",
-            ].map((badge) => <TechBadge name={badge} />)
-          }
-        </div>
-      </div>
-    </IndentLine>
+    <Skills />
   </div>
 </div>

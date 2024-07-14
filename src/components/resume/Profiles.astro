@@ -1,0 +1,27 @@
+---
+import IndentLine from '../../components/IndentLine.astro';
+import { PERSONAL_LINKS } from '../../consts';
+import { getCurrentLangCode } from '../../i18n/utils';
+import { useTranslation } from '../../i18n/utils';
+
+const langCode = getCurrentLangCode(Astro.url);
+const t = useTranslation(langCode);
+---
+
+<h3 id="profile" class="tw-font-bold">{t("about.profile")}</h3>
+<IndentLine>
+  <p>
+    {t("about.profile.description")}
+  </p>
+  <ul class="tw-list-disc tw-list-inside tw-mt-4">
+    {
+      PERSONAL_LINKS.map((link) => (
+        <li class="tw-list-outside tw-ml-6">
+          <a href={link.url} target="_blank">
+            {link.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</IndentLine>
