@@ -154,5 +154,7 @@
     "about.open_source.vanilla_recycler_view.features.2": "스크롤을 벗어난 요소를 재사용해 스크롤 시 성능을 향상시킵니다.",
     "about.open_source.vanilla_recycler_view.period": "2019",
     "projects.title": "별 건 없어요. 제가 만들었거나 만들고 있는 프로젝트입니다.",
-    "projects.description": "저는 주로 업무나 일상에서의 문제를 해결하기 위해 프로젝트를 생성합니다."
+    "projects.description": "저는 주로 업무나 일상에서의 문제를 해결하기 위해 프로젝트를 생성합니다.",
+    "resume.title": "이력서 뷰어",
+    "resume.description": "이력서 뷰어"
 }

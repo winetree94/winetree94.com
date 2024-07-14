@@ -1,7 +1,8 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import BlogHeader from '../components/header/BlogHeader.astro';
 import Footer from '../components/Footer.astro';
+import SearchDaemon from '../components/SearchDaemon.astro';
+import BlogHeader from '../components/header/BlogHeader.astro';
 import OpenSource from '../components/resume/OpenSource.astro';
 import Profiles from '../components/resume/Profiles.astro';
 import Skills from '../components/resume/Skills.astro';
@@ -83,6 +84,7 @@ const langPath = getLangBasePath(Astro.url);
       </div>
     </main>
     <Footer />
+    <SearchDaemon />
     <script>
       function scrollTo(id: string) {
         const element = document.getElementById(id);
@@ -105,4 +107,5 @@ const langPath = getLangBasePath(Astro.url);
         .addEventListener("click", () => scrollTo("open_source"));
     </script>
   </body>
+
 </html>

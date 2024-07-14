@@ -7,20 +7,19 @@ import Page1 from '../components/resume-pages/page1.astro';
 import Page2 from '../components/resume-pages/page2.astro';
 import Page3 from '../components/resume-pages/page3.astro';
 import Page4 from '../components/resume-pages/page4.astro';
-import { SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from '../consts';
-import { getCurrentLangCode, getLangBasePath } from '../i18n/utils';
+import { SITE_IMAGES } from '../consts';
+import { getCurrentLangCode, getLangBasePath, useTranslation } from '../i18n/utils';
 const currentLangPath = getLangBasePath(Astro.url);
 const currentLangCode = getCurrentLangCode(Astro.url);
+const t = useTranslation(currentLangCode);
 
-const title = SITE_TITLES[currentLangCode];
-const description = SITE_DESCRIPTIONS[currentLangCode];
 const image = SITE_IMAGES[currentLangCode];
 ---
 
 <!doctype html>
 <html lang={currentLangCode}>
   <head>
-    <BaseHead title={title} description={description} image={image} />
+    <BaseHead title={t('resume.title')} description={t('resume.description')} image={image} />
   </head>
   <body
     class="tw-flex tw-flex-col tw-bg-black-800 tw-m-0 tw-p-0 tw-overflow-y-scroll"
