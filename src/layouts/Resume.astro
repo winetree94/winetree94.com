@@ -162,6 +162,10 @@ const image = SITE_IMAGES[currentLangCode];
         }
       });
 
+      window.addEventListener('blur', () => {
+        ctrlPressed = false;
+      });
+
       window.addEventListener("wheel", (event) => {
         if (ctrlPressed) {
           event.preventDefault();
