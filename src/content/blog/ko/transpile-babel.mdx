@@ -1,0 +1,268 @@
+---
+title: '트랜스파일과 바벨'
+hidden: true
+description: 'Transpile 과 Babel 에 대해 설명합니다.'
+pubDate: 'Sep 11 2021'
+heroImage: '/content/blog/astro/hero.png'
+---
+
+## 여전한 Internet Explorer
+
+웹 프론트엔드 개발자들의 귀찮은 점 중 하나는, 오래된 브라우저에서도 우리가 만든 앱이 잘 동작하게 하기 위해 노력해야 한다는 점 입니다. 사실 요즘은 브라우저들이 워낙 잘 만들어 진 데다, 대게 자동 업데이트 기능을 지원하기 때문에 구형 브라우저를 사용하는 사용자가 많지는 않습니다.
+
+하지만 언제나 그렇듯 국내에서는 아직까지도 기업이나 관공서에서 `Internet Explorer`(이하 IE) 기반의 브라우저를 사용하고 있습니다. 저는 군생활을 행정병으로 지냈었는데, 2018년 전역 당시 육군에서 표준으로 사용하고 있는 브라우저는 IE8 버전 이었습니다. 요즘 세상에 어떻게 저 브라우저를 쓰느냐 하시겠지만, 군은 모든 업무 시스템이 IE8 의 `ActiveX` 기술을 기반으로 개발되어 있어서 이를 단번에 전환 하기에도 어려운 속사정이 있었습니다.
+
+마이크로소프트는 최신 윈도우 11부터, IE 를 기본적으로 제거한다는 방침을 내놓았고 많은 소식통에서 드디어 IE 가 사라진다고 환영하고 있습니다. 하지만 사실 이 얘기는 윈도우 10의 출시 때에도 나왔던 이야기입니다.
+
+윈도우10 에서 IE 가 보조프로그램으로 격하 되었고 새로운 `Edge` 브라우저가 내장되게 되면서 드디어 IE 가 역사속으로 사라진다며 기사가 나왔었습니다. 하지만 IE 는 아직까지 건재하며 잘 사용 되고 있습니다. 윈도우 11 역시도 `Edge` 브라우저 내에서 IE 호환성 모드를 제공할 예정이기 때문에 IE 는 계속해서 사용될 것 입니다.
+
+저는 개인적으로 IE 가 기업과 관공서에서 까지 완전히 퇴출되는 시기를 빠르면 2040년 쯤으로 바라보고 있습니다. 이것도 확신이 서지 않는 이유는 한 조직의 업무 시스템이라는 것은 결코 쉽게 바뀌지 않기 때문입니다. 조직 입장에서는 브라우저를 바꾸게 되면 함께 사용중인 다른 모든 소프트웨어도 교체해야하기 때문에 비용 적으로 적지 않은 부담이 생기게 됩니다.
+
+이러한 이해 관계의 결과로 개발자들은 기업이나 관공서에서 근무하거나, 그곳에 납품해야하는 제품을 만들어야 한다면 오래된 브라우저를 위해 여전히 구식 문법을 사용해 개발을 진행해야 합니다.
+
+<br />
+
+---
+
+# Transpile 이란 무엇일까?
+
+JavaScript 는 구형 문법과 신식 문법의 개발자 경험의 차이가 굉장히 큰 언어입니다. 최근들어 프론트엔드 개발을 시작한 분이시라면, 아마 `class` 와 `async & await` 같은 문법에 익숙할 것인데 이는 모두 IE11 이하의 브라우저에서는 사용할 수 없습니다.
+
+결국 IE11 에서 동작시키기 위해서는 `class` 를 `function` 문법으로, `async & await` 은 `promise callback` 문법으로 개발해야 합니다. 이를 코드로써 나타내보면 아래와 같습니다.
+
+`class` 문법에서의 객체 생성자 구현
+
+```jsx
+class Person {
+	constructor(name, age) {
+		this.name = name;
+		this.age = age;
+	}
+
+	getName() {
+		return this.name;
+	}
+}
+
+const person = new Person('winetree94', 28);
+console.log(person.getName()); // => winetree94
+```
+
+`prototype` 문법에서의 객체 생성자 구현, 위와 같은 결과를 가집니다.
+
+```jsx
+var Person = (function () {
+
+	function Person(name, age) {
+		this.name = name;
+		this.age = age;
+	}
+
+	Person.prototype.getName = function () {
+		return this.name;
+	}
+
+})();
+
+var person = new Person('winetree94', 28);
+console.log(person.getName()); // => winetree94
+```
+
+`async & await` 을 사용한 비동기 처리 구현
+
+```jsx
+async function getPagePropName(num) {
+	const page = await getPage(num);
+	const props = await getProps(page);
+	return props.name;
+}
+
+const name = await getPagePropName(3);
+console.log(name);
+```
+
+`promise callback` 을 사용한 비동기 처리 구현, 위와 같은 결과를 가집니다.
+
+```jsx
+function getPagePropName(num) {
+	return getPage(num).then(function(page) {
+		return getProps(page);
+	}).then(function (prop) {
+		return prop.name;
+	});
+}
+
+getPagePropName(3).then(function (name) {
+	console.log(name);
+});
+```
+
+이렇게 코드를 변환해 작성하면 IE11 에서도 문제 없이 동작할 수 있는 코드가 됩니다. 그리고 이처럼 **코드를 변환하는 과정**을 `Transpile` 이라 부릅니다. 작성된 코드의 결과를 봤을 때, 구식 코드로 작성했을 때가 대체로 더 많은 코드를 작성해야 하면서도 코드의 복잡성 역시 높아진다는 점 역시 확인해 볼 수 있습니다.
+
+> `Transpile` 은 좀 더 넓은 범위에서의 코드 변환을 지칭하는 단어이지만, 이와 같이 구형 브라우저에서의 동작을 위해 비슷한 코드로 변환하는 과정 역시도 `Transpile` 이라 부릅니다.
+> 
+
+<br />
+---
+
+# Transpile 을 위한 자동화 도구, Babel
+
+![https://d33wubrfki0l68.cloudfront.net/7a197cfe44548cc1a3f581152af70a3051e11671/78df8/img/babel.svg](https://d33wubrfki0l68.cloudfront.net/7a197cfe44548cc1a3f581152af70a3051e11671/78df8/img/babel.svg)
+
+위에서 `Transpile` 이 무엇인지에 대해 이해하셨다면, 이 과정을 개발자가 수동으로 하기에는 너무 번거롭고 귀찮은 일이란 것을 이해하실 겁니다. 사실 손으로 저걸 할 바에는 애초에 개발을 구형 문법으로 진행하는 것이 더 효율적일 것 입니다.
+
+`Babel` 은 이 `Transpile` 과정을 자동으로 진행해주는 도구인 `Transpiler` 입니다. 즉, 개발자는 최신 코드로 개발을 진행하면서도 결과물은 오래된 브라우저에서도 잘 동작할 수 있는 구형 코드로 출력할 수 있게 해주는 도구입니다.
+
+지금 현대 웹 프론트엔드 프레임워크를 사용중이시라면, 아마 최신의 문법들을 사용해서 개발을 진행해도 결과물이 IE 에서 어느 정도는 잘 동작할 것 입니다.
+
+이럴 수 있는 배경에는 모든 프레임워크가 `Babel` 또는 그와 비슷한 수준의 `Transpiler` 를 내장하여 사용하고 있기 때문입니다. 아마 여러분들은 `Babel` 을 모르며 개발을 진행 하셨더라도, 실제로는 `Babel` 을 사용하고 있을 확률이 높습니다.
+
+> '어느 정도'만 잘 돌아가는 이유는 오래된 브라우저는 JavaScript 뿐 아니라, HTML, CSS 까지도 신경써서 제작해야 하기 때문입니다.
+> 
+
+`Babel` 을 몰라도 `Babel` 을 사용할 수 있다면, 사실 `Transpile` 과 `Babel` 에 대해 상세히 알 필요는 없습니다. 하지만 실제 오래된 브라우저를 지원하는 업무를 진행하다 보면 Babel 이 자동적으로 처리해주는 것에는 한계가 있다는 것을 알게 되실 겁니다. 그렇기에 이제부터는 `Babel` 이 어떻게 동작하며 어떤 한계를 가지고 있는지를 이해하고, 이를 어떻게 해결할 수 있을지를 살펴보겠습니다.
+
+<br />
+---
+
+# 최신 JavaScript 코드를 구형 브라우저에서 동작시킬 때의 문제
+
+`Babel` 이 어떻게 동작하는지에 대해 이해하려면 먼저, 우리가 최신의 코드를 오래된 브라우저에서 그대로 동작시킬 때 어떤 문제가 발생하는지를 알아야 합니다. 아래의 코드와 결과를 한번 보겠습니다.
+
+```jsx
+Object.entries({});
+```
+
+![IE11 에서 실행시킨 결과](/content/blog/transpile/1.png)
+
+IE11 에서 실행시킨 결과
+
+```jsx
+async function a() {}
+```
+
+![IE11 에서 실행시킨 결과](/content/blog/transpile/2.png)
+
+IE11 에서 실행시킨 결과
+
+각각의 코드를 IE11 의 개발자 도구 콘솔에 입력하면 각기 다른 에러가 표시됩니다. 두 개의 오류는 결과적으로 오류가 발생했다는 것에는 동일하지만 발생한 **시점**에서 중요한 차이가 있습니다.
+
+첫번째 오류는 코드를 정상적으로 실행했지만 `Object.prototype.entries` 함수를 참조하는 중 해당 함수가 없어서 발생한 `Runtime Error` 입니다. 
+
+두번째 오류는 IE 의 JavaScript 엔진에서 코드를 실행하기 전, 코드를 해석하는 과정에서 문법적 오류로 실행을 중단한 `Syntax Error` 입니다.
+
+첫번째는 `Object.prototype.entries` 라는 함수를 개발자가 사전에 정의한다면 해결할 수 있는 문제입니다. 방법의 예시는 아래와 같습니다.
+
+```jsx
+if (!Object.prototype.entries) {
+  Object.prototype.entries = function( obj ){
+    var ownProps = Object.keys( obj ),
+        i = ownProps.length,
+        resArray = new Array(i); // preallocate the Array
+    while (i--)
+      resArray[i] = [ownProps[i], obj[ownProps[i]]];
+    return resArray;
+  };
+}
+```
+
+즉, 첫번째 문제의 경우는 코드 원본을 변경하지 않고도, 사전에 필요한 기능을 정의해 준다면 해결할 수 있는 문제입니다. 이렇게 주입된 코드를 베개에 채워넣는 '충전솜' 이란 단어를 사용해 `polyfill` 이라 부릅니다.
+
+두번째 문제는 브라우저의 JavaScript 엔진이 스크립트를 실행하기 이전에 발생한 문법적 오류입니다. 이 문제는 `polyfill` 을 주입하는 것 만으로는 해결할 수 없습니다. 즉, 코드의 원형을 해당 `JavaScript` 엔진이 해석 가능한 문법으로 변경해야 합니다. 방법의 예시는 아래와 같습니다.
+
+```jsx
+function a() {
+	return new Promise(function(resolve) {
+		resolve();
+	})
+}
+```
+
+이렇게 변환한다면 이제 IE 에서도 실행 가능하면서도 동일한 결과를 나타낼 수 있게 됩니다.
+
+이러한 결과를 종합해보면 구형 브라우저에서 최신 `JavaScript` 코드를 구동시키기 위해서는 `polyfill` 로 해결 가능한 코드와 그렇지 않은 코드를 나누어 처리(`Transpile`)해야 한다는 점을 이해하실 겁니다. 
+
+<br />
+---
+
+# Babel 은 어떻게 처리할까?
+
+상단의 글을 이해하셨다면 이제 작성한 코드가 구형 브라우저에서 동작하기 위해서는 어떤 문제가 발생하며, 어떻게 처리해야하는지를 이해 하셨을 겁니다. 이제부터는 `Babel` 에서 이와 같은 문제들을 어떻게 처리 하는지를 살펴보겠습니다.
+
+`Babel` 의 문서([https://babeljs.io/docs/en/usage](https://babeljs.io/docs/en/usage))를 보면, IE의 `JavaScript` 엔진에서 해석 가능한 ES2015+ 명세로 `Transpile` 하기 위해서는 다음과 같은 라이브러리를 `import` 하여 사용하라고 안내하고 있습니다.
+
+```jsx
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+```
+
+`core-js` 는 앞에서 설명한 `polyfill` 의 집합체입니다. 이는 현재 `JavaScript` 엔진에 내장되지 않은 다양한 최신 `ECMAScript` 표준 명세의 함수들을 사전에 정의 해주게 됩니다.
+
+`regenerator-runtime` 은 `polyfill` 로 해결 불가능한 비동기 처리에 특화된 라이브러리 입니다. `Babel` 을 통해 `Transpile` 된 비동기 코드들은 모두 이 라이브러리를 통해 처리되는 코드로 변경됩니다. 아래의 코드를 `Babel` 을 통해 `Transpile` 해 보겠습니다.
+
+```jsx
+// 원본 코드
+async function a() {}
+```
+
+```jsx
+// Transpile 결과
+"use strict";
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function test() {
+  return _test.apply(this, arguments);
+}
+
+function _test() {
+  _test = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _test.apply(this, arguments);
+}
+```
+
+생각보다 복잡하게 처리되었지만, 여기에서 중요한 점은 원본 코드가 `regeneratorRuntime` 이란 전역변수를 참조하는 코드로 변환되었다는 점 입니다. `Babel` 은 이와 같이 `Transpile` 된 코드를 효율적으로 처리하기 위해 비동기 처리를 `regenerator-runtime` 에 의존하여 처리하게 됩니다.
+
+<br />
+---
+
+# 여전한 두통과 Babel 의 한계
+
+이제 `Babel` 을 사용하면서 `core-js` 와 `regenerator-runtime` 의 용도와 필요성에 대해 이해하셨을 겁니다. 하지만 실제로 복잡한 프로젝트를 진행하다 보면 이 두개의 라이브러리 만으로는 모든 상황에서의 해결이 어렵다는 것을 느끼게 됩니다. 그리고 최적화의 문제도 지니게 됩니다.
+
+먼저 `core-js` 는 대부분 명세의 함수들을 내장하고 있습니다. 따라서 `bundle` 되는 스크립트의 용량도 크게 증가합니다. 하지만 실제 개발에서 사용되는 함수는 상당히 제한적이기 때문에 불필요한 것들까지도 모두 `polyfill` 하고 있을 확률이 높습니다. 따라서 아래와 같이 필요한 기능들 만을 적절히 `import` 하여 사용하는 것이 보다 효과적 입니다.
+
+```jsx
+import 'core-js/features/array/from';
+import 'core-js/features/array/flat';
+import 'core-js/features/set';
+```
+
+그리고, `core-js` 가 모든 `polyfill` 을 내장하고 있는 것은 아닙니다. 팀원들이 아직 `ECMAScript` 에서 공식화되지 않은 `Staged` 단계의 명세 함수들을 잘 모른 채로 사용할 수도 있습니다. 이 경우엔 직접적으로 `polyfill` 을 만들어 사용하거나 다른 사람이 만든 `polyfill` 을 `import` 해서 사용해야 합니다.
+
+또, `polyfill` 도 해결할 수 없는 코드 중에서, `babel` 이 기본적으로는 처리하지 못해 추가 플러그인을 사용해야 하는 문법들도 존재합니다. 하나의 예시는 `proposal-decorator` 입니다.
+
+```jsx
+@annotation // decorator
+class MyClass {}
+
+function annotation(target) {
+  target.annotated = true;
+}
+```
+
+이는 [https://babeljs.io/docs/en/babel-plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) 문서에서 안내하듯 별도의 플러그인을 추가로 설치해서 올바르게 `Transpile` 될 수 있도록 해야 합니다.
+
+이렇듯 `Babel` 을 처음 설정한 것 만으로는, 앞으로도 지속적으로 구형 브라우저에서도 올바르게 동작한다는 보장을 얻기는 힘듭니다. 따라서 개발자는 항상 올바른 `polyfill` 과 `plug-in`을 사용하고 있는지 지속적으로 관리해야 합니다.
