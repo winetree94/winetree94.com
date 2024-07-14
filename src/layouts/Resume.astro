@@ -1,8 +1,8 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import WHeader from '../components/header/Header.astro';
 import IconButton from '../components/icon/IconButton.astro';
 import IconLink from '../components/icon/IconLink.astro';
-import WHeader from '../components/header/Header.astro';
 import Page1 from '../components/resume-pages/page1.astro';
 import Page2 from '../components/resume-pages/page2.astro';
 import Page3 from '../components/resume-pages/page3.astro';
@@ -147,6 +147,58 @@ const image = SITE_IMAGES[currentLangCode];
       // watch screen width
       matchWithScreen();
       VIEWER_ROOT.style.visibility = "visible";
+
+
+      // pinch zoom
+      let lastTouchDistance = 0;
+      let lastScale = 1;
+      let lastScaleTime = 0;
+      let scaleTimeout: null | ReturnType<typeof setTimeout> = null;
+
+      const handleTouchStart = (event: TouchEvent) => {
+        if (event.touches.length === 2) {
+          const touch1 = event.touches[0];
+          const touch2 = event.touches[1];
+          lastTouchDistance = Math.hypot(
+            touch1.clientX - touch2.clientX,
+            touch1.clientY - touch2.clientY
+          );
+        }
+      };
+
+      const handleTouchMove = (event: TouchEvent) => {
+        if (event.touches.length === 2) {
+          const touch1 = event.touches[0];
+          const touch2 = event.touches[1];
+          const touchDistance = Math.hypot(
+            touch1.clientX - touch2.clientX,
+            touch1.clientY - touch2.clientY
+          );
+          const scale = touchDistance / lastTouchDistance;
+          const now = Date.now();
+          if (now - lastScaleTime > 100) {
+            lastScale = getScale();
+          }
+          lastScaleTime = now;
+          console.log(scale);
+          setScale(lastScale * scale);
+          lastTouchDistance = touchDistance;
+        }
+      };
+
+      const handleTouchEnd = () => {
+        if (scaleTimeout) {
+          clearTimeout(scaleTimeout);
+        }
+        scaleTimeout = setTimeout(() => {
+          lastScale = getScale();
+        }, 100);
+      };
+
+      ZOOM_CONTAINER.addEventListener("touchstart", handleTouchStart);
+      ZOOM_CONTAINER.addEventListener("touchmove", handleTouchMove);
+      ZOOM_CONTAINER.addEventListener("touchend", handleTouchEnd);
+
     </script>
 
     <style lang="scss">
