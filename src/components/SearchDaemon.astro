@@ -1,13 +1,15 @@
 <div
   id="search-root"
-  class="tw-hidden tw-top-0 tw-left-0 tw-fixed tw-w-full tw-h-full tw-flex-col tw-justify-center tw-items-center"
+  class="tw-hidden tw-top-0 tw-left-0 tw-fixed tw-w-full tw-h-full tw-flex-col tw-items-center tw-px-4"
+  onmousedown="closeSearch()"
 >
   <div
-    class="tw-mx-4 tw-rounded tw-flex tw-flex-col tw-overflow-hidden tw-h-[60%] tw-max-w-[600px] tw-w-full"
+    class="tw-rounded tw-flex tw-flex-col tw-overflow-hidden tw-max-w-[600px] tw-w-full tw-mt-[20vh] tw-shadow"
+    onmousedown="event.stopPropagation()"
   >
     <div
       id="input-container"
-      class="tw-shrink-0 tw-flex tw-p-4 tw-bg-black-50 tw-rounded"
+      class="tw-shrink-0 tw-flex tw-p-4 tw-bg-black-50 tw-rounded tw-relative"
     >
       <input
         id="search"
@@ -15,10 +17,31 @@
         placeholder="Search..."
         class="tw-p-4 tw-w-full tw-outline-none tw-rounded tw-border tw-border-black-200"
       />
+      <div id="search-spinner" class="tw-h-full tw-flex tw-absolute tw-right-0 tw-top-0 tw-items-center tw-invisible">
+        <svg
+          class="tw-animate-spin tw-ml-1 tw-h-5 tw-w-5 tw-text-black-300 tw-mr-8"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="tw-opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"></circle>
+          <path
+            class="tw-opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+      </div>
     </div>
     <div
       id="results"
-      class="tw-flex tw-flex-col tw-gap-4 tw-overflow-y-auto tw-px-4 tw-bg-black-50 tw-rounded-b"
+      class="tw-flex tw-flex-col tw-gap-4 tw-overflow-y-auto tw-px-4 tw-bg-black-50 tw-rounded-b tw-max-h-[40vh]"
     >
     </div>
   </div>
@@ -29,10 +52,13 @@
   const INPUT = document.getElementById("search");
   const SEARCH_ROOT = document.getElementById("search-root");
   const RESULTS = document.getElementById("results");
+  const SPINNER = document.getElementById("search-spinner");
 
   let opened = false;
 
   const inputListener = async (e) => {
+    SPINNER.classList.remove("tw-invisible");
+
     if (e.target.dataset.loaded !== "true") {
       e.target.dataset.loaded = "true";
       window.pagefind = await import("/pagefind/pagefind.js");
@@ -45,7 +71,7 @@
       search.results.map((result) => result.data())
     );
 
-    let html = '';
+    let html = "";
 
     for (result of results) {
       html += `
@@ -57,12 +83,13 @@
     }
 
     if (html.length > 0) {
-      INPUT_CONTAINER.classList.add('tw-rounded-b-none')
+      INPUT_CONTAINER.classList.add("tw-rounded-b-none");
     } else {
-      INPUT_CONTAINER.classList.remove('tw-rounded-b-none')
+      INPUT_CONTAINER.classList.remove("tw-rounded-b-none");
     }
 
     RESULTS.innerHTML = html;
+    SPINNER.classList.add("tw-invisible");
   };
 
   window.addEventListener("keydown", (e) => {
@@ -89,6 +116,28 @@
       RESULTS.innerHTML = "";
     }
   });
+
+  window.addEventListener("open-search", () => {
+    opened = true;
+
+    INPUT.value = "";
+    INPUT.addEventListener("input", inputListener);
+
+    SEARCH_ROOT.classList.add("tw-flex");
+    SEARCH_ROOT.classList.remove("tw-hidden");
+
+    INPUT.focus();
+  });
+
+  const closeSearch = () => {
+    opened = false;
+    SEARCH_ROOT.classList.remove("tw-flex");
+    SEARCH_ROOT.classList.add("tw-hidden");
+
+    INPUT.removeEventListener("input", inputListener);
+    INPUT.value = "";
+    RESULTS.innerHTML = "";
+  };
 </script>
 
 <style is:inline>

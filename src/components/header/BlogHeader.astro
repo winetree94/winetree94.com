@@ -2,6 +2,7 @@
 import { SITE_TITLE } from '../../consts';
 import { getLangBasePath } from '../../i18n/utils';
 import HeaderLink from '../HeaderLink.astro';
+import IconButton from '../icon/IconButton.astro';
 import WHeader from './Header.astro';
 const langPath = getLangBasePath(Astro.url);
 ---
@@ -11,6 +12,10 @@ const langPath = getLangBasePath(Astro.url);
     <a class="tw-text-black-950" href={`${langPath || "/"}`}>{SITE_TITLE}</a>
   </h2>
   <div class="tw-flex tw-items-center">
+    <div class="tw-flex tw-justify-center tw-items-center">
+      <IconButton icon="ri-search-line" size="sm" onclick="window.dispatchEvent(new CustomEvent('open-search'))" />
+      <hr class="tw-border-r tw-border-solid tw-border-black-200 tw-h-8 tw-border-t-0 tw-mx-4">
+    </div>
     <HeaderLink pathname={`${langPath}/about`}>About</HeaderLink>
     <HeaderLink pathname={`${langPath}/projects`}>Projects</HeaderLink>
     <HeaderLink pathname={`${langPath}/blog`}>Blog</HeaderLink>

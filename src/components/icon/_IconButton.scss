@@ -2,6 +2,39 @@
 @mixin button-styles {
   @apply tw-p-4 tw-text-black-950 tw-cursor-pointer tw-rounded-full;
 
+  /* 'xxs' | 'xs' | 'sm' | '1x' | 'lg' | 'xl' | '2x' | '3x'; */
+  &.ri-xxs {
+    @apply tw-p-1;
+  }
+
+  &.ri-xs {
+    @apply tw-p-2;
+  }
+
+  &.ri-sm {
+    @apply tw-p-3;
+  }
+
+  &.ri-1x {
+    @apply tw-p-4;
+  }
+
+  &.ri-lg {
+    @apply tw-p-5;
+  }
+
+  &.ri-xl {
+    @apply tw-p-6;
+  }
+
+  &.ri-2x {
+    @apply tw-p-8;
+  }
+
+  &.ri-3x {
+    @apply tw-p-12;
+  }
+
   &:hover:not(.disabled):not(:disabled) {
     @apply tw-bg-black-100 tw-text-black-950;
   }

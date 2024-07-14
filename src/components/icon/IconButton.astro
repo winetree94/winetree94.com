@@ -8,7 +8,7 @@ type Prop = HTMLAttributes<'button'> & {
 const { icon, size = '1x', class: className, ...props } = Astro.props as Prop;
 ---
 
-<button class=`${className || ''}` {...props}>
+<button class=`${className || ''} ri-${size}` {...props}>
   <i class={`${icon} ri-${size}`}></i>
 </button>
 <style lang="scss">
