@@ -1,11 +1,12 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import IconButton from '../components/IconButton.astro';
-import IconLink from '../components/IconLink.astro';
-import Page1 from '../components/printable/page1.astro';
-import Page2 from '../components/printable/page2.astro';
-import Page3 from '../components/printable/page3.astro';
-import Page4 from '../components/printable/page4.astro';
+import IconButton from '../components/icon/IconButton.astro';
+import IconLink from '../components/icon/IconLink.astro';
+import WHeader from '../components/header/Header.astro';
+import Page1 from '../components/resume-pages/page1.astro';
+import Page2 from '../components/resume-pages/page2.astro';
+import Page3 from '../components/resume-pages/page3.astro';
+import Page4 from '../components/resume-pages/page4.astro';
 import { SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from '../consts';
 import { getCurrentLangCode, getLangBasePath } from '../i18n/utils';
 const currentLangPath = getLangBasePath(Astro.url);
@@ -24,23 +25,19 @@ const image = SITE_IMAGES[currentLangCode];
   <body
     class="tw-flex tw-flex-col tw-bg-black-800 tw-m-0 tw-p-0 tw-overflow-y-scroll"
   >
-    <header
-      class="tw-fixed tw-top-0 tw-left-0 tw-w-full tw-shadow print:tw-hidden tw-z-30"
-    >
-      <nav class="tw-bg-white-50 tw-flex tw-justify-between tw-px-4 tw-h-full tw-py-1 tw-overflow-x-auto">
-        <div class="tw-flex tw-items-center">
-          <IconButton icon="ri-arrow-left-line" onclick="history.back()" />
-          <IconLink icon="ri-home-line" href={`${currentLangPath}/`} />
-        </div>
-        <div class="tw-flex tw-items-center tw-h-full">
-          <IconButton icon="ri-printer-line" onclick="window.print()" />
-          <IconButton id="fullscreen-btn" icon="ri-fullscreen-line" />
-          <IconButton id="zoom-in-btn" icon="ri-zoom-in-line" />
-          <IconButton id="zoom-out-btn" icon="ri-zoom-out-line" />
-        </div>
-      </nav>
-    </header>
-    <!-- <Header /> -->
+    <WHeader fixed={true}>
+      <div class="tw-flex tw-items-center">
+        <IconButton icon="ri-arrow-left-line" onclick="history.back()" />
+        <IconLink icon="ri-home-line" href={`${currentLangPath}/`} />
+      </div>
+      <div class="tw-flex tw-items-center tw-h-full">
+        <IconButton icon="ri-printer-line" onclick="window.print()" />
+        <IconButton id="fullscreen-btn" icon="ri-fullscreen-line" />
+        <IconButton id="zoom-in-btn" icon="ri-zoom-in-line" />
+        <IconButton id="zoom-out-btn" icon="ri-zoom-out-line" />
+      </div>
+    </WHeader>
+
     <main
       id="viewer-root"
       class="tw-m-0 tw-mt-12 tw-p-0 tw-w-full tw-max-w-full tw-text-center print:tw-p-0 print:tw-m-0 print:tw-mt-0 tw-overflow-x-auto"

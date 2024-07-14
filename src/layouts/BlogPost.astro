@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
+import BlogHeader from '../components/BlogHeader.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
 import { getCurrentLangCode } from '../i18n/utils';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -30,7 +30,7 @@ const currentLangCode = getCurrentLangCode(Astro.url);
   </head>
 
   <body>
-    <Header />
+    <BlogHeader />
     <main class="tw-w-full tw-max-w-full">
       <article class="markdown">
         <div class="prose tw-text-black-800 tw-max-w-[720px] tw-m-auto">
@@ -50,6 +50,7 @@ const currentLangCode = getCurrentLangCode(Astro.url);
           </div>
           <slot />
           <script
+            is:inline
             src="https://utteranc.es/client.js"
             repo="winetree94/winetree94.com"
             issue-term={Astro.url.pathname}

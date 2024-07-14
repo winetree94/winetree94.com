@@ -1,0 +1,17 @@
+---
+type Props = {
+  fixed?: boolean;
+};
+
+const { fixed = false } = Astro.props as Props;
+---
+
+<header
+  class={`tw-w-full tw-h-[56px] tw-shadow print:tw-hidden tw-z-30 ${fixed ? 'tw-fixed tw-top-0 tw-left-0' : ''}`}
+>
+  <nav
+    class="tw-bg-white-50 tw-flex tw-justify-between tw-items-center tw-px-4 tw-h-full tw-py-1"
+  >
+    <slot></slot>
+  </nav>
+</header>
