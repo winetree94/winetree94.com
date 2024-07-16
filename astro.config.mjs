@@ -28,7 +28,9 @@ export default defineConfig({
     },
   },
   integrations: [
-    mdx(),
+    mdx({
+
+    }),
     sitemap(
       {
         i18n: {
