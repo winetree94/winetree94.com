@@ -1,19 +1,21 @@
-import mdx from '@astrojs/mdx';
+import markdoc from "@astrojs/markdoc";
+import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-import sitemap from '@astrojs/sitemap';
+import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import { defineConfig } from 'astro/config';
-import pagefind from './plugins/pagefind';
+import { defineConfig } from "astro/config";
+import pagefind from "./plugins/pagefind";
 
 const defaultLocale = "en";
 const locales = {
-  en: 'en-US',
-  ko: 'ko-KR',
+  en: "en-US",
+  ko: "ko-KR",
 };
 
+// https://astro.build/config
 export default defineConfig({
-  site: 'https://winetree94.com',
-  output: 'static',
+  site: "https://winetree94.com",
+  output: "static",
   devToolbar: {
     enabled: false,
   },
@@ -28,18 +30,17 @@ export default defineConfig({
     },
   },
   integrations: [
-    mdx({
+    mdx({}),
+    markdoc({
 
     }),
-    sitemap(
-      {
-        i18n: {
-          locales: locales,
-          defaultLocale: defaultLocale,
-          prefixDefaultLocale: false,
-        },
-      }
-    ),
+    sitemap({
+      i18n: {
+        locales: locales,
+        defaultLocale: defaultLocale,
+        prefixDefaultLocale: false,
+      },
+    }),
     react({
       include: ["./src/**/*.{jsx,tsx}"],
     }),
@@ -47,5 +48,5 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     pagefind(),
-  ]
+  ],
 });
