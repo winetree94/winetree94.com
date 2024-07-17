@@ -1,0 +1,20 @@
+---
+
+console.log(Astro);
+---
+<div id="codemirror-editor">
+  <slot />
+</div>
+
+<script>
+  import { javascript } from "@codemirror/lang-javascript";
+  import { EditorView, basicSetup } from "codemirror";
+
+  const EDITOR_ROOT = document.getElementById("codemirror-editor") as HTMLDivElement;
+
+  const editor = new EditorView({
+    extensions: [basicSetup, javascript()],
+    parent: EDITOR_ROOT,
+    doc: (EDITOR_ROOT.textContent || ''),
+  });
+</script>
