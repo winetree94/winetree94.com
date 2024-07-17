@@ -1,20 +1,70 @@
 ---
+import { javascript } from '@codemirror/lang-javascript';
+import { EditorState } from '@codemirror/state';
+import { EditorView, basicSetup } from 'codemirror';
+import IconButton from './icon/IconButton.astro';
 
-console.log(Astro);
+type Props = {
+  code: string;
+};
+
+const props = Astro.props as Props;
+
+const state = EditorState.create({
+  extensions: [basicSetup, javascript()],
+  doc: props.code,
+  // parent: EDITOR_ROOT,
+});
 ---
-<div id="codemirror-editor">
-  <slot />
+
+<div
+  id="codemirror-editor"
+  class="tw-max-h-[400px] tw-border tw-border-black-300 tw-rounded tw-flex tw-flex-col"
+>
+  <!-- temporary render -->
+  <pre class="editor-temp tw-hidden">{props.code}</pre>
+  <div class="tw-flex tw-justify-between tw-shadow tw-p-1">
+    <span class="tw-mb-0 tw-flex tw-items-center tw-ml-4">Code Runnder</span>
+    <div class="tw-flex">
+      <IconButton icon="ri-search-line" size="sm" />
+    </div>
+  </div>
+  <div class="tw-flex tw-overflow-hidden">
+    <div class="editor-root tw-w-1/2 tw-overflow-y-auto"></div>
+    <div class="tw-w-1/2  tw-overflow-y-auto">
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+      <p>alskdjfasdlfk</p>
+    </div>
+  </div>
 </div>
 
 <script>
   import { javascript } from "@codemirror/lang-javascript";
   import { EditorView, basicSetup } from "codemirror";
 
-  const EDITOR_ROOT = document.getElementById("codemirror-editor") as HTMLDivElement;
+  const TEMP = document.querySelector(".editor-temp") as HTMLPreElement;
+  const EDITOR_ROOT = document.querySelector(".editor-root") as HTMLDivElement;
+
+  const code = TEMP.textContent || "";
+  TEMP.remove();
 
   const editor = new EditorView({
     extensions: [basicSetup, javascript()],
     parent: EDITOR_ROOT,
-    doc: (EDITOR_ROOT.textContent || ''),
+    doc: code,
   });
 </script>
