@@ -25,3 +25,12 @@ pnpm-debug.log*
 
 # astro i18n aut
 astro_tmp_pages_*
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+node_modules
