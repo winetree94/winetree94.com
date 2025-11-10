@@ -14,44 +14,44 @@ const langCode = getCurrentLangCode(Astro.url);
 const t = useTranslation(langCode);
 ---
 
-<h3 id="experience" class="tw-font-bold tw-text-left">
+<h3 id="experience" class="font-bold text-left">
   {t("about.experience")}
 </h3>
-<IndentLine end={props.indentEnd} class="tw-h-full">
-  <div class="tw-list-disc tw-list-inside tw-flex tw-flex-col tw-gap-4 tw-text-left">
+<IndentLine end={props.indentEnd} class="h-full">
+  <div class="list-disc list-inside flex flex-col gap-4 text-left">
     {
       props.workExperience.map((exp) => (
-        <div class="tw-p-3 tw-rounded-lg">
-          <div class="tw-flex tw-justify-between tw-flex-row">
+        <div class="p-3 rounded-lg">
+          <div class="flex justify-between flex-row">
             <div>
-              <h2 class="tw-flex tw-flex-row tw-items-center">
+              <h2 class="flex flex-row items-center">
                 {t(exp.companyName)}
-                <span class="tw-text-sm tw-text-black-700 tw-ml-2">
+                <span class="text-sm text-black-700 ml-2">
                   based in {t(exp.country)}
                 </span>
               </h2>
-              <p class="tw-text-sm tw-mt-0">
+              <p class="text-sm mt-0">
                 <i class="ri-group-line" />
                 {t(exp.position)}
               </p>
             </div>
-            <span class="tw-text-sm">
+            <span class="text-sm">
               <i class="ri-calendar-line" />
               {t(exp.period)}
             </span>
           </div>
-          <div class="tw-flex tw-flex-col tw-mt-8 tw-gap-8">
+          <div class="flex flex-col mt-8 gap-8">
             {exp.projects.map((project) => (
-              <div class="tw-flex tw-flex-row">
-                <div class="tw-w-1/4 tw-mr-8 tw-break-words">
-                  <h5 class="tw-break-keep">{t(project.title)}</h5>
-                  <p class="tw-text-sm">{t(project.period)}</p>
+              <div class="flex flex-row">
+                <div class="w-1/4 mr-8 break-words">
+                  <h5 class="break-keep">{t(project.title)}</h5>
+                  <p class="text-sm">{t(project.period)}</p>
                 </div>
-                <div class="tw-flex-1 tw-mt-0">
+                <div class="flex-1 mt-0">
                   <p>{t(project.description)}</p>
-                  <ul class="tw-list-disc tw-list-inside tw-mt-2">
+                  <ul class="list-disc list-inside mt-2">
                     {project.goals.map((desc) => (
-                      <li class="tw-list-outside tw-ml-6">{t(desc)}</li>
+                      <li class="list-outside ml-6">{t(desc)}</li>
                     ))}
                   </ul>
                 </div>

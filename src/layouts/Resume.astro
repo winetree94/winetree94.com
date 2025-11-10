@@ -22,14 +22,14 @@ const image = SITE_IMAGES[currentLangCode];
     <BaseHead title={t('resume.title')} description={t('resume.description')} image={image} />
   </head>
   <body
-    class="tw-flex tw-flex-col tw-bg-black-800 tw-m-0 tw-p-0 tw-overflow-y-scroll"
+    class="flex flex-col bg-black-800 m-0 p-0 overflow-y-scroll"
   >
     <WHeader fixed={true}>
-      <div class="tw-flex tw-items-center">
+      <div class="flex items-center">
         <IconButton icon="ri-arrow-left-line" onclick="history.back()" />
         <IconLink icon="ri-home-line" href={`${currentLangPath}/`} />
       </div>
-      <div class="tw-flex tw-items-center tw-h-full">
+      <div class="flex items-center h-full">
         <IconButton icon="ri-printer-line" onclick="window.print()" />
         <IconButton id="fullscreen-btn" icon="ri-fullscreen-line" />
         <IconButton id="zoom-in-btn" icon="ri-zoom-in-line" />
@@ -39,13 +39,13 @@ const image = SITE_IMAGES[currentLangCode];
 
     <main
       id="viewer-root"
-      class="tw-m-0 tw-mt-12 tw-p-0 tw-w-full tw-max-w-full tw-text-center print:tw-p-0 print:tw-m-0 print:tw-mt-0 tw-overflow-x-auto"
+      class="m-0 mt-12 p-0 w-full max-w-full text-center print:p-0 print:m-0 print:mt-0 overflow-x-auto"
       style="visibility: hidden; --scaling-factor: 1; --doc-width: 210mm; --doc-height: 297mm;"
     >
-      <div id="size-container" class="tw-inline-block tw-overflow-hidden">
+      <div id="size-container" class="inline-block overflow-hidden">
         <div
           id="zoom-container"
-          class="tw-origin-top-left tw-p-16 print:tw-p-0"
+          class="origin-top-left p-16 print:p-0"
         >
           <div class="page">
             <Page1 />
@@ -186,10 +186,10 @@ const image = SITE_IMAGES[currentLangCode];
       .page {
         width: var(--doc-width);
         height: var(--doc-height);
-        @apply tw-bg-white-50 tw-flex-shrink-0 print:tw-m-0 tw-flex tw-flex-col tw-justify-between tw-p-16;
+        @apply bg-white-50 flex-shrink-0 print:m-0 flex flex-col justify-between p-16;
 
         &:not(:first-child) {
-          @apply tw-mt-16;
+          @apply mt-16;
         }
       }
 
@@ -232,7 +232,7 @@ const image = SITE_IMAGES[currentLangCode];
 
         .page {
           &:not(:first-child) {
-            @apply tw-mt-0;
+            @apply mt-0;
           }
         }
       }

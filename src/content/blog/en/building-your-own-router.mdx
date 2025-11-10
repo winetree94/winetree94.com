@@ -8,7 +8,7 @@ heroImage: '/content/blog/router/r2s-plus.jpg'
 import Warning from "../../../components/mdx/Warning.astro";
 import Image from '../../../components/mdx/Image.astro';
 
-<Image class="tw-rounded-lg" src="/content/blog/router/hero.svg" />
+<Image class="rounded-lg" src="/content/blog/router/hero.svg" />
 
 <br />
 
@@ -28,7 +28,7 @@ To explore OpenWrt, I purchased an open-source hardware device, the NanoPi R2S P
 
 Here's the FriendlyElec open-source hardware, R2S Plus, that I purchased.
 
-<Image class="tw-rounded-lg" src="/content/blog/router/r2s-plus.jpg" />
+<Image class="rounded-lg" src="/content/blog/router/r2s-plus.jpg" />
 
 Specifications are as follows:
 
@@ -54,13 +54,13 @@ Finally, NanoPi products are highly likely to receive official OpenWrt support, 
 
 ## What is OpenWrt like?
 
-<Image class="tw-rounded-lg" width={720} height={350} src="/content/blog/router/openwrt.png" />
+<Image class="rounded-lg" width={720} height={350} src="/content/blog/router/openwrt.png" />
 
 Installing OpenWrt was very straightforward. Download the OpenWrt image from the FriendlyElec website, load it onto a MicroSD card, insert it into the device, and power it on. From there, you can conveniently manage it through a web browser like any other router.
 
 The user interface was quite intuitive. Common functions like setting passwords, fixed DHCP IPs, and DDNS configurations were similar to those of commercial routers. Features crucial to me, such as `VLAN` settings, were also easy to configure. Below is a simple diagram of my network setup.
 
-<Image class="tw-rounded-lg" align="center" src="/content/blog/router/network.png" />
+<Image class="rounded-lg" align="center" src="/content/blog/router/network.png" />
 
 The R2S Plus's WAN is directly connected to the ISP's internet, and the LAN is connected to my existing managed switch, assigning VLAN groups as needed. The switch resolved the issue of limited ports and added security through VLAN separation. Without the switch, I would have connected a standard router in bridge mode.
 

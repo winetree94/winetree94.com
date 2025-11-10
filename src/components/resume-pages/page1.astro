@@ -8,50 +8,50 @@ const t = useTranslation(langCode);
 ---
 
 <div
-  class="tw-flex tw-flex-col tw-w-full tw-h-full tw-justify-center tw-text-left"
+  class="flex flex-col w-full h-full justify-center text-left"
 >
-  <div class="tw-flex tw-flex-row">
+  <div class="flex flex-row">
     <div
-      class="tw-flex-shrink-0 tw-flex tw-justify-center tw-flex-col tw-items-center"
+      class="flex-shrink-0 flex justify-center flex-col items-center"
     >
       <img
-        class="tw-rounded-full profile-image tw-max-w-[150px] tw-min-w-[150px] tw-min-h-[150px] tw-max-h-[150px]"
+        class="rounded-full profile-image max-w-[150px] min-w-[150px] min-h-[150px] max-h-[150px]"
         src="/photos/profile.jpg"
         alt="Profile Image"
       />
-      <div class="tw-mt-4">
-        <p class="tw-text-sm">
-          <i class="ri-mail-line tw-mr-2"></i>winetree94@gmail.com
+      <div class="mt-4">
+        <p class="text-sm">
+          <i class="ri-mail-line mr-2"></i>winetree94@gmail.com
         </p>
-        <p class="tw-text-sm">
+        <p class="text-sm">
           <a
-            class="tw-text-black-950"
+            class="text-black-950"
             target="_blank"
             href="https://winetree94.com"
           >
-            <i class="ri-home-3-line tw-mr-2"></i>winetree94.com
+            <i class="ri-home-3-line mr-2"></i>winetree94.com
           </a>
         </p>
-        <p class="tw-text-sm">
+        <p class="text-sm">
           <a
-            class="tw-text-black-950"
+            class="text-black-950"
             target="_blank"
             href="https://github.com/winetree94"
           >
-            <i class="ri-github-line tw-mr-2"></i>github.com/winetree94
+            <i class="ri-github-line mr-2"></i>github.com/winetree94
           </a>
         </p>
       </div>
     </div>
-    <div class="tw-flex tw-flex-col tw-ml-8 tw-mt-0 tw-justify-center">
+    <div class="flex flex-col ml-8 mt-0 justify-center">
       <h4>{t("about.title")}</h4>
-      <p class="tw-mt-4">
+      <p class="mt-4">
         <Fragment set:html={t("about.description")} />
       </p>
     </div>
   </div>
 
-  <div class="tw-flex tw-flex-col tw-mt-8">
+  <div class="flex flex-col mt-8">
     <Skills />
   </div>
 </div>

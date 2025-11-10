@@ -23,63 +23,63 @@ const langPath = getLangBasePath(Astro.url);
   <body>
     <BlogHeader />
     <main>
-      <div class="tw-flex tw-flex-col sm:tw-flex-row">
-        <div class="tw-flex-shrink-0 tw-flex tw-justify-center">
+      <div class="flex flex-col sm:flex-row">
+        <div class="flex-shrink-0 flex justify-center">
           <img
-            class="tw-rounded-full profile-image tw-max-w-[200px] tw-min-w-[200px] tw-min-h-[200px] tw-max-h-[200px]"
+            class="rounded-full profile-image max-w-[200px] min-w-[200px] min-h-[200px] max-h-[200px]"
             src="/photos/profile.jpg"
             alt="Profile Image"
           />
         </div>
-        <div class="tw-flex tw-flex-col sm:tw-ml-8 tw-mt-8 sm:tw-mt-0">
+        <div class="flex flex-col sm:ml-8 mt-8 sm:mt-0">
           <h5>{t("about.title")}</h5>
-          <p class="tw-mt-4">
+          <p class="mt-4">
             <Fragment set:html={t("about.description")} />
             <br />
             {t("about.contact_me")}
           </p>
           {
             langCode === "ko" && (
-              <p class="tw-text-right tw-mt-4">
+              <p class="text-right mt-4">
                 <a href={`${langPath}/resume`}>{t("about.profile.need-pdf")}</a>
               </p>
             )
           }
         </div>
       </div>
-      <div class="tw-flex tw-flex-col tw-mt-16">
-        <h3 class="tw-font-bold">{t("about.jump_to")}</h3>
+      <div class="flex flex-col mt-16">
+        <h3 class="font-bold">{t("about.jump_to")}</h3>
         <div
-          class="tw-mt-4 tw-flex tw-justify-center tw-gap-2 tw-flex-col sm:tw-flex-row sm:tw-gap-4"
+          class="mt-4 flex justify-center gap-2 flex-col sm:flex-row sm:gap-4"
         >
-          <a id="jump_to_profile" class="tw-cursor-pointer">
+          <a id="jump_to_profile" class="cursor-pointer">
             {t("about.profile")}
           </a>
-          <a id="jump_to_qualifications" class="tw-cursor-pointer">
+          <a id="jump_to_qualifications" class="cursor-pointer">
             {t("about.qualifications")}
           </a>
-          <a id="jump_to_experience" class="tw-cursor-pointer">
+          <a id="jump_to_experience" class="cursor-pointer">
             {t("about.experience")}
           </a>
-          <a id="jump_to_open_source" class="tw-cursor-pointer">
+          <a id="jump_to_open_source" class="cursor-pointer">
             {t("about.open_source")}
           </a>
         </div>
       </div>
 
-      <div class="tw-flex tw-flex-col tw-mt-16">
+      <div class="flex flex-col mt-16">
         <Profiles />
       </div>
 
-      <div class="tw-flex tw-flex-col tw-mt-16">
+      <div class="flex flex-col mt-16">
         <Skills />
       </div>
 
-      <div class="tw-flex tw-flex-col tw-mt-16">
+      <div class="flex flex-col mt-16">
         <WorkExperience indentEnd={true} workExperience={WORK_EXPERIENCE} />
       </div>
 
-      <div class="tw-flex tw-flex-col tw-mt-16">
+      <div class="flex flex-col mt-16">
         <OpenSource opensourceExperience={OPEN_SOURCE} />
       </div>
     </main>

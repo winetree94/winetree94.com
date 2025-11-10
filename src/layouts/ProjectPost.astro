@@ -20,25 +20,25 @@ const currentLangCode = getCurrentLangCode(Astro.url);
 
   <body>
     <BlogHeader />
-    <main class="tw-w-full tw-max-w-full">
+    <main class="w-full max-w-full">
       <article class="markdown">
-        <div class="prose tw-text-black-800 tw-max-w-[720px] tw-m-auto">
-          <div class="tw-text-center tw-mb-8">
+        <div class="prose text-black-800 max-w-[720px] m-auto">
+          <div class="text-center mb-8">
             <div class="date">
               <FormattedDate date={pubDate} />
               {
                 updatedDate && (
-                  <div class="tw-italic">
+                  <div class="italic">
                     Last updated on <FormattedDate date={updatedDate} />
                   </div>
                 )
               }
             </div>
-            <h1 class="tw-my-4">{title}</h1>
+            <h1 class="my-4">{title}</h1>
             <hr />
           </div>
           <slot />
-          <div class="tw-mt-16">
+          <div class="mt-16">
             <script
               src="https://giscus.app/client.js"
               data-repo="winetree94/winetree94.com"

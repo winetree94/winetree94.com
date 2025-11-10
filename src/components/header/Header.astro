@@ -7,10 +7,10 @@ const { fixed = false } = Astro.props as Props;
 ---
 
 <header
-  class={`tw-w-full tw-h-[56px] tw-bg-white-50 tw-shadow print:tw-hidden tw-z-30 ${fixed ? 'tw-fixed tw-top-0 tw-left-0' : ''}`}
+  class={`w-full h-[56px] bg-white-50 shadow print:hidden z-30 ${fixed ? 'fixed top-0 left-0' : ''}`}
 >
   <nav
-    class="tw-bg-white-50 tw-flex tw-justify-between tw-items-center tw-px-4 tw-h-full tw-py-1 tw-mx-auto"
+    class="bg-white-50 flex justify-between items-center px-4 h-full py-1 mx-auto"
   >
     <slot></slot>
   </nav>

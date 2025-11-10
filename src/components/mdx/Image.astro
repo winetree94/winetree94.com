@@ -11,10 +11,10 @@ export type Prop = {
 const props = Astro.props;
 
 const alignClassName =
-  props.align === 'left' ? 'tw-justify-start' : props.align === 'right' ? 'tw-justify-end' : 'tw-justify-center';
+  props.align === 'left' ? 'justify-start' : props.align === 'right' ? 'justify-end' : 'justify-center';
 ---
 
-<div class={`image-container tw-flex ${alignClassName}`}>
+<div class={`image-container flex ${alignClassName}`}>
   <img class={`image  ${props.class || ''}`} src={props.src} alt={props.alt} width={props.width} height={props.height}/>
 </div> 
 

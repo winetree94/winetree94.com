@@ -1,54 +1,54 @@
 // styles/_button.scss
 @mixin button-styles {
-  @apply tw-p-4 tw-text-black-950 tw-cursor-pointer tw-rounded-full;
+  @apply p-4 text-black-950 cursor-pointer rounded-full;
 
   /* 'xxs' | 'xs' | 'sm' | '1x' | 'lg' | 'xl' | '2x' | '3x'; */
   &.ri-xxs {
-    @apply tw-p-1;
+    @apply p-1;
   }
 
   &.ri-xs {
-    @apply tw-p-2;
+    @apply p-2;
   }
 
   &.ri-sm {
-    @apply tw-p-3;
+    @apply p-3;
   }
 
   &.ri-1x {
-    @apply tw-p-4;
+    @apply p-4;
   }
 
   &.ri-lg {
-    @apply tw-p-5;
+    @apply p-5;
   }
 
   &.ri-xl {
-    @apply tw-p-6;
+    @apply p-6;
   }
 
   &.ri-2x {
-    @apply tw-p-8;
+    @apply p-8;
   }
 
   &.ri-3x {
-    @apply tw-p-12;
+    @apply p-12;
   }
 
   &:hover:not(.disabled):not(:disabled) {
-    @apply tw-bg-black-100 tw-text-black-950;
+    @apply bg-black-100 text-black-950;
   }
 
   &:active:not(.disabled):not(:disabled) {
-    @apply tw-bg-black-200 tw-text-black-950;
+    @apply bg-black-200 text-black-950;
   }
 
   &.disabled,
   &:disabled {
-    @apply tw-text-black-300 tw-cursor-default;
+    @apply text-black-300 cursor-default;
   }
 }
 
 @mixin icon-styles {
-  @apply tw-block tw-leading-none;
+  @apply block leading-none;
 }

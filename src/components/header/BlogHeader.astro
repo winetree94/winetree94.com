@@ -8,13 +8,13 @@ const langPath = getLangBasePath(Astro.url);
 ---
 
 <WHeader>
-  <h2 class="tw-text-base">
-    <a class="tw-text-black-950" href={`${langPath || "/"}`}>{SITE_TITLE}</a>
+  <h2 class="text-base">
+    <a class="text-black-950" href={`${langPath || "/"}`}>{SITE_TITLE}</a>
   </h2>
-  <div class="tw-flex tw-items-center">
-    <div class="tw-flex tw-justify-center tw-items-center">
+  <div class="flex items-center">
+    <div class="flex justify-center items-center">
       <IconButton icon="ri-search-line" size="sm" onclick="window.dispatchEvent(new CustomEvent('open-search'))" />
-      <hr class="tw-border-r tw-border-solid tw-border-black-200 tw-h-8 tw-border-t-0 tw-mx-4">
+      <hr class="border-r border-solid border-black-200 h-8 border-t-0 mx-4">
     </div>
     <HeaderLink pathname={`${langPath}/about`}>About</HeaderLink>
     <HeaderLink pathname={`${langPath}/projects`}>Projects</HeaderLink>
