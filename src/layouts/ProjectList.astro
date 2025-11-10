@@ -25,32 +25,32 @@ const posts = (await getCollection('projects'))
   <body>
     <BlogHeader />
     <main>
-      <div class="tw-flex tw-flex-col">
+      <div class="flex flex-col">
         <div
-          class="tw-p-8 tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-8"
+          class="p-8 flex flex-col justify-center items-center mb-8"
         >
-          <h4 class="tw-text-center">{t("projects.title")}</h4>
-          <p class="tw-mt-4 tw-text-center">
+          <h4 class="text-center">{t("projects.title")}</h4>
+          <p class="mt-4 text-center">
             {t("projects.description")}
           </p>
         </div>
         {
           posts.length ? (
-            <ul class="tw-flex tw-flex-wrap tw-gap-8 tw-list-none">
+            <ul class="flex flex-wrap gap-8 list-none">
               {posts.map((post) => (
-                <li class="tw-w-full sm:tw-w-[calc(50%-1rem)]">
+                <li class="w-full sm:w-[calc(50%-1rem)]">
                   <a
-                    class="tw-flex tw-flex-col tw-text-black-950"
+                    class="flex flex-col text-black-950"
                     href={`${langPath}/projects/${post.slug.slice(3)}/`}
                   >
                     <img
-                      class="tw-rounded-xl tw-aspect-video tw-object-cover"
+                      class="rounded-xl aspect-video object-cover"
                       width={720}
                       height={360}
                       src={post.data.heroImage}
                       alt=""
                     />
-                    <h6 class="title tw-mt-4">{post.data.title}</h6>
+                    <h6 class="title mt-4">{post.data.title}</h6>
                     <p class="date">
                       <FormattedDate date={post.data.pubDate} />
                     </p>
@@ -59,7 +59,7 @@ const posts = (await getCollection('projects'))
               ))}
             </ul>
           ) : (
-            <div class="tw-flex tw-justify-center">
+            <div class="flex justify-center">
               <p>{t("global.empty")}</p>
             </div>
           )

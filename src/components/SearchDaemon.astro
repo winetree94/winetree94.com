@@ -1,38 +1,38 @@
 <div
   id="search-root"
-  class="tw-hidden tw-top-0 tw-left-0 tw-fixed tw-w-full tw-h-full tw-flex-col tw-items-center tw-px-4"
+  class="hidden top-0 left-0 fixed w-full h-full flex-col items-center px-4"
   onmousedown="closeSearch()"
 >
   <div
-    class="tw-rounded tw-flex tw-flex-col tw-overflow-hidden tw-max-w-[600px] tw-w-full tw-mt-[20vh] tw-shadow"
+    class="rounded flex flex-col overflow-hidden max-w-[600px] w-full mt-[20vh] shadow"
     onmousedown="event.stopPropagation()"
   >
     <div
       id="input-container"
-      class="tw-shrink-0 tw-flex tw-p-4 tw-bg-black-50 tw-rounded tw-relative"
+      class="shrink-0 flex p-4 bg-black-50 rounded relative"
     >
       <input
         id="search"
         type="text"
         placeholder="Search..."
-        class="tw-p-4 tw-w-full tw-outline-none tw-rounded tw-border tw-border-black-200"
+        class="p-4 w-full outline-none rounded border border-black-200"
       />
-      <div id="search-spinner" class="tw-h-full tw-flex tw-absolute tw-right-0 tw-top-0 tw-items-center tw-invisible">
+      <div id="search-spinner" class="h-full flex absolute right-0 top-0 items-center invisible">
         <svg
-          class="tw-animate-spin tw-ml-1 tw-h-5 tw-w-5 tw-text-black-300 tw-mr-8"
+          class="animate-spin ml-1 h-5 w-5 text-black-300 mr-8"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
         >
           <circle
-            class="tw-opacity-25"
+            class="opacity-25"
             cx="12"
             cy="12"
             r="10"
             stroke="currentColor"
             stroke-width="4"></circle>
           <path
-            class="tw-opacity-75"
+            class="opacity-75"
             fill="currentColor"
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           ></path>
@@ -41,7 +41,7 @@
     </div>
     <div
       id="results"
-      class="tw-flex tw-flex-col tw-gap-4 tw-overflow-y-auto tw-px-4 tw-bg-black-50 tw-rounded-b tw-max-h-[40vh]"
+      class="flex flex-col gap-4 overflow-y-auto px-4 bg-black-50 rounded-b max-h-[40vh]"
     >
     </div>
   </div>
@@ -57,7 +57,7 @@
   let opened = false;
 
   const inputListener = async (e) => {
-    SPINNER.classList.remove("tw-invisible");
+    SPINNER.classList.remove("invisible");
 
     if (e.target.dataset.loaded !== "true") {
       e.target.dataset.loaded = "true";
@@ -75,21 +75,21 @@
 
     for (result of results) {
       html += `
-        <a class="tw-flex tw-flex-col tw-p-4 tw-rounded tw-bg-black-100 tw-text-black-950 last:tw-mb-4" href="${result.url}">
-          <h4 class="tw-text-ellipsis tw-overflow-hidden tw-whitespace-nowrap">${result.meta.title}</h4>
-          <p class="tw-text-sm tw-mt-2">${result.excerpt}</p>
+        <a class="flex flex-col p-4 rounded bg-black-100 text-black-950 last:mb-4" href="${result.url}">
+          <h4 class="text-ellipsis overflow-hidden whitespace-nowrap">${result.meta.title}</h4>
+          <p class="text-sm mt-2">${result.excerpt}</p>
         </a>
       `;
     }
 
     if (html.length > 0) {
-      INPUT_CONTAINER.classList.add("tw-rounded-b-none");
+      INPUT_CONTAINER.classList.add("rounded-b-none");
     } else {
-      INPUT_CONTAINER.classList.remove("tw-rounded-b-none");
+      INPUT_CONTAINER.classList.remove("rounded-b-none");
     }
 
     RESULTS.innerHTML = html;
-    SPINNER.classList.add("tw-invisible");
+    SPINNER.classList.add("invisible");
   };
 
   window.addEventListener("keydown", (e) => {
@@ -100,16 +100,16 @@
       INPUT.value = "";
       INPUT.addEventListener("input", inputListener);
 
-      SEARCH_ROOT.classList.add("tw-flex");
-      SEARCH_ROOT.classList.remove("tw-hidden");
+      SEARCH_ROOT.classList.add("flex");
+      SEARCH_ROOT.classList.remove("hidden");
 
       INPUT.focus();
     }
 
     if (e.key === "Escape" && opened) {
       opened = false;
-      SEARCH_ROOT.classList.remove("tw-flex");
-      SEARCH_ROOT.classList.add("tw-hidden");
+      SEARCH_ROOT.classList.remove("flex");
+      SEARCH_ROOT.classList.add("hidden");
 
       INPUT.removeEventListener("input", inputListener);
       INPUT.value = "";
@@ -123,16 +123,16 @@
     INPUT.value = "";
     INPUT.addEventListener("input", inputListener);
 
-    SEARCH_ROOT.classList.add("tw-flex");
-    SEARCH_ROOT.classList.remove("tw-hidden");
+    SEARCH_ROOT.classList.add("flex");
+    SEARCH_ROOT.classList.remove("hidden");
 
     INPUT.focus();
   });
 
   const closeSearch = () => {
     opened = false;
-    SEARCH_ROOT.classList.remove("tw-flex");
-    SEARCH_ROOT.classList.add("tw-hidden");
+    SEARCH_ROOT.classList.remove("flex");
+    SEARCH_ROOT.classList.add("hidden");
 
     INPUT.removeEventListener("input", inputListener);
     INPUT.value = "";

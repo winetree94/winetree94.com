@@ -19,19 +19,19 @@ const state = EditorState.create({
 
 <div
   id="codemirror-editor"
-  class="tw-max-h-[400px] tw-border tw-border-black-300 tw-rounded tw-flex tw-flex-col"
+  class="max-h-[400px] border border-black-300 rounded flex flex-col"
 >
   <!-- temporary render -->
-  <pre class="editor-temp tw-hidden">{props.code}</pre>
-  <div class="tw-flex tw-justify-between tw-shadow tw-p-1">
-    <span class="tw-mb-0 tw-flex tw-items-center tw-ml-4">Code Runnder</span>
-    <div class="tw-flex">
+  <pre class="editor-temp hidden">{props.code}</pre>
+  <div class="flex justify-between shadow p-1">
+    <span class="mb-0 flex items-center ml-4">Code Runnder</span>
+    <div class="flex">
       <IconButton icon="ri-search-line" size="sm" />
     </div>
   </div>
-  <div class="tw-flex tw-overflow-hidden">
-    <div class="editor-root tw-w-1/2 tw-overflow-y-auto"></div>
-    <div class="tw-w-1/2  tw-overflow-y-auto">
+  <div class="flex overflow-hidden">
+    <div class="editor-root w-1/2 overflow-y-auto"></div>
+    <div class="w-1/2  overflow-y-auto">
       <p>alskdjfasdlfk</p>
       <p>alskdjfasdlfk</p>
       <p>alskdjfasdlfk</p>

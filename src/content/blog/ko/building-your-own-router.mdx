@@ -8,7 +8,7 @@ heroImage: '/content/blog/router/r2s-plus.jpg'
 import Warning from "../../../components/mdx/Warning.astro";
 import Image from '../../../components/mdx/Image.astro';
 
-<Image class="tw-rounded-lg" />
+<Image class="rounded-lg" />
 
 <br />
 
@@ -28,7 +28,7 @@ import Image from '../../../components/mdx/Image.astro';
 
 제가 구매한 FriendlyElec 의 오픈소스 하드웨어인 R2S Plus 의 모습입니다. 
 
-<Image class="tw-rounded-lg" src="/content/blog/router/r2s-plus.jpg" />
+<Image class="rounded-lg" src="/content/blog/router/r2s-plus.jpg" />
 
 사양은 다음과 같습니다.
 
@@ -54,13 +54,13 @@ import Image from '../../../components/mdx/Image.astro';
 
 ## OpenWrt는 어떤가요?
 
-<Image class="tw-rounded-lg" width={720} height={350} src="/content/blog/router/openwrt.png" />
+<Image class="rounded-lg" width={720} height={350} src="/content/blog/router/openwrt.png" />
 
 OpenWrt 의 설치는 매우 간편했습니다. FriendlyElec 의 홈페이지에서 다운받은 OpenWrt 이미지를 MicroSD 카드에 담고 기기에 장착한 다음, 전원을 연결하면 끝입니다. 이후엔 편리하게 브라우저를 통해 일반 라우터처럼 조작할 수 있었습니다.
 
 사용자 인터페이스도 적응에 큰 무리가 없었습니다. 일반적인 기능이라 생각되는 비밀번호 설정, DHCP 아이피 고정, DDNS 설정 등은 상용 라우터와 큰 차이가 없다고 느꼈습니다. 저한테 중요한 기능인 `VLAN`도 어렵지 않게 설정할 수 있었습니다. 제가 설정한 네트워크의 간단한 구성도는 아래와 같습니다.
 
-<Image class="tw-rounded-lg" align="center" src="/content/blog/router/network.png" />
+<Image class="rounded-lg" align="center" src="/content/blog/router/network.png" />
 
 R2S Plus 의 WAN 은 ISP 인터넷 공급자와 직결되고, LAN 은 저의 기존 관리형 스위칭 허브와 연결되어 용도별로 VLAN 그룹을 지정했습니다. 스위칭 허브 덕분에 포트 수가 적은 문제를 해결했고 VLAN 분리를 통한 보안성까지 챙길 수 있었습니다. 만약 스위칭 허브가 없었다면 일반적인 라우터를 브릿지 모드로 연결했을 것 같습니다.
 

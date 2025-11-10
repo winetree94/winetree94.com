@@ -8,7 +8,7 @@ const { pathname } = Astro.props;
 const active = path.includes(pathname);
 ---
 
-<a href={pathname} class:list={['tw-inline tw-no-underline tw-text-black-950, tw-px-2 tw-py-2 tw-text-black-950',  { active: active }]}> <slot />
+<a href={pathname} class:list={['inline no-underline text-black-950, px-2 py-2 text-black-950',  { active: active }]}> <slot />
 </a>
 
 <style>

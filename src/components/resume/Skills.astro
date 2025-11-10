@@ -8,42 +8,42 @@ const langCode = getCurrentLangCode(Astro.url);
 const t = useTranslation(langCode);
 ---
 
-<h3 id="qualifications" class="tw-font-bold">{t("about.qualifications")}</h3>
+<h3 id="qualifications" class="font-bold">{t("about.qualifications")}</h3>
 <IndentLine>
   <div>
-    <p class="tw-mt-2">
+    <p class="mt-2">
       {t("about.qualifications.description")}
     </p>
   </div>
-  <div class="tw-mt-8">
+  <div class="mt-8">
     <h3>{t("about.qualifications.frontend")}</h3>
-    <ul class="tw-list-disc tw-list-inside tw-mt-2">
+    <ul class="list-disc list-inside mt-2">
       {
         [1, 2, 3, 4, 5, 6, 7].map((idx) => (
-          <li class="tw-list-outside tw-ml-6">
+          <li class="list-outside ml-6">
             {t(`about.qualifications.frontend.${idx}`)}
           </li>
         ))
       }
     </ul>
   </div>
-  <div class="tw-mt-8">
+  <div class="mt-8">
     <h3>{t("about.qualifications.others")}</h3>
-    <ul class="tw-list-disc tw-list-inside tw-mt-2">
+    <ul class="list-disc list-inside mt-2">
       {
         [1, 2, 3].map((idx) => (
-          <li class="tw-list-outside tw-ml-6">
+          <li class="list-outside ml-6">
             {t(`about.qualifications.others.${idx}`)}
           </li>
         ))
       }
     </ul>
   </div>
-  <div class="tw-mt-8">
+  <div class="mt-8">
     <h3>
       {t("about.qualifications.key_technology_keywords")}
     </h3>
-    <div class="tw-flex tw-gap-2 tw-flex-wrap tw-mt-2">
+    <div class="flex gap-2 flex-wrap mt-2">
       {
         [
           "Typescript",

@@ -40,13 +40,13 @@ const image = SITE_IMAGES[currentLangCode];
   </head>
   <body>
     <BlogHeader />
-    <main class="tw-flex tw-flex-col tw-items-center tw-my-[160px]">
+    <main class="flex flex-col items-center my-[160px]">
       <img class="profile-image" src="/photos/profile.jpg" alt="" />
       <h5>winetree94</h5>
-      <p class="tw-text-center tw-mt-4">
+      <p class="text-center mt-4">
         <Fragment set:html={t("home.introduction")} />
       </p>
-      <div class="tw-flex tw-mt-4">
+      <div class="flex mt-4">
         <IconLink icon="ri-github-line" href={GITHUB_URL} target="_blank" />
         <IconLink
           icon="ri-mail-line"
@@ -60,12 +60,12 @@ const image = SITE_IMAGES[currentLangCode];
           target="_blank"
         />
       </div>
-      <div class="tw-flex tw-gap-2 tw-mt-4 tw-items-center tw-justify-center">
+      <div class="flex gap-2 mt-4 items-center justify-center">
         {
           Object.values(languages).map((lang) => (
             <a
               href={lang.path || "/"}
-              class={`lang-link tw-text-black ${lang.path === currentLangPath ? "disabled" : ""}`}
+              class={`lang-link text-black ${lang.path === currentLangPath ? "disabled" : ""}`}
             >
               {lang.name}
             </a>
