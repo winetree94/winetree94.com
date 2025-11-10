@@ -55,16 +55,16 @@
   h4:not(:last-child),
   h5:not(:last-child),
   h6:not(:last-child) {
-    margin-bottom: theme("margin.4");
+    margin-bottom: 16px;
   }
 
   p:not(:last-child) {
-    margin-bottom: theme("margin.4");
+    margin-bottom: 16px;
   }
 
   hr:not(:last-child) {
-    margin-top: theme("margin.4");
-    margin-bottom: theme("margin.4");
+    margin-top: 16px;
+    margin-bottom: 16px;
   }
 
   ul {
@@ -72,7 +72,7 @@
     list-style-position: inside;
 
     &:not(:last-child) {
-      margin-bottom: theme("margin.4");
+      margin-bottom: 16px;
     }
 
     ul {
@@ -85,7 +85,7 @@
     list-style-position: inside;
 
     &:not(:last-child) {
-      margin-bottom: theme("margin.4");
+      margin-bottom: 16px;
     }
 
     ol {
@@ -94,23 +94,23 @@
   }
 
   a {
-    color: theme("colors.blue.400");
+    color: #4a90e2;
   }
 
   pre {
     margin: 0;
     padding: 0;
-    border-radius: theme("borderRadius.md");
-    padding: theme("padding.4");
-    margin-bottom: theme("margin.4");
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 16px;
     overflow-x: auto;
   }
 
   code {
     font-family: inherit;
-    background-color: theme("colors.black.50");
+    background-color: #f6f6f6;
     padding: 2px 4px;
-    border-radius: theme("borderRadius.md");
+    border-radius: 6px;
   }
 
   pre {
@@ -124,12 +124,12 @@
   blockquote {
     margin: 0;
     padding: 0;
-    border-left: 4px solid theme("colors.black.200");
-    padding-left: theme("padding.4");
-    margin-left: theme("margin.4");
+    border-left: 4px solid #d1d1d1;
+    padding-left: 16px;
+    margin-left: 16px;
 
     &:not(:last-child) {
-      margin-bottom: theme("margin.4");
+      margin-bottom: 16px;
     }
   }
 }
