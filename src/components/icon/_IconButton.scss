@@ -1,4 +1,5 @@
-// styles/_button.scss
+@reference "../../styles/global.scss";
+
 @mixin button-styles {
   @apply p-4 text-black-950 cursor-pointer rounded-full;
 

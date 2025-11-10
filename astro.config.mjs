@@ -2,9 +2,9 @@ import markdoc from "@astrojs/markdoc";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import pagefind from "./plugins/pagefind";
+import tailwindcss from "@tailwindcss/vite";
 
 const defaultLocale = "en";
 const locales = {
@@ -29,6 +29,9 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
     mdx({}),
     markdoc({
@@ -43,9 +46,6 @@ export default defineConfig({
     }),
     react({
       include: ["./src/**/*.{jsx,tsx}"],
-    }),
-    tailwind({
-      applyBaseStyles: false,
     }),
     pagefind(),
   ],
