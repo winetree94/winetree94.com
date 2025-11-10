@@ -1,0 +1,182 @@
+@import "remixicon/fonts/remixicon.css";
+@import "tailwindcss";
+
+/* Tailwind v4 Custom Variables */
+@theme {
+  /* Colors */
+  --color-black-50: #f6f6f6;
+  --color-black-100: #e7e7e7;
+  --color-black-200: #d1d1d1;
+  --color-black-300: #b0b0b0;
+  --color-black-400: #888888;
+  --color-black-500: #6d6d6d;
+  --color-black-600: #5d5d5d;
+  --color-black-700: #4f4f4f;
+  --color-black-800: #454545;
+  --color-black-900: #3d3d3d;
+  --color-black-950: #000000;
+
+  --color-white-50: #ffffff;
+  --color-white-100: #efefef;
+  --color-white-200: #dcdcdc;
+  --color-white-300: #bdbdbd;
+  --color-white-400: #989898;
+  --color-white-500: #7c7c7c;
+  --color-white-600: #656565;
+  --color-white-700: #525252;
+  --color-white-800: #464646;
+  --color-white-900: #3d3d3d;
+  --color-white-950: #292929;
+
+  --color-purple-100: #ece9ff;
+  --color-purple-200: #ffe0e0;
+
+  --color-blue-100: #e9f3ff;
+  --color-blue-200: #d6e9ff;
+  --color-blue-300: #c3e0ff;
+  --color-blue-400: #4a90e2;
+  --color-blue-500: #1781fe;
+
+  /* Screens */
+  --breakpoint-print: print;
+}
+
+/* Base Styles for HTML Elements */
+@layer base {
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  h3 {
+    @apply text-2xl;
+  }
+  h4 {
+    @apply text-xl;
+  }
+  h5 {
+    @apply text-lg;
+  }
+  h6 {
+    @apply text-base;
+  }
+  p {
+    @apply text-base;
+  }
+  a {
+    @apply text-blue-400;
+  }
+  hr {
+    @apply border-0 border-t border-black-200;
+  }
+  main {
+    @apply w-[720px] max-w-[calc(100%-2em)] mx-auto py-12 px-4;
+  }
+}
+
+@font-face {
+  font-family: "Agave";
+  src: url("/fonts/Agave-Regular.ttf") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Agave";
+  src: url("/fonts/Agave-Bold.ttf") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Gowun Dodum";
+  src: url("/fonts/GowunDodum-Regular.ttf") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.markdown h1:not(:last-child),
+.markdown h2:not(:last-child),
+.markdown h3:not(:last-child),
+.markdown h4:not(:last-child),
+.markdown h5:not(:last-child),
+.markdown h6:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.markdown p:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.markdown hr:not(:last-child) {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.markdown ul {
+  list-style: disc;
+  list-style-position: inside;
+}
+
+.markdown ul:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.markdown ul ul {
+  padding-left: 20px;
+}
+
+.markdown ol {
+  list-style: decimal;
+  list-style-position: inside;
+}
+
+.markdown ol:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.markdown ol ol {
+  padding-left: 20px;
+}
+
+.markdown a {
+  color: var(--color-blue-400);
+}
+
+.markdown pre {
+  margin: 0;
+  padding: 0;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+
+.markdown code {
+  font-family: inherit;
+  background-color: #f6f6f6;
+  padding: 2px 4px;
+  border-radius: 6px;
+}
+
+.markdown pre code {
+  background-color: unset;
+  padding: 0;
+  border-radius: 0;
+}
+
+.markdown blockquote {
+  margin: 0;
+  padding: 0;
+  border-left: 4px solid #d1d1d1;
+  padding-left: 16px;
+  margin-left: 16px;
+}
+
+.markdown blockquote:not(:last-child) {
+  margin-bottom: 16px;
+}

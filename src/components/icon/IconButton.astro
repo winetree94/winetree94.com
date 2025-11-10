@@ -12,6 +12,8 @@ const { icon, size = '1x', class: className, ...props } = Astro.props as Prop;
   <i class={`${icon} ri-${size}`}></i>
 </button>
 <style lang="scss">
+  @reference "../../styles/global.scss";
+
   @import 'IconButton';
 
   button {
