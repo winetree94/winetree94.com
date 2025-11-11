@@ -33,4 +33,6 @@ astro_tmp_pages_*
 !.yarn/sdks
 !.yarn/versions
 
+Session.vim
+
 node_modules
