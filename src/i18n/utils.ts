@@ -1,36 +1,45 @@
-import { LANG_CODE, defaultLangCode, languages, translations } from './ui';
+import {
+  SUPPORTED_LANGUAGES,
+  defaultLangCode,
+  languages,
+  translations,
+} from "./ui";
 
 export const getCurrentLangCode = (url: URL) => {
-  const [, lang] = url.pathname.split('/');
-  if (lang in languages && lang !== defaultLangCode) {
+  const [, lang] = url.pathname.split("/");
+  if (lang in languages) {
     return lang as keyof typeof languages;
   }
   return defaultLangCode;
 };
 
-export const useTranslation = (lang: keyof typeof languages) => (key: string) => {
-  return translations[lang][key];
-};
+export const useTranslation =
+  (lang: keyof typeof languages) => (key: string) => {
+    return translations[lang][key];
+  };
 
 export function getLangBasePath(url: URL) {
-  const [, lang] = url.pathname.split('/');
-  if (lang in languages && lang !== defaultLangCode) {
+  const [, lang] = url.pathname.split("/");
+  if (lang in languages) {
     return `/${lang}` as keyof typeof languages;
   }
-  return '';
+  return "";
 }
 
 export function getMultilangUrlInfo(url: URL) {
-  const [, lang, ...rest] = url.pathname.split('/');
+  const [, lang, ...rest] = url.pathname.split("/");
 
-  const results = Object.values(LANG_CODE)
+  const results = Object.values(SUPPORTED_LANGUAGES)
     .filter((lang) => lang !== defaultLangCode)
     .map((lang) => ({
       code: lang,
-      url: `${url.protocol}//${url.host}/${lang}/${rest.join('/')}`,
+      url: `${url.protocol}//${url.host}/${lang}/${rest.join("/")}`,
     }));
 
-  results.unshift({ code: defaultLangCode, url: `${url.protocol}//${url.host}/${rest.join('/')}` });
+  results.unshift({
+    code: defaultLangCode,
+    url: `${url.protocol}//${url.host}/${rest.join("/")}`,
+  });
 
   return results;
 }

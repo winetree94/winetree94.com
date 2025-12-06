@@ -1,15 +1,19 @@
-import en from './translations/en.json';
-import ko from './translations/ko.json';
+import en from "./translations/en.json";
+import ko from "./translations/ko.json";
 
-export const LANG_CODE = {
-  EN: 'en',
-  KO: 'ko',
+export const SUPPORTED_LANGUAGES = {
+  EN: "en",
+  KO: "ko",
 } as const;
+
+//value type
+export type SupportedLanguages =
+  (typeof SUPPORTED_LANGUAGES)[keyof typeof SUPPORTED_LANGUAGES];
 
 export const languages = {
   en: {
-    name: 'English',
-    path: '',
+    name: "English",
+    path: "",
     header: `
 <link rel="preload" href="/fonts/Agave-Regular.ttf" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="/fonts/Agave-Bold.ttf" as="font" type="font/woff" crossorigin>
@@ -37,8 +41,8 @@ body {
     `,
   },
   ko: {
-    name: '한국어',
-    path: '/ko',
+    name: "한국어",
+    path: "/ko",
     header: `
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,7 +57,7 @@ body {
   },
 } as const;
 
-export const defaultLangCode: keyof typeof languages = 'en';
+export const defaultLangCode: keyof typeof languages = "en";
 
 export const translations: {
   [key in keyof typeof languages]: Record<string, string>;

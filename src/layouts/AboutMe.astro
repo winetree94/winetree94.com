@@ -10,13 +10,18 @@ import WorkExperience from '../components/resume/WorkExperience.astro';
 import { OPEN_SOURCE, SITE_DESCRIPTION, SITE_TITLE, WORK_EXPERIENCE } from '../consts';
 import { getCurrentLangCode, getLangBasePath } from '../i18n/utils';
 import { useTranslation } from '../i18n/utils';
+import {type SupportedLanguages } from '../i18n/ui';
 
-const langCode = getCurrentLangCode(Astro.url);
-const t = useTranslation(langCode);
+interface Props {
+  lang: SupportedLanguages;
+}
+
+const t = useTranslation(Astro.props.lang);
 const langPath = getLangBasePath(Astro.url);
+
 ---
 
-<html lang={langCode}>
+<html lang={Astro.props.lang}>
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
@@ -39,7 +44,7 @@ const langPath = getLangBasePath(Astro.url);
             {t("about.contact_me")}
           </p>
           {
-            langCode === "ko" && (
+            Astro.props.lang === "ko" && (
               <p class="text-right mt-4">
                 <a href={`${langPath}/resume`}>{t("about.profile.need-pdf")}</a>
               </p>
