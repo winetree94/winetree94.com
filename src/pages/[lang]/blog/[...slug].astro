@@ -1,5 +1,4 @@
 ---
-// import {type CollectionEntry} from "astro:content";
 import {ghost} from "@/lib/ghost.ts";
 import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/header/BlogHeader.astro";
@@ -8,6 +7,7 @@ import { SUPPORTED_LANGUAGES } from "@/lib/language";
 import TextDate from "@/components/TextDate.astro";
 import Footer from "@/components/Footer.astro";
 import SearchDaemon from "@/components/SearchDaemon.astro";
+import GhostPost from "@/components/GhostPost.astro";
 
 export const getStaticPaths = (async () => {
   const res = await Promise.all(Object.values(SUPPORTED_LANGUAGES).map(async lang => {
@@ -50,7 +50,7 @@ const {post} = Astro.props;
   <body>
     <BlogHeader lang={Astro.params.lang} />
     <main class="w-full max-w-full">
-      <article class="markdown">
+      <article>
         <div class="prose text-black-800 max-w-[720px] m-auto">
           <div class="text-center mb-8">
             <div class="date">
@@ -66,9 +66,9 @@ const {post} = Astro.props;
             <h1 class="my-4">{post.title}</h1>
             <hr />
           </div>
-          <div>
+          <GhostPost>
             <Fragment set:html={post.html}/>
-          </div>
+          </GhostPost>
           <div class="mt-16">
             <script
               src="https://giscus.app/client.js"

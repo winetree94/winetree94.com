@@ -1,0 +1,19 @@
+<div class="post">
+  <slot />
+</div>
+
+<style is:global>
+  .post * {
+      margin-top: 24px;
+  }
+
+  .post .kg-card {
+      display: flex;
+  }
+
+  .post pre {
+      max-width: 100%;
+      overflow-x: auto;
+      padding: 16px;
+  }
+</style>
