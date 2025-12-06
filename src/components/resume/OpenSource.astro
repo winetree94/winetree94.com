@@ -1,16 +1,16 @@
 ---
+import type { SupportedLanguageCodes } from '@/lib/language';
 import IndentLine from '../../components/IndentLine.astro';
-import { getCurrentLangCode } from '../../i18n/utils';
 import { useTranslation } from '../../i18n/utils';
 import type { OpenSourceExperience } from '../../types/open-source';
 
 type Props = {
+  lang: SupportedLanguageCodes;
   opensourceExperience: OpenSourceExperience[];
 };
 
 const { opensourceExperience } = Astro.props;
-const langCode = getCurrentLangCode(Astro.url);
-const t = useTranslation(langCode);
+const t = useTranslation(Astro.props.lang);
 ---
 <h3 id="open_source" class="font-bold">
   {t("about.open_source")}

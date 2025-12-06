@@ -1,11 +1,14 @@
 ---
-import IndentLine from '../../components/IndentLine.astro';
-import { PERSONAL_LINKS } from '../../consts';
-import { getCurrentLangCode } from '../../i18n/utils';
-import { useTranslation } from '../../i18n/utils';
+import { useTranslation } from '@/i18n/utils';
+import type { SupportedLanguageCodes } from '@/lib/language';
+import IndentLine from '../IndentLine.astro';
+import { PERSONAL_LINKS } from '@/consts';
 
-const langCode = getCurrentLangCode(Astro.url);
-const t = useTranslation(langCode);
+type Props = {
+  lang: SupportedLanguageCodes;
+}
+
+const t = useTranslation(Astro.props.lang);
 ---
 
 <h3 id="profile" class="font-bold">{t("about.profile")}</h3>

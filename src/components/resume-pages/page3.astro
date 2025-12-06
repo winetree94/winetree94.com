@@ -1,10 +1,16 @@
 ---
-import { WORK_EXPERIENCE } from "../../consts";
-import WorkExperience from "../resume/WorkExperience.astro";
+import type { SupportedLanguageCodes } from "@/lib/language";
+import { WORK_EXPERIENCE } from "@/consts";
+import WorkExperience from "@/components/resume/WorkExperience.astro";
+
+type Props = {
+  lang: SupportedLanguageCodes
+}
 ---
 
 <div class="flex flex-col w-full justify-start">
   <WorkExperience
+    lang={Astro.props.lang}
     indentEnd={true}
     workExperience={WORK_EXPERIENCE.slice(1, 3)}
   />

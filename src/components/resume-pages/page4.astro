@@ -1,9 +1,14 @@
 ---
-import { OPEN_SOURCE } from '../../consts';
-import OpenSource from '../resume/OpenSource.astro';
+import type { SupportedLanguageCodes } from '@/lib/language';
+import { OPEN_SOURCE } from '@/consts';
+import OpenSource from '@/components/resume/OpenSource.astro';
+
+type Props = {
+  lang: SupportedLanguageCodes
+}
 ---
 <div
   class="flex flex-col w-full h-full justify-start text-left"
 >
-  <OpenSource opensourceExperience={OPEN_SOURCE} />
+  <OpenSource lang={Astro.props.lang} opensourceExperience={OPEN_SOURCE} />
 </div>

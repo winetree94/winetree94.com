@@ -1,17 +1,17 @@
 ---
-import IndentLine from '../../components/IndentLine.astro';
-import { getCurrentLangCode } from '../../i18n/utils';
-import { useTranslation } from '../../i18n/utils';
-import type { WorkExperience } from '../../types/work-experience';
+import { useTranslation } from '@/i18n/utils';
+import type { SupportedLanguageCodes } from '@/lib/language';
+import type { WorkExperience } from '@/types/work-experience';
+import IndentLine from '../IndentLine.astro';
 
 type Props = {
+  lang: SupportedLanguageCodes;
   indentEnd: boolean;
   workExperience: WorkExperience[];
 };
 const props = Astro.props as Props;
 
-const langCode = getCurrentLangCode(Astro.url);
-const t = useTranslation(langCode);
+const t = useTranslation(Astro.props.lang);
 ---
 
 <h3 id="experience" class="font-bold text-left">
@@ -43,7 +43,7 @@ const t = useTranslation(langCode);
           <div class="flex flex-col mt-8 gap-8">
             {exp.projects.map((project) => (
               <div class="flex flex-row">
-                <div class="w-1/4 mr-8 break-words">
+                <div class="w-1/4 mr-8 wrap-break-word">
                   <h5 class="break-keep">{t(project.title)}</h5>
                   <p class="text-sm">{t(project.period)}</p>
                 </div>

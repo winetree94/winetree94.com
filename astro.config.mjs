@@ -52,6 +52,6 @@ export default defineConfig({
     react({
       include: ["./src/**/*.{jsx,tsx}"],
     }),
-    // pagefind(),
+    pagefind(),
   ],
 });

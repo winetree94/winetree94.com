@@ -1,11 +1,15 @@
 ---
-import IndentLine from '../../components/IndentLine.astro';
-import TechBadge from '../../components/TechBadge.astro';
-import { getCurrentLangCode } from '../../i18n/utils';
-import { useTranslation } from '../../i18n/utils';
+import { useTranslation } from "@/i18n/utils";
+import IndentLine from "../IndentLine.astro";
+import TechBadge from "../TechBadge.astro";
+import type { SupportedLanguageCodes } from "@/lib/language";
 
-const langCode = getCurrentLangCode(Astro.url);
-const t = useTranslation(langCode);
+type Props = {
+  lang: SupportedLanguageCodes;
+}
+
+
+const t = useTranslation(Astro.props.lang);
 ---
 
 <h3 id="qualifications" class="font-bold">{t("about.qualifications")}</h3>
