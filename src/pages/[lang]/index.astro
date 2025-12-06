@@ -37,6 +37,14 @@ const t = useTranslation(Astro.params.lang);
 const title = SITE_TITLES[Astro.params.lang];
 const description = SITE_DESCRIPTIONS[Astro.params.lang];
 const image = SITE_IMAGES[Astro.params.lang];
+
+const keywords = [
+  "FRONTEND",
+  "DEVOPS",
+  "CLOUD NATIVE",
+  "OPEN SOURCE",
+  "EMBEDDED LINUX",
+];
 ---
 
 <!doctype html>
@@ -65,42 +73,49 @@ const image = SITE_IMAGES[Astro.params.lang];
       }
     </style>
   </head>
-  <body>
+  <body class="w-full h-dvh flex flex-col">
     <BlogHeader lang={Astro.params.lang} />
     <main
-      class="flex flex-col items-center my-40 w-[720px] max-w-[calc(100%-2em)] mx-auto py-12 px-4;"
+      class="flex flex-col items-center w-[720px] max-w-[calc(100%-2em)] mx-auto py-12 px-4 flex-1 justify-center"
     >
       <img class="profile-image" src="/photos/profile.jpg" alt="" />
+
+      <span class={`text-rotate text-5xl duration-4000`}>
+        <span class="justify-items-center">
+          {keywords.map((keyword) => <span>{keyword}</span>)}
+        </span>
+      </span>
       <h5 class="text-lg">winetree94</h5>
       <p class="text-center mt-4">
         <Fragment set:html={t("home.introduction")} />
       </p>
-      <div class="flex mt-4">
-        <IconLink icon="ri-github-line" href={GITHUB_URL} target="_blank" />
-        <IconLink
-          icon="ri-mail-line"
+      <div class="flex mt-4 gap-4">
+        <a class="btn btn-circle btn-ghost" href={GITHUB_URL} target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+        <a
+          class="btn btn-circle btn-ghost"
           href={`mailto: ${EMAIL}`}
           target="_blank"
-        />
-        <IconLink icon="ri-npmjs-line" href={NPM_URL} target="_blank" />
-        <IconLink
-          icon="ri-linkedin-box-line"
-          href={LINKEDIN_URL}
-          target="_blank"
-        />
+        >
+          <i class="ri-mail-line"></i>
+        </a>
+        <a class="btn btn-circle btn-ghost" href={NPM_URL} target="_blank">
+          <i class="ri-npmjs-line"></i>
+        </a>
+        <a class="btn btn-circle btn-ghost" href={LINKEDIN_URL} target="_blank">
+          <i class="ri-linkedin-box-line"></i>
+        </a>
       </div>
-      <div class="flex gap-2 mt-4 items-center justify-center">
+      <ul>
         {
-          Object.entries(LOCALE_INFO).map(([code, lang]) => (
-            <a
-              href={`/${code}`}
-              class={`lang-link text-black ${code === Astro.params.lang ? "disabled" : ""}`}
-            >
-              {lang.nativeName}
-            </a>
+          Object.entries(LOCALE_INFO).map(([code, info]) => (
+            <li>
+              <a href={`/${code}/`}>{info.nativeName}</a>
+            </li>
           ))
         }
-      </div>
+      </ul>
     </main>
     <Footer />
     <SearchDaemon />
