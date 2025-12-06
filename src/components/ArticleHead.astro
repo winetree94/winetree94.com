@@ -12,7 +12,7 @@ type Props = {
 ---
 
 <div class:list={["text-center py-4 flex flex-col", Astro.props.class]}>
-  <h1>{Astro.props.title}</h1>
+  <h1 class="text-4xl">{Astro.props.title}</h1>
   <div class="py-4">
     <TextDate lang={Astro.props.lang} date={Astro.props.createdAt} />
     <!-- {

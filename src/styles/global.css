@@ -1,6 +1,9 @@
 @import "remixicon/fonts/remixicon.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes: light --default;
+}
 
 /* Tailwind v4 Custom Variables */
 @theme {
@@ -40,31 +43,6 @@
 
   /* Screens */
   --breakpoint-print: print;
-}
-
-/* Base Styles for HTML Elements */
-@layer base {
-  h1 {
-    @apply text-4xl;
-  }
-  h2 {
-    @apply text-3xl;
-  }
-  h3 {
-    @apply text-2xl;
-  }
-  h4 {
-    @apply text-xl;
-  }
-  h5 {
-    @apply text-lg;
-  }
-  h6 {
-    @apply text-base;
-  }
-  p {
-    @apply text-base;
-  }
 }
 
 @font-face {
