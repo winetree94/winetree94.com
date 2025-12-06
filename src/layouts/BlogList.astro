@@ -11,6 +11,7 @@ import { getCurrentLangCode, getLangBasePath, useTranslation } from '../i18n/uti
 const langCode = getCurrentLangCode(Astro.url);
 const langPath = getLangBasePath(Astro.url);
 const t = useTranslation(langCode);
+
 const posts = (await getCollection('blog'))
   .filter((post) => post.slug.startsWith(langCode))
   .filter((post) => (import.meta.env.DEV ? true : !post.data.hidden))

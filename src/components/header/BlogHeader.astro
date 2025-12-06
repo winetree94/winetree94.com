@@ -13,7 +13,7 @@ const langPath = getLangBasePath(Astro.url);
   </h2>
   <div class="flex items-center">
     <div class="flex justify-center items-center">
-      <IconButton icon="ri-search-line" size="sm" onclick="window.dispatchEvent(new CustomEvent('open-search'))" />
+        <IconButton icon="ri-search-line" size="sm" onclick="window.dispatchEvent(new CustomEvent('open-search'))" />
       <hr class="border-r border-solid border-black-200 h-8 border-t-0 mx-4">
     </div>
     <HeaderLink pathname={`${langPath}/about`}>About</HeaderLink>
