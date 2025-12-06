@@ -24,6 +24,7 @@ export default defineConfig({
     defaultLocale,
     locales: Object.keys(locales),
     routing: {
+      redirectToDefaultLocale: true,
       prefixDefaultLocale: true,
     },
   },
@@ -46,6 +47,7 @@ export default defineConfig({
       i18n: {
         locales: locales,
         defaultLocale: defaultLocale,
+        redirectToDefaultLocale: true,
         prefixDefaultLocale: true,
       },
     }),

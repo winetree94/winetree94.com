@@ -1,38 +1,44 @@
 ---
-import {ghost} from "@/lib/ghost.ts";
+import { ghost } from "@/lib/ghost.ts";
 import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/header/BlogHeader.astro";
-import type {GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType} from "astro";
+import type {
+  GetStaticPaths,
+  InferGetStaticParamsType,
+  InferGetStaticPropsType,
+} from "astro";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
-import TextDate from "@/components/TextDate.astro";
 import Footer from "@/components/Footer.astro";
 import SearchDaemon from "@/components/SearchDaemon.astro";
 import GhostPost from "@/components/GhostPost.astro";
+import ArticleHead from "@/components/ArticleHead.astro";
+import { highlightGhostHTML } from "@/lib/highlight";
 
 export const getStaticPaths = (async () => {
-  const res = await Promise.all(Object.values(SUPPORTED_LANGUAGES).map(async lang => {
-    const posts = await ghost.posts
-      .browse({
+  const res = await Promise.all(
+    Object.values(SUPPORTED_LANGUAGES).map(async (lang) => {
+      const posts = await ghost.posts.browse({
         limit: 100,
         filter: `tag:${lang}+tag:project`,
       });
 
-    if (!posts) {
-      throw new Error('Post not found')
-    }
+      if (!posts) {
+        throw new Error("Post not found");
+      }
 
-    return posts.map((post) => {
-      return {
-        params: {
-          lang: lang,
-          slug: post.slug.replace(`${lang}-`, ''),
-        },
-        props: {
-          post: post,
-        },
-      };
-    });
-  }));
+      return posts.map((post) => {
+        return {
+          params: {
+            lang: lang,
+            slug: post.slug.replace(`${lang}-`, ""),
+          },
+          props: {
+            post: post,
+          },
+        };
+      });
+    })
+  );
 
   return res.flat();
 }) satisfies GetStaticPaths;
@@ -40,34 +46,38 @@ export const getStaticPaths = (async () => {
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const {post} = Astro.props;
+const { post } = Astro.props;
+const highlightedHTML = await highlightGhostHTML(post.html || "");
 ---
+
 <html lang={Astro.params.lang}>
   <head>
-    <BaseHead title={Astro.props.post.title!} description={Astro.props.post.excerpt!} ogImageUrl={Astro.props.post.feature_image || undefined} lang={Astro.params.lang} />
+    <BaseHead
+      title={Astro.props.post.title!}
+      description={Astro.props.post.excerpt!}
+      ogImageUrl={Astro.props.post.feature_image || undefined}
+      lang={Astro.params.lang}
+    />
   </head>
 
   <body>
     <BlogHeader lang={Astro.params.lang} />
     <main class="w-full max-w-full">
       <article>
-        <div class="prose text-black-800 max-w-[720px] m-auto">
-          <div class="text-center mb-8">
-            <div class="date">
-                <TextDate lang={Astro.params.lang} date={post.created_at!} />
-              {
-                post.updated_at && (
-                  <div class="italic">
-                      Last updated on <TextDate lang={Astro.params.lang} date={post.updated_at} />
-                  </div>
-                )
-              }
-            </div>
-            <h1 class="my-4">{post.title}</h1>
-            <hr />
-          </div>
+        <img
+          class="w-full max-w-full aspect-21/9 object-cover"
+          src={post.feature_image}
+        />
+        <div class="max-w-[720px] m-auto">
+          <ArticleHead
+            class:list="mt-4"
+            lang={Astro.params.lang}
+            createdAt={post.published_at!}
+            updatedAt={post.updated_at}
+            title={post.title!}
+          />
           <GhostPost>
-            <Fragment set:html={post.html}/>
+            <Fragment set:html={highlightedHTML} />
           </GhostPost>
           <div class="mt-16">
             <script
@@ -84,7 +94,7 @@ const {post} = Astro.props;
               data-theme="light"
               data-lang={Astro.params.lang}
               crossorigin="anonymous"
-              async /></script>
+              async></script>
           </div>
         </div>
       </article>

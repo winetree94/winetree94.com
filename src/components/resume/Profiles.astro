@@ -1,12 +1,12 @@
 ---
-import { useTranslation } from '@/i18n/utils';
-import type { SupportedLanguageCodes } from '@/lib/language';
-import IndentLine from '../IndentLine.astro';
-import { PERSONAL_LINKS } from '@/consts';
+import { useTranslation } from "@/i18n/utils";
+import type { SupportedLanguageCodes } from "@/lib/language";
+import IndentLine from "../IndentLine.astro";
+import { PERSONAL_LINKS } from "@/consts";
 
 type Props = {
   lang: SupportedLanguageCodes;
-}
+};
 
 const t = useTranslation(Astro.props.lang);
 ---
@@ -20,7 +20,7 @@ const t = useTranslation(Astro.props.lang);
     {
       PERSONAL_LINKS.map((link) => (
         <li class="list-outside ml-6">
-          <a href={link.url} target="_blank">
+          <a class="text-blue-400" href={link.url} target="_blank">
             {link.name}
           </a>
         </li>
