@@ -1,22 +1,18 @@
 ---
-import { useTranslation } from '@/i18n/utils';
-import type { SupportedLanguageCodes } from '@/lib/language';
-import Skills from '../resume/Skills.astro';
+import { useTranslation } from "@/i18n/utils";
+import type { SupportedLanguageCodes } from "@/lib/language";
+import Skills from "../resume/Skills.astro";
 
 type Props = {
   lang: SupportedLanguageCodes;
-}
+};
 
 const t = useTranslation(Astro.props.lang);
 ---
 
-<div
-  class="flex flex-col w-full h-full justify-center text-left"
->
+<div class="flex flex-col w-full h-full justify-center text-left">
   <div class="flex flex-row">
-    <div
-      class="shrink-0 flex justify-center flex-col items-center"
-    >
+    <div class="shrink-0 flex justify-center flex-col items-center">
       <img
         class="rounded-full profile-image max-w-[150px] min-w-[150px] min-h-[150px] max-h-[150px]"
         src="/photos/profile.jpg"
@@ -47,7 +43,7 @@ const t = useTranslation(Astro.props.lang);
       </div>
     </div>
     <div class="flex flex-col ml-8 mt-0 justify-center">
-      <h4>{t("about.title")}</h4>
+      <h4 class="text-xl">{t("about.title")}</h4>
       <p class="mt-4">
         <Fragment set:html={t("about.description")} />
       </p>

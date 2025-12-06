@@ -1,8 +1,8 @@
 ---
-import { useTranslation } from '@/i18n/utils';
-import type { SupportedLanguageCodes } from '@/lib/language';
-import type { WorkExperience } from '@/types/work-experience';
-import IndentLine from '../IndentLine.astro';
+import { useTranslation } from "@/i18n/utils";
+import type { SupportedLanguageCodes } from "@/lib/language";
+import type { WorkExperience } from "@/types/work-experience";
+import IndentLine from "../IndentLine.astro";
 
 type Props = {
   lang: SupportedLanguageCodes;
@@ -14,7 +14,7 @@ const props = Astro.props as Props;
 const t = useTranslation(Astro.props.lang);
 ---
 
-<h3 id="experience" class="font-bold text-left">
+<h3 id="experience" class="text-2xl font-bold text-left">
   {t("about.experience")}
 </h3>
 <IndentLine end={props.indentEnd} class="h-full">
@@ -24,7 +24,7 @@ const t = useTranslation(Astro.props.lang);
         <div class="p-3 rounded-lg">
           <div class="flex justify-between flex-row">
             <div>
-              <h2 class="flex flex-row items-center">
+              <h2 class="text-3xl flex flex-row items-center">
                 {t(exp.companyName)}
                 <span class="text-sm text-black-700 ml-2">
                   based in {t(exp.country)}
@@ -44,7 +44,7 @@ const t = useTranslation(Astro.props.lang);
             {exp.projects.map((project) => (
               <div class="flex flex-row">
                 <div class="w-1/4 mr-8 wrap-break-word">
-                  <h5 class="break-keep">{t(project.title)}</h5>
+                  <h5 class="text-lg break-keep">{t(project.title)}</h5>
                   <p class="text-sm">{t(project.period)}</p>
                 </div>
                 <div class="flex-1 mt-0">

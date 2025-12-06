@@ -13,7 +13,7 @@ const { opensourceExperience } = Astro.props;
 const t = useTranslation(Astro.props.lang);
 ---
 
-<h3 id="open_source" class="font-bold">
+<h3 id="open_source" class="text-2xl font-bold">
   {t("about.open_source")}
 </h3>
 <IndentLine class="flex flex-col gap-4">
@@ -22,7 +22,7 @@ const t = useTranslation(Astro.props.lang);
       <div class="p-3">
         <div class="flex justify-between flex-row">
           <div>
-            <h2>{t(exp.projectName)}</h2>
+            <h2 class="text-3xl">{t(exp.projectName)}</h2>
             <p class="text-sm">
               <a
                 class="text-black-950 break-all"
