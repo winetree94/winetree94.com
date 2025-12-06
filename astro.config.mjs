@@ -2,7 +2,7 @@ import markdoc from "@astrojs/markdoc";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import pagefind from "./plugins/pagefind";
 import tailwindcss from "@tailwindcss/vite";
 
@@ -26,27 +26,34 @@ export default defineConfig({
     defaultLocale,
     locales: Object.keys(locales),
     routing: {
-      prefixDefaultLocale: false,
+      prefixDefaultLocale: true,
     },
   },
   vite: {
     plugins: [tailwindcss()],
   },
+  env: {
+    schema: {
+      GHOST_API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: false,
+      }),
+    }
+  },
   integrations: [
-    mdx({}),
-    markdoc({
-
-    }),
+    // mdx({}),
+    // markdoc({ }),
     sitemap({
       i18n: {
         locales: locales,
         defaultLocale: defaultLocale,
-        prefixDefaultLocale: false,
+        prefixDefaultLocale: true,
       },
     }),
     react({
       include: ["./src/**/*.{jsx,tsx}"],
     }),
-    pagefind(),
+    // pagefind(),
   ],
 });

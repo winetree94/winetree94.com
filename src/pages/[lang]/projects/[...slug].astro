@@ -1,0 +1,68 @@
+---
+// import {type CollectionEntry} from "astro:content";
+import {ghost} from "@/lib/ghost.ts";
+import {getCurrentLangCode} from "@/i18n/utils.ts";
+import BaseHead from "@/components/BaseHead.astro";
+import BlogHeader from "@/components/header/BlogHeader.astro";
+import type {GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType} from "astro";
+import {SUPPORTED_LANGUAGES} from "@/i18n/ui.ts";
+
+export const getStaticPaths = (async () => {
+  const res = await Promise.all(Object.values(SUPPORTED_LANGUAGES).map(async lang => {
+    const posts = await ghost.posts
+      .browse({
+        limit: 100,
+        filter: `tag:${lang}+tag:project`,
+      });
+
+    if (!posts) {
+      throw new Error('Post not found')
+    }
+
+    return posts.map((post) => {
+      return {
+        params: {
+          lang: lang,
+          slug: post.slug.replace(`${lang}-`, ''),
+        },
+        props: {
+          post: post,
+        },
+      };
+    });
+  }));
+
+  return res.flat();
+}) satisfies GetStaticPaths;
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const currentLangCode = getCurrentLangCode(Astro.url);
+
+const {post} = Astro.props;
+---
+
+<html lang={currentLangCode}>
+<head>
+    <BaseHead title={post.title || ''} description={'description'}/>
+</head>
+<body>
+<BlogHeader/>
+<main class="w-full max-w-full">
+    <article class="markdown">
+        <div class="text-black-800 max-w-[720px] m-auto">
+            <div class="text-center mb-8">
+                <div class="date">
+                </div>
+                <h1 class="my-4">{'title'}</h1>
+                <hr/>
+            </div>
+            <Fragment set:html={post.html}/>
+        </div>
+    </article>
+</main>
+<!--<Footer />-->
+<!--<SearchDaemon />-->
+</body>
+</html>

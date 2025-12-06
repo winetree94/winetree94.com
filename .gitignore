@@ -36,3 +36,4 @@ astro_tmp_pages_*
 Session.vim
 
 node_modules
+.env

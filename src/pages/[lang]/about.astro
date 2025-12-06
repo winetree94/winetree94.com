@@ -1,0 +1,18 @@
+---
+import { SUPPORTED_LANGUAGES } from '@/i18n/ui';
+import AboutMe from '@/layouts/AboutMe.astro';
+import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from 'astro';
+
+export const getStaticPaths = (async () => {
+  return Object.values(SUPPORTED_LANGUAGES).map(lang => ({
+    params: {
+      lang: lang,
+    }
+  }));
+}) satisfies GetStaticPaths;
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+---
+<AboutMe lang={Astro.params.lang} />
