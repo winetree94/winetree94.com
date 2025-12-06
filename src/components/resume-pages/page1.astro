@@ -1,10 +1,13 @@
 ---
-import { getCurrentLangCode } from '../../i18n/utils';
-import { useTranslation } from '../../i18n/utils';
+import { useTranslation } from '@/i18n/utils';
+import type { SupportedLanguageCodes } from '@/lib/language';
 import Skills from '../resume/Skills.astro';
 
-const langCode = getCurrentLangCode(Astro.url);
-const t = useTranslation(langCode);
+type Props = {
+  lang: SupportedLanguageCodes;
+}
+
+const t = useTranslation(Astro.props.lang);
 ---
 
 <div
@@ -52,6 +55,6 @@ const t = useTranslation(langCode);
   </div>
 
   <div class="flex flex-col mt-8">
-    <Skills />
+    <Skills lang={Astro.props.lang} />
   </div>
 </div>

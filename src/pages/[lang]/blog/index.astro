@@ -8,6 +8,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 import Footer from "@/components/Footer.astro";
 import SearchDaemon from "@/components/SearchDaemon.astro";
 import TextDate from "@/components/TextDate.astro";
+import { useTranslation } from "@/i18n/utils";
 
 export const getStaticPaths = (async () => {
   const res = await Promise.all(Object.values(SUPPORTED_LANGUAGES).map(async lang => {
@@ -29,12 +30,13 @@ export const getStaticPaths = (async () => {
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const t = useTranslation(Astro.params.lang);
 
 ---
 <!doctype html>
 <html lang={Astro.params.lang}>
   <head>
-  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} lang={Astro.params.lang} />
   </head>
   <body>
     <BlogHeader lang={Astro.params.lang}  />

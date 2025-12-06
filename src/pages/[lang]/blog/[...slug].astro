@@ -44,7 +44,7 @@ const {post} = Astro.props;
 ---
 <html lang={Astro.params.lang}>
   <head>
-    <BaseHead title={post.title!} description={post.excerpt!} ogImageUrl={post.feature_image || undefined} />
+    <BaseHead title={post.title!} description={post.excerpt!} ogImageUrl={post.feature_image || undefined} lang={Astro.params.lang} />
   </head>
 
   <body>

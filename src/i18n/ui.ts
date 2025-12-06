@@ -1,10 +1,5 @@
-import en from "./translations/en.json";
-import ko from "./translations/ko.json";
-
 export const languageInfos = {
   en: {
-    name: "English",
-    path: "",
     header: `
 <link rel="preload" href="/fonts/Agave-Regular.ttf" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="/fonts/Agave-Bold.ttf" as="font" type="font/woff" crossorigin>
@@ -32,8 +27,6 @@ body {
     `,
   },
   ko: {
-    name: "한국어",
-    path: "/ko",
     header: `
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,11 +39,4 @@ body {
 </style>
     `,
   },
-} as const;
-
-export const translations: {
-  [key in keyof typeof languageInfos]: Record<string, string>;
-} = {
-  en: en,
-  ko: ko,
 } as const;

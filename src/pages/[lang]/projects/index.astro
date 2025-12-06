@@ -4,7 +4,6 @@ import BlogHeader from "@/components/header/BlogHeader.astro";
 import type {GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType} from "astro";
 import {ghost} from "@/lib/ghost.ts";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
-import FormattedDate from "@/components/FormattedDate.astro";
 import { useTranslation } from "@/i18n/utils";
 import Footer from "@/components/Footer.astro";
 import SearchDaemon from "@/components/SearchDaemon.astro";
@@ -36,7 +35,7 @@ const t = useTranslation(Astro.params.lang)
 ---
 <html lang={Astro.params.lang}>
 <head title="ds">
-    <BaseHead title={'title'} description={'description'}/>
+    <BaseHead title={'title'} description={'description'} lang={Astro.params.lang} />
 </head>
 <body>
 <BlogHeader lang={Astro.params.lang} />

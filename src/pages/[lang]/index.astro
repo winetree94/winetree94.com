@@ -1,6 +1,12 @@
 ---
-import Home from '@/layouts/Home.astro';
-import { SUPPORTED_LANGUAGES } from '@/lib/language';
+import BaseHead from '@/components/BaseHead.astro';
+import Footer from '@/components/Footer.astro';
+import BlogHeader from '@/components/header/BlogHeader.astro';
+import IconLink from '@/components/icon/IconLink.astro';
+import SearchDaemon from '@/components/SearchDaemon.astro';
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, NPM_URL, SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from '@/consts';
+import { useTranslation } from '@/i18n/utils';
+import { LOCALE_INFO, SUPPORTED_LANGUAGES } from '@/lib/language';
 import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -14,5 +20,70 @@ export const getStaticPaths = (async () => {
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
+const t = useTranslation(Astro.params.lang);
+
+const title = SITE_TITLES[Astro.params.lang];
+const description = SITE_DESCRIPTIONS[Astro.params.lang];
+const image = SITE_IMAGES[Astro.params.lang];
+
 ---
-<Home lang={Astro.params.lang} />
+<!doctype html>
+<html lang={Astro.params.lang}>
+  <head>
+    <BaseHead title={title} description={description} ogImageUrl={image} lang={Astro.params.lang} />
+    <style lang="scss">
+      .profile-image {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 1rem;
+      }
+      .lang-link {
+        &.disabled {
+          pointer-events: none;
+          color: #b3b3b3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <BlogHeader lang={Astro.params.lang} />
+    <main class="flex flex-col items-center my-40">
+      <img class="profile-image" src="/photos/profile.jpg" alt="" />
+      <h5>winetree94</h5>
+      <p class="text-center mt-4">
+        <Fragment set:html={t("home.introduction")} />
+      </p>
+      <div class="flex mt-4">
+        <IconLink icon="ri-github-line" href={GITHUB_URL} target="_blank" />
+        <IconLink
+          icon="ri-mail-line"
+          href={`mailto: ${EMAIL}`}
+          target="_blank"
+        />
+        <IconLink icon="ri-npmjs-line" href={NPM_URL} target="_blank" />
+        <IconLink
+          icon="ri-linkedin-box-line"
+          href={LINKEDIN_URL}
+          target="_blank"
+        />
+      </div>
+      <div class="flex gap-2 mt-4 items-center justify-center">
+        {
+          Object.entries(LOCALE_INFO).map(([code, lang]) => (
+            <a
+              href={`/${code}`}
+              class={`lang-link text-black ${code === Astro.params.lang ? "disabled" : ""}`}
+            >
+              {lang.nativeName}
+            </a>
+          ))
+        }
+      </div>
+    </main>
+    <Footer />
+    <SearchDaemon />
+  </body>
+</html>
