@@ -1,23 +1,27 @@
 ---
+import type { SupportedLanguageCodes } from '@/lib/language';
 import { SITE_TITLE } from '../../consts';
-import { getLangBasePath } from '../../i18n/utils';
 import HeaderLink from '../HeaderLink.astro';
 import IconButton from '../icon/IconButton.astro';
 import WHeader from './Header.astro';
-const langPath = getLangBasePath(Astro.url);
+
+type Props = {
+  lang: SupportedLanguageCodes;
+}
+
 ---
 
 <WHeader>
   <h2 class="text-base">
-    <a class="text-black-950" href={`${langPath || "/"}`}>{SITE_TITLE}</a>
+    <a class="text-black-950" href={`/${Astro.props.lang}`}>{SITE_TITLE}</a>
   </h2>
   <div class="flex items-center">
     <div class="flex justify-center items-center">
         <IconButton icon="ri-search-line" size="sm" onclick="window.dispatchEvent(new CustomEvent('open-search'))" />
       <hr class="border-r border-solid border-black-200 h-8 border-t-0 mx-4">
     </div>
-    <HeaderLink pathname={`${langPath}/about`}>About</HeaderLink>
-    <HeaderLink pathname={`${langPath}/projects`}>Projects</HeaderLink>
-    <HeaderLink pathname={`${langPath}/blog`}>Blog</HeaderLink>
+    <HeaderLink pathname={`/${Astro.props.lang}/about`}>About</HeaderLink>
+    <HeaderLink pathname={`/${Astro.props.lang}/projects`}>Projects</HeaderLink>
+    <HeaderLink pathname={`/${Astro.props.lang}/blog`}>Blog</HeaderLink>
   </div>
 </WHeader>

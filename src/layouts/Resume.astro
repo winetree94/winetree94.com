@@ -19,7 +19,7 @@ const image = SITE_IMAGES[currentLangCode];
 <!doctype html>
 <html lang={currentLangCode}>
   <head>
-    <BaseHead title={t('resume.title')} description={t('resume.description')} image={image} />
+    <BaseHead title={t('resume.title')} description={t('resume.description')} ogImageUrl={image} />
   </head>
   <body
     class="flex flex-col bg-black-800 m-0 p-0 overflow-y-scroll"

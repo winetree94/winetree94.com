@@ -1,6 +1,6 @@
 ---
-import { SUPPORTED_LANGUAGES } from '@/i18n/ui';
 import Home from '@/layouts/Home.astro';
+import { SUPPORTED_LANGUAGES } from '@/lib/language';
 import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -15,4 +15,4 @@ type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 ---
-<Home />
+<Home lang={Astro.params.lang} />
