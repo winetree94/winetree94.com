@@ -1,14 +1,13 @@
 ---
-import type { SupportedLanguageCodes } from '@/lib/language';
-import { SITE_TITLE } from '../../consts';
-import HeaderLink from '../HeaderLink.astro';
-import IconButton from '../icon/IconButton.astro';
-import WHeader from './Header.astro';
+import type { SupportedLanguageCodes } from "@/lib/language";
+import { SITE_TITLE } from "../../consts";
+import HeaderLink from "../HeaderLink.astro";
+import IconButton from "../icon/IconButton.astro";
+import WHeader from "./Header.astro";
 
 type Props = {
   lang: SupportedLanguageCodes;
-}
-
+};
 ---
 
 <WHeader>
@@ -17,8 +16,14 @@ type Props = {
   </h2>
   <div class="flex items-center">
     <div class="flex justify-center items-center">
-        <IconButton icon="ri-search-line" size="sm" onclick="window.dispatchEvent(new CustomEvent('open-search'))" />
-      <hr class="border-r border-solid border-black-200 h-8 border-t-0 mx-4">
+      <IconButton
+        icon="ri-search-line"
+        size="sm"
+        onclick="window.dispatchEvent(new CustomEvent('open-search'))"
+      />
+      <hr
+        class="border-0 border-r border-solid border-black-200 h-8 border-t-0 mx-4"
+      />
     </div>
     <HeaderLink pathname={`/${Astro.props.lang}/about`}>About</HeaderLink>
     <HeaderLink pathname={`/${Astro.props.lang}/projects`}>Projects</HeaderLink>

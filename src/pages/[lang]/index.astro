@@ -1,19 +1,31 @@
 ---
-import BaseHead from '@/components/BaseHead.astro';
-import Footer from '@/components/Footer.astro';
-import BlogHeader from '@/components/header/BlogHeader.astro';
-import IconLink from '@/components/icon/IconLink.astro';
-import SearchDaemon from '@/components/SearchDaemon.astro';
-import { EMAIL, GITHUB_URL, LINKEDIN_URL, NPM_URL, SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from '@/consts';
-import { useTranslation } from '@/i18n/utils';
-import { LOCALE_INFO, SUPPORTED_LANGUAGES } from '@/lib/language';
-import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from 'astro';
+import BaseHead from "@/components/BaseHead.astro";
+import Footer from "@/components/Footer.astro";
+import BlogHeader from "@/components/header/BlogHeader.astro";
+import IconLink from "@/components/icon/IconLink.astro";
+import SearchDaemon from "@/components/SearchDaemon.astro";
+import {
+  EMAIL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  NPM_URL,
+  SITE_DESCRIPTIONS,
+  SITE_IMAGES,
+  SITE_TITLES,
+} from "@/consts";
+import { useTranslation } from "@/i18n/utils";
+import { LOCALE_INFO, SUPPORTED_LANGUAGES } from "@/lib/language";
+import type {
+  GetStaticPaths,
+  InferGetStaticParamsType,
+  InferGetStaticPropsType,
+} from "astro";
 
 export const getStaticPaths = (async () => {
-  return Object.values(SUPPORTED_LANGUAGES).map(lang => ({
+  return Object.values(SUPPORTED_LANGUAGES).map((lang) => ({
     params: {
       lang: lang,
-    }
+    },
   }));
 }) satisfies GetStaticPaths;
 
@@ -25,12 +37,17 @@ const t = useTranslation(Astro.params.lang);
 const title = SITE_TITLES[Astro.params.lang];
 const description = SITE_DESCRIPTIONS[Astro.params.lang];
 const image = SITE_IMAGES[Astro.params.lang];
-
 ---
+
 <!doctype html>
 <html lang={Astro.params.lang}>
   <head>
-    <BaseHead title={title} description={description} ogImageUrl={image} lang={Astro.params.lang} />
+    <BaseHead
+      title={title}
+      description={description}
+      ogImageUrl={image}
+      lang={Astro.params.lang}
+    />
     <style lang="scss">
       .profile-image {
         border-radius: 50%;
@@ -50,7 +67,9 @@ const image = SITE_IMAGES[Astro.params.lang];
   </head>
   <body>
     <BlogHeader lang={Astro.params.lang} />
-    <main class="flex flex-col items-center my-40">
+    <main
+      class="flex flex-col items-center my-40 w-[720px] max-w-[calc(100%-2em)] mx-auto py-12 px-4;"
+    >
       <img class="profile-image" src="/photos/profile.jpg" alt="" />
       <h5>winetree94</h5>
       <p class="text-center mt-4">

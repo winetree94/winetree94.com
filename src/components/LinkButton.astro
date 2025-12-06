@@ -1,12 +1,13 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { HTMLAttributes } from "astro/types";
 
-type Prop = HTMLAttributes<'a'> & {};
+type Prop = HTMLAttributes<"a"> & {};
 
 const { class: className, ...props } = Astro.props as Prop;
 ---
-<a class=`link-button ${className || ''}` {...props}>
-  <slot></slot>
+
+<a class=`link-button text-blue-400 ${className || ''}` {...props}>
+  <slot />
 </a>
 
 <style lang="scss">

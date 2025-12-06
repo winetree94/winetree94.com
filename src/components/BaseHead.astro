@@ -1,20 +1,24 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '@/styles/global.css';
-import { languageInfos } from '../i18n/ui';
-import type { SupportedLanguageCodes } from '@/lib/language';
+import "@/styles/global.css";
+import { languageInfos } from "../i18n/ui";
+import type { SupportedLanguageCodes } from "@/lib/language";
 
 interface Props {
-  lang: SupportedLanguageCodes;
+  lang?: SupportedLanguageCodes;
   title: string;
   description: string;
   ogImageUrl?: string;
 }
 
-const langInfo = languageInfos[Astro.props.lang];
+const langInfo = Astro.props.lang ? languageInfos[Astro.props.lang] : null;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, ogImageUrl: image = `/og/index/${Astro.props.lang}.png` } = Astro.props;
+const {
+  title,
+  description,
+  ogImageUrl: image = `/og/index/${Astro.props.lang}.png`,
+} = Astro.props;
 // const multilangUrls = getMultilangUrlInfo(Astro.url);
 ---
 
@@ -26,18 +30,18 @@ const { title, description, ogImageUrl: image = `/og/index/${Astro.props.lang}.p
   />
 ))}
 
-<link rel="alternate" hreflang="x-default" href={multilangUrls[0].url} /> -->
-
-<!-- Global Metadata -->
+<link rel="alternate" hreflang="x-default" href={multilangUrls[0].url} /> --><!-- Global Metadata -->
 <meta charset="utf-8" />
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<Fragment set:html={langInfo.header} />
+{langInfo && <Fragment set:html={langInfo.header} />}
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

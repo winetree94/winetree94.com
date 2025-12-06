@@ -1,38 +1,51 @@
 ---
-import BaseHead from '@/components/BaseHead.astro';
-import BlogHeader from '@/components/header/BlogHeader.astro';
-import Profiles from '@/components/resume/Profiles.astro';
-import Skills from '@/components/resume/Skills.astro';
-import { OPEN_SOURCE, SITE_DESCRIPTION, SITE_TITLE, WORK_EXPERIENCE } from '@/consts';
-import { useTranslation } from '@/i18n/utils';
-import { SUPPORTED_LANGUAGES } from '@/lib/language';
-import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from 'astro';
-import WorkExperience from '@/components/resume/WorkExperience.astro';
-import OpenSource from '@/components/resume/OpenSource.astro';
-import Footer from '@/components/Footer.astro';
-import SearchDaemon from '@/components/SearchDaemon.astro';
+import BaseHead from "@/components/BaseHead.astro";
+import BlogHeader from "@/components/header/BlogHeader.astro";
+import Profiles from "@/components/resume/Profiles.astro";
+import Skills from "@/components/resume/Skills.astro";
+import {
+  OPEN_SOURCE,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  WORK_EXPERIENCE,
+} from "@/consts";
+import { useTranslation } from "@/i18n/utils";
+import { SUPPORTED_LANGUAGES } from "@/lib/language";
+import type {
+  GetStaticPaths,
+  InferGetStaticParamsType,
+  InferGetStaticPropsType,
+} from "astro";
+import WorkExperience from "@/components/resume/WorkExperience.astro";
+import OpenSource from "@/components/resume/OpenSource.astro";
+import Footer from "@/components/Footer.astro";
+import SearchDaemon from "@/components/SearchDaemon.astro";
 
 export const getStaticPaths = (async () => {
-  return Object.values(SUPPORTED_LANGUAGES).map(lang => ({
+  return Object.values(SUPPORTED_LANGUAGES).map((lang) => ({
     params: {
       lang: lang,
-    }
+    },
   }));
 }) satisfies GetStaticPaths;
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const t = useTranslation(Astro.params.lang)
-
+const t = useTranslation(Astro.params.lang);
 ---
+
 <html lang={Astro.params.lang}>
   <head>
-      <BaseHead lang={Astro.params.lang} title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      lang={Astro.params.lang}
+      title={SITE_TITLE}
+      description={SITE_DESCRIPTION}
+    />
   </head>
   <body>
     <BlogHeader lang={Astro.params.lang} />
-    <main>
+    <main class="w-[720px] max-w-[calc(100%-2em)] mx-auto py-12 px-4">
       <div class="flex flex-col sm:flex-row">
         <div class="shrink-0 flex justify-center">
           <img
@@ -51,7 +64,9 @@ const t = useTranslation(Astro.params.lang)
           {
             Astro.params.lang === "ko" && (
               <p class="text-right mt-4">
-                <a href={`/${Astro.params.lang}/resume`}>{t("about.profile.need-pdf")}</a>
+                <a class="text-blue-400" href={`/${Astro.params.lang}/resume`}>
+                  {t("about.profile.need-pdf")}
+                </a>
               </p>
             )
           }
@@ -62,16 +77,16 @@ const t = useTranslation(Astro.params.lang)
         <div
           class="mt-4 flex justify-center gap-2 flex-col sm:flex-row sm:gap-4"
         >
-          <a id="jump_to_profile" class="cursor-pointer">
+          <a id="jump_to_profile" class="text-blue-400 cursor-pointer">
             {t("about.profile")}
           </a>
-          <a id="jump_to_qualifications" class="cursor-pointer">
+          <a id="jump_to_qualifications" class="text-blue-400 cursor-pointer">
             {t("about.qualifications")}
           </a>
-          <a id="jump_to_experience" class="cursor-pointer">
+          <a id="jump_to_experience" class="text-blue-400 cursor-pointer">
             {t("about.experience")}
           </a>
-          <a id="jump_to_open_source" class="cursor-pointer">
+          <a id="jump_to_open_source" class="text-blue-400 cursor-pointer">
             {t("about.open_source")}
           </a>
         </div>
@@ -86,11 +101,18 @@ const t = useTranslation(Astro.params.lang)
       </div>
 
       <div class="flex flex-col mt-16">
-        <WorkExperience lang={Astro.params.lang} indentEnd={true} workExperience={WORK_EXPERIENCE} />
+        <WorkExperience
+          lang={Astro.params.lang}
+          indentEnd={true}
+          workExperience={WORK_EXPERIENCE}
+        />
       </div>
 
       <div class="flex flex-col mt-16">
-          <OpenSource lang={Astro.params.lang} opensourceExperience={OPEN_SOURCE} />
+        <OpenSource
+          lang={Astro.params.lang}
+          opensourceExperience={OPEN_SOURCE}
+        />
       </div>
     </main>
     <Footer />
