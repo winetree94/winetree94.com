@@ -1,26 +1,28 @@
 ---
+import { LOCALE_INFO, type SupportedLanguageCodes } from '@/lib/language';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Search from '../components/SearchDaemon.astro';
 import BlogHeader from '../components/header/BlogHeader.astro';
 import IconLink from '../components/icon/IconLink.astro';
 import { EMAIL, GITHUB_URL, LINKEDIN_URL, NPM_URL, SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES } from '../consts';
-import { languages } from '../i18n/ui';
-import { getCurrentLangCode, getLangBasePath, useTranslation } from '../i18n/utils';
+import { useTranslation } from '../i18n/utils';
 
-const currentLangPath = getLangBasePath(Astro.url);
-const currentLangCode = getCurrentLangCode(Astro.url);
-const t = useTranslation(currentLangCode);
+type Props = {
+  lang: SupportedLanguageCodes;
+};
 
-const title = SITE_TITLES[currentLangCode];
-const description = SITE_DESCRIPTIONS[currentLangCode];
-const image = SITE_IMAGES[currentLangCode];
+const t = useTranslation(Astro.props.lang);
+
+const title = SITE_TITLES[Astro.props.lang];
+const description = SITE_DESCRIPTIONS[Astro.props.lang];
+const image = SITE_IMAGES[Astro.props.lang];
 ---
 
 <!doctype html>
-<html lang={currentLangCode}>
+<html lang={Astro.props.lang}>
   <head>
-    <BaseHead title={title} description={description} image={image} />
+    <BaseHead title={title} description={description} ogImageUrl={image} />
     <style lang="scss">
       .profile-image {
         border-radius: 50%;
@@ -39,7 +41,7 @@ const image = SITE_IMAGES[currentLangCode];
     </style>
   </head>
   <body>
-    <BlogHeader />
+    <BlogHeader lang={Astro.props.lang} />
     <main class="flex flex-col items-center my-40">
       <img class="profile-image" src="/photos/profile.jpg" alt="" />
       <h5>winetree94</h5>
@@ -62,12 +64,12 @@ const image = SITE_IMAGES[currentLangCode];
       </div>
       <div class="flex gap-2 mt-4 items-center justify-center">
         {
-          Object.values(languages).map((lang) => (
+          Object.entries(LOCALE_INFO).map(([code, lang]) => (
             <a
-              href={lang.path || "/"}
-              class={`lang-link text-black ${lang.path === currentLangPath ? "disabled" : ""}`}
+              href={`/${code}`}
+              class={`lang-link text-black ${code === Astro.params.lang ? "disabled" : ""}`}
             >
-              {lang.name}
+              {lang.nativeName}
             </a>
           ))
         }

@@ -1,5 +1,3 @@
-import markdoc from "@astrojs/markdoc";
-import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig, envField } from "astro/config";
@@ -17,7 +15,7 @@ export default defineConfig({
   site: "https://winetree94.com",
   output: "static",
   devToolbar: {
-    enabled: false,
+    enabled: true,
   },
   build: {
     format: "directory",
@@ -35,11 +33,11 @@ export default defineConfig({
   env: {
     schema: {
       GHOST_API_KEY: envField.string({
-        context: 'server',
-        access: 'secret',
+        context: "server",
+        access: "secret",
         optional: false,
       }),
-    }
+    },
   },
   integrations: [
     // mdx({}),

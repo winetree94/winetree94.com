@@ -1,16 +1,7 @@
 import en from "./translations/en.json";
 import ko from "./translations/ko.json";
 
-export const SUPPORTED_LANGUAGES = {
-  EN: "en",
-  KO: "ko",
-} as const;
-
-//value type
-export type SupportedLanguages =
-  (typeof SUPPORTED_LANGUAGES)[keyof typeof SUPPORTED_LANGUAGES];
-
-export const languages = {
+export const languageInfos = {
   en: {
     name: "English",
     path: "",
@@ -57,10 +48,8 @@ body {
   },
 } as const;
 
-export const defaultLangCode: keyof typeof languages = "en";
-
 export const translations: {
-  [key in keyof typeof languages]: Record<string, string>;
+  [key in keyof typeof languageInfos]: Record<string, string>;
 } = {
   en: en,
   ko: ko,

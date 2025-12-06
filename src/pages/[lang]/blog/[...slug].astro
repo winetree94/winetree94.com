@@ -1,11 +1,13 @@
 ---
 // import {type CollectionEntry} from "astro:content";
 import {ghost} from "@/lib/ghost.ts";
-import {getCurrentLangCode} from "@/i18n/utils.ts";
 import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/header/BlogHeader.astro";
 import type {GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType} from "astro";
-import {SUPPORTED_LANGUAGES} from "@/i18n/ui.ts";
+import { SUPPORTED_LANGUAGES } from "@/lib/language";
+import TextDate from "@/components/TextDate.astro";
+import Footer from "@/components/Footer.astro";
+import SearchDaemon from "@/components/SearchDaemon.astro";
 
 export const getStaticPaths = (async () => {
   const res = await Promise.all(Object.values(SUPPORTED_LANGUAGES).map(async lang => {
@@ -38,31 +40,56 @@ export const getStaticPaths = (async () => {
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const currentLangCode = getCurrentLangCode(Astro.url);
-
 const {post} = Astro.props;
 ---
+<html lang={Astro.params.lang}>
+  <head>
+    <BaseHead title={post.title!} description={post.excerpt!} ogImageUrl={post.feature_image || undefined} />
+  </head>
 
-<html lang={currentLangCode}>
-<head>
-    <BaseHead title={post.title || ''} description={'description'}/>
-</head>
-<body>
-<BlogHeader/>
-<main class="w-full max-w-full">
-    <article class="markdown">
-        <div class="text-black-800 max-w-[720px] m-auto">
-            <div class="text-center mb-8">
-                <div class="date">
-                </div>
-                <h1 class="my-4">{'title'}</h1>
-                <hr/>
+  <body>
+    <BlogHeader lang={Astro.params.lang} />
+    <main class="w-full max-w-full">
+      <article class="markdown">
+        <div class="prose text-black-800 max-w-[720px] m-auto">
+          <div class="text-center mb-8">
+            <div class="date">
+                <TextDate lang={Astro.params.lang} date={post.created_at!} />
+              {
+                post.updated_at && (
+                  <div class="italic">
+                      Last updated on <TextDate lang={Astro.params.lang} date={post.updated_at} />
+                  </div>
+                )
+              }
             </div>
+            <h1 class="my-4">{post.title}</h1>
+            <hr />
+          </div>
+          <div>
             <Fragment set:html={post.html}/>
+          </div>
+          <div class="mt-16">
+            <script
+              src="https://giscus.app/client.js"
+              data-repo="winetree94/winetree94.com"
+              data-repo-id="R_kgDOMQZteg"
+              data-category="Announcements"
+              data-category-id="DIC_kwDOMQZtes4Cg0or"
+              data-mapping={Astro.url.pathname}
+              data-strict="1"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="bottom"
+              data-theme="light"
+              data-lang={Astro.params.lang}
+              crossorigin="anonymous"
+              async></script>
+          </div>
         </div>
-    </article>
-</main>
-<!--<Footer />-->
-<!--<SearchDaemon />-->
-</body>
+      </article>
+    </main>
+    <Footer />
+    <SearchDaemon />
+  </body>
 </html>

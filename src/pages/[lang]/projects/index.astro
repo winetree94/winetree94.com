@@ -2,8 +2,13 @@
 import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/header/BlogHeader.astro";
 import type {GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType} from "astro";
-import {SUPPORTED_LANGUAGES} from "@/i18n/ui.ts";
 import {ghost} from "@/lib/ghost.ts";
+import { SUPPORTED_LANGUAGES } from "@/lib/language";
+import FormattedDate from "@/components/FormattedDate.astro";
+import { useTranslation } from "@/i18n/utils";
+import Footer from "@/components/Footer.astro";
+import SearchDaemon from "@/components/SearchDaemon.astro";
+import TextDate from "@/components/TextDate.astro";
 
 export const getStaticPaths = (async () => {
   const res = await Promise.all(Object.values(SUPPORTED_LANGUAGES).map(async lang => {
@@ -26,35 +31,58 @@ export const getStaticPaths = (async () => {
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
+const t = useTranslation(Astro.params.lang)
+
 ---
 <html lang={Astro.params.lang}>
 <head title="ds">
     <BaseHead title={'title'} description={'description'}/>
 </head>
 <body>
-<BlogHeader/>
-<main class="w-full max-w-full">
-    <article class="markdown">
-        <div class="text-black-800 max-w-[720px] m-auto">
-            <div class="text-center mb-8">
-                <div class="date">
-                </div>
-                <h1 class="my-4">{'title'}</h1>
-                <hr/>
-            </div>
+<BlogHeader lang={Astro.params.lang} />
+<main>
+  <div class="flex flex-col">
+    <div
+      class="p-8 flex flex-col justify-center items-center mb-8"
+    >
+      <h4 class="text-center">{t("projects.title")}</h4>
+      <p class="mt-4 text-center">
+        {t("projects.description")}
+      </p>
+    </div>
+    {
+      Astro.props.posts.length ? (
+        <ul class="flex flex-wrap gap-8 list-none">
           {Astro.props.posts.map((post) => (
-            <div class="mb-12">
-              <a href={`/${Astro.params.lang}/projects/${post.slug.replace(`${Astro.params.lang}-`, '')}`} class="text-2xl font-bold text-blue-600 hover:underline">
-                {post.title}
+            <li class="w-full sm:w-[calc(50%-1rem)]">
+              <a
+                class="flex flex-col text-black-950"
+                href={`/${Astro.params.lang}/projects/${post.slug.slice(3)}/`}
+              >
+                <img
+                  class="rounded-xl aspect-video object-cover"
+                  width={720}
+                  height={360}
+                  src={post.feature_image}
+                  alt=""
+                />
+                <h6 class="title mt-4">{post.title}</h6>
+                <p class="date">
+                  <TextDate lang={Astro.params.lang} date={post.created_at!} />
+                </p>
               </a>
-              <p class="text-gray-600">{new Date(post.published_at || '').toLocaleDateString()}</p>
-              <p class="mt-2 text-gray-800">{post.excerpt}</p>
-            </div>
+           </li>
           ))}
+        </ul>
+      ) : (
+        <div class="flex justify-center">
+          <p>{t("global.empty")}</p>
         </div>
-    </article>
+      )
+    }
+  </div>
 </main>
-<!--<Footer />-->
-<!--<SearchDaemon />-->
+<Footer />
+<SearchDaemon />
 </body>
 </html>
