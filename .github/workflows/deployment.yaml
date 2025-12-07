@@ -36,6 +36,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
+      - name: Inject Ghost API Key
+        run: echo "GHOST_API_KEY=${{ secrets.GHOST_API_KEY }}" >> .env
+
       - name: Install Dependencies
         run: npm ci
 
