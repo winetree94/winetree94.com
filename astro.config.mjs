@@ -1,7 +1,6 @@
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig, envField } from "astro/config";
-import pagefind from "./plugins/pagefind";
 import tailwindcss from "@tailwindcss/vite";
 
 const defaultLocale = "en";
@@ -54,6 +53,5 @@ export default defineConfig({
     react({
       include: ["./src/**/*.{jsx,tsx}"],
     }),
-    pagefind(),
   ],
 });
