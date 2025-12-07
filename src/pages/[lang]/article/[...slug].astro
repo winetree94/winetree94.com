@@ -15,32 +15,32 @@ import { highlightGhostHTML } from "@/lib/highlight";
 import ArticleHead from "@/components/ArticleHead.astro";
 
 export const getStaticPaths = (async () => {
-  const res = await Promise.all(
-    Object.values(SUPPORTED_LANGUAGES).map(async (lang) => {
-      const posts = await ghost.posts.browse({
-        limit: 100,
-        filter: `tag:${lang}+tag:blog`,
-      });
+  const langs = Object.values(SUPPORTED_LANGUAGES);
 
-      if (!posts) {
-        throw new Error("Post not found");
-      }
+  const posts = await Promise.all(langs.map(async (lang) => {
+    const langPosts = await ghost.posts.browse({
+      limit: 100,
+      filter: `tag:${lang}`,
+    });
 
-      return posts.map((post) => {
-        return {
-          params: {
-            lang: lang,
-            slug: post.slug.replace(`${lang}-`, ""),
-          },
-          props: {
-            post: post,
-          },
-        };
-      });
-    })
-  );
+    if (!langPosts) {
+      throw new Error("Post not found");
+    }
 
-  return res.flat();
+    return langPosts.map((post) => {
+      return {
+        params: {
+          lang: lang,
+          slug: post.slug.replace(`${lang}-`, ""),
+        },
+        props: {
+          post: post,
+        },
+      };
+    });
+  })).then((res) => res.flat());
+
+  return posts;
 }) satisfies GetStaticPaths;
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
