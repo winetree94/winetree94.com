@@ -7,22 +7,6 @@ import Footer from "@/components/Footer.astro";
 <html lang={Astro.params.lang}>
   <head>
     <BaseHead title={"title"} description={"description"} />
-    <style lang="scss">
-      .profile-image {
-        border-radius: 50%;
-        width: 200px;
-        height: 200px;
-        margin: 0 auto;
-        display: block;
-        margin-bottom: 1rem;
-      }
-      .lang-link {
-        &.disabled {
-          pointer-events: none;
-          color: #b3b3b3;
-        }
-      }
-    </style>
   </head>
   <body>
     <main

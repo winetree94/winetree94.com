@@ -1,142 +1,37 @@
 ---
-import BaseHead from "@/components/BaseHead.astro";
-import BlogHeader from "@/components/header/BlogHeader.astro";
-import Profiles from "@/components/resume/Profiles.astro";
-import Skills from "@/components/resume/Skills.astro";
-import {
-  OPEN_SOURCE,
-  SITE_DESCRIPTION,
-  SITE_TITLE,
-  WORK_EXPERIENCE,
-} from "@/consts";
-import { useTranslation } from "@/i18n/utils";
+import { ghost } from "@/lib/ghost";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
 import type {
   GetStaticPaths,
   InferGetStaticParamsType,
   InferGetStaticPropsType,
 } from "astro";
-import WorkExperience from "@/components/resume/WorkExperience.astro";
-import OpenSource from "@/components/resume/OpenSource.astro";
-import Footer from "@/components/Footer.astro";
-import SearchDaemon from "@/components/SearchDaemon.astro";
+import BlogArticle from "@/components/BlogArticle.astro";
 
 export const getStaticPaths = (async () => {
-  return Object.values(SUPPORTED_LANGUAGES).map((lang) => ({
-    params: {
-      lang: lang,
-    },
-  }));
+  const res = await Promise.all(
+    Object.values(SUPPORTED_LANGUAGES).map(async (lang) => {
+      const page = await ghost.pages.read({
+        slug: `${lang}-else`,
+      });
+      if (!page) {
+        throw new Error(`Page not found for language ${lang}`);
+      }
+      return {
+        props: {
+          page: page,
+        },
+        params: {
+          lang: lang,
+        },
+      };
+    })
+  );
+  return res.flat();
 }) satisfies GetStaticPaths;
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
-
-const t = useTranslation(Astro.params.lang);
 ---
 
-<html lang={Astro.params.lang}>
-  <head>
-    <BaseHead
-      lang={Astro.params.lang}
-      title={SITE_TITLE}
-      description={SITE_DESCRIPTION}
-    />
-  </head>
-  <body>
-    <BlogHeader lang={Astro.params.lang} />
-    <main class="w-[720px] max-w-[calc(100%-2em)] mx-auto py-12 px-4">
-      <div class="flex flex-col sm:flex-row">
-        <div class="shrink-0 flex justify-center">
-          <img
-            class="rounded-full profile-image max-w-[200px] min-w-[200px] min-h-[200px] max-h-[200px]"
-            src="/photos/profile.jpg"
-            alt="Profile Image"
-          />
-        </div>
-        <div class="flex flex-col sm:ml-8 mt-8 sm:mt-0">
-          <h5 class="text-lg">{t("about.title")}</h5>
-          <p class="mt-4">
-            <Fragment set:html={t("about.description")} />
-            <br />
-            {t("about.contact_me")}
-          </p>
-          {
-            Astro.params.lang === "ko" && (
-              <p class="text-right mt-4">
-                <a class="text-blue-400" href={`/${Astro.params.lang}/resume`}>
-                  {t("about.profile.need-pdf")}
-                </a>
-              </p>
-            )
-          }
-        </div>
-      </div>
-      <div class="flex flex-col mt-16">
-        <h3 class="text-2xl font-bold">{t("about.jump_to")}</h3>
-        <div
-          class="mt-4 flex justify-center gap-2 flex-col sm:flex-row sm:gap-4"
-        >
-          <a id="jump_to_profile" class="text-blue-400 cursor-pointer">
-            {t("about.profile")}
-          </a>
-          <a id="jump_to_qualifications" class="text-blue-400 cursor-pointer">
-            {t("about.qualifications")}
-          </a>
-          <a id="jump_to_experience" class="text-blue-400 cursor-pointer">
-            {t("about.experience")}
-          </a>
-          <a id="jump_to_open_source" class="text-blue-400 cursor-pointer">
-            {t("about.open_source")}
-          </a>
-        </div>
-      </div>
-
-      <div class="flex flex-col mt-16">
-        <Profiles lang={Astro.params.lang} />
-      </div>
-
-      <div class="flex flex-col mt-16">
-        <Skills lang={Astro.params.lang} />
-      </div>
-
-      <div class="flex flex-col mt-16">
-        <WorkExperience
-          lang={Astro.params.lang}
-          indentEnd={true}
-          workExperience={WORK_EXPERIENCE}
-        />
-      </div>
-
-      <div class="flex flex-col mt-16">
-        <OpenSource
-          lang={Astro.params.lang}
-          opensourceExperience={OPEN_SOURCE}
-        />
-      </div>
-    </main>
-    <Footer />
-    <SearchDaemon />
-    <script>
-      function scrollTo(id: string) {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-
-      document
-        .getElementById("jump_to_profile")!
-        .addEventListener("click", () => scrollTo("profile"));
-      document
-        .getElementById("jump_to_qualifications")!
-        .addEventListener("click", () => scrollTo("qualifications"));
-      document
-        .getElementById("jump_to_experience")!
-        .addEventListener("click", () => scrollTo("experience"));
-      document
-        .getElementById("jump_to_open_source")!
-        .addEventListener("click", () => scrollTo("open_source"));
-    </script>
-  </body>
-</html>
+<BlogArticle lang={Astro.params.lang} post={Astro.props.page} />
