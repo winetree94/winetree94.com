@@ -151,5 +151,15 @@
   "about.open_source.vanilla_recycler_view.description": "A library for fast rendering of large data sets through virtual scrolling. Implemented Android's RecyclerView for the web to overcome the issue of web being slower than apps.",
   "about.open_source.vanilla_recycler_view.features.1": "Renders only the elements at the user's scroll position from the entire scroll.",
   "about.open_source.vanilla_recycler_view.features.2": "Reuses elements out of view to enhance scrolling performance.",
-  "about.open_source.vanilla_recycler_view.period": "2019"
+  "about.open_source.vanilla_recycler_view.period": "2019",
+  "resume.title": "Resume Viewer",
+  "resume.description": "Resume Viewer",
+  "tags.blog.title": "Blog",
+  "tags.blog.description": "Blog description",
+  "tags.project.title": "Projects",
+  "tags.project.description": "I create projects to solve problems in my work or daily life.",
+  "theme": "Theme",
+  "theme.auto": "Auto",
+  "theme.light": "Light",
+  "theme.dark": "Dark"
 }

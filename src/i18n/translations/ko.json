@@ -158,5 +158,9 @@
   "tags.blog.title": "블로그",
   "tags.blog.description": "블로그에 대한 설명입니다.",
   "tags.project.title": "별 건 없어요.\n제가 만들었거나 만들고 있는 프로젝트입니다.",
-  "tags.project.description": "저는 주로 업무나 일상에서의 문제를 해결하기 위해 프로젝트를 생성합니다."
+  "tags.project.description": "저는 주로 업무나 일상에서의 문제를 해결하기 위해 프로젝트를 생성합니다.",
+  "theme": "테마",
+  "theme.auto": "자동",
+  "theme.light": "밝은 색상",
+  "theme.dark": "어두운 색상"
 }
