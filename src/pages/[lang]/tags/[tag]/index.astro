@@ -15,28 +15,45 @@ import TextDate from "@/components/TextDate.astro";
 import { useTranslation } from "@/i18n/utils";
 
 export const getStaticPaths = (async () => {
-  const res = await Promise.all(
-    Object.values(SUPPORTED_LANGUAGES).map(async (lang) => {
-      const posts = await ghost.posts.browse({
+  const tags = await ghost.tags.browse({
+    limit: 100,
+  });
+
+  const langs = Object.values(SUPPORTED_LANGUAGES);
+  const posts = await Promise.all(langs.map(async (lang) => {
+    const langPosts = await Promise.all(tags.map(async (tag) => {
+      const tagPosts = await ghost.posts.browse({
         limit: 100,
-        filter: `tag:${lang}+tag:blog`,
+        filter: `tag:${lang}+tag:${tag.slug}`,
       });
+
+      if (!tagPosts) {
+        throw new Error("Post not found");
+      }
+
       return {
         params: {
           lang: lang,
+          tag: tag.slug,
         },
         props: {
-          posts: posts,
+          tag: tag,
+          posts: tagPosts,
         },
       };
-    })
-  );
-  return res.flat();
+    })).then((res) => res.flat());
+    return langPosts;
+  })).then((res) => res.flat());
+
+  return posts;
 }) satisfies GetStaticPaths;
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const t = useTranslation(Astro.params.lang);
+
+console.log(Astro.props.tag)
+console.log(`tags.${Astro.props.tag.slug}.title`)
 ---
 
 <!doctype html>
@@ -52,6 +69,14 @@ const t = useTranslation(Astro.params.lang);
     <BlogHeader lang={Astro.params.lang} />
     <main class="w-full p-8 flex justify-center">
       <article class="flex flex-col max-w-[720px] w-full">
+          <div class="flex flex-col items-center justify-center">
+              <h1 class="text-3xl">
+                {t(`tags.${Astro.props.tag.slug}.title`)}
+              </h1>
+              <p>
+                  {t(`tags.${Astro.props.tag.slug}.description`)}
+              </p>
+          </div>
         {
           Astro.props.posts.length ? (
             <ul class="flex flex-wrap gap-8 list-none">
@@ -59,7 +84,7 @@ const t = useTranslation(Astro.params.lang);
                 <li class="w-full sm:w-[calc(50%-1rem)]">
                   <a
                     class="flex flex-col text-black-950"
-                    href={`/${Astro.params.lang}/blog/${post.slug.slice(3)}/`}
+                    href={`/${Astro.params.lang}/article/${post.slug.slice(3)}/`}
                   >
                     <img
                       class="rounded-xl aspect-video object-cover"
