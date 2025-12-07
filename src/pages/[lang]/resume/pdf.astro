@@ -38,32 +38,45 @@ const image = SITE_IMAGES[Astro.params.lang];
       lang={Astro.params.lang}
     />
   </head>
-  <body class="flex flex-col bg-black-800 m-0 p-0 overflow-y-scroll">
+  <body class="flex flex-col bg-black/80 m-0 p-0 overflow-y-scroll">
     <header
-      class={`w-full h-14 bg-white-50 shadow print:hidden z-30 fixed top-0 left-0`}
+      class={`w-full h-14 shadow print:hidden z-30 fixed top-0 left-0 bg-base-100`}
     >
-      <nav
-        class="bg-white-50 flex justify-between items-center px-4 h-full py-1 mx-auto"
-      >
+      <nav class="flex justify-between items-center px-4 h-full py-1 mx-auto">
         <div class="flex items-center">
-          <button onclick="history.back()" class="btn btn-circle btn-ghost">
+          <button
+            onclick="history.back()"
+            class="btn btn-circle btn-ghost font-medium"
+          >
             <i class="ri-arrow-left-line"></i>
           </button>
-          <a href={`/${Astro.params.lang}/`} class="btn btn-circle btn-ghost">
+          <a
+            href={`/${Astro.params.lang}/`}
+            class="btn btn-circle btn-ghost font-medium"
+          >
             <i class="ri-home-line"></i>
           </a>
         </div>
         <div class="flex items-center h-full">
-          <button onclick="window.print()" class="btn btn-circle btn-ghost">
+          <button
+            onclick="window.print()"
+            class="btn btn-circle btn-ghost font-medium"
+          >
             <i class="ri-printer-line"></i>
           </button>
-          <button id="fullscreen-btn" class="btn btn-circle btn-ghost">
+          <button
+            id="fullscreen-btn"
+            class="btn btn-circle btn-ghost font-medium"
+          >
             <i class="ri-fullscreen-line"></i>
           </button>
-          <button id="zoom-in-btn" class="btn btn-circle btn-ghost">
+          <button id="zoom-in-btn" class="btn btn-circle btn-ghost font-medium">
             <i class="ri-zoom-in-line"></i>
           </button>
-          <button id="zoom-out-btn" class="btn btn-circle btn-ghost">
+          <button
+            id="zoom-out-btn"
+            class="btn btn-circle btn-ghost font-medium"
+          >
             <i class="ri-zoom-out-line"></i>
           </button>
         </div>
@@ -72,8 +85,9 @@ const image = SITE_IMAGES[Astro.params.lang];
 
     <main
       id="viewer-root"
-      class="mx-auto py-12 px-4 m-0 mt-12 p-0 w-full max-w-full text-center print:p-0 print:m-0 print:mt-0 overflow-x-auto"
+      class="mx-auto py-12 px-4 m-0 mt-12 p-0 w-full max-w-full text-center print:p-0 print:m-0 print:mt-0 overflow-x-auto bg-neutral-800"
       style="visibility: hidden; --scaling-factor: 1; --doc-width: 210mm; --doc-height: 297mm;"
+      data-theme="light"
     >
       <div id="size-container" class="inline-block overflow-hidden">
         <div id="zoom-container" class="origin-top-left p-16 print:p-0">
@@ -222,7 +236,8 @@ const image = SITE_IMAGES[Astro.params.lang];
       .page {
         width: var(--doc-width);
         height: var(--doc-height);
-        @apply bg-white-50 shrink-0 print:m-0 flex flex-col justify-between p-16;
+        background-color: white;
+        @apply shrink-0 print:m-0 flex flex-col justify-between p-16;
 
         &:not(:first-child) {
           @apply mt-16;

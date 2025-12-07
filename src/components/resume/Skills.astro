@@ -58,7 +58,16 @@ const t = useTranslation(Astro.props.lang);
           "Jest",
           "Aws",
           "Docker",
-        ].map((badge) => <TechBadge name={badge} />)
+        ].map((badge) => (
+          <div class="badge badge-soft flex gap-0">
+            <img
+              class="w-4 h-4 mr-2"
+              src={`/favicons/${badge.toLowerCase()}.png`}
+              alt={`${badge} favicon`}
+            />
+            {badge}
+          </div>
+        ))
       }
     </div>
   </div>

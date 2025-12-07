@@ -90,7 +90,7 @@ console.log(`tags.${Astro.props.tag.slug}.title`);
               {Astro.props.posts.map((post) => (
                 <li class="w-full sm:w-[calc(50%-1rem)]">
                   <a
-                    class="flex flex-col text-black-950"
+                    class="flex flex-col"
                     href={`/${Astro.params.lang}/article/${post.slug.slice(3)}/`}
                   >
                     <img
