@@ -65,6 +65,8 @@ const highlightedHTML = await highlightGhostHTML(post.html || "");
             Astro.props.useComments && (
               <div class="mt-16">
                 <script
+                  is:inline
+                  class="discus"
                   src="https://giscus.app/client.js"
                   data-repo="winetree94/winetree94.com"
                   data-repo-id="R_kgDOMQZteg"
