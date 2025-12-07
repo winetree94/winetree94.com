@@ -39,37 +39,36 @@ const image = SITE_IMAGES[Astro.params.lang];
     />
   </head>
   <body class="flex flex-col bg-black-800 m-0 p-0 overflow-y-scroll">
-
-      <header
-        class={`w-full h-14 bg-white-50 shadow print:hidden z-30 fixed top-0 left-0`}
+    <header
+      class={`w-full h-14 bg-white-50 shadow print:hidden z-30 fixed top-0 left-0`}
+    >
+      <nav
+        class="bg-white-50 flex justify-between items-center px-4 h-full py-1 mx-auto"
       >
-        <nav
-          class="bg-white-50 flex justify-between items-center px-4 h-full py-1 mx-auto"
-        >
-            <div class="flex items-center">
-                <button onclick="history.back()" class="btn btn-circle btn-ghost">
-                    <i class="ri-arrow-left-line" />
-                </button>
-                <a href={`/${Astro.params.lang}/`} class="btn btn-circle btn-ghost">
-                    <i class="ri-home-line" />
-                </a>
-            </div>
-            <div class="flex items-center h-full">
-                <button onclick="window.print()" class="btn btn-circle btn-ghost">
-                    <i class="ri-printer-line" />
-                </button>
-                <button id='fullscreen-btn' class="btn btn-circle btn-ghost">
-                    <i class="ri-fullscreen-line" />
-                </button>
-                <button id='zoom-in-btn' class="btn btn-circle btn-ghost">
-                    <i class="ri-zoom-in-line" />
-                </button>
-                <button id='zoom-out-btn' class="btn btn-circle btn-ghost">
-                    <i class="ri-zoom-out-line" />
-                </button>
-            </div>
-        </nav>
-      </header>
+        <div class="flex items-center">
+          <button onclick="history.back()" class="btn btn-circle btn-ghost">
+            <i class="ri-arrow-left-line"></i>
+          </button>
+          <a href={`/${Astro.params.lang}/`} class="btn btn-circle btn-ghost">
+            <i class="ri-home-line"></i>
+          </a>
+        </div>
+        <div class="flex items-center h-full">
+          <button onclick="window.print()" class="btn btn-circle btn-ghost">
+            <i class="ri-printer-line"></i>
+          </button>
+          <button id="fullscreen-btn" class="btn btn-circle btn-ghost">
+            <i class="ri-fullscreen-line"></i>
+          </button>
+          <button id="zoom-in-btn" class="btn btn-circle btn-ghost">
+            <i class="ri-zoom-in-line"></i>
+          </button>
+          <button id="zoom-out-btn" class="btn btn-circle btn-ghost">
+            <i class="ri-zoom-out-line"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
 
     <main
       id="viewer-root"
@@ -214,7 +213,7 @@ const image = SITE_IMAGES[Astro.params.lang];
     </script>
 
     <style lang="scss">
-      @reference "../../styles/global.css";
+      @reference "../../../styles/global.css";
 
       * {
         touch-action: manipulation;

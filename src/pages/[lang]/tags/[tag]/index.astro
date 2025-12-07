@@ -1,6 +1,6 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
-import BlogHeader from "@/components/header/BlogHeader.astro";
+import BlogHeader from "@/components/BlogHeader.astro";
 import type {
   GetStaticPaths,
   InferGetStaticParamsType,
@@ -10,7 +10,6 @@ import { ghost } from "@/lib/ghost.ts";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 import Footer from "@/components/Footer.astro";
-import SearchDaemon from "@/components/SearchDaemon.astro";
 import TextDate from "@/components/TextDate.astro";
 import { useTranslation } from "@/i18n/utils";
 
@@ -20,30 +19,34 @@ export const getStaticPaths = (async () => {
   });
 
   const langs = Object.values(SUPPORTED_LANGUAGES);
-  const posts = await Promise.all(langs.map(async (lang) => {
-    const langPosts = await Promise.all(tags.map(async (tag) => {
-      const tagPosts = await ghost.posts.browse({
-        limit: 100,
-        filter: `tag:${lang}+tag:${tag.slug}`,
-      });
+  const posts = await Promise.all(
+    langs.map(async (lang) => {
+      const langPosts = await Promise.all(
+        tags.map(async (tag) => {
+          const tagPosts = await ghost.posts.browse({
+            limit: 100,
+            filter: `tag:${lang}+tag:${tag.slug}`,
+          });
 
-      if (!tagPosts) {
-        throw new Error("Post not found");
-      }
+          if (!tagPosts) {
+            throw new Error("Post not found");
+          }
 
-      return {
-        params: {
-          lang: lang,
-          tag: tag.slug,
-        },
-        props: {
-          tag: tag,
-          posts: tagPosts,
-        },
-      };
-    })).then((res) => res.flat());
-    return langPosts;
-  })).then((res) => res.flat());
+          return {
+            params: {
+              lang: lang,
+              tag: tag.slug,
+            },
+            props: {
+              tag: tag,
+              posts: tagPosts,
+            },
+          };
+        })
+      ).then((res) => res.flat());
+      return langPosts;
+    })
+  ).then((res) => res.flat());
 
   return posts;
 }) satisfies GetStaticPaths;
@@ -52,8 +55,8 @@ type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const t = useTranslation(Astro.params.lang);
 
-console.log(Astro.props.tag)
-console.log(`tags.${Astro.props.tag.slug}.title`)
+console.log(Astro.props.tag);
+console.log(`tags.${Astro.props.tag.slug}.title`);
 ---
 
 <!doctype html>
@@ -67,19 +70,23 @@ console.log(`tags.${Astro.props.tag.slug}.title`)
   </head>
   <body>
     <BlogHeader lang={Astro.params.lang} />
-    <main class="w-full p-8 flex justify-center">
-      <article class="flex flex-col max-w-[720px] w-full">
-          <div class="flex flex-col items-center justify-center">
-              <h1 class="text-3xl">
+    <main class="w-full flex justify-center mt-18">
+      <article class="flex flex-col max-w-[720px] w-full px-4">
+        {
+          t(`tags.${Astro.props.tag.slug}.title`) && (
+            <div class="flex flex-col items-center justify-center gap-4">
+              <h1 class="text-3xl whitespace-pre-line">
                 {t(`tags.${Astro.props.tag.slug}.title`)}
               </h1>
-              <p>
-                  {t(`tags.${Astro.props.tag.slug}.description`)}
+              <p class="text-lg whitespace-pre-line">
+                {t(`tags.${Astro.props.tag.slug}.description`)}
               </p>
-          </div>
+            </div>
+          )
+        }
         {
           Astro.props.posts.length ? (
-            <ul class="flex flex-wrap gap-8 list-none">
+            <ul class="flex flex-wrap gap-8 list-none mt-8">
               {Astro.props.posts.map((post) => (
                 <li class="w-full sm:w-[calc(50%-1rem)]">
                   <a
@@ -113,6 +120,5 @@ console.log(`tags.${Astro.props.tag.slug}.title`)
       </article>
     </main>
     <Footer />
-    <SearchDaemon />
   </body>
 </html>

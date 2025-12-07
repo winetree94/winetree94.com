@@ -6,7 +6,7 @@
   "global.view_details": "자세히 보기",
   "about.title": "문제 해결에 가장 효율적인 기술을 선정합니다.",
   "about.description": "안녕하세요. 저는 프론트엔드 엔지니어 박한솔입니다. 저는 소규모 웹사이트부터 대형 애플리케이션까지 확장성과 성능을 갖춘 프론트엔드 프로젝트를 전문적으로 개발했습니다.<br />Angular 와 React 를 주로 활용하지만 문제 해결에 가장 효율적인 기술을 더 선호합니다.<br />오픈소스에서 배운 만큼 다시 오픈소스에 기여하는 것을 좋아하며 다양한 프로젝트를 진행하고 있습니다.",
-  "about.contact_me": "제게 연락이 필요하다면 winetree94@gmail.com 으로 이메일을 보내주세요.",
+  "about.contact_me": "제게 연락이 필요하다면 me@winetree94.com 으로 이메일을 보내주세요.",
   "about.jump_to": "Jump To",
   "about.profile": "Profiles",
   "about.profile.description": "저는 온라인에서 winetree94 라는 닉네임으로 활동하고 있습니다. 제가 활동하고 있는 플랫폼들입니다.",
@@ -157,6 +157,6 @@
   "resume.description": "이력서 뷰어",
   "tags.blog.title": "블로그",
   "tags.blog.description": "블로그에 대한 설명입니다.",
-  "tags.project.title": "별 건 없어요. 제가 만들었거나 만들고 있는 프로젝트입니다.",
+  "tags.project.title": "별 건 없어요.\n제가 만들었거나 만들고 있는 프로젝트입니다.",
   "tags.project.description": "저는 주로 업무나 일상에서의 문제를 해결하기 위해 프로젝트를 생성합니다."
 }

@@ -1,8 +1,7 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
 import Footer from "@/components/Footer.astro";
-import BlogHeader from "@/components/header/BlogHeader.astro";
-import SearchDaemon from "@/components/SearchDaemon.astro";
+import BlogHeader from "@/components/BlogHeader.astro";
 import {
   EMAIL,
   GITHUB_URL,
@@ -55,29 +54,17 @@ const keywords = [
       ogImageUrl={image}
       lang={Astro.params.lang}
     />
-    <style lang="scss">
-      .profile-image {
-        border-radius: 50%;
-        width: 200px;
-        height: 200px;
-        margin: 0 auto;
-        display: block;
-        margin-bottom: 1rem;
-      }
-      .lang-link {
-        &.disabled {
-          pointer-events: none;
-          color: #b3b3b3;
-        }
-      }
-    </style>
   </head>
   <body class="w-full h-dvh flex flex-col">
     <BlogHeader lang={Astro.params.lang} />
     <main
       class="flex flex-col items-center w-[720px] max-w-[calc(100%-2em)] mx-auto py-12 px-4 flex-1 justify-center"
     >
-      <img class="profile-image" src="/photos/profile.jpg" alt="" />
+      <img
+        class="rounded-full w-[200px] h-[200px] mb-4"
+        src="/photos/profile.jpg"
+        alt=""
+      />
 
       <span class={`text-rotate text-5xl duration-4000`}>
         <span class="justify-items-center">
@@ -89,20 +76,32 @@ const keywords = [
         <Fragment set:html={t("home.introduction")} />
       </p>
       <div class="flex mt-4 gap-4">
-        <a class="btn btn-circle btn-ghost" href={GITHUB_URL} target="_blank">
+        <a
+          class="btn btn-circle btn-ghost font-medium"
+          href={GITHUB_URL}
+          target="_blank"
+        >
           <i class="ri-github-line"></i>
         </a>
         <a
-          class="btn btn-circle btn-ghost"
+          class="btn btn-circle btn-ghost font-medium"
           href={`mailto: ${EMAIL}`}
           target="_blank"
         >
           <i class="ri-mail-line"></i>
         </a>
-        <a class="btn btn-circle btn-ghost" href={NPM_URL} target="_blank">
+        <a
+          class="btn btn-circle btn-ghost font-medium"
+          href={NPM_URL}
+          target="_blank"
+        >
           <i class="ri-npmjs-line"></i>
         </a>
-        <a class="btn btn-circle btn-ghost" href={LINKEDIN_URL} target="_blank">
+        <a
+          class="btn btn-circle btn-ghost font-medium"
+          href={LINKEDIN_URL}
+          target="_blank"
+        >
           <i class="ri-linkedin-box-line"></i>
         </a>
       </div>
@@ -117,6 +116,5 @@ const keywords = [
       </ul>
     </main>
     <Footer />
-    <SearchDaemon />
   </body>
 </html>

@@ -260,4 +260,4 @@ export const SITE_DESCRIPTION = "winetree94 world";
 export const GITHUB_URL = "https://github.com/winetree94";
 export const NPM_URL = "https://www.npmjs.com/~winetree94";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/winetree94";
-export const EMAIL = "winetree94@gmail.com";
+export const EMAIL = "me@winetree94.com";
