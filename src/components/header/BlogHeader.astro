@@ -1,9 +1,15 @@
 ---
+import { ghost } from "@/lib/ghost";
 import { LOCALE_INFO, type SupportedLanguageCodes } from "@/lib/language";
 
 type Props = {
   lang: SupportedLanguageCodes;
 };
+
+const tags = await ghost.tags.browse({
+  limit: 100,
+});
+
 ---
 
 <!-- <div class="navbar bg-base-100 shadow-sm">
@@ -60,34 +66,44 @@ type Props = {
           <li>
             <a href={`/${Astro.props.lang}/about`}>About Me</a>
           </li>
+          <li>
+            <a href={`/${Astro.props.lang}/else`}>Else</a>
+          </li>
           <li><a href={`/${Astro.props.lang}/projects`}>Projects</a></li>
           <li><a href={`/${Astro.props.lang}/blog`}>Blog</a></li>
         </ul>
       </div>
       <div class="flex flex-col">
-        <div class="divider m-0 p-0"></div>
-        <div class="dropdown dropdown-top">
-          <div
-            tabindex="0"
-            role="button"
-            class="btn btn-ghost w-full font-medium justify-start"
-          >
-            <i class="ri-translate"></i>
-            {LOCALE_INFO[Astro.props.lang].nativeName}
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <button class="badge badge-neutral badge-outline">{tag.name}</button>
+            ))}
           </div>
-          <ul
-            tabindex="-1"
-            class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
-          >
-            {
-              Object.entries(LOCALE_INFO).map(([code, info]) => (
-                <li>
-                  <a href={`/${code}/`}>{info.nativeName}</a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+          <div class="flex flex-col">
+            <div class="divider m-0 p-0"></div>
+            <div class="dropdown dropdown-top">
+              <div
+                tabindex="0"
+                role="button"
+                class="btn btn-ghost w-full font-medium justify-start"
+              >
+                <i class="ri-translate"></i>
+                {LOCALE_INFO[Astro.props.lang].nativeName}
+              </div>
+              <ul
+                tabindex="-1"
+                class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+              >
+                {
+                  Object.entries(LOCALE_INFO).map(([code, info]) => (
+                    <li>
+                      <a href={`/${code}/`}>{info.nativeName}</a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+      </div>
       </div>
     </div>
   </div>
