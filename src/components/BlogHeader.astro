@@ -49,7 +49,7 @@ const tags = await ghost.tags.browse({
           {
             tags.map((tag) => (
               <a
-                class="badge badge-soft badge-neutral"
+                class="badge badge-soft"
                 href={`/${Astro.props.lang}/tags/${tag.slug}/`}
               >
                 {tag.name}

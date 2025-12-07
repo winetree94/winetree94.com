@@ -44,7 +44,7 @@ const highlightedHTML = await highlightGhostHTML(post.html || "");
     <main class="w-full max-w-full">
       <article>
         <img
-          class="w-full max-w-full aspect-video object-cover max-h-100"
+          class="w-full max-w-full aspect-video object-cover max-h-120"
           src={post.feature_image}
         />
         <div class="max-w-[720px] m-auto px-4">
@@ -56,7 +56,7 @@ const highlightedHTML = await highlightGhostHTML(post.html || "");
                 date={Astro.props.post.published_at!}
               />
             </div>
-            <hr class="border-0 border-t border-black-200" />
+            <div class="divider"></div>
           </div>
           <GhostPost>
             <Fragment set:html={highlightedHTML} />
@@ -75,7 +75,7 @@ const highlightedHTML = await highlightGhostHTML(post.html || "");
                   data-reactions-enabled="1"
                   data-emit-metadata="0"
                   data-input-position="bottom"
-                  data-theme="light"
+                  data-theme="preferred_color_scheme"
                   data-lang={Astro.params.lang}
                   crossorigin="anonymous"
                   async

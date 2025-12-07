@@ -38,10 +38,11 @@ const image = SITE_IMAGES[Astro.params.lang];
 
 const keywords = [
   "FRONTEND",
+  "OPEN SOURCE",
+  "LINUX",
   "DEVOPS",
   "CLOUD NATIVE",
-  "OPEN SOURCE",
-  "EMBEDDED LINUX",
+  "KUBERNETES",
 ];
 ---
 
@@ -71,7 +72,6 @@ const keywords = [
           {keywords.map((keyword) => <span>{keyword}</span>)}
         </span>
       </span>
-      <h5 class="text-lg">winetree94</h5>
       <p class="text-center mt-4">
         <Fragment set:html={t("home.introduction")} />
       </p>
@@ -105,15 +105,15 @@ const keywords = [
           <i class="ri-linkedin-box-line"></i>
         </a>
       </div>
-      <ul>
+      <div class="flex gap-4 mt-4">
         {
           Object.entries(LOCALE_INFO).map(([code, info]) => (
-            <li>
-              <a href={`/${code}/`}>{info.nativeName}</a>
-            </li>
+            <a class="badge badge-neutral badge-ghost" href={`/${code}/`}>
+              {info.nativeName}
+            </a>
           ))
         }
-      </ul>
+      </div>
     </main>
     <Footer />
   </body>
