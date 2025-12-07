@@ -8,9 +8,6 @@ import type {
   InferGetStaticParamsType,
   InferGetStaticPropsType,
 } from "astro";
-import WHeader from "@/components/header/Header.astro";
-import IconButton from "@/components/icon/IconButton.astro";
-import IconLink from "@/components/icon/IconLink.astro";
 import Page1 from "@/components/resume-pages/page1.astro";
 import Page2 from "@/components/resume-pages/page2.astro";
 import Page3 from "@/components/resume-pages/page3.astro";
@@ -42,18 +39,37 @@ const image = SITE_IMAGES[Astro.params.lang];
     />
   </head>
   <body class="flex flex-col bg-black-800 m-0 p-0 overflow-y-scroll">
-    <WHeader fixed={true}>
-      <div class="flex items-center">
-        <IconButton icon="ri-arrow-left-line" onclick="history.back()" />
-        <IconLink icon="ri-home-line" href={`/${Astro.params.lang}/`} />
-      </div>
-      <div class="flex items-center h-full">
-        <IconButton icon="ri-printer-line" onclick="window.print()" />
-        <IconButton id="fullscreen-btn" icon="ri-fullscreen-line" />
-        <IconButton id="zoom-in-btn" icon="ri-zoom-in-line" />
-        <IconButton id="zoom-out-btn" icon="ri-zoom-out-line" />
-      </div>
-    </WHeader>
+
+      <header
+        class={`w-full h-14 bg-white-50 shadow print:hidden z-30 fixed top-0 left-0`}
+      >
+        <nav
+          class="bg-white-50 flex justify-between items-center px-4 h-full py-1 mx-auto"
+        >
+            <div class="flex items-center">
+                <button onclick="history.back()" class="btn btn-circle btn-ghost">
+                    <i class="ri-arrow-left-line" />
+                </button>
+                <a href={`/${Astro.params.lang}/`} class="btn btn-circle btn-ghost">
+                    <i class="ri-home-line" />
+                </a>
+            </div>
+            <div class="flex items-center h-full">
+                <button onclick="window.print()" class="btn btn-circle btn-ghost">
+                    <i class="ri-printer-line" />
+                </button>
+                <button id='fullscreen-btn' class="btn btn-circle btn-ghost">
+                    <i class="ri-fullscreen-line" />
+                </button>
+                <button id='zoom-in-btn' class="btn btn-circle btn-ghost">
+                    <i class="ri-zoom-in-line" />
+                </button>
+                <button id='zoom-out-btn' class="btn btn-circle btn-ghost">
+                    <i class="ri-zoom-out-line" />
+                </button>
+            </div>
+        </nav>
+      </header>
 
     <main
       id="viewer-root"
