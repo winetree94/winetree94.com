@@ -28,11 +28,14 @@ function applyTheme(theme: SupportedTheme) {
     const prefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)",
     ).matches;
-    html.setAttribute("data-theme", prefersDark ? "black" : "light");
+    html.dataset.theme = prefersDark ? "black" : "light";
+    html.dataset.scheme = prefersDark ? "dark" : "light";
   } else if (theme === THEME.LIGHT) {
-    html.setAttribute("data-theme", "light");
+    html.dataset.theme = "light";
+    html.dataset.scheme = THEME.LIGHT;
   } else if (theme === THEME.DARK) {
-    html.setAttribute("data-theme", "black");
+    html.dataset.theme = "black";
+    html.dataset.scheme = THEME.DARK;
   }
 }
 

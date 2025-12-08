@@ -88,11 +88,14 @@ const {
       const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)",
       ).matches;
-      html.setAttribute("data-theme", prefersDark ? "black" : "light");
+      html.dataset.theme = prefersDark ? "black" : "light";
+      html.dataset.scheme = prefersDark ? "dark" : "light";
     } else if (theme === THEME_LIGHT) {
-      html.setAttribute("data-theme", "light");
+      html.dataset.theme = "light";
+      html.dataset.scheme = "light";
     } else if (theme === THEME_DARK) {
-      html.setAttribute("data-theme", "black");
+      html.dataset.theme = "black";
+      html.dataset.scheme = "dark";
     }
   }
 

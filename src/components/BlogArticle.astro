@@ -80,11 +80,50 @@ const optimizedHTML = await optimizeGhostArticle(post.html || "");
                   data-reactions-enabled="1"
                   data-emit-metadata="0"
                   data-input-position="bottom"
-                  data-theme="preferred_color_scheme"
+                  data-theme="dark"
                   data-lang={Astro.params.lang}
                   crossorigin="anonymous"
                   async
                 />
+                <script is:inline>
+                  function changeGiscusTheme () {
+                    const theme = document.documentElement.getAttribute('data-scheme') === 'dark' ?  'dark' : 'light'
+
+                    function sendMessage(message) {
+                      const iframe = document.querySelector('iframe.giscus-frame');
+                      if (!iframe) return;
+                      iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+                    }
+
+                    sendMessage({
+                      setConfig: {
+                        theme: theme
+                      }
+                    });
+                  }
+
+                  // MutationObserver를 사용하여 data-theme 속성 변경 감지
+                  const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                        changeGiscusTheme();
+                      }
+                    });
+                  });
+
+                  // documentElement(html 태그)의 속성 변경을 감시
+                  observer.observe(document.documentElement, {
+                    attributes: true,
+                    attributeFilter: ['data-theme']
+                  });
+
+                  // 초기 테마 설정 (giscus가 로드된 후)
+                  window.addEventListener('message', (event) => {
+                    if (event.origin !== 'https://giscus.app') return;
+                    if (!(typeof event.data === 'object' && event.data.giscus)) return;
+                    changeGiscusTheme();
+                  });
+                </script>
               </div>
             )
           }
