@@ -37,14 +37,14 @@
   font-display: swap;
 }
 
-html[data-theme="light"] .shiki,
-html[data-theme="light"] .shiki span {
+html[data-scheme="light"] .shiki,
+html[data-scheme="light"] .shiki span {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg);
 }
 
-html[data-theme="black"] .shiki,
-html[data-theme="black"] .shiki span {
+html[data-scheme="dark"] .shiki,
+html[data-scheme="dark"] .shiki span {
   color: var(--shiki-dark);
   background-color: var(--shiki-dark-bg);
 }
