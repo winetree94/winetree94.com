@@ -13,6 +13,9 @@ const locales = {
 export default defineConfig({
   site: "https://winetree94.com",
   output: "static",
+  image: {
+    domains: ["cms.winetree94.com"],
+  },
   devToolbar: {
     enabled: true,
   },
