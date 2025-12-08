@@ -33,7 +33,7 @@ export const getStaticPaths = (async () => {
           },
         };
       });
-    }),
+    })
   ).then((res) => res.flat());
 
   return posts;
@@ -45,4 +45,9 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { post } = Astro.props;
 ---
 
-<BlogArticle lang={Astro.params.lang} post={post} useComments={true} />
+<BlogArticle
+  slug={Astro.params.slug}
+  lang={Astro.params.lang}
+  post={post}
+  useComments={true}
+/>
