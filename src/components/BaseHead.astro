@@ -4,7 +4,6 @@
 import "@/styles/global.css";
 import { languageInfos } from "../i18n/ui";
 import type { SupportedLanguageCodes } from "@/lib/language";
-import { ClientRouter } from "astro:transitions";
 
 interface Props {
   lang?: SupportedLanguageCodes;
@@ -65,8 +64,6 @@ const {
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(ogImageUrl, Astro.url)} />
-
-<!-- <ClientRouter /> -->
 
 <!-- <ViewTransitions /> -->
 

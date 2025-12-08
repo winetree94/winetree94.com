@@ -57,22 +57,16 @@ export async function optimizeGhostArticle(html: string) {
         const code = $code.text();
 
         try {
-          // Shiki로 하이라이팅
+          // Shiki로 하이라이팅 (light/dark 테마 모두 생성)
           const highlighted = await codeToHtml(code, {
             lang: lang,
-            theme: "github-light", // 원하는 테마로 변경 가능
-            transformers: [
-              {
-                name: "line-numbers",
-                line(node, line) {
-                  node.properties["data-line"] = line;
-                  this.addClassToHast(node, "line");
-                },
-                code(node) {
-                  node.properties["data-line-numbers"] = "";
-                },
-              },
-            ],
+            themes: {
+              light: "github-light",
+              dark: "github-dark",
+            },
+            defaultColor: false,
+            // CSS 변수를 사용하여 테마 전환
+            cssVariablePrefix: "--shiki-",
           });
 
           // 기존 <pre> 태그를 하이라이팅된 HTML로 교체
