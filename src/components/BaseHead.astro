@@ -4,6 +4,7 @@
 import "@/styles/global.css";
 import { languageInfos } from "../i18n/ui";
 import type { SupportedLanguageCodes } from "@/lib/language";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   lang?: SupportedLanguageCodes;
@@ -65,37 +66,36 @@ const {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(ogImageUrl, Astro.url)} />
 
+<ClientRouter />
+
 <!-- <ViewTransitions /> -->
+
 <script is:inline>
   // Theme management script
-  const THEME_KEY = 'theme-preference';
-  const THEME_AUTO = 'auto';
-  const THEME_LIGHT = 'light';
-  const THEME_DARK = 'dark';
+  const THEME_KEY = "theme-preference";
+  const THEME_AUTO = "auto";
+  const THEME_LIGHT = "light";
+  const THEME_DARK = "dark";
 
   function getThemePreference() {
-    if (typeof localStorage !== 'undefined') {
+    if (typeof localStorage !== "undefined") {
       return localStorage.getItem(THEME_KEY) || THEME_AUTO;
     }
     return THEME_AUTO;
-  }
-
-  function setThemePreference(theme) {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(THEME_KEY, theme);
-    }
   }
 
   function applyTheme(theme) {
     const html = document.documentElement;
 
     if (theme === THEME_AUTO) {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      html.setAttribute('data-theme', prefersDark ? 'black' : 'light');
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      html.setAttribute("data-theme", prefersDark ? "black" : "light");
     } else if (theme === THEME_LIGHT) {
-      html.setAttribute('data-theme', 'light');
+      html.setAttribute("data-theme", "light");
     } else if (theme === THEME_DARK) {
-      html.setAttribute('data-theme', 'black');
+      html.setAttribute("data-theme", "black");
     }
   }
 
@@ -105,10 +105,17 @@ const {
 
   // Listen for system theme changes when in auto mode
   if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (getThemePreference() === THEME_AUTO) {
-        applyTheme(THEME_AUTO);
-      }
-    });
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        if (getThemePreference() === THEME_AUTO) {
+          applyTheme(THEME_AUTO);
+        }
+      });
   }
+
+  document.addEventListener("astro:after-swap", () => {
+    const currentTheme = getThemePreference();
+    applyTheme(currentTheme);
+  });
 </script>

@@ -2,6 +2,7 @@
 import { useTranslation } from "@/i18n/utils";
 import { ghost } from "@/lib/ghost";
 import { LOCALE_INFO, type SupportedLanguageCodes } from "@/lib/language";
+import { ThemeSwitcher } from "./react/ThemeSwitcher";
 
 type Props = {
   lang: SupportedLanguageCodes;
@@ -14,7 +15,6 @@ const tags = await ghost.tags.browse({
 
 const t = useTranslation(Astro.props.lang);
 ---
-
 
 <div class="drawer">
   <input id="global-drawer" type="checkbox" class="drawer-toggle" />
@@ -67,41 +67,15 @@ const t = useTranslation(Astro.props.lang);
           <div class="divider m-0 p-0"></div>
 
           <!-- Theme Toggle -->
-          <div class="dropdown dropdown-top">
-            <div
-              tabindex="0"
-              role="button"
-              class="btn btn-ghost w-full font-medium justify-start"
-            >
-              <i class="ri-contrast-2-line"></i>
-              <span id="theme-label">
-                  {t('theme')}
-              </span>
-            </div>
-            <ul
-              tabindex="-1"
-              class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
-            >
-              <li>
-                <button data-theme-toggle="auto" class="justify-start">
-                  <i class="ri-computer-line"></i>
-                   {t('theme.auto')}
-                </button>
-              </li>
-              <li>
-                <button data-theme-toggle="light" class="justify-start">
-                  <i class="ri-sun-line"></i>
-                  {t('theme.light')}
-                </button>
-              </li>
-              <li>
-                <button data-theme-toggle="dark" class="justify-start">
-                  <i class="ri-moon-line"></i>
-                  {t('theme.dark')}
-                </button>
-              </li>
-            </ul>
-          </div>
+          <ThemeSwitcher
+            client:only
+            labels={{
+              theme: t("theme"),
+              light: t("theme.light"),
+              dark: t("theme.dark"),
+              auto: t("theme.auto"),
+            }}
+          />
 
           <!-- Language Toggle -->
           <div class="dropdown dropdown-top">
@@ -131,41 +105,3 @@ const t = useTranslation(Astro.props.lang);
     </div>
   </div>
 </div>
-
-<style>
-  [data-theme-toggle].active {
-    background-color: oklch(var(--bc) / 0.1);
-    font-weight: 600;
-  }
-</style>
-
-<script is:inline>
-  // Handle theme toggle clicks
-  document.addEventListener('DOMContentLoaded', () => {
-    const themeButtons = document.querySelectorAll('[data-theme-toggle]');
-
-    themeButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const theme = button.getAttribute('data-theme-toggle');
-        setThemePreference(theme);
-        applyTheme(theme);
-        updateActiveTheme(theme);
-      });
-    });
-
-    // Set initial active state
-    updateActiveTheme(currentTheme);
-  });
-
-  function updateActiveTheme(theme) {
-    const themeButtons = document.querySelectorAll('[data-theme-toggle]');
-    themeButtons.forEach(button => {
-      const buttonTheme = button.getAttribute('data-theme-toggle');
-      if (buttonTheme === theme) {
-        button.classList.add('active');
-      } else {
-        button.classList.remove('active');
-      }
-    });
-  }
-</script>
