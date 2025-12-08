@@ -33,7 +33,7 @@ export const getStaticPaths = (async () => {
           },
         };
       });
-    })
+    }),
   ).then((res) => res.flat());
 
   return posts;

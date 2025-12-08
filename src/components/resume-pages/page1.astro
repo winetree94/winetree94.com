@@ -10,11 +10,11 @@ type Props = {
 const t = useTranslation(Astro.props.lang);
 ---
 
-<div class="flex flex-col w-full h-full justify-center text-left">
+<div class="flex h-full w-full flex-col justify-center text-left">
   <div class="flex flex-row">
-    <div class="shrink-0 flex justify-center flex-col items-center">
+    <div class="flex shrink-0 flex-col items-center justify-center">
       <img
-        class="rounded-full profile-image max-w-[150px] min-w-[150px] min-h-[150px] max-h-[150px]"
+        class="profile-image max-h-[150px] min-h-[150px] max-w-[150px] min-w-[150px] rounded-full"
         src="/photos/profile.jpg"
         alt="Profile Image"
       />
@@ -34,7 +34,7 @@ const t = useTranslation(Astro.props.lang);
         </p>
       </div>
     </div>
-    <div class="flex flex-col ml-8 mt-0 justify-center">
+    <div class="mt-0 ml-8 flex flex-col justify-center">
       <h4 class="text-xl">{t("about.title")}</h4>
       <p class="mt-4">
         <Fragment set:html={t("about.description")} />
@@ -42,7 +42,7 @@ const t = useTranslation(Astro.props.lang);
     </div>
   </div>
 
-  <div class="flex flex-col mt-8">
+  <div class="mt-8 flex flex-col">
     <Skills lang={Astro.props.lang} />
   </div>
 </div>

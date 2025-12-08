@@ -20,7 +20,7 @@ const t = useTranslation(Astro.props.lang);
   {
     opensourceExperience.map((exp) => (
       <div class="p-3">
-        <div class="flex justify-between flex-row">
+        <div class="flex flex-row justify-between">
           <div>
             <h2 class="text-3xl">{t(exp.projectName)}</h2>
             <p class="text-sm">
@@ -42,9 +42,9 @@ const t = useTranslation(Astro.props.lang);
           </div>
         </div>
         <p class="mt-4">{t(exp.description)}</p>
-        <ul class="list-disc list-inside mt-2">
+        <ul class="mt-2 list-inside list-disc">
           {exp.features.map((feature) => (
-            <li class="list-outside ml-6">{t(feature)}</li>
+            <li class="ml-6 list-outside">{t(feature)}</li>
           ))}
         </ul>
       </div>

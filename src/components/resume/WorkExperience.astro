@@ -14,23 +14,23 @@ const props = Astro.props as Props;
 const t = useTranslation(Astro.props.lang);
 ---
 
-<h3 id="experience" class="text-2xl font-bold text-left">
+<h3 id="experience" class="text-left text-2xl font-bold">
   {t("about.experience")}
 </h3>
 <IndentLine end={props.indentEnd} class="h-full">
-  <div class="list-disc list-inside flex flex-col gap-4 text-left">
+  <div class="flex list-inside list-disc flex-col gap-4 text-left">
     {
       props.workExperience.map((exp) => (
-        <div class="p-3 rounded-lg">
-          <div class="flex justify-between flex-row">
+        <div class="rounded-lg p-3">
+          <div class="flex flex-row justify-between">
             <div>
-              <h2 class="text-3xl flex flex-row items-center">
+              <h2 class="flex flex-row items-center text-3xl">
                 {t(exp.companyName)}
-                <span class="text-sm text-neutral-700 ml-2">
+                <span class="ml-2 text-sm text-neutral-700">
                   based in {t(exp.country)}
                 </span>
               </h2>
-              <p class="text-sm mt-0">
+              <p class="mt-0 text-sm">
                 <i class="ri-group-line" />
                 {t(exp.position)}
               </p>
@@ -40,18 +40,18 @@ const t = useTranslation(Astro.props.lang);
               {t(exp.period)}
             </span>
           </div>
-          <div class="flex flex-col mt-8 gap-8">
+          <div class="mt-8 flex flex-col gap-8">
             {exp.projects.map((project) => (
               <div class="flex flex-row">
-                <div class="w-1/4 mr-8 wrap-break-word">
+                <div class="mr-8 w-1/4 wrap-break-word">
                   <h5 class="text-lg break-keep">{t(project.title)}</h5>
                   <p class="text-sm">{t(project.period)}</p>
                 </div>
-                <div class="flex-1 mt-0">
+                <div class="mt-0 flex-1">
                   <p>{t(project.description)}</p>
-                  <ul class="list-disc list-inside mt-2">
+                  <ul class="mt-2 list-inside list-disc">
                     {project.goals.map((desc) => (
-                      <li class="list-outside ml-6">{t(desc)}</li>
+                      <li class="ml-6 list-outside">{t(desc)}</li>
                     ))}
                   </ul>
                 </div>

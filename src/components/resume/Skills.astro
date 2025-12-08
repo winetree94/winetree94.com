@@ -21,10 +21,10 @@ const t = useTranslation(Astro.props.lang);
   </div>
   <div class="mt-8">
     <h3 class="text-2xl">{t("about.qualifications.frontend")}</h3>
-    <ul class="list-disc list-inside mt-2">
+    <ul class="mt-2 list-inside list-disc">
       {
         [1, 2, 3, 4, 5, 6, 7].map((idx) => (
-          <li class="list-outside ml-6">
+          <li class="ml-6 list-outside">
             {t(`about.qualifications.frontend.${idx}`)}
           </li>
         ))
@@ -33,10 +33,10 @@ const t = useTranslation(Astro.props.lang);
   </div>
   <div class="mt-8">
     <h3 class="text-2xl">{t("about.qualifications.others")}</h3>
-    <ul class="list-disc list-inside mt-2">
+    <ul class="mt-2 list-inside list-disc">
       {
         [1, 2, 3].map((idx) => (
-          <li class="list-outside ml-6">
+          <li class="ml-6 list-outside">
             {t(`about.qualifications.others.${idx}`)}
           </li>
         ))
@@ -47,7 +47,7 @@ const t = useTranslation(Astro.props.lang);
     <h3 class="text-2xl">
       {t("about.qualifications.key_technology_keywords")}
     </h3>
-    <div class="flex gap-2 flex-wrap mt-2">
+    <div class="mt-2 flex flex-wrap gap-2">
       {
         [
           "Typescript",
@@ -60,7 +60,7 @@ const t = useTranslation(Astro.props.lang);
         ].map((badge) => (
           <div class="badge badge-soft flex gap-0">
             <img
-              class="w-4 h-4 mr-2"
+              class="mr-2 h-4 w-4"
               src={`/favicons/${badge.toLowerCase()}.png`}
               alt={`${badge} favicon`}
             />

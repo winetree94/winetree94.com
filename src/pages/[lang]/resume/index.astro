@@ -44,16 +44,16 @@ const t = useTranslation(Astro.params.lang);
   </head>
   <body>
     <BlogHeader lang={Astro.params.lang} />
-    <main class="w-[720px] max-w-[calc(100%-2em)] mx-auto px-4 mt-18 mb-16">
+    <main class="mx-auto mt-18 mb-16 w-[720px] max-w-[calc(100%-2em)] px-4">
       <div class="flex flex-col sm:flex-row">
-        <div class="shrink-0 flex justify-center">
+        <div class="flex shrink-0 justify-center">
           <img
-            class="rounded-full profile-image max-w-[200px] min-w-[200px] min-h-[200px] max-h-[200px]"
+            class="profile-image max-h-[200px] min-h-[200px] max-w-[200px] min-w-[200px] rounded-full"
             src="/photos/profile.jpg"
             alt="Profile Image"
           />
         </div>
-        <div class="flex flex-col sm:ml-8 mt-8 sm:mt-0">
+        <div class="mt-8 flex flex-col sm:mt-0 sm:ml-8">
           <h5 class="text-lg">{t("about.title")}</h5>
           <p class="mt-4">
             <Fragment set:html={t("about.description")} />
@@ -62,7 +62,7 @@ const t = useTranslation(Astro.params.lang);
           </p>
           {
             Astro.params.lang === "ko" && (
-              <p class="text-right mt-4">
+              <p class="mt-4 text-right">
                 <a
                   class="text-blue-400"
                   href={`/${Astro.params.lang}/resume/pdf/`}
@@ -74,35 +74,35 @@ const t = useTranslation(Astro.params.lang);
           }
         </div>
       </div>
-      <div class="flex flex-col mt-16">
+      <div class="mt-16 flex flex-col">
         <h3 class="text-2xl font-bold">{t("about.jump_to")}</h3>
         <div
-          class="mt-4 flex justify-center gap-2 flex-col sm:flex-row sm:gap-4"
+          class="mt-4 flex flex-col justify-center gap-2 sm:flex-row sm:gap-4"
         >
-          <a id="jump_to_profile" class="text-blue-400 cursor-pointer">
+          <a id="jump_to_profile" class="cursor-pointer text-blue-400">
             {t("about.profile")}
           </a>
-          <a id="jump_to_qualifications" class="text-blue-400 cursor-pointer">
+          <a id="jump_to_qualifications" class="cursor-pointer text-blue-400">
             {t("about.qualifications")}
           </a>
-          <a id="jump_to_experience" class="text-blue-400 cursor-pointer">
+          <a id="jump_to_experience" class="cursor-pointer text-blue-400">
             {t("about.experience")}
           </a>
-          <a id="jump_to_open_source" class="text-blue-400 cursor-pointer">
+          <a id="jump_to_open_source" class="cursor-pointer text-blue-400">
             {t("about.open_source")}
           </a>
         </div>
       </div>
 
-      <div class="flex flex-col mt-16">
+      <div class="mt-16 flex flex-col">
         <Profiles lang={Astro.params.lang} />
       </div>
 
-      <div class="flex flex-col mt-16">
+      <div class="mt-16 flex flex-col">
         <Skills lang={Astro.params.lang} />
       </div>
 
-      <div class="flex flex-col mt-16">
+      <div class="mt-16 flex flex-col">
         <WorkExperience
           lang={Astro.params.lang}
           indentEnd={true}
@@ -110,7 +110,7 @@ const t = useTranslation(Astro.params.lang);
         />
       </div>
 
-      <div class="flex flex-col mt-16">
+      <div class="mt-16 flex flex-col">
         <OpenSource
           lang={Astro.params.lang}
           opensourceExperience={OPEN_SOURCE}

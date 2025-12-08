@@ -89,7 +89,7 @@ const {
 
     if (theme === THEME_AUTO) {
       const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
+        "(prefers-color-scheme: dark)",
       ).matches;
       html.setAttribute("data-theme", prefersDark ? "black" : "light");
     } else if (theme === THEME_LIGHT) {

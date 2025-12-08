@@ -16,10 +16,10 @@ const t = useTranslation(Astro.props.lang);
   <p>
     {t("about.profile.description")}
   </p>
-  <ul class="list-disc list-inside mt-4">
+  <ul class="mt-4 list-inside list-disc">
     {
       PERSONAL_LINKS.map((link) => (
-        <li class="list-outside ml-6">
+        <li class="ml-6 list-outside">
           <a class="text-blue-400" href={link.url} target="_blank">
             {link.name}
           </a>
