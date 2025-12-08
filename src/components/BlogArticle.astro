@@ -27,7 +27,7 @@ type Props = {
 };
 
 const { post } = Astro.props;
-const highlightedHTML = await optimizeGhostArticle(post.html || "");
+const optimizedHTML = await optimizeGhostArticle(post.html || "");
 ---
 
 <html lang={Astro.params.lang}>
@@ -45,7 +45,7 @@ const highlightedHTML = await optimizeGhostArticle(post.html || "");
     <main class="w-full max-w-full">
       <article>
         <Image
-          class="w-full max-w-full aspect-video object-cover max-h-120"
+          class="w-full aspect-21/9 object-cover max-w-7xl mx-auto"
           src={post.feature_image!}
           alt="featured image"
           inferSize={true}
@@ -62,7 +62,7 @@ const highlightedHTML = await optimizeGhostArticle(post.html || "");
             <div class="divider"></div>
           </div>
           <GhostPost>
-            <Fragment set:html={highlightedHTML} />
+            <Fragment set:html={optimizedHTML} />
           </GhostPost>
           {
             Astro.props.useComments && (
