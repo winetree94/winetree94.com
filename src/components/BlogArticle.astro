@@ -3,10 +3,11 @@ import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
 import Footer from "@/components/Footer.astro";
 import GhostPost from "@/components/GhostPost.astro";
-import { highlightGhostHTML } from "@/lib/highlight";
 import type { SupportedLanguageCodes } from "@/lib/language";
 import type { PostOrPage } from "@tryghost/content-api";
 import TextDate from "./TextDate.astro";
+import { optimizeGhostArticle } from "@/lib/ghost-article";
+import { Image } from "astro:assets";
 
 type Props = {
   /**
@@ -26,7 +27,7 @@ type Props = {
 };
 
 const { post } = Astro.props;
-const highlightedHTML = await highlightGhostHTML(post.html || "");
+const highlightedHTML = await optimizeGhostArticle(post.html || "");
 ---
 
 <html lang={Astro.params.lang}>
@@ -43,9 +44,11 @@ const highlightedHTML = await highlightGhostHTML(post.html || "");
     <BlogHeader lang={Astro.props.lang} />
     <main class="w-full max-w-full">
       <article>
-        <img
+        <Image
           class="w-full max-w-full aspect-video object-cover max-h-120"
-          src={post.feature_image}
+          src={post.feature_image!}
+          alt="featured image"
+          inferSize={true}
         />
         <div class="max-w-[720px] m-auto px-4">
           <div class:list={["text-center py-4 flex flex-col mt-4"]}>

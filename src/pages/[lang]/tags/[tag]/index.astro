@@ -12,6 +12,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 import Footer from "@/components/Footer.astro";
 import TextDate from "@/components/TextDate.astro";
 import { useTranslation } from "@/i18n/utils";
+import { Image } from "astro:assets";
 
 export const getStaticPaths = (async () => {
   const tags = await ghost.tags.browse({
@@ -90,12 +91,12 @@ const t = useTranslation(Astro.params.lang);
                     class="flex flex-col"
                     href={`/${Astro.params.lang}/article/${post.slug.slice(3)}/`}
                   >
-                    <img
+                    <Image
                       class="rounded-xl aspect-video object-cover"
-                      width={720}
-                      height={360}
-                      src={post.feature_image}
-                      alt=""
+                      width={480}
+                      height={270}
+                      src={post.feature_image!}
+                      alt="featured image"
                     />
                     <h6 class="title mt-4">{post.title}</h6>
                     <p class="date">
