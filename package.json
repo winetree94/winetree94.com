@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "npx wrangler@latest deploy"
+    "deploy": "npx wrangler@latest deploy",
+    "lint:fix": "eslint --fix \"src/**/*.{js,ts,astro}\""
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -34,8 +35,20 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@typescript-eslint/parser": "^8.48.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.5.0",
     "pagefind": "^1.4.0",
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "sirv": "^2.0.4",
+    "typescript-eslint": "^8.48.1",
     "vite": "^5.4.21"
   }
 }

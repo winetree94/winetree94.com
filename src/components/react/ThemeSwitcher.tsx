@@ -1,18 +1,20 @@
 import { useState } from "react";
 
-const THEME_KEY = 'theme-preference';
+const THEME_KEY = "theme-preference";
 
 const THEME = {
-  AUTO: 'auto',
-  LIGHT: 'light',
-  DARK: 'dark',
+  AUTO: "auto",
+  LIGHT: "light",
+  DARK: "dark",
 } as const;
 
-export type SupportedTheme = typeof THEME[keyof typeof THEME];
+export type SupportedTheme = (typeof THEME)[keyof typeof THEME];
 
 function getThemePreference() {
-  return localStorage.getItem(THEME_KEY) as SupportedTheme | undefined
-    || THEME.AUTO;
+  return (
+    (localStorage.getItem(THEME_KEY) as SupportedTheme | undefined) ||
+    THEME.AUTO
+  );
 }
 
 function setThemePreference(theme: SupportedTheme) {
@@ -24,7 +26,7 @@ function applyTheme(theme: SupportedTheme) {
 
   if (theme === THEME.AUTO) {
     const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
+      "(prefers-color-scheme: dark)",
     ).matches;
     html.setAttribute("data-theme", prefersDark ? "black" : "light");
   } else if (theme === THEME.LIGHT) {
@@ -34,7 +36,9 @@ function applyTheme(theme: SupportedTheme) {
   }
 }
 
-export const ThemeSwitcher = ({ labels }: {
+export const ThemeSwitcher = ({
+  labels,
+}: {
   labels: {
     theme: string;
     auto: string;
@@ -44,18 +48,18 @@ export const ThemeSwitcher = ({ labels }: {
 }) => {
   const [theme, setTheme] = useState(getThemePreference());
 
-  const updateTheme = (theme: 'auto' | 'light' | 'dark') => {
+  const updateTheme = (theme: "auto" | "light" | "dark") => {
     setTheme(theme);
     setThemePreference(theme);
     applyTheme(theme);
-  }
+  };
 
   return (
     <div className="dropdown dropdown-top">
       <div
         tabIndex={0}
         role="button"
-        className="btn btn-ghost w-full font-medium justify-start"
+        className="btn btn-ghost w-full justify-start font-medium"
       >
         <i className="ri-contrast-2-line"></i>
         <span id="theme-label">{labels.theme}</span>
@@ -67,10 +71,10 @@ export const ThemeSwitcher = ({ labels }: {
         <li>
           <button
             className={[
-              'justify-start',
-              theme === 'auto' ? 'font-bold' : ''
-            ].join(' ')}
-            onClick={() => updateTheme('auto')}
+              "justify-start",
+              theme === "auto" ? "font-bold" : "",
+            ].join(" ")}
+            onClick={() => updateTheme("auto")}
           >
             <i className="ri-computer-line"></i>
             {labels.auto}
@@ -79,10 +83,10 @@ export const ThemeSwitcher = ({ labels }: {
         <li>
           <button
             className={[
-              'justify-start',
-              theme === 'light' ? 'font-bold' : ''
-            ].join(' ')}
-            onClick={() => updateTheme('light')}
+              "justify-start",
+              theme === "light" ? "font-bold" : "",
+            ].join(" ")}
+            onClick={() => updateTheme("light")}
           >
             <i className="ri-sun-line"></i>
             {labels.light}
@@ -91,10 +95,10 @@ export const ThemeSwitcher = ({ labels }: {
         <li>
           <button
             className={[
-              'justify-start',
-              theme === 'dark' ? 'font-bold' : ''
-            ].join(' ')}
-            onClick={() => updateTheme('dark')}
+              "justify-start",
+              theme === "dark" ? "font-bold" : "",
+            ].join(" ")}
+            onClick={() => updateTheme("dark")}
           >
             <i className="ri-moon-line"></i>
             {labels.dark}

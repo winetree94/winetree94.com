@@ -43,10 +43,10 @@ export const getStaticPaths = (async () => {
               posts: tagPosts,
             },
           };
-        })
+        }),
       ).then((res) => res.flat());
       return langPosts;
-    })
+    }),
   ).then((res) => res.flat());
 
   return posts;
@@ -68,8 +68,8 @@ const t = useTranslation(Astro.params.lang);
   </head>
   <body>
     <BlogHeader lang={Astro.params.lang} />
-    <main class="w-full flex justify-center mt-18">
-      <article class="flex flex-col max-w-[720px] w-full px-4">
+    <main class="mt-18 flex w-full justify-center">
+      <article class="flex w-full max-w-[720px] flex-col px-4">
         {
           t(`tags.${Astro.props.tag.slug}.title`) && (
             <div class="flex flex-col items-center justify-center gap-4">
@@ -84,7 +84,7 @@ const t = useTranslation(Astro.params.lang);
         }
         {
           Astro.props.posts.length ? (
-            <ul class="flex flex-wrap gap-8 list-none mt-8">
+            <ul class="mt-8 flex list-none flex-wrap gap-8">
               {Astro.props.posts.map((post) => (
                 <li class="w-full sm:w-[calc(50%-1rem)]">
                   <a
@@ -92,7 +92,7 @@ const t = useTranslation(Astro.params.lang);
                     href={`/${Astro.params.lang}/article/${post.slug.slice(3)}/`}
                   >
                     <Image
-                      class="rounded-xl aspect-video object-cover w-full"
+                      class="aspect-video w-full rounded-xl object-cover"
                       width={480}
                       height={270}
                       src={post.feature_image!}

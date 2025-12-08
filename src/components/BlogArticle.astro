@@ -45,13 +45,13 @@ const optimizedHTML = await optimizeGhostArticle(post.html || "");
     <main class="w-full max-w-full">
       <article>
         <Image
-          class="w-full aspect-video object-cover max-w-7xl mx-auto"
+          class="mx-auto aspect-video w-full max-w-7xl object-cover"
           src={post.feature_image!}
           alt="featured image"
           inferSize={true}
         />
-        <div class="max-w-[720px] m-auto px-4">
-          <div class:list={["text-center py-4 flex flex-col mt-4"]}>
+        <div class="m-auto max-w-[720px] px-4">
+          <div class:list={["mt-4 flex flex-col py-4 text-center"]}>
             <h1 class="text-4xl">{Astro.props.post.title}</h1>
             <div class="py-4">
               <TextDate
