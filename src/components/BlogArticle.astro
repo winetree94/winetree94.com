@@ -3,13 +3,14 @@ import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
 import Footer from "@/components/Footer.astro";
 import GhostPost from "@/components/GhostPost.astro";
-import type { SupportedLanguageCodes } from "@/lib/language";
+import { LOCALE_INFO, type SupportedLanguageCodes } from "@/lib/language";
 import type { PostOrPage } from "@tryghost/content-api";
 import TextDate from "./TextDate.astro";
 import { optimizeGhostArticle } from "@/lib/ghost-article";
 import { Image } from "astro:assets";
 import Gtm from "./Gtm.astro";
 import ArticleAuthor from "./ArticleAuthor.astro";
+import { useTranslation } from "@/i18n/utils";
 
 type Props = {
   /**
@@ -22,10 +23,17 @@ type Props = {
    */
   post: PostOrPage;
 
+  alternativePosts: {
+    post: PostOrPage;
+    lang: SupportedLanguageCodes;
+  }[];
+
   /**
    * Slug for the article, used for comments mapping
    */
   slug: string;
+
+  usePublishedDate?: boolean;
 
   useAuthor?: boolean;
 
@@ -36,7 +44,9 @@ type Props = {
 };
 
 const { post } = Astro.props;
+const alternativePosts = Astro.props.alternativePosts.filter(post => post.lang !== Astro.props.lang);
 const optimizedHTML = await optimizeGhostArticle(post.html || "");
+const t = useTranslation(Astro.props.lang);
 ---
 
 <html lang={Astro.params.lang}>
@@ -55,7 +65,7 @@ const optimizedHTML = await optimizeGhostArticle(post.html || "");
     <main class="w-full max-w-full">
       <article>
         <Image
-          class="mx-auto aspect-video w-full max-h-120 object-cover"
+          class="mx-auto aspect-video w-full max-h-80 object-cover"
           src={post.feature_image!}
           alt="featured image"
           inferSize={true}
@@ -63,12 +73,29 @@ const optimizedHTML = await optimizeGhostArticle(post.html || "");
         <div class="m-auto max-w-[720px] px-4">
           <div class:list={["mt-4 flex flex-col py-4 text-center"]}>
             <h1 class="text-4xl">{Astro.props.post.title}</h1>
-            <div class="py-4">
-              <TextDate
-                lang={Astro.props.lang}
-                date={Astro.props.post.published_at!}
-              />
-            </div>
+            {Astro.props.usePublishedDate && (
+              <div class="mt-2">
+                <TextDate
+                  lang={Astro.props.lang}
+                  date={Astro.props.post.published_at!}
+                />
+              </div>
+            )}
+            {alternativePosts.length > 0 && (
+              <div class="flex justify-end text-sm items-center mt-8">
+                {t('article.alternative-language-available')}
+                <div class="flex gap-2 ml-1">
+                  {alternativePosts.map((post) => (
+                    <a
+                      class:list={["badge badge-neutral badge-ghost text-sm"]}
+                      href={`${Astro.url.pathname.replace(`/${Astro.props.lang}/`, `/${post.lang}/`)}`}
+                    >
+                      {LOCALE_INFO[post.lang].nativeName}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
             <div class="divider"></div>
           </div>
           <GhostPost>
@@ -102,8 +129,8 @@ const optimizedHTML = await optimizeGhostArticle(post.html || "");
                   async
                 />
                 <script is:inline>
-                  function changeGiscusTheme () {
-                    const theme = document.documentElement.getAttribute('data-scheme') === 'dark' ?  'dark' : 'light'
+                  function changeGiscusTheme() {
+                    const theme = document.documentElement.getAttribute('data-scheme') === 'dark' ? 'dark' : 'light';
 
                     function sendMessage(message) {
                       const iframe = document.querySelector('iframe.giscus-frame');

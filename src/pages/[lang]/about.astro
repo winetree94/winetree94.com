@@ -5,25 +5,31 @@ import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import BlogArticle from "@/components/BlogArticle.astro";
 
 export const getStaticPaths = (async () => {
-  const res = await Promise.all(
-    Object.values(SUPPORTED_LANGUAGES).map(async (lang) => {
-      const page = await ghost.pages.read({
-        slug: `${lang}-else`,
-      });
-      if (!page) {
-        throw new Error(`Page not found for language ${lang}`);
-      }
-      return {
-        props: {
+  const nativePages = await Promise.all(
+    Object.values(SUPPORTED_LANGUAGES).map((lang) =>
+      ghost.pages
+        .read({
+          slug: `${lang}-else`,
+        })
+        .then((page) => ({
           page: page,
-        },
-        params: {
+          slug: page.slug.replace(`${lang}-`, ""),
           lang: lang,
-        },
-      };
-    }),
+        })),
+    ),
   );
-  return res.flat();
+
+  return nativePages.map((page) => {
+    return {
+      props: {
+        page: page.page,
+        alternativePages: nativePages,
+      },
+      params: {
+        lang: page.lang,
+      },
+    };
+  });
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
@@ -34,4 +40,9 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
   slug={"else"}
   lang={Astro.params.lang}
   post={Astro.props.page}
+  alternativePosts={Astro.props.alternativePages.map((page) => ({
+    slug: page.slug,
+    lang: page.lang,
+    post: page.page,
+  }))}
 />

@@ -163,5 +163,6 @@
   "theme.auto": "자동",
   "theme.light": "밝은 색상",
   "theme.dark": "어두운 색상",
-  "author.introduction": "웹 프론트엔드 엔지니어이자 방구석 데브옵스 엔지니어입니다.<br>꾸준한 블로거이고 싶지만 그러기엔 너무 게으릅니다."
+  "author.introduction": "웹 프론트엔드 엔지니어이자 방구석 데브옵스 엔지니어입니다.<br>꾸준한 블로거이고 싶은데 그러기엔 너무 게을러요.",
+  "article.alternative-language-available": "이 글은 다른 언어로도 볼 수 있어요"
 }

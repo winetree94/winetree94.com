@@ -5,38 +5,65 @@ import type {
   InferGetStaticParamsType,
   InferGetStaticPropsType,
 } from "astro";
-import { SUPPORTED_LANGUAGES } from "@/lib/language";
+import {
+  SUPPORTED_LANGUAGES,
+  type SupportedLanguageCodes,
+} from "@/lib/language";
 import BlogArticle from "@/components/BlogArticle.astro";
+import type { PostOrPage } from "@tryghost/content-api";
 
 export const getStaticPaths = (async () => {
   const langs = Object.values(SUPPORTED_LANGUAGES);
 
   const posts = await Promise.all(
-    langs.map(async (lang) => {
-      const langPosts = await ghost.posts.browse({
+    langs.map(async (code) => {
+      const nativePosts = await ghost.posts.browse({
         limit: 100,
-        filter: `tag:${lang}`,
+        filter: `tag:${code}`,
       });
 
-      if (!langPosts) {
-        throw new Error("Post not found");
-      }
-
-      return langPosts.map((post) => {
-        return {
-          params: {
-            lang: lang,
-            slug: post.slug.replace(`${lang}-`, ""),
-          },
-          props: {
-            post: post,
-          },
-        };
+      const filteredPosts = nativePosts.filter((post) => {
+        return langs.some((code) => post.slug.startsWith(`${code}-`));
       });
+
+      return filteredPosts.map((post) => ({
+        post: post,
+        slug: post.slug.replace(`${code}-`, ""),
+        lang: code,
+      }));
     }),
-  ).then((res) => res.flat());
+  ).then((posts) => {
+    return posts.flat();
+  });
 
-  return posts;
+  const postsBySlug = posts.reduce(
+    (acc, post) => {
+      if (!acc[post.slug]) {
+        acc[post.slug] = [];
+      }
+      acc[post.slug].push(post);
+      return acc;
+    },
+    {} as Record<
+      string,
+      {
+        post: PostOrPage;
+        slug: string;
+        lang: SupportedLanguageCodes;
+      }[]
+    >,
+  );
+
+  return posts.map((post) => ({
+    params: {
+      lang: post.lang,
+      slug: post.slug,
+    },
+    props: {
+      post: post.post,
+      alternativePosts: postsBySlug[post.slug],
+    },
+  }));
 }) satisfies GetStaticPaths;
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
@@ -49,6 +76,8 @@ const { post } = Astro.props;
   slug={Astro.params.slug}
   lang={Astro.params.lang}
   post={post}
+  alternativePosts={Astro.props.alternativePosts}
+  usePublishedDate={true}
   useAuthor={true}
   useComments={true}
 />
