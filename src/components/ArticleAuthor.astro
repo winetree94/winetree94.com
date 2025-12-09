@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import ProfileImage from "@/assets/profile.jpg"
+import {
+  LINKS,
+  OWNER_NAME
+} from "@/consts";
+import { useTranslation } from "@/i18n/utils";
+import type { SupportedLanguageCodes } from "@/lib/language";
+
+type Props = {
+  lang: SupportedLanguageCodes;
+}
+
+const t = useTranslation(Astro.props.lang);
+---
+
+<div class="flex justify-center">
+  <div class="bg-base-200 rounded-2xl p-6 flex gap-6 max-w-[80%] overflow-hidden items-center">
+    <Image class:list={["rounded-full w-30 h-30 shrink"]} src={ProfileImage} alt='author profile image' />
+    <div class="flex flex-col gap-2 flex-1">
+      <span class="text-xl font-bold">
+        {OWNER_NAME}
+      </span>
+      <p class="flex-1">
+        <Fragment set:html={t("author.introduction")} />
+      </p>
+      <div class="flex justify-end gap-2 mt-2">
+        <a
+          class="btn btn-circle font-medium text-lg"
+          href={LINKS.GITHUB}
+          target="_blank"
+        >
+          <i class="ri-github-line"></i>
+        </a>
+        <a
+          class="btn btn-circle font-medium text-lg"
+          href={`mailto: ${LINKS.EMAIL}`}
+          target="_blank"
+        >
+          <i class="ri-mail-line"></i>
+        </a>
+        <a
+          class="btn btn-circle font-medium text-lg"
+          href={LINKS.NPM}
+          target="_blank"
+        >
+          <i class="ri-npmjs-line"></i>
+        </a>
+        <a
+          class="btn btn-circle font-medium text-lg"
+          href={LINKS.LINKEDIN}
+          target="_blank"
+        >
+          <i class="ri-linkedin-box-line"></i>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>

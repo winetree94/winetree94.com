@@ -9,6 +9,7 @@ import TextDate from "./TextDate.astro";
 import { optimizeGhostArticle } from "@/lib/ghost-article";
 import { Image } from "astro:assets";
 import Gtm from "./Gtm.astro";
+import ArticleAuthor from "./ArticleAuthor.astro";
 
 type Props = {
   /**
@@ -71,6 +72,9 @@ const optimizedHTML = await optimizeGhostArticle(post.html || "");
           <GhostPost>
             <Fragment set:html={optimizedHTML} />
           </GhostPost>
+          <div class="mt-12">
+            <ArticleAuthor lang={Astro.props.lang} />
+          </div>
           {
             Astro.props.useComments && (
               <div class="mt-16">
