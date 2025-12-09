@@ -162,5 +162,6 @@
   "theme.auto": "Auto",
   "theme.light": "Light",
   "theme.dark": "Dark",
-  "author.introduction": "Web frontend engineer. Bedroom DevOps engineer.<br>I'd love to blog consistently, but let's be real—I'm way too lazy for that."
+  "author.introduction": "Web frontend engineer. Bedroom DevOps engineer.<br>I'd love to blog consistently, but let's be real—I'm way too lazy for that.",
+  "article.alternative-language-available": "This article is also available in other languages."
 }
