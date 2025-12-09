@@ -1,11 +1,7 @@
 ---
 import { ghost } from "@/lib/ghost";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
-import type {
-  GetStaticPaths,
-  InferGetStaticParamsType,
-  InferGetStaticPropsType,
-} from "astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import BlogArticle from "@/components/BlogArticle.astro";
 
 export const getStaticPaths = (async () => {
@@ -30,7 +26,6 @@ export const getStaticPaths = (async () => {
   return res.flat();
 }) satisfies GetStaticPaths;
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 ---
 
