@@ -34,4 +34,9 @@ type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 ---
 
-<BlogArticle slug={'else'} lang={Astro.params.lang} post={Astro.props.page} />
+<BlogArticle
+  useAuthor={false}
+  slug={"else"}
+  lang={Astro.params.lang}
+  post={Astro.props.page}
+/>
