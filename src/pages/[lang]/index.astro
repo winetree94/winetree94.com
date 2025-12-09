@@ -13,11 +13,7 @@ import {
 } from "@/consts";
 import { useTranslation } from "@/i18n/utils";
 import { LOCALE_INFO, SUPPORTED_LANGUAGES } from "@/lib/language";
-import type {
-  GetStaticPaths,
-  InferGetStaticParamsType,
-  InferGetStaticPropsType,
-} from "astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import Gtm from "@/components/Gtm.astro";
 
 export const getStaticPaths = (async () => {
@@ -28,7 +24,7 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+// type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const t = useTranslation(Astro.params.lang);
@@ -38,11 +34,13 @@ const description = SITE_DESCRIPTIONS[Astro.params.lang];
 const image = SITE_IMAGES[Astro.params.lang];
 
 const keywords = [
+  "WEB",
   "FRONTEND",
-  "OPEN SOURCE",
+  "OPENSOURCE",
+  "ONPREMISE",
   "LINUX",
   "DEVOPS",
-  "CLOUD NATIVE",
+  "CLOUDNATIVE",
   "KUBERNETES",
 ];
 ---
@@ -63,18 +61,20 @@ const keywords = [
     <main
       class="mx-auto flex w-[720px] max-w-[calc(100%-2em)] flex-1 flex-col items-center justify-center px-4 py-12"
     >
-      <img
-        class="mb-4 h-[200px] w-[200px] rounded-full"
-        src="/photos/profile.jpg"
-        alt=""
-      />
-
-      <span class={`text-rotate text-5xl duration-4000`}>
+      <span class={`text-rotate text-8xl duration-3000`}>
         <span class="justify-items-center">
           {keywords.map((keyword) => <span>{keyword}</span>)}
         </span>
       </span>
-      <p class="mt-4 text-center">
+      <div class="mt-6 flex items-center gap-2">
+        <img
+          class="avatar h-4 w-4 rounded-full"
+          src="/photos/profile.jpg"
+          alt=""
+        />
+        <span>winetree94</span>
+      </div>
+      <p class="mt-2 text-center">
         <Fragment set:html={t("home.introduction")} />
       </p>
       <div class="mt-4 flex gap-4">
