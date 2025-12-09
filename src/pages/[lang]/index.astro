@@ -3,13 +3,10 @@ import BaseHead from "@/components/BaseHead.astro";
 import Footer from "@/components/Footer.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
 import {
-  EMAIL,
-  GITHUB_URL,
-  LINKEDIN_URL,
-  NPM_URL,
   SITE_DESCRIPTIONS,
   SITE_IMAGES,
   SITE_TITLES,
+  LINKS
 } from "@/consts";
 import { useTranslation } from "@/i18n/utils";
 import { LOCALE_INFO, SUPPORTED_LANGUAGES } from "@/lib/language";
@@ -66,42 +63,42 @@ const keywords = [
           {keywords.map((keyword) => <span>{keyword}</span>)}
         </span>
       </span>
-      <div class="mt-6 flex items-center gap-2">
+      <p class="text-center mt-6">
+        <Fragment set:html={t('home.introduction')} />
+      </p>
+      <div class="mt-8 flex items-center gap-2">
         <img
-          class="avatar h-4 w-4 rounded-full"
+          class="avatar h-6 w-6 rounded-full"
           src="/photos/profile.jpg"
           alt=""
         />
-        <span>winetree94</span>
+        <span class="text">winetree94</span>
       </div>
-      <p class="mt-2 text-center">
-        <Fragment set:html={t("home.introduction")} />
-      </p>
       <div class="mt-4 flex gap-4">
         <a
-          class="btn btn-circle btn-ghost font-medium"
-          href={GITHUB_URL}
+          class="btn btn-circle font-medium text-lg"
+          href={LINKS.GITHUB}
           target="_blank"
         >
           <i class="ri-github-line"></i>
         </a>
         <a
-          class="btn btn-circle btn-ghost font-medium"
-          href={`mailto: ${EMAIL}`}
+          class="btn btn-circle font-medium text-lg"
+          href={`mailto: ${LINKS.EMAIL}`}
           target="_blank"
         >
           <i class="ri-mail-line"></i>
         </a>
         <a
-          class="btn btn-circle btn-ghost font-medium"
-          href={NPM_URL}
+          class="btn btn-circle font-medium text-lg"
+          href={LINKS.NPM}
           target="_blank"
         >
           <i class="ri-npmjs-line"></i>
         </a>
         <a
-          class="btn btn-circle btn-ghost font-medium"
-          href={LINKEDIN_URL}
+          class="btn btn-circle font-medium text-lg"
+          href={LINKS.LINKEDIN}
           target="_blank"
         >
           <i class="ri-linkedin-box-line"></i>

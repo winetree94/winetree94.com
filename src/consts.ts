@@ -255,9 +255,14 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
 ];
 
+export const OWNER_NAME = "winetree94";
+
+export const LINKS = {
+  GITHUB: "https://github.com/winetree94",
+  NPM: "https://www.npmjs.com/~winetree94",
+  LINKEDIN: "https://www.linkedin.com/in/winetree94",
+  EMAIL: "me@winetree94.com"
+}
+
 export const SITE_TITLE = "winetree94";
 export const SITE_DESCRIPTION = "winetree94 world";
-export const GITHUB_URL = "https://github.com/winetree94";
-export const NPM_URL = "https://www.npmjs.com/~winetree94";
-export const LINKEDIN_URL = "https://www.linkedin.com/in/winetree94";
-export const EMAIL = "me@winetree94.com";
