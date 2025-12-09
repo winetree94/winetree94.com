@@ -36,7 +36,7 @@
   "editor.defaultFormatter": "biomejs.biome",
 
   "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
   "[javascript][typescript][typescriptreact][json][jsonc]": {

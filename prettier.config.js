@@ -6,6 +6,7 @@ const config = {
   printWidth: 80,
   useTabs: false,
   tabWidth: 2,
+  trailingComma: "all",
   plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
   overrides: [
     {
