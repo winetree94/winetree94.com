@@ -2,12 +2,7 @@
 import BaseHead from "@/components/BaseHead.astro";
 import Footer from "@/components/Footer.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
-import {
-  SITE_DESCRIPTIONS,
-  SITE_IMAGES,
-  SITE_TITLES,
-  LINKS
-} from "@/consts";
+import { SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES, LINKS } from "@/consts";
 import { useTranslation } from "@/i18n/utils";
 import { LOCALE_INFO, SUPPORTED_LANGUAGES } from "@/lib/language";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
@@ -64,7 +59,7 @@ const keywords = [
         </span>
       </span>
       <p class="text-center mt-6">
-        <Fragment set:html={t('home.introduction')} />
+        <Fragment set:html={t("home.introduction")} />
       </p>
       <div class="mt-8 flex items-center gap-2">
         <img
