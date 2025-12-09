@@ -13,6 +13,7 @@ import Footer from "@/components/Footer.astro";
 import TextDate from "@/components/TextDate.astro";
 import { useTranslation } from "@/i18n/utils";
 import { Image } from "astro:assets";
+import Gtm from "@/components/Gtm.astro";
 
 export const getStaticPaths = (async () => {
   const tags = await ghost.tags.browse({
@@ -67,6 +68,7 @@ const t = useTranslation(Astro.params.lang);
     />
   </head>
   <body>
+    <Gtm />
     <BlogHeader lang={Astro.params.lang} />
     <main class="mt-18 flex w-full justify-center">
       <article class="flex w-full max-w-[720px] flex-col px-4">

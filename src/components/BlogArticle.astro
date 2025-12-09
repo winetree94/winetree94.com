@@ -8,6 +8,7 @@ import type { PostOrPage } from "@tryghost/content-api";
 import TextDate from "./TextDate.astro";
 import { optimizeGhostArticle } from "@/lib/ghost-article";
 import { Image } from "astro:assets";
+import Gtm from "./Gtm.astro";
 
 type Props = {
   /**
@@ -46,6 +47,7 @@ const optimizedHTML = await optimizeGhostArticle(post.html || "");
   </head>
 
   <body>
+    <Gtm />
     <BlogHeader lang={Astro.props.lang} />
     <main class="w-full max-w-full">
       <article>

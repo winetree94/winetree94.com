@@ -19,6 +19,7 @@ import type {
 import WorkExperience from "@/components/resume/WorkExperience.astro";
 import OpenSource from "@/components/resume/OpenSource.astro";
 import Footer from "@/components/Footer.astro";
+import Gtm from "@/components/Gtm.astro";
 
 export const getStaticPaths = (async () => {
   return Object.values(SUPPORTED_LANGUAGES).map((lang) => ({
@@ -43,6 +44,7 @@ const t = useTranslation(Astro.params.lang);
     />
   </head>
   <body>
+    <Gtm />
     <BlogHeader lang={Astro.params.lang} />
     <main class="mx-auto mt-18 mb-16 w-[720px] max-w-[calc(100%-2em)] px-4">
       <div class="flex flex-col sm:flex-row">

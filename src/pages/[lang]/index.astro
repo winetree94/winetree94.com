@@ -18,6 +18,7 @@ import type {
   InferGetStaticParamsType,
   InferGetStaticPropsType,
 } from "astro";
+import Gtm from "@/components/Gtm.astro";
 
 export const getStaticPaths = (async () => {
   return Object.values(SUPPORTED_LANGUAGES).map((lang) => ({
@@ -57,6 +58,7 @@ const keywords = [
     />
   </head>
   <body class="flex h-dvh w-full flex-col">
+    <Gtm />
     <BlogHeader lang={Astro.params.lang} />
     <main
       class="mx-auto flex w-[720px] max-w-[calc(100%-2em)] flex-1 flex-col items-center justify-center px-4 py-12"

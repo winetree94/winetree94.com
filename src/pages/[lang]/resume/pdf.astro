@@ -12,6 +12,7 @@ import Page1 from "@/components/resume-pages/page1.astro";
 import Page2 from "@/components/resume-pages/page2.astro";
 import Page3 from "@/components/resume-pages/page3.astro";
 import Page4 from "@/components/resume-pages/page4.astro";
+import Gtm from "@/components/Gtm.astro";
 
 export const getStaticPaths = (async () => {
   return Object.values(SUPPORTED_LANGUAGES).map((lang) => ({
@@ -39,6 +40,7 @@ const image = SITE_IMAGES[Astro.params.lang];
     />
   </head>
   <body class="m-0 flex flex-col overflow-y-scroll bg-black/80 p-0">
+    <Gtm />
     <header
       class={`w-full h-14 shadow print:hidden z-30 fixed top-0 left-0 bg-base-100`}
     >
