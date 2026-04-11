@@ -12,7 +12,6 @@ test("theme choice persists after reload", async ({ page }) => {
   await page.getByRole("button", { name: "Dark" }).click();
 
   await expect(page.locator("html")).toHaveAttribute("data-theme", "black");
-  await expect(page.locator("html")).toHaveAttribute("data-scheme", "dark");
   await expect
     .poll(() => page.evaluate(() => localStorage.getItem("theme-preference")))
     .toBe("dark");
@@ -20,7 +19,6 @@ test("theme choice persists after reload", async ({ page }) => {
   await page.reload();
 
   await expect(page.locator("html")).toHaveAttribute("data-theme", "black");
-  await expect(page.locator("html")).toHaveAttribute("data-scheme", "dark");
 });
 
 test.describe("auto theme", () => {
@@ -36,6 +34,5 @@ test.describe("auto theme", () => {
     await page.goto("/en/");
 
     await expect(page.locator("html")).toHaveAttribute("data-theme", "black");
-    await expect(page.locator("html")).toHaveAttribute("data-scheme", "dark");
   });
 });

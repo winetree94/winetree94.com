@@ -50,7 +50,6 @@ describe("ThemeSwitcher", () => {
 
     expect(window.localStorage.getItem("theme-preference")).toBe("dark");
     expect(document.documentElement).toHaveAttribute("data-theme", "black");
-    expect(document.documentElement).toHaveAttribute("data-scheme", "dark");
     expect(screen.getByRole("button", { name: "Dark" })).toHaveClass(
       "font-bold",
     );
@@ -76,6 +75,40 @@ describe("ThemeSwitcher", () => {
 
     expect(window.localStorage.getItem("theme-preference")).toBe("auto");
     expect(document.documentElement).toHaveAttribute("data-theme", "black");
-    expect(document.documentElement).toHaveAttribute("data-scheme", "dark");
+  });
+
+  it("applies the light theme on click and persists it", async () => {
+    mockMatchMedia(true);
+    const user = userEvent.setup();
+
+    render(<ThemeSwitcher labels={labels} />);
+    await user.click(screen.getByRole("button", { name: "Light" }));
+
+    expect(window.localStorage.getItem("theme-preference")).toBe("light");
+    expect(document.documentElement).toHaveAttribute("data-theme", "light");
+    expect(screen.getByRole("button", { name: "Light" })).toHaveClass(
+      "font-bold",
+    );
+    expect(screen.getByRole("button", { name: "Dark" })).not.toHaveClass(
+      "font-bold",
+    );
+  });
+
+  it("switches back to auto after choosing a manual theme", async () => {
+    mockMatchMedia(false);
+    const user = userEvent.setup();
+
+    render(<ThemeSwitcher labels={labels} />);
+    await user.click(screen.getByRole("button", { name: "Dark" }));
+    await user.click(screen.getByRole("button", { name: "Auto" }));
+
+    expect(window.localStorage.getItem("theme-preference")).toBe("auto");
+    expect(document.documentElement).toHaveAttribute("data-theme", "light");
+    expect(screen.getByRole("button", { name: "Auto" })).toHaveClass(
+      "font-bold",
+    );
+    expect(screen.getByRole("button", { name: "Dark" })).not.toHaveClass(
+      "font-bold",
+    );
   });
 });

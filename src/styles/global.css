@@ -5,9 +5,8 @@
   themes:
     light --default,
     black --prefersdark;
+  exclude: radialprogress, properties;
 }
-
-@custom-variant print (@media print);
 
 @font-face {
   font-family: "Agave";
@@ -33,14 +32,14 @@
   font-display: swap;
 }
 
-html[data-scheme="light"] .shiki,
-html[data-scheme="light"] .shiki span {
+html[data-theme="light"] .shiki,
+html[data-theme="light"] .shiki span {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg);
 }
 
-html[data-scheme="dark"] .shiki,
-html[data-scheme="dark"] .shiki span {
+html[data-theme="black"] .shiki,
+html[data-theme="black"] .shiki span {
   color: var(--shiki-dark);
   background-color: var(--shiki-dark-bg);
 }

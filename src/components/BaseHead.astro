@@ -102,13 +102,10 @@ const {
         "(prefers-color-scheme: dark)",
       ).matches;
       html.dataset.theme = prefersDark ? "black" : "light";
-      html.dataset.scheme = prefersDark ? "dark" : "light";
     } else if (theme === THEME_LIGHT) {
       html.dataset.theme = "light";
-      html.dataset.scheme = "light";
     } else if (theme === THEME_DARK) {
       html.dataset.theme = "black";
-      html.dataset.scheme = "dark";
     }
   }
 

@@ -29,13 +29,10 @@ function applyTheme(theme: SupportedTheme) {
       "(prefers-color-scheme: dark)",
     ).matches;
     html.dataset.theme = prefersDark ? "black" : "light";
-    html.dataset.scheme = prefersDark ? "dark" : "light";
   } else if (theme === THEME.LIGHT) {
     html.dataset.theme = "light";
-    html.dataset.scheme = THEME.LIGHT;
   } else if (theme === THEME.DARK) {
     html.dataset.theme = "black";
-    html.dataset.scheme = THEME.DARK;
   }
 }
 
