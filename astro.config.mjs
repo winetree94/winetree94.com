@@ -1,6 +1,6 @@
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
 const defaultLocale = "en";
@@ -13,9 +13,6 @@ const locales = {
 export default defineConfig({
   site: "https://winetree94.com",
   output: "static",
-  image: {
-    domains: ["cms.winetree94.com"],
-  },
   devToolbar: {
     enabled: true,
   },
@@ -32,15 +29,6 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
-  },
-  env: {
-    schema: {
-      GHOST_API_KEY: envField.string({
-        context: "server",
-        access: "secret",
-        optional: false,
-      }),
-    },
   },
   integrations: [
     // mdx({}),
