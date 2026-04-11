@@ -10,6 +10,11 @@
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "npx wrangler@latest deploy",
+    "test": "vitest",
+    "test:unit": "vitest run --project unit",
+    "test:component": "vitest run --project browser",
+    "test:e2e": "playwright test",
+    "test:ci": "pnpm test:unit && pnpm test:component && pnpm test:e2e",
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
     "format": "biome format --write --css-parse-tailwind-directives=true ."
@@ -31,8 +36,17 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.11",
+    "@playwright/test": "^1.59.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "vite": "^5.4.21"
+    "@vitest/browser": "^3.2.4",
+    "playwright": "^1.59.1",
+    "sharp": "^0.34.5",
+    "vite": "^5.4.21",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^3.2.4"
   }
 }
