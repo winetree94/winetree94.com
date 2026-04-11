@@ -1,7 +1,8 @@
 import tsconfigPaths from "vite-tsconfig-paths";
-import { defineProject, defineWorkspace } from "vitest/config";
+import { playwright } from "@vitest/browser-playwright";
+import { defineProject } from "vitest/config";
 
-export default defineWorkspace([
+export default [
   defineProject({
     plugins: [tsconfigPaths()],
     test: {
@@ -31,10 +32,10 @@ export default defineWorkspace([
       include: ["src/components/react/**/*.test.tsx"],
       browser: {
         enabled: true,
-        provider: "playwright",
+        provider: playwright(),
         headless: true,
         instances: [{ browser: "chromium" }],
       },
     },
   }),
-]);
+];

@@ -7,11 +7,7 @@
     black --prefersdark;
 }
 
-/* Tailwind v4 Custom Variables */
-@theme {
-  /* Screens */
-  --breakpoint-print: print;
-}
+@custom-variant print (@media print);
 
 @font-face {
   font-family: "Agave";

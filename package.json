@@ -9,7 +9,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "npx wrangler@latest deploy",
+    "deploy": "wrangler deploy",
     "test": "vitest",
     "test:unit": "vitest run --project unit",
     "test:component": "vitest run --project browser",
@@ -20,19 +20,19 @@
     "format": "biome format --write --css-parse-tailwind-directives=true ."
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/react": "4.4.2",
-    "@astrojs/rss": "^4.0.14",
-    "@astrojs/sitemap": "3.6.0",
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/react": "5.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "3.7.2",
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.16.6",
-    "daisyui": "^5.5.14",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "remixicon": "^4.7.0",
-    "tailwindcss": "^4.1.17",
-    "typescript": "^5.9.3"
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.5",
+    "daisyui": "^5.5.19",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "remixicon": "^4.9.1",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.11",
@@ -40,13 +40,15 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "@vitest/browser": "^3.2.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitest/browser": "^4.1.4",
+    "@vitest/browser-playwright": "4.1.4",
     "playwright": "^1.59.1",
     "sharp": "^0.34.5",
-    "vite": "^5.4.21",
+    "vite": "^8.0.8",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.4",
+    "wrangler": "4.81.1"
   }
 }
