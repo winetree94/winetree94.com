@@ -9,7 +9,7 @@ import {
   SITE_TITLE,
   WORK_EXPERIENCE,
 } from "@/consts";
-import { useTranslation } from "@/i18n/utils";
+import { getTranslation } from "@/i18n/utils";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
 import type { GetStaticPaths } from "astro";
 import WorkExperience from "@/components/resume/WorkExperience.astro";
@@ -25,7 +25,7 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-const t = useTranslation(Astro.params.lang);
+const t = getTranslation(Astro.params.lang);
 ---
 
 <html lang={Astro.params.lang}>
@@ -45,7 +45,7 @@ const t = useTranslation(Astro.params.lang);
           <img
             class="profile-image max-h-[200px] min-h-[200px] max-w-[200px] min-w-[200px] rounded-full"
             src="/photos/profile.jpg"
-            alt="Profile Image"
+            alt="Profile"
           />
         </div>
         <div class="mt-8 flex flex-col sm:mt-0 sm:ml-8">
@@ -122,17 +122,17 @@ const t = useTranslation(Astro.params.lang);
       }
 
       document
-        .getElementById("jump_to_profile")!
-        .addEventListener("click", () => scrollTo("profile"));
+        .getElementById("jump_to_profile")
+        ?.addEventListener("click", () => scrollTo("profile"));
       document
-        .getElementById("jump_to_qualifications")!
-        .addEventListener("click", () => scrollTo("qualifications"));
+        .getElementById("jump_to_qualifications")
+        ?.addEventListener("click", () => scrollTo("qualifications"));
       document
-        .getElementById("jump_to_experience")!
-        .addEventListener("click", () => scrollTo("experience"));
+        .getElementById("jump_to_experience")
+        ?.addEventListener("click", () => scrollTo("experience"));
       document
-        .getElementById("jump_to_open_source")!
-        .addEventListener("click", () => scrollTo("open_source"));
+        .getElementById("jump_to_open_source")
+        ?.addEventListener("click", () => scrollTo("open_source"));
     </script>
   </body>
 </html>

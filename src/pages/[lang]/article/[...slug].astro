@@ -2,13 +2,22 @@
 import { render } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import BlogArticle from "@/components/BlogArticle.astro";
-import { getAllArticles, getArticleAlternatives } from "@/lib/content";
+import {
+  getAllArticles,
+  getArticleAlternatives,
+  type ArticleEntry,
+} from "@/lib/content";
+
+type Props = {
+  entry: ArticleEntry;
+  alternativeEntries: ArticleEntry[];
+};
 
 export const getStaticPaths = (async () => {
-  const articles = (await getAllArticles()) as any[];
+  const articles = await getAllArticles();
 
   return Promise.all(
-    articles.map(async (entry: any) => ({
+    articles.map(async (entry) => ({
       params: {
         lang: entry.data.lang,
         slug: entry.data.routeSlug,
@@ -24,7 +33,7 @@ export const getStaticPaths = (async () => {
   );
 }) satisfies GetStaticPaths;
 
-const { entry, alternativeEntries } = Astro.props as any;
+const { entry, alternativeEntries } = Astro.props as Props;
 const { Content } = await render(entry);
 ---
 

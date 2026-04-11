@@ -2,14 +2,25 @@
 import { render } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import BlogArticle from "@/components/BlogArticle.astro";
-import { getAllPages, getPageAlternatives } from "@/lib/content";
+import {
+  getAllPages,
+  getPageAlternatives,
+  type PageEntry,
+} from "@/lib/content";
+
+type Props = {
+  entry: PageEntry;
+  alternativeEntries: PageEntry[];
+};
 
 export const getStaticPaths = (async () => {
-  const pages = (await getAllPages()) as any[];
-  const aboutPages = pages.filter((page: any) => page.data.routeSlug === "about");
+  const pages = await getAllPages();
+  const aboutPages = pages.filter(
+    (page) => page.data.routeSlug === "about",
+  );
 
   return Promise.all(
-    aboutPages.map(async (entry: any) => ({
+    aboutPages.map(async (entry) => ({
       props: {
         entry,
         alternativeEntries: await getPageAlternatives(
@@ -24,7 +35,7 @@ export const getStaticPaths = (async () => {
   );
 }) satisfies GetStaticPaths;
 
-const { entry, alternativeEntries } = Astro.props as any;
+const { entry, alternativeEntries } = Astro.props as Props;
 const { Content } = await render(entry);
 ---
 

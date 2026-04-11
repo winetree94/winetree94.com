@@ -1,7 +1,7 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
 import { SITE_IMAGES } from "@/consts";
-import { useTranslation } from "@/i18n/utils";
+import { getTranslation } from "@/i18n/utils";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
 import type { GetStaticPaths } from "astro";
 import Page1 from "@/components/resume-pages/page1.astro";
@@ -18,7 +18,7 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-const t = useTranslation(Astro.params.lang);
+const t = getTranslation(Astro.params.lang);
 const image = SITE_IMAGES[Astro.params.lang];
 ---
 
@@ -40,39 +40,53 @@ const image = SITE_IMAGES[Astro.params.lang];
       <nav class="mx-auto flex h-full items-center justify-between px-4 py-1">
         <div class="flex items-center">
           <button
+            type="button"
             onclick="history.back()"
             class="btn btn-circle btn-ghost font-medium"
           >
             <i class="ri-arrow-left-line"></i>
+            <span class="sr-only">Go back</span>
           </button>
           <a
             href={`/${Astro.params.lang}/`}
             class="btn btn-circle btn-ghost font-medium"
           >
             <i class="ri-home-line"></i>
+            <span class="sr-only">Go home</span>
           </a>
         </div>
         <div class="flex h-full items-center">
           <button
+            type="button"
             onclick="window.print()"
             class="btn btn-circle btn-ghost font-medium"
           >
             <i class="ri-printer-line"></i>
+            <span class="sr-only">Print</span>
           </button>
           <button
+            type="button"
             id="fullscreen-btn"
             class="btn btn-circle btn-ghost font-medium"
           >
             <i class="ri-fullscreen-line"></i>
-          </button>
-          <button id="zoom-in-btn" class="btn btn-circle btn-ghost font-medium">
-            <i class="ri-zoom-in-line"></i>
+            <span class="sr-only">Fit to screen</span>
           </button>
           <button
+            type="button"
+            id="zoom-in-btn"
+            class="btn btn-circle btn-ghost font-medium"
+          >
+            <i class="ri-zoom-in-line"></i>
+            <span class="sr-only">Zoom in</span>
+          </button>
+          <button
+            type="button"
             id="zoom-out-btn"
             class="btn btn-circle btn-ghost font-medium"
           >
             <i class="ri-zoom-out-line"></i>
+            <span class="sr-only">Zoom out</span>
           </button>
         </div>
       </nav>
@@ -107,23 +121,23 @@ const image = SITE_IMAGES[Astro.params.lang];
       const MIN_ZOOM_LEVEL = 0.25;
 
       // editor elements
-      const VIEWER_ROOT = document.querySelector(
-        "#viewer-root",
-      )! as HTMLDivElement;
-      const ZOOM_CONTAINER = document.querySelector(
-        "#zoom-container",
-      )! as HTMLDivElement;
+      const VIEWER_ROOT = document.querySelector("#viewer-root");
+      const ZOOM_CONTAINER = document.querySelector("#zoom-container");
 
       // buttons
-      const FULLSCREEN_BTN = document.querySelector(
-        "#fullscreen-btn",
-      )! as HTMLButtonElement;
-      const ZOOM_IN_BTN = document.querySelector(
-        "#zoom-in-btn",
-      )! as HTMLButtonElement;
-      const ZOOM_OUT_BTN = document.querySelector(
-        "#zoom-out-btn",
-      )! as HTMLButtonElement;
+      const FULLSCREEN_BTN = document.querySelector("#fullscreen-btn");
+      const ZOOM_IN_BTN = document.querySelector("#zoom-in-btn");
+      const ZOOM_OUT_BTN = document.querySelector("#zoom-out-btn");
+
+      if (
+        !(VIEWER_ROOT instanceof HTMLDivElement) ||
+        !(ZOOM_CONTAINER instanceof HTMLDivElement) ||
+        !(FULLSCREEN_BTN instanceof HTMLButtonElement) ||
+        !(ZOOM_IN_BTN instanceof HTMLButtonElement) ||
+        !(ZOOM_OUT_BTN instanceof HTMLButtonElement)
+      ) {
+        throw new Error("Resume viewer controls are missing from the page.");
+      }
 
       const ORIGIN_CONTENT_WIDTH = ZOOM_CONTAINER.offsetWidth;
       const ORIGIN_CONTENT_HEIGHT = ZOOM_CONTAINER.offsetHeight;
@@ -143,7 +157,7 @@ const image = SITE_IMAGES[Astro.params.lang];
         );
         ZOOM_IN_BTN.disabled = targetValue === MAX_ZOOM_LEVEL;
         ZOOM_OUT_BTN.disabled = targetValue === MIN_ZOOM_LEVEL;
-        const screen = document.querySelector("body")!;
+        const screen = document.body;
         const screenWidth = screen.offsetWidth;
         const screenMatchedScale = Math.max(
           Math.min(screenWidth / ORIGIN_CONTENT_WIDTH, MAX_ZOOM_LEVEL),
@@ -162,7 +176,7 @@ const image = SITE_IMAGES[Astro.params.lang];
       };
 
       const matchWithScreen = () => {
-        const screen = document.querySelector("body")!;
+        const screen = document.body;
         const screenWidth = screen.offsetWidth;
         const scale = screenWidth / ORIGIN_CONTENT_WIDTH;
         setScale(scale);

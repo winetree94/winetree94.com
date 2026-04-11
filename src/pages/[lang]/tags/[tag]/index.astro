@@ -2,21 +2,34 @@
 import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
 import type { GetStaticPaths } from "astro";
-import { SUPPORTED_LANGUAGES } from "@/lib/language";
+import {
+  SUPPORTED_LANGUAGES,
+  type SupportedLanguageCodes,
+} from "@/lib/language";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 import Footer from "@/components/Footer.astro";
 import TextDate from "@/components/TextDate.astro";
 import { TRANSLATIONS } from "@/i18n";
 import Gtm from "@/components/Gtm.astro";
-import { getArticlesByTag, getTagPages } from "@/lib/content";
+import {
+  getArticlesByTag,
+  getTagPages,
+  type ArticleEntry,
+  type TagEntry,
+} from "@/lib/content";
+
+type Props = {
+  tag: TagEntry;
+  posts: ArticleEntry[];
+};
 
 export const getStaticPaths = (async () => {
-  const tags = (await getTagPages()) as any[];
+  const tags = await getTagPages();
   const langs = Object.values(SUPPORTED_LANGUAGES);
 
   return Promise.all(
     langs.flatMap((lang) =>
-      tags.map(async (tag: any) => ({
+      tags.map(async (tag) => ({
         params: {
           lang,
           tag: tag.data.slug,
@@ -29,9 +42,11 @@ export const getStaticPaths = (async () => {
     ),
   );
 }) satisfies GetStaticPaths;
-const { tag, posts } = Astro.props as any;
+const { tag, posts } = Astro.props as Props;
 const tagTranslation = tag.data.translations[Astro.params.lang];
-const t = (key: string) => TRANSLATIONS[Astro.params.lang][key];
+const t = (key: string) => {
+  return TRANSLATIONS[Astro.params.lang as SupportedLanguageCodes][key];
+};
 ---
 
 <!doctype html>
@@ -59,7 +74,7 @@ const t = (key: string) => TRANSLATIONS[Astro.params.lang][key];
         {
           posts.length ? (
             <ul class="mt-8 flex list-none flex-wrap gap-8">
-              {(posts as any[]).map((post) => (
+              {posts.map((post) => (
                 <li class="w-full sm:w-[calc(50%-1rem)]">
                   <a
                     class="flex flex-col"
