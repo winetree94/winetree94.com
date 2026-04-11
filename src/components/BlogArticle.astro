@@ -4,57 +4,51 @@ import BlogHeader from "@/components/BlogHeader.astro";
 import Footer from "@/components/Footer.astro";
 import GhostPost from "@/components/GhostPost.astro";
 import { LOCALE_INFO, type SupportedLanguageCodes } from "@/lib/language";
-import type { PostOrPage } from "@tryghost/content-api";
+import type { ArticleEntry, PageEntry } from "@/lib/content";
 import TextDate from "./TextDate.astro";
-import { optimizeGhostArticle } from "@/lib/ghost-article";
-import { Image } from "astro:assets";
 import Gtm from "./Gtm.astro";
 import ArticleAuthor from "./ArticleAuthor.astro";
 import { useTranslation } from "@/i18n/utils";
 
 type Props = {
-  /**
-   * Language code
-   */
   lang: SupportedLanguageCodes;
-
-  /**
-   * A Ghost Post or Page object
-   */
-  post: PostOrPage;
-
-  alternativePosts: {
-    post: PostOrPage;
-    lang: SupportedLanguageCodes;
-  }[];
-
-  /**
-   * Slug for the article, used for comments mapping
-   */
+  entry: ArticleEntry | PageEntry;
+  alternativeEntries: Array<
+    | {
+        lang: SupportedLanguageCodes;
+      }
+    | ArticleEntry
+    | PageEntry
+  >;
   slug: string;
-
   usePublishedDate?: boolean;
-
   useAuthor?: boolean;
-
-  /**
-   * Whether to use comments section
-   */
   useComments?: boolean;
 };
 
-const { post } = Astro.props;
-const alternativePosts = Astro.props.alternativePosts.filter(post => post.lang !== Astro.props.lang);
-const optimizedHTML = await optimizeGhostArticle(post.html || "");
+const { entry } = Astro.props;
+const alternativeEntries = Astro.props.alternativeEntries
+  .map((alternativeEntry) => {
+    const lang = (
+      "lang" in alternativeEntry
+        ? alternativeEntry.lang
+        : alternativeEntry.data.lang
+    ) as SupportedLanguageCodes;
+
+    return { lang };
+  })
+  .filter((alternativeEntry) => alternativeEntry.lang !== Astro.props.lang);
+const publishedAt =
+  "publishedAt" in entry.data ? entry.data.publishedAt : undefined;
 const t = useTranslation(Astro.props.lang);
 ---
 
-<html lang={Astro.params.lang}>
+<html lang={Astro.props.lang}>
   <head>
     <BaseHead
-      title={post.title!}
-      description={post.excerpt!}
-      ogImageUrl={post.feature_image || undefined}
+      title={entry.data.title}
+      description={entry.data.excerpt || entry.data.title}
+      ogImageUrl={entry.data.featureImage}
       lang={Astro.props.lang}
     />
   </head>
@@ -64,33 +58,35 @@ const t = useTranslation(Astro.props.lang);
     <BlogHeader lang={Astro.props.lang} />
     <main class="w-full max-w-full">
       <article>
-        <Image
-          class="mx-auto aspect-video w-full max-h-80 object-cover"
-          src={post.feature_image!}
-          alt="featured image"
-          inferSize={true}
-        />
+        {entry.data.featureImage && (
+          <img
+            class="mx-auto aspect-video w-full max-h-80 object-cover"
+            src={entry.data.featureImage}
+            alt={entry.data.title}
+            loading="eager"
+          />
+        )}
         <div class="m-auto max-w-[720px] px-4">
           <div class:list={["mt-4 flex flex-col py-4 text-center"]}>
-            <h1 class="text-4xl">{Astro.props.post.title}</h1>
-            {Astro.props.usePublishedDate && (
+            <h1 class="text-4xl">{entry.data.title}</h1>
+            {Astro.props.usePublishedDate && publishedAt && (
               <div class="mt-2">
-                <TextDate
-                  lang={Astro.props.lang}
-                  date={Astro.props.post.published_at!}
-                />
+                <TextDate lang={Astro.props.lang} date={publishedAt} />
               </div>
             )}
-            {alternativePosts.length > 0 && (
-              <div class="flex justify-end text-sm items-center mt-8">
-                {t('article.alternative-language-available')}
-                <div class="flex gap-2 ml-1">
-                  {alternativePosts.map((post) => (
+            {alternativeEntries.length > 0 && (
+              <div class="mt-8 flex items-center justify-end text-sm">
+                {t("article.alternative-language-available")}
+                <div class="ml-1 flex gap-2">
+                  {alternativeEntries.map((alternativeEntry) => (
                     <a
                       class:list={["badge badge-neutral badge-ghost text-sm"]}
-                      href={`${Astro.url.pathname.replace(`/${Astro.props.lang}/`, `/${post.lang}/`)}`}
+                      href={Astro.url.pathname.replace(
+                        `/${Astro.props.lang}/`,
+                        `/${alternativeEntry.lang}/`,
+                      )}
                     >
-                      {LOCALE_INFO[post.lang].nativeName}
+                      {LOCALE_INFO[alternativeEntry.lang].nativeName}
                     </a>
                   ))}
                 </div>
@@ -99,7 +95,7 @@ const t = useTranslation(Astro.props.lang);
             <div class="divider"></div>
           </div>
           <GhostPost>
-            <Fragment set:html={optimizedHTML} />
+            <slot />
           </GhostPost>
           {Astro.props.useAuthor && (
             <div class="mt-12">
@@ -124,46 +120,55 @@ const t = useTranslation(Astro.props.lang);
                   data-emit-metadata="0"
                   data-input-position="bottom"
                   data-theme="dark"
-                  data-lang={Astro.params.lang}
+                  data-lang={Astro.props.lang}
                   crossorigin="anonymous"
                   async
                 />
                 <script is:inline>
                   function changeGiscusTheme() {
-                    const theme = document.documentElement.getAttribute('data-scheme') === 'dark' ? 'dark' : 'light';
+                    const theme =
+                      document.documentElement.getAttribute("data-scheme") ===
+                      "dark"
+                        ? "dark"
+                        : "light";
 
                     function sendMessage(message) {
-                      const iframe = document.querySelector('iframe.giscus-frame');
+                      const iframe = document.querySelector("iframe.giscus-frame");
                       if (!iframe) return;
-                      iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+                      iframe.contentWindow.postMessage(
+                        { giscus: message },
+                        "https://giscus.app",
+                      );
                     }
 
                     sendMessage({
                       setConfig: {
-                        theme: theme
-                      }
+                        theme: theme,
+                      },
                     });
                   }
 
-                  // MutationObserver를 사용하여 data-theme 속성 변경 감지
                   const observer = new MutationObserver((mutations) => {
                     mutations.forEach((mutation) => {
-                      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                      if (
+                        mutation.type === "attributes" &&
+                        mutation.attributeName === "data-theme"
+                      ) {
                         changeGiscusTheme();
                       }
                     });
                   });
 
-                  // documentElement(html 태그)의 속성 변경을 감시
                   observer.observe(document.documentElement, {
                     attributes: true,
-                    attributeFilter: ['data-theme']
+                    attributeFilter: ["data-theme"],
                   });
 
-                  // 초기 테마 설정 (giscus가 로드된 후)
-                  window.addEventListener('message', (event) => {
-                    if (event.origin !== 'https://giscus.app') return;
-                    if (!(typeof event.data === 'object' && event.data.giscus)) return;
+                  window.addEventListener("message", (event) => {
+                    if (event.origin !== "https://giscus.app") return;
+                    if (!(typeof event.data === "object" && event.data.giscus)) {
+                      return;
+                    }
                     changeGiscusTheme();
                   });
                 </script>

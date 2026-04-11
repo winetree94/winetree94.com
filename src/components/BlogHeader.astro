@@ -1,6 +1,6 @@
 ---
 import { useTranslation } from "@/i18n/utils";
-import { ghost } from "@/lib/ghost";
+import { getNavigationTags } from "@/lib/content";
 import { LOCALE_INFO, type SupportedLanguageCodes } from "@/lib/language";
 import { ThemeSwitcher } from "./react/ThemeSwitcher";
 
@@ -8,10 +8,7 @@ type Props = {
   lang: SupportedLanguageCodes;
 };
 
-const tags = await ghost.tags.browse({
-  limit: 100,
-  filter: "visibility:public",
-});
+const tags = await getNavigationTags();
 
 const t = useTranslation(Astro.props.lang);
 ---
@@ -54,9 +51,9 @@ const t = useTranslation(Astro.props.lang);
             tags.map((tag) => (
               <a
                 class="badge badge-soft"
-                href={`/${Astro.props.lang}/tags/${tag.slug}/`}
+                href={`/${Astro.props.lang}/tags/${tag.data.slug}/`}
               >
-                {tag.name}
+                {tag.data.name}
               </a>
             ))
           }

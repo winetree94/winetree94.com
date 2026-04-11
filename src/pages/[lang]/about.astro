@@ -1,48 +1,39 @@
 ---
-import { ghost } from "@/lib/ghost";
-import { SUPPORTED_LANGUAGES } from "@/lib/language";
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import { render } from "astro:content";
+import type { GetStaticPaths } from "astro";
 import BlogArticle from "@/components/BlogArticle.astro";
+import { getAllPages, getPageAlternatives } from "@/lib/content";
 
 export const getStaticPaths = (async () => {
-  const nativePages = await Promise.all(
-    Object.values(SUPPORTED_LANGUAGES).map((lang) =>
-      ghost.pages
-        .read({
-          slug: `${lang}-else`,
-        })
-        .then((page) => ({
-          page: page,
-          slug: page.slug.replace(`${lang}-`, ""),
-          lang: lang,
-        })),
-    ),
-  );
+  const pages = (await getAllPages()) as any[];
+  const aboutPages = pages.filter((page: any) => page.data.routeSlug === "about");
 
-  return nativePages.map((page) => {
-    return {
+  return Promise.all(
+    aboutPages.map(async (entry: any) => ({
       props: {
-        page: page.page,
-        alternativePages: nativePages,
+        entry,
+        alternativeEntries: await getPageAlternatives(
+          entry.data.translationKey,
+          entry.data.lang,
+        ),
       },
       params: {
-        lang: page.lang,
+        lang: entry.data.lang,
       },
-    };
-  });
+    })),
+  );
 }) satisfies GetStaticPaths;
 
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { entry, alternativeEntries } = Astro.props as any;
+const { Content } = await render(entry);
 ---
 
 <BlogArticle
   useAuthor={false}
-  slug={"else"}
+  slug={entry.data.routeSlug}
   lang={Astro.params.lang}
-  post={Astro.props.page}
-  alternativePosts={Astro.props.alternativePages.map((page) => ({
-    slug: page.slug,
-    lang: page.lang,
-    post: page.page,
-  }))}
-/>
+  entry={entry}
+  alternativeEntries={alternativeEntries}
+>
+  <Content />
+</BlogArticle>

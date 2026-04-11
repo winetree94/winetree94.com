@@ -1,0 +1,15 @@
+---
+title: "프레젠테이션을 좀 더 역동적으로!, QDocs"
+excerpt: "Qdocs"
+lang: "ko"
+routeSlug: "qdocs"
+translationKey: "qdocs"
+publishedAt: "2023-07-22T00:00:00.000+00:00"
+updatedAt: "2025-12-06T14:24:28.000+00:00"
+tags: ["project", "frontend"]
+featureImage: "/content/articles/qdocs/ko/feature-image.gif"
+commentsTerm: "qdocs"
+draft: false
+---
+
+<p></p><div class="kg-card kg-callout-card kg-callout-card-blue"><div class="kg-callout-emoji">💡</div><div class="kg-callout-text">이 프로젝트는 현재 개발중으로, 현재 공개된 링크는 제품의 컨셉을 확인하기 위한 용도입니다. 제공되는 링크나 기능은 고지 없이 변경될 수 있습니다.이 프로젝트는 현재 개발중으로, 현재 공개된 링크는 제품의 컨셉을 확인하기 위한 용도입니다. 제공되는 링크나 기능은 고지 없이 변경될 수 있습니다.</div></div><p><strong>Qdocs</strong>는 프레젠테이션을 좀 더 역동적으로 만들기 위한 도구입니다. 애니메이션을 장면(Scene) 단위로 관리하고 편집할 수 있습니다. 이를 통해 사용자는 프레젠테이션의 흐름을 더욱 정확하게 제어할 수 있으며, 보다 복잡한 애니메이션 동작도 쉽게 정의할 수 있습니다.</p><p>프로젝트는 <a href="https://github.com/winetree94/qdocs">Github</a> 에서 관리되며, <a href="https://qdocs.winetree94.com">Live Preview</a> 를 통해 프로젝트를 직접 사용해볼 수 있습니다. 프로젝트에 대한 자세한 정보는 <a href="https://github.com/winetree94/qdocs/wiki">WIKI</a>를 참고해주세요.</p><hr><h3 id="core-concept">Core Concept</h3><p>프레젠테이션의 목적은 한정된 시간 안에 청중의 마음을 사로잡는 일 입니다. 이를 위해선 언변도 중요하지만 청중의 눈을 집중하게 만들 수 있는 시각적인 자료 역시도 중요합니다.</p><p>그래서 제가 프레젠테이션에서 주로 사용하는 기능은 '<strong>애니메이션</strong>'입니다. 도식도나 다이어그램을 애니메이션 형태로 보여주면 청중의 이해도를 높이는 데 도움이 되기 때문입니다.</p><p>하지만 기존의 프레젠테이션 도구로는 이러한 컨텐츠를 작성하는 것은 쉽지 않습니다. 다음은 제가 실제 사내 세미나에서 발표했던 프레젠테이션 자료 중 일부입니다.</p><p>위 프레젠테이션을 표현하기 위해 사용된 애니메이션은 물체의 이동과 Fade In/Out 효과가 대부분입니다. 하지만 이를 작성하기 위해 실제 작성된 PPT 파일을 열면 아래와 같은 형태로 작성되어 있습니다.</p><figure class="kg-card kg-image-card"><img src="/content/articles/qdocs/ko/image-1.png" class="kg-image" alt="" loading="lazy" width="2000" height="1055" sizes="(min-width: 720px) 720px" decoding="async"></figure><p>우리가 사용하는 PowerPoint / Keynote 등 대부분의 도구에서, 물체의 애니메이션은 해당 페이지 내에서 한번에 관리 / 표시되도록 제공하고 있습니다. 하지만 이는 특정 '<strong>장면(Scene)</strong>'에서의 모습은 편집 과정 중 확인하기 어렵습니다. 이 때문에 조금만 애니메이션이 복잡해지더라도 수정이 어려울 정도로 UI 가 난잡해지게 됩니다.</p><p>Qdocs는 이러한 애니메이션 관리 문제를 해결하기 위해 기존의 페이지가 아닌 애니메이션의 장면을 단위로 프레젠테이션을 작성하기 위한 도구입니다.</p><p>가장 중요한 목표 중 하나는 프레젠테이션 문서에서 특정 페이지를 기준으로 문서를 수정하는 것이 아니라, 위처럼 애니메이션 장면 별로 해당 위치에서 편집이 가능하도록 만드는 것 입니다. 이러한 접근 방식은 사용자가 문서의 흐름을 정확히 알고 제어할 수 있으며, 보다 복잡한 애니메이션 동작도 쉽게 정의할 수 있게 합니다.</p>

@@ -1,0 +1,16 @@
+{
+  "slug": "blog",
+  "name": "#blog",
+  "visibility": "internal",
+  "order": 11,
+  "translations": {
+    "en": {
+      "title": "Blog",
+      "description": "Blog description"
+    },
+    "ko": {
+      "title": "블로그",
+      "description": "블로그에 대한 설명입니다."
+    }
+  }
+}

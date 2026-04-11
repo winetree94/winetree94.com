@@ -1,83 +1,41 @@
 ---
-import { ghost } from "@/lib/ghost.ts";
-import type {
-  GetStaticPaths,
-  InferGetStaticParamsType,
-  InferGetStaticPropsType,
-} from "astro";
-import {
-  SUPPORTED_LANGUAGES,
-  type SupportedLanguageCodes,
-} from "@/lib/language";
+import { render } from "astro:content";
+import type { GetStaticPaths } from "astro";
 import BlogArticle from "@/components/BlogArticle.astro";
-import type { PostOrPage } from "@tryghost/content-api";
+import { getAllArticles, getArticleAlternatives } from "@/lib/content";
 
 export const getStaticPaths = (async () => {
-  const langs = Object.values(SUPPORTED_LANGUAGES);
+  const articles = (await getAllArticles()) as any[];
 
-  const posts = await Promise.all(
-    langs.map(async (code) => {
-      const nativePosts = await ghost.posts.browse({
-        limit: 100,
-        filter: `tag:${code}`,
-      });
-
-      const filteredPosts = nativePosts.filter((post) => {
-        return langs.some((code) => post.slug.startsWith(`${code}-`));
-      });
-
-      return filteredPosts.map((post) => ({
-        post: post,
-        slug: post.slug.replace(`${code}-`, ""),
-        lang: code,
-      }));
-    }),
-  ).then((posts) => {
-    return posts.flat();
-  });
-
-  const postsBySlug = posts.reduce(
-    (acc, post) => {
-      if (!acc[post.slug]) {
-        acc[post.slug] = [];
-      }
-      acc[post.slug].push(post);
-      return acc;
-    },
-    {} as Record<
-      string,
-      {
-        post: PostOrPage;
-        slug: string;
-        lang: SupportedLanguageCodes;
-      }[]
-    >,
+  return Promise.all(
+    articles.map(async (entry: any) => ({
+      params: {
+        lang: entry.data.lang,
+        slug: entry.data.routeSlug,
+      },
+      props: {
+        entry,
+        alternativeEntries: await getArticleAlternatives(
+          entry.data.translationKey,
+          entry.data.lang,
+        ),
+      },
+    })),
   );
-
-  return posts.map((post) => ({
-    params: {
-      lang: post.lang,
-      slug: post.slug,
-    },
-    props: {
-      post: post.post,
-      alternativePosts: postsBySlug[post.slug],
-    },
-  }));
 }) satisfies GetStaticPaths;
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
-
-const { post } = Astro.props;
+const { entry, alternativeEntries } = Astro.props as any;
+const { Content } = await render(entry);
 ---
 
 <BlogArticle
-  slug={Astro.params.slug}
+  slug={entry.data.commentsTerm}
   lang={Astro.params.lang}
-  post={post}
-  alternativePosts={Astro.props.alternativePosts}
+  entry={entry}
+  alternativeEntries={alternativeEntries}
   usePublishedDate={true}
   useAuthor={true}
   useComments={true}
-/>
+>
+  <Content />
+</BlogArticle>
