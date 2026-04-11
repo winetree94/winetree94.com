@@ -33,7 +33,7 @@ alert('Hello, World!');
 Object.assign({});
 ```
 
-![](./en/image-1.png)
+![](./en/object-assign-runtime-error.png)
 
 ### Example 2
 
@@ -42,7 +42,7 @@ alert('Hello, World!');
 async function a() {}
 ```
 
-![](./en/image-2.png)
+![](./en/async-function-syntax-error.png)
 
 Both examples result in errors, but there is a significant difference between the two errors.
 
