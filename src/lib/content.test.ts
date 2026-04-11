@@ -2,10 +2,14 @@ import { getCollection } from "astro:content";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   getAllArticles,
+  getAllTags,
   getArticle,
   getArticleAlternatives,
   getArticlesByTag,
+  getPage,
+  getPageAlternatives,
   getNavigationTags,
+  getTag,
   getTagPages,
 } from "./content";
 
@@ -44,6 +48,21 @@ function createTagEntry(overrides: Record<string, unknown> = {}) {
       name: "Blog",
       order: undefined,
       visibility: "public",
+      ...overrides,
+    },
+  } as never;
+}
+
+function createPageEntry(overrides: Record<string, unknown> = {}) {
+  return {
+    id: `page-${Math.random()}`,
+    collection: "pages",
+    data: {
+      lang: "en",
+      routeSlug: "about",
+      translationKey: "about",
+      title: "About",
+      excerpt: "About page",
       ...overrides,
     },
   } as never;
@@ -146,6 +165,64 @@ describe("content helpers", () => {
     await expect(getArticlesByTag("en", "testing")).resolves.toMatchObject([
       { data: { routeSlug: "browser-tests" } },
     ]);
+  });
+
+  it("finds one page by language and route slug", async () => {
+    const pages = [
+      createPageEntry({ lang: "en", routeSlug: "about" }),
+      createPageEntry({ lang: "ko", routeSlug: "about" }),
+    ];
+
+    getCollectionMock.mockImplementation(async () => pages);
+
+    await expect(getPage("ko", "about")).resolves.toMatchObject({
+      data: { lang: "ko", routeSlug: "about" },
+    });
+  });
+
+  it("returns alternative translations for a page", async () => {
+    const pages = [
+      createPageEntry({ lang: "en", translationKey: "about" }),
+      createPageEntry({ lang: "ko", translationKey: "about" }),
+      createPageEntry({ lang: "en", translationKey: "resume" }),
+    ];
+
+    getCollectionMock.mockImplementation(async () => pages);
+
+    await expect(getPageAlternatives("about", "en")).resolves.toMatchObject([
+      { data: { lang: "ko", translationKey: "about" } },
+    ]);
+  });
+
+  it("sorts all tags by order and slug", async () => {
+    const tags = [
+      createTagEntry({ slug: "web" }),
+      createTagEntry({ slug: "blog", order: 5 }),
+      createTagEntry({ slug: "ai", order: 5 }),
+      createTagEntry({ slug: "project", order: 1 }),
+    ];
+
+    getCollectionMock.mockImplementation(async () => tags);
+
+    await expect(getAllTags()).resolves.toMatchObject([
+      { data: { slug: "project" } },
+      { data: { slug: "ai" } },
+      { data: { slug: "blog" } },
+      { data: { slug: "web" } },
+    ]);
+  });
+
+  it("finds one tag by slug", async () => {
+    const tags = [
+      createTagEntry({ slug: "blog" }),
+      createTagEntry({ slug: "project" }),
+    ];
+
+    getCollectionMock.mockImplementation(async () => tags);
+
+    await expect(getTag("project")).resolves.toMatchObject({
+      data: { slug: "project" },
+    });
   });
 
   it("sorts tag pages and excludes hidden or language tags from navigation", async () => {
