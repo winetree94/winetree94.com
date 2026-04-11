@@ -10,7 +10,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "npx wrangler@latest deploy",
-    "lint:fix": "eslint --fix \"src/**/*.{js,ts,astro}\""
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format --write --css-parse-tailwind-directives=true ."
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -28,16 +30,9 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@biomejs/biome": "^2.4.11",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "eslint": "^9.39.1",
-    "eslint-plugin-astro": "^1.5.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "prettier": "^3.7.4",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "typescript-eslint": "^8.48.1",
     "vite": "^5.4.21"
   }
 }

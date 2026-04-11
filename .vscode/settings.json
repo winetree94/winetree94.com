@@ -24,22 +24,47 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
 
-  // autocorrect lint issues on save
+  // apply biome fixes on save
   "editor.codeActionsOnSave": {
-    "quickfix.biome": "explicit",
+    "source.fixAll.biome": "explicit",
     "source.organizeImports.biome": "explicit"
-
-    // uncomment for eslint instead of biome
-    // "source.fixAll.eslint": "explicit"
   },
 
   "editor.defaultFormatter": "biomejs.biome",
 
   "[astro]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
 
-  "[javascript][typescript][typescriptreact][json][jsonc]": {
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "[css]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "[postcss]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
 
@@ -55,13 +80,7 @@
   "tailwindCSS.codeActions": true,
 
   // ensure vscode uses pnpm vs. npm
-  "npm.packageManager": "pnpm",
-  "[typescript]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-  },
-  "[postcss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  "npm.packageManager": "pnpm"
 
   // eslint options
   // @see https://github.com/microsoft/vscode-eslint/blob/main/README.md
