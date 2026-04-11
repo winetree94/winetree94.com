@@ -130,7 +130,7 @@ const image = SITE_IMAGES[Astro.params.lang];
       const ZOOM_OUT_BTN = document.querySelector("#zoom-out-btn");
 
       if (
-        !(VIEWER_ROOT instanceof HTMLDivElement) ||
+        !(VIEWER_ROOT instanceof HTMLElement) ||
         !(ZOOM_CONTAINER instanceof HTMLDivElement) ||
         !(FULLSCREEN_BTN instanceof HTMLButtonElement) ||
         !(ZOOM_IN_BTN instanceof HTMLButtonElement) ||
