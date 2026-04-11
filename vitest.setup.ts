@@ -5,6 +5,7 @@ import { afterEach, vi } from "vitest";
 afterEach(() => {
   if (typeof document !== "undefined") {
     cleanup();
+    document.body.innerHTML = "";
     delete document.documentElement.dataset.theme;
     delete document.documentElement.dataset.scheme;
   }

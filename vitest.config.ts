@@ -18,7 +18,11 @@ export default defineConfig({
           environment: "node",
           setupFiles: ["./vitest.setup.ts"],
           include: ["src/**/*.test.ts"],
-          exclude: ["src/components/react/**/*.test.tsx", "tests/**"],
+          exclude: [
+            "src/components/react/**/*.test.tsx",
+            "src/**/*.browser.test.ts",
+            "tests/**",
+          ],
         },
       },
       {
@@ -26,7 +30,10 @@ export default defineConfig({
         test: {
           name: "browser",
           setupFiles: ["./vitest.setup.ts"],
-          include: ["src/components/react/**/*.test.tsx"],
+          include: [
+            "src/components/react/**/*.test.tsx",
+            "src/**/*.browser.test.ts",
+          ],
           browser: {
             enabled: true,
             provider: playwright(),
