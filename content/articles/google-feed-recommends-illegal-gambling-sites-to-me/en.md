@@ -26,7 +26,7 @@ This article documents my investigation into how scam sites are exposed in our r
 
 ## _Understanding How Scam Sites Operate_
 
-![](./en/image-1.png)
+![](./en/scam-site-desktop-access-failure.png)
 
 To understand how these scam sites operate, I first tried accessing the site using developer tools to check its HTML structure and JavaScript behavior. However, these scam sites were inaccessible via desktop browsers. They also couldn’t be accessed in any environment other than the Google feed. Here’s what I encountered in various environments:
 
@@ -38,7 +38,7 @@ To understand how these scam sites operate, I first tried accessing the site usi
 
 Although the URLs were identical in all situations, access was only possible via the Google feed, indicating that the server was likely configured to block requests from regular browsers.
 
-![](./en/image-2.png)
+![](./en/scam-site-browser-filtering-diagram.png)
 
 ---
 
@@ -62,7 +62,7 @@ I soon realized these methods wouldn’t work due to SSL certificate mismatches 
 
 Finally, I tried using remote debugging with an Android VM and the Chrome browser. This way, I could access the network requests through the remote debugging feature.
 
-![](./en/image-3.png)
+![](./en/android-remote-debugging-network-inspection.png)
 
 This method worked perfectly. Using the developer tools, I obtained the `curl` command of the request that successfully accessed the scam site. Here is the command:
 
@@ -111,7 +111,7 @@ The returned HTML was very simple. The code merely redirects the current page to
 
 It became clear that the server returns scam content specifically to Google feed users.
 
-![](./en/image-4.png)
+![](./en/google-feed-user-redirect-flow.png)
 
 ---
 
@@ -147,7 +147,7 @@ When a crawler visits, the scam site likely returns the following normal HTML co
 
 Now, the scam site has completely deceived everyone. It has become highly ranked in Google, recommended to users, and then redirects them to illegal gambling sites. The complete picture is as follows:
 
-![](./en/image-5.png)
+![](./en/google-feed-crawler-cloaking-flow.png)
 
 Let’s summarize the entire process of how these scam sites operate:
 
