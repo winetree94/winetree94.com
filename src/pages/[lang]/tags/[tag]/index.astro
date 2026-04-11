@@ -8,6 +8,7 @@ import {
 } from "@/lib/language";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 import Footer from "@/components/Footer.astro";
+import ContentImage from "@/components/ContentImage.astro";
 import TextDate from "@/components/TextDate.astro";
 import { TRANSLATIONS } from "@/i18n";
 import Gtm from "@/components/Gtm.astro";
@@ -81,11 +82,13 @@ const t = (key: string) => {
                     href={`/${Astro.params.lang}/article/${post.data.routeSlug}/`}
                   >
                     {post.data.featureImage && (
-                      <img
+                      <ContentImage
                         class="aspect-video w-full rounded-xl object-cover"
                         src={post.data.featureImage}
                         alt={post.data.title}
                         loading="lazy"
+                        widths={[360, 720]}
+                        sizes="(min-width: 640px) 344px, 100vw"
                       />
                     )}
                     <h6 class="title mt-4">{post.data.title}</h6>

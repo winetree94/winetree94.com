@@ -3,6 +3,7 @@ import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
 import Footer from "@/components/Footer.astro";
 import GhostPost from "@/components/GhostPost.astro";
+import ContentImage from "@/components/ContentImage.astro";
 import { LOCALE_INFO, type SupportedLanguageCodes } from "@/lib/language";
 import type { ArticleEntry, PageEntry } from "@/lib/content";
 import TextDate from "./TextDate.astro";
@@ -48,7 +49,7 @@ const t = getTranslation(Astro.props.lang);
     <BaseHead
       title={entry.data.title}
       description={entry.data.excerpt || entry.data.title}
-      ogImageUrl={entry.data.featureImage}
+      ogImageUrl={entry.data.featureImage?.src}
       lang={Astro.props.lang}
     />
   </head>
@@ -59,11 +60,13 @@ const t = getTranslation(Astro.props.lang);
     <main class="w-full max-w-full">
       <article>
         {entry.data.featureImage && (
-          <img
+          <ContentImage
             class="mx-auto aspect-video w-full max-h-80 object-cover"
             src={entry.data.featureImage}
             alt={entry.data.title}
             loading="eager"
+            widths={[720, 1280, 1600]}
+            sizes="100vw"
           />
         )}
         <div class="m-auto max-w-[720px] px-4">

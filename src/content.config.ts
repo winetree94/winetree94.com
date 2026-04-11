@@ -1,39 +1,42 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const languageSchema = z.enum(["en", "ko"]);
 
 const articles = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    excerpt: z.string().default(""),
-    lang: languageSchema,
-    routeSlug: z.string(),
-    translationKey: z.string(),
-    publishedAt: z.string(),
-    updatedAt: z.string().optional(),
-    tags: z.array(z.string()).default([]),
-    featureImage: z.string().optional(),
-    commentsTerm: z.string(),
-    draft: z.boolean().optional().default(false),
-  }),
+  loader: glob({ pattern: "**/*.md", base: "./content/articles" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      excerpt: z.string().default(""),
+      lang: languageSchema,
+      routeSlug: z.string(),
+      translationKey: z.string(),
+      publishedAt: z.string(),
+      updatedAt: z.string().optional(),
+      tags: z.array(z.string()).default([]),
+      featureImage: image().optional(),
+      commentsTerm: z.string(),
+      draft: z.boolean().optional().default(false),
+    }),
 });
 
 const pages = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    excerpt: z.string().default(""),
-    lang: languageSchema,
-    routeSlug: z.string(),
-    translationKey: z.string(),
-    featureImage: z.string().optional(),
-    updatedAt: z.string().optional(),
-  }),
+  loader: glob({ pattern: "**/*.md", base: "./content/pages" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      excerpt: z.string().default(""),
+      lang: languageSchema,
+      routeSlug: z.string(),
+      translationKey: z.string(),
+      featureImage: image().optional(),
+      updatedAt: z.string().optional(),
+    }),
 });
 
 const tags = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "**/*.json", base: "./content/tags" }),
   schema: z.object({
     slug: z.string(),
     name: z.string(),
