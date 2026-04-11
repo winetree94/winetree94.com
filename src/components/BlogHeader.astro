@@ -2,7 +2,7 @@
 import { getTranslation } from "@/i18n/utils";
 import { getNavigationTags } from "@/lib/content";
 import { LOCALE_INFO, type SupportedLanguageCodes } from "@/lib/language";
-import { ThemeSwitcher } from "./react/ThemeSwitcher";
+import ThemeSwitcher from "./ThemeSwitcher.astro";
 
 type Props = {
   lang: SupportedLanguageCodes;
@@ -75,7 +75,6 @@ const t = getTranslation(Astro.props.lang);
 
           <!-- Theme Toggle -->
           <ThemeSwitcher
-            client:only={true}
             labels={{
               theme: t("theme"),
               light: t("theme.light"),

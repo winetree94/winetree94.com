@@ -80,52 +80,8 @@ const {
 
 <!-- <ViewTransitions /> -->
 
-<script is:inline>
-  // Theme management script
-  const THEME_KEY = "theme-preference";
-  const THEME_AUTO = "auto";
-  const THEME_LIGHT = "light";
-  const THEME_DARK = "dark";
+<script>
+  import { setupTheme } from "@/lib/theme";
 
-  function getThemePreference() {
-    if (typeof localStorage !== "undefined") {
-      return localStorage.getItem(THEME_KEY) || THEME_AUTO;
-    }
-    return THEME_AUTO;
-  }
-
-  function applyTheme(theme) {
-    const html = document.documentElement;
-
-    if (theme === THEME_AUTO) {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      html.dataset.theme = prefersDark ? "black" : "light";
-    } else if (theme === THEME_LIGHT) {
-      html.dataset.theme = "light";
-    } else if (theme === THEME_DARK) {
-      html.dataset.theme = "black";
-    }
-  }
-
-  // Apply theme on load
-  const currentTheme = getThemePreference();
-  applyTheme(currentTheme);
-
-  // Listen for system theme changes when in auto mode
-  if (window.matchMedia) {
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", () => {
-        if (getThemePreference() === THEME_AUTO) {
-          applyTheme(THEME_AUTO);
-        }
-      });
-  }
-
-  document.addEventListener("astro:after-swap", () => {
-    const currentTheme = getThemePreference();
-    applyTheme(currentTheme);
-  });
+  setupTheme();
 </script>
