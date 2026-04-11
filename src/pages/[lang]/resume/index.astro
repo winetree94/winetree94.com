@@ -11,11 +11,7 @@ import {
 } from "@/consts";
 import { useTranslation } from "@/i18n/utils";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
-import type {
-  GetStaticPaths,
-  InferGetStaticParamsType,
-  InferGetStaticPropsType,
-} from "astro";
+import type { GetStaticPaths } from "astro";
 import WorkExperience from "@/components/resume/WorkExperience.astro";
 import OpenSource from "@/components/resume/OpenSource.astro";
 import Footer from "@/components/Footer.astro";
@@ -28,9 +24,6 @@ export const getStaticPaths = (async () => {
     },
   }));
 }) satisfies GetStaticPaths;
-
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const t = useTranslation(Astro.params.lang);
 ---

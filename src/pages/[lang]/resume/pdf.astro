@@ -3,11 +3,7 @@ import BaseHead from "@/components/BaseHead.astro";
 import { SITE_IMAGES } from "@/consts";
 import { useTranslation } from "@/i18n/utils";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
-import type {
-  GetStaticPaths,
-  InferGetStaticParamsType,
-  InferGetStaticPropsType,
-} from "astro";
+import type { GetStaticPaths } from "astro";
 import Page1 from "@/components/resume-pages/page1.astro";
 import Page2 from "@/components/resume-pages/page2.astro";
 import Page3 from "@/components/resume-pages/page3.astro";
@@ -21,9 +17,6 @@ export const getStaticPaths = (async () => {
     },
   }));
 }) satisfies GetStaticPaths;
-
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const t = useTranslation(Astro.params.lang);
 const image = SITE_IMAGES[Astro.params.lang];
