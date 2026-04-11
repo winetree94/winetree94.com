@@ -20,10 +20,6 @@ export const SITE_IMAGES = {
 
 export const PERSONAL_LINKS = [
   {
-    name: "Git",
-    url: "https://git.winetree94.com",
-  },
-  {
     name: "Github",
     url: "https://github.com/winetree94",
   },
@@ -262,7 +258,6 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 export const OWNER_NAME = "winetree94";
 
 export const LINKS = {
-  GIT: "https://git.winetree94.com",
   GITHUB: "https://github.com/winetree94",
   NPM: "https://www.npmjs.com/~winetree94",
   LINKEDIN: "https://www.linkedin.com/in/winetree94",
