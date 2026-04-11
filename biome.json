@@ -23,7 +23,7 @@
     }
   },
   "files": {
-    "includes": ["**", "!.astro", "!dist", "!node_modules"]
+    "includes": ["**", "!.astro", "!coverage", "!dist", "!node_modules"]
   },
   "css": {
     "parser": {

@@ -6,13 +6,13 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
   use: {
-    baseURL: "http://127.0.0.1:4321",
+    baseURL: "http://127.0.0.1:4511",
     trace: "on-first-retry",
     screenshot: "only-on-failure",
   },
   webServer: {
-    command: "pnpm build && pnpm astro preview --host 127.0.0.1 --port 4321",
-    port: 4321,
+    command: "pnpm build && pnpm astro preview --host 127.0.0.1 --port 4511",
+    port: 4511,
     reuseExistingServer: !process.env.CI,
   },
 });

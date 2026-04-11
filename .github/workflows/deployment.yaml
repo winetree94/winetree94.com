@@ -16,10 +16,6 @@ jobs:
     permissions:
       contents: read
 
-    strategy:
-      matrix:
-        node-version: [24.x]
-
     steps:
       - uses: actions/checkout@v6.0.2
 
@@ -28,10 +24,10 @@ jobs:
         with:
           version: 10.33.0
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 24.x
         uses: actions/setup-node@v6.3.0
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 24.x
           cache: pnpm
 
       - name: Install dependencies
@@ -47,8 +43,7 @@ jobs:
         run: pnpm run build
 
       - name: Deploy to Cloudflare
-        uses: cloudflare/wrangler-action@v3.14.1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --config wrangler.jsonc
+        run: pnpm deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

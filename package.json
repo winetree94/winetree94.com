@@ -5,7 +5,6 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -14,6 +13,7 @@
     "test:unit": "vitest run --project unit",
     "test:component": "vitest run --project browser",
     "test:e2e": "playwright test",
+    "test:coverage": "vitest run --project unit --coverage",
     "test:ci": "pnpm test:unit && pnpm test:component && pnpm test:e2e",
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
@@ -25,13 +25,13 @@
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "3.7.2",
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/vite": "4.1.16",
     "astro": "^6.1.5",
     "daisyui": "^5.5.19",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "remixicon": "^4.9.1",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "4.1.16",
     "typescript": "^6.0.2"
   },
   "devDependencies": {
@@ -44,10 +44,11 @@
     "@types/react-dom": "^19.2.3",
     "@vitest/browser": "^4.1.4",
     "@vitest/browser-playwright": "4.1.4",
+    "@vitest/coverage-v8": "^4.1.4",
     "playwright": "^1.59.1",
     "sharp": "^0.34.5",
-    "vite": "^8.0.8",
-    "vite-tsconfig-paths": "^6.1.1",
+    "vite": "7.3.2",
+    "vite-tsconfig-paths": "5.1.4",
     "vitest": "^4.1.4",
     "wrangler": "4.81.1"
   }

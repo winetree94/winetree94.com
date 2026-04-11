@@ -12,24 +12,16 @@ const locales = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://winetree94.com",
-  output: "static",
-  devToolbar: {
-    enabled: true,
-  },
-  build: {
-    format: "directory",
-  },
   i18n: {
     defaultLocale,
     locales: Object.keys(locales),
     routing: {
-      redirectToDefaultLocale: true,
+      redirectToDefaultLocale: false,
       prefixDefaultLocale: true,
     },
   },
   server: {
     host: true,
-    allowedHosts: true,
   },
   vite: {
     plugins: [tailwindcss()],
@@ -41,8 +33,6 @@ export default defineConfig({
       i18n: {
         locales: locales,
         defaultLocale: defaultLocale,
-        redirectToDefaultLocale: true,
-        prefixDefaultLocale: true,
       },
     }),
     react({
