@@ -12,4 +12,38 @@ commentsTerm: "vector-optimizer"
 draft: false
 ---
 
-<p></p><div class="kg-card kg-callout-card kg-callout-card-blue"><div class="kg-callout-emoji">💡</div><div class="kg-callout-text">This project is in Public Archive status and is no longer maintained.This project is in Public Archive status and is no longer maintained.</div></div><p>Vector Optimizer is a vector optimization utility that analyzes the relationships between points and optimizes them to create smooth curves. The project is managed on <a href="https://github.com/winetree94/VectorOptimizer">Github</a> and distributed via <a href="https://www.npmjs.com/package/vector-optimizer">NPM</a>. You can try the project yourself through the <a href="https://winetree94.github.io/VectorOptimizer">Live Preview</a>.</p><blockquote>This project is a JavaScript / TypeScript reimplementation of <a href="https://gitlab.com/burningmime/curves">Bobby Fraser's 'Vector Optimizer' C# Project</a>.</blockquote><hr><h3 id="core-concept">Core Concept</h3><p>Let's assume you provide functionality for users to draw with a pen or mouse in a browser. Typically, the cursor movements are tracked and points are recorded, resulting in a series of points like this:</p><figure class="kg-card kg-image-card"><img src="/content/articles/vector-optimizer/en/image-1.png" class="kg-image" alt="" loading="lazy" width="401" height="327" decoding="async"></figure><p>The desired outcome for users is usually a smooth line, not just points. If we connect these points with straight lines, the result looks like this:</p><figure class="kg-card kg-image-card"><img src="/content/articles/vector-optimizer/en/image-2.png" class="kg-image" alt="" loading="lazy" width="395" height="325" decoding="async"></figure><p>This is somewhat acceptable, but several issues arise:</p><ul><li>There are too many points and lines, increasing the data size of the drawing, leading to higher storage costs.</li><li>The number of vector operations increases significantly, causing performance degradation as the drawing becomes more complex.</li><li>Users end up with jagged lines instead of the smooth curves they intended to draw.</li></ul><p>Vector Optimizer solves these problems. It first analyzes the relationships between the points the user drew and optimizes them by reducing the number of points at regular intervals using linear interpolation. The optimized points look like this:</p><figure class="kg-card kg-image-card"><img src="/content/articles/vector-optimizer/en/image-3.png" class="kg-image" alt="" loading="lazy" width="393" height="319" decoding="async"></figure><p>Based on this optimization, it then finds the most optimal cubic Bézier curve to complete the drawing. The final result looks like this:</p><figure class="kg-card kg-image-card"><img src="/content/articles/vector-optimizer/en/image-4.png" class="kg-image" alt="" loading="lazy" width="396" height="326" decoding="async"></figure><p>The final result shows a significant reduction in the number of lines while still accurately representing the user's intended curves. If needed, the degree of optimization can be adjusted to make the user's input appear even more natural.</p>
+> 💡 This project is in Public Archive status and is no longer maintained.
+
+Vector Optimizer is a vector optimization utility that analyzes the relationships between points and optimizes them to create smooth curves. The project is managed on [Github](https://github.com/winetree94/VectorOptimizer) and distributed via [NPM](https://www.npmjs.com/package/vector-optimizer). You can try the project yourself through the [Live Preview](https://winetree94.github.io/VectorOptimizer).
+
+> This project is a JavaScript / TypeScript reimplementation of [Bobby Fraser's 'Vector Optimizer' C# Project](https://gitlab.com/burningmime/curves).
+
+---
+
+### Core Concept
+
+Let's assume you provide functionality for users to draw with a pen or mouse in a browser. Typically, the cursor movements are tracked and points are recorded, resulting in a series of points like this:
+
+![](/content/articles/vector-optimizer/en/image-1.png)
+
+The desired outcome for users is usually a smooth line, not just points. If we connect these points with straight lines, the result looks like this:
+
+![](/content/articles/vector-optimizer/en/image-2.png)
+
+This is somewhat acceptable, but several issues arise:
+
+- There are too many points and lines, increasing the data size of the drawing, leading to higher storage costs.
+
+- The number of vector operations increases significantly, causing performance degradation as the drawing becomes more complex.
+
+- Users end up with jagged lines instead of the smooth curves they intended to draw.
+
+Vector Optimizer solves these problems. It first analyzes the relationships between the points the user drew and optimizes them by reducing the number of points at regular intervals using linear interpolation. The optimized points look like this:
+
+![](/content/articles/vector-optimizer/en/image-3.png)
+
+Based on this optimization, it then finds the most optimal cubic Bézier curve to complete the drawing. The final result looks like this:
+
+![](/content/articles/vector-optimizer/en/image-4.png)
+
+The final result shows a significant reduction in the number of lines while still accurately representing the user's intended curves. If needed, the degree of optimization can be adjusted to make the user's input appear even more natural.
