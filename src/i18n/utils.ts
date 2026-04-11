@@ -1,7 +1,7 @@
-import { type SupportedLanguageCodes } from "@/lib/language";
+import type { SupportedLanguageCodes } from "@/lib/language";
 import { TRANSLATIONS } from ".";
 
-export const useTranslation = (lang: SupportedLanguageCodes) => {
+export const getTranslation = (lang: SupportedLanguageCodes) => {
   return (key: string) => {
     return TRANSLATIONS[lang][key];
   };
