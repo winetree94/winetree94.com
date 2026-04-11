@@ -26,7 +26,7 @@ To explore OpenWrt, I purchased an open-source hardware device, the NanoPi R2S P
 
 Here's the FriendlyElec open-source hardware, R2S Plus, that I purchased.
 
-![](./en/image-1.jpg)
+![](./en/nanopi-r2s-plus-device.jpg)
 
 Specifications are as follows:
 
@@ -52,13 +52,13 @@ Finally, NanoPi products are highly likely to receive official OpenWrt support, 
 
 ## *What is OpenWrt like?*
 
-![](./en/image-2.png)
+![](./en/friendlywrt-status-page.png)
 
 Installing OpenWrt was very straightforward. Download the OpenWrt image from the FriendlyElec website, load it onto a MicroSD card, insert it into the device, and power it on. From there, you can conveniently manage it through a web browser like any other router.
 
 The user interface was quite intuitive. Common functions like setting passwords, fixed DHCP IPs, and DDNS configurations were similar to those of commercial routers. Features crucial to me, such as `VLAN` settings, were also easy to configure. Below is a simple diagram of my network setup.
 
-![](./en/image-3.png)
+![](./en/r2s-plus-network-topology.png)
 
 The R2S Plus's WAN is directly connected to the ISP's internet, and the LAN is connected to my existing managed switch, assigning VLAN groups as needed. The switch resolved the issue of limited ports and added security through VLAN separation. Without the switch, I would have connected a standard router in bridge mode.
 
