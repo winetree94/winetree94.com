@@ -59,20 +59,21 @@ export const ThemeSwitcher = ({
 
   return (
     <div className="dropdown dropdown-top">
-      <div
+      <button
+        type="button"
         tabIndex={0}
-        role="button"
         className="btn btn-ghost w-full justify-start font-medium"
       >
         <i className="ri-contrast-2-line"></i>
         <span id="theme-label">{labels.theme}</span>
-      </div>
+      </button>
       <ul
         tabIndex={-1}
         className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
       >
         <li>
           <button
+            type="button"
             className={[
               "justify-start",
               theme === "auto" ? "font-bold" : "",
@@ -85,6 +86,7 @@ export const ThemeSwitcher = ({
         </li>
         <li>
           <button
+            type="button"
             className={[
               "justify-start",
               theme === "light" ? "font-bold" : "",
@@ -97,6 +99,7 @@ export const ThemeSwitcher = ({
         </li>
         <li>
           <button
+            type="button"
             className={[
               "justify-start",
               theme === "dark" ? "font-bold" : "",

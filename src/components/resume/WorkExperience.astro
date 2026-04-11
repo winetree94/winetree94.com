@@ -1,5 +1,5 @@
 ---
-import { useTranslation } from "@/i18n/utils";
+import { getTranslation } from "@/i18n/utils";
 import type { SupportedLanguageCodes } from "@/lib/language";
 import type { WorkExperience } from "@/types/work-experience";
 import IndentLine from "../IndentLine.astro";
@@ -11,7 +11,7 @@ type Props = {
 };
 const props = Astro.props as Props;
 
-const t = useTranslation(Astro.props.lang);
+const t = getTranslation(Astro.props.lang);
 ---
 
 <h3 id="experience" class="text-left text-2xl font-bold">

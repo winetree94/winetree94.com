@@ -8,7 +8,7 @@ import type { ArticleEntry, PageEntry } from "@/lib/content";
 import TextDate from "./TextDate.astro";
 import Gtm from "./Gtm.astro";
 import ArticleAuthor from "./ArticleAuthor.astro";
-import { useTranslation } from "@/i18n/utils";
+import { getTranslation } from "@/i18n/utils";
 
 type Props = {
   lang: SupportedLanguageCodes;
@@ -40,7 +40,7 @@ const alternativeEntries = Astro.props.alternativeEntries
   .filter((alternativeEntry) => alternativeEntry.lang !== Astro.props.lang);
 const publishedAt =
   "publishedAt" in entry.data ? entry.data.publishedAt : undefined;
-const t = useTranslation(Astro.props.lang);
+const t = getTranslation(Astro.props.lang);
 ---
 
 <html lang={Astro.props.lang}>
@@ -125,6 +125,7 @@ const t = useTranslation(Astro.props.lang);
                   async
                 />
                 <script is:inline>
+                  {`
                   function changeGiscusTheme() {
                     const theme =
                       document.documentElement.getAttribute("data-scheme") ===
@@ -171,6 +172,7 @@ const t = useTranslation(Astro.props.lang);
                     }
                     changeGiscusTheme();
                   });
+                  `}
                 </script>
               </div>
             )

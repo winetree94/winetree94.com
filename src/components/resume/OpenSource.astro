@@ -1,7 +1,7 @@
 ---
 import type { SupportedLanguageCodes } from "@/lib/language";
 import IndentLine from "../../components/IndentLine.astro";
-import { useTranslation } from "../../i18n/utils";
+import { getTranslation } from "../../i18n/utils";
 import type { OpenSourceExperience } from "../../types/open-source";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const { opensourceExperience } = Astro.props;
-const t = useTranslation(Astro.props.lang);
+const t = getTranslation(Astro.props.lang);
 ---
 
 <h3 id="open_source" class="text-2xl font-bold">
@@ -28,6 +28,7 @@ const t = useTranslation(Astro.props.lang);
                 class="break-all"
                 href={`https://${t(exp.publicLink)}`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <i class="ri-links-line" />
                 {t(exp.publicLink)}
