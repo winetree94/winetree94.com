@@ -31,3 +31,17 @@ test("article page renders metadata and supports language switching", async ({
     page.getByText("Vector Optimizer 는 벡터 최적화 유틸리티입니다."),
   ).toBeVisible();
 });
+
+test("single-language article does not render alternative-language UI", async ({
+  page,
+}) => {
+  await page.goto("/ko/article/es5-class/");
+
+  await expect(
+    page.getByRole("heading", {
+      name: "자바스크립트 ES5로 ES6 Class 완벽하게 구현하기",
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "English" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "한국어" })).toHaveCount(0);
+});

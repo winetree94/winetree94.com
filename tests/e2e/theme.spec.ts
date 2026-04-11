@@ -8,7 +8,10 @@ test("theme choice persists after reload", async ({ page }) => {
     input.dispatchEvent(new Event("input", { bubbles: true }));
     input.dispatchEvent(new Event("change", { bubbles: true }));
   });
-  await page.getByRole("button", { name: /theme/i }).click();
+  const themeButton = page.getByRole("button", { name: /theme/i });
+
+  await expect(themeButton).toBeVisible();
+  await themeButton.click();
   await page.getByRole("button", { name: "Dark" }).click();
 
   await expect(page.locator("html")).toHaveAttribute("data-theme", "black");

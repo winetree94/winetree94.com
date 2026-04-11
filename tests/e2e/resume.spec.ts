@@ -16,6 +16,16 @@ async function expectSectionNearViewportTop(page: Page, id: string) {
     .toBe(true);
 }
 
+async function getViewerScale(page: Page) {
+  return page.locator("#viewer-root").evaluate((element) => {
+    const rawValue = getComputedStyle(element)
+      .getPropertyValue("--scaling-factor")
+      .trim();
+
+    return rawValue ? Number.parseFloat(rawValue) : 1;
+  });
+}
+
 test("resume page renders sections and jump links scroll to targets", async ({
   page,
 }) => {
@@ -94,4 +104,53 @@ test("korean resume links to the pdf viewer and the viewer controls update scale
       });
     })
     .not.toBe(zoomedOutScale);
+});
+
+test("resume pdf header actions and zoom bounds behave correctly", async ({
+  page,
+}) => {
+  await page.goto("/ko/resume/");
+  await page.getByRole("link", { name: /PDF/i }).click();
+
+  await expect(page).toHaveURL("/ko/resume/pdf/");
+  await page.getByRole("button", { name: "Go back" }).click();
+  await expect(page).toHaveURL("/ko/resume/");
+
+  await page.getByRole("link", { name: /PDF/i }).click();
+  await expect(page).toHaveURL("/ko/resume/pdf/");
+  await page.getByRole("link", { name: "Go home" }).click();
+  await expect(page).toHaveURL("/ko/");
+
+  await page.goto("/ko/resume/pdf/");
+
+  const zoomOutButton = page.getByRole("button", { name: "Zoom out" });
+  const zoomInButton = page.getByRole("button", { name: "Zoom in" });
+
+  while (await zoomOutButton.isEnabled()) {
+    await zoomOutButton.click();
+  }
+
+  await expect.poll(() => getViewerScale(page)).toBe(0.25);
+  await expect(zoomOutButton).toBeDisabled();
+
+  const minScale = await getViewerScale(page);
+  await zoomOutButton.click({ force: true });
+  await expect.poll(() => getViewerScale(page)).toBe(minScale);
+
+  while (await zoomInButton.isEnabled()) {
+    await zoomInButton.click();
+  }
+
+  await expect.poll(() => getViewerScale(page)).toBe(1);
+  await expect(zoomInButton).toBeDisabled();
+
+  const maxScale = await getViewerScale(page);
+  await zoomInButton.click({ force: true });
+  await expect.poll(() => getViewerScale(page)).toBe(maxScale);
+
+  await page.keyboard.down("Control");
+  await page.mouse.wheel(0, 100);
+  await page.keyboard.up("Control");
+
+  await expect.poll(() => getViewerScale(page)).toBe(0.9);
 });
