@@ -1,3 +1,5 @@
+import type { SupportedLanguageCodes } from "@/lib/language";
+
 export interface LanguageHeadLink {
   rel: string;
   href: string;
@@ -48,3 +50,7 @@ export const languageInfos = {
     ],
   },
 } as const;
+
+export function getLanguageHeadLinks(lang?: SupportedLanguageCodes) {
+  return lang ? languageInfos[lang].headLinks : [];
+}

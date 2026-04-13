@@ -2,7 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "@/styles/global.css";
-import { languageInfos, type LanguageHeadLink } from "../i18n/ui";
+import { getLanguageHeadLinks, type LanguageHeadLink } from "../i18n/ui";
 import type { SupportedLanguageCodes } from "@/lib/language";
 
 interface Props {
@@ -12,8 +12,9 @@ interface Props {
   ogImageUrl?: string;
 }
 
-const langInfo = Astro.props.lang ? languageInfos[Astro.props.lang] : null;
-const headLinks: readonly LanguageHeadLink[] = langInfo?.headLinks ?? [];
+const headLinks: readonly LanguageHeadLink[] = getLanguageHeadLinks(
+  Astro.props.lang,
+);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const {
   title,
