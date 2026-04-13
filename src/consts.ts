@@ -51,7 +51,6 @@ export const OPEN_SOURCE: {
   period: string;
   features: string[];
   publicLink: string;
-  internalLink: string;
 }[] = [
   {
     projectName: "about.open_source.edybara.title",
@@ -63,7 +62,6 @@ export const OPEN_SOURCE: {
       "about.open_source.edybara.features.3",
     ],
     publicLink: "about.open_source.edybara.link",
-    internalLink: "/project/edybara",
   },
   {
     projectName: "about.open_source.qdocs.title",
@@ -74,7 +72,6 @@ export const OPEN_SOURCE: {
       "about.open_source.qdocs.features.2",
     ],
     publicLink: "about.open_source.qdocs.link",
-    internalLink: "/project/qdocs",
   },
   {
     projectName: "about.open_source.vector_optimizer.title",
@@ -85,7 +82,6 @@ export const OPEN_SOURCE: {
       "about.open_source.vector_optimizer.features.2",
     ],
     publicLink: "about.open_source.vector_optimizer.link",
-    internalLink: "/project/vector-optimizer",
   },
   {
     projectName: "about.open_source.vanilla_recycler_view.title",
@@ -96,7 +92,6 @@ export const OPEN_SOURCE: {
       "about.open_source.vanilla_recycler_view.features.2",
     ],
     publicLink: "about.open_source.vanilla_recycler_view.link",
-    internalLink: "/project/vanilla-recycler-view",
   },
 ];
 

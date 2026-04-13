@@ -4,5 +4,4 @@ export type OpenSourceExperience = {
   period: string;
   features: string[];
   publicLink: string;
-  internalLink: string;
 };
