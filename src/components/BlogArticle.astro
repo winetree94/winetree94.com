@@ -1,20 +1,20 @@
 ---
+import type { ImageMetadata } from "astro";
+import ArticleContent from "@/components/ArticleContent.astro";
 import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
-import Footer from "@/components/Footer.astro";
-import GhostPost from "@/components/GhostPost.astro";
 import ContentImage from "@/components/ContentImage.astro";
-import type { ImageMetadata } from "astro";
-import type { SupportedLanguageCodes } from "@/lib/language";
-import type { ArticleEntry, PageEntry } from "@/lib/content";
+import Footer from "@/components/Footer.astro";
+import { getTranslation } from "@/i18n/utils";
 import {
   buildAlternativeLanguageHref,
   getAlternativeLanguageLabel,
 } from "@/lib/blog-article";
-import TextDate from "./TextDate.astro";
-import Gtm from "./Gtm.astro";
+import type { ArticleEntry, PageEntry } from "@/lib/content";
+import type { SupportedLanguageCodes } from "@/lib/language";
 import ArticleAuthor from "./ArticleAuthor.astro";
-import { getTranslation } from "@/i18n/utils";
+import Gtm from "./Gtm.astro";
+import TextDate from "./TextDate.astro";
 
 type Props = {
   lang: SupportedLanguageCodes;
@@ -112,9 +112,9 @@ const t = getTranslation(props.lang);
             )}
             <div class="divider"></div>
           </div>
-          <GhostPost>
+          <ArticleContent>
             <slot />
-          </GhostPost>
+          </ArticleContent>
           {props.useAuthor && (
             <div class="mt-12">
               <ArticleAuthor lang={props.lang} />
