@@ -40,3 +40,41 @@ test("pages apply the language-specific font stack", async ({ page }) => {
     .poll(() => getBodyFontFamily(page))
     .toContain("IBM Plex Sans KR");
 });
+
+test("pages render the expected language-specific font links", async ({
+  page,
+}) => {
+  await page.goto("/en/");
+
+  await expect(
+    page.locator(
+      'head link[rel="preload"][href="/fonts/Agave-Regular.ttf"][as="font"][type="font/woff"][crossorigin="anonymous"]',
+    ),
+  ).toHaveCount(1);
+  await expect(
+    page.locator(
+      'head link[rel="preload"][href="/fonts/Agave-Bold.ttf"][as="font"][type="font/woff"][crossorigin="anonymous"]',
+    ),
+  ).toHaveCount(1);
+
+  await page.goto("/ko/");
+
+  await expect(
+    page.locator(
+      'head link[rel="preconnect"][href="https://fonts.googleapis.com"]',
+    ),
+  ).toHaveCount(1);
+  await expect(
+    page.locator(
+      'head link[rel="preconnect"][href="https://fonts.gstatic.com"][crossorigin="anonymous"]',
+    ),
+  ).toHaveCount(1);
+  await expect(
+    page.locator(
+      'head link[rel="preload"][as="style"][href*="IBM+Plex+Sans+KR"]',
+    ),
+  ).toHaveCount(1);
+  await expect(
+    page.locator('head link[rel="stylesheet"][href*="IBM+Plex+Sans+KR"]'),
+  ).toHaveCount(1);
+});
