@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import BaseHead from "@/components/BaseHead.astro";
 import Footer from "@/components/Footer.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
 import { SITE_DESCRIPTIONS, SITE_IMAGES, SITE_TITLES, LINKS } from "@/consts";
+import ProfileImage from "@/assets/images/profile.jpg";
 import { getTranslation } from "@/i18n/utils";
 import { LOCALE_INFO, SUPPORTED_LANGUAGES } from "@/lib/language";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
@@ -62,10 +64,12 @@ const keywords = [
         <Fragment set:html={t("home.introduction")} />
       </p>
       <div class="mt-8 flex items-center gap-2">
-        <img
+        <Image
           class="avatar h-6 w-6 rounded-full"
-          src="/photos/profile.jpg"
+          src={ProfileImage}
           alt=""
+          width={24}
+          height={24}
         />
         <span class="text">winetree94</span>
       </div>
