@@ -2,7 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "@/styles/global.css";
-import { languageInfos } from "../i18n/ui";
+import { languageInfos, type LanguageHeadLink } from "../i18n/ui";
 import type { SupportedLanguageCodes } from "@/lib/language";
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
 }
 
 const langInfo = Astro.props.lang ? languageInfos[Astro.props.lang] : null;
+const headLinks: readonly LanguageHeadLink[] = langInfo?.headLinks ?? [];
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const {
   title,
@@ -54,7 +55,15 @@ const {
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-{langInfo && <Fragment set:html={langInfo.header} />}
+{headLinks.map((link) => (
+  <link
+    rel={link.rel}
+    href={link.href}
+    as={link.as}
+    type={link.type}
+    crossorigin={link.crossorigin ? "anonymous" : undefined}
+  />
+))}
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
