@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss";
-import { getAllArticles } from "./lib/content";
 import { describe, expect, it, vi } from "vitest";
+import { getAllArticles } from "./lib/content";
 import { GET } from "./pages/rss.xml";
 
 vi.mock("./lib/content", () => ({

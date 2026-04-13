@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { THEME, THEME_KEY, setupTheme } from "./theme";
+import { setupTheme, THEME, THEME_KEY } from "./theme";
 
 function installMatchMedia(initialMatches: boolean) {
   let changeListener: ((event: Event) => void) | undefined;

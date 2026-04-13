@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
-  THEME,
-  THEME_KEY,
   getThemePreference,
   isSupportedTheme,
   resolveAppliedTheme,
+  THEME,
+  THEME_KEY,
 } from "./theme";
 
 describe("theme helpers", () => {

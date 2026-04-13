@@ -1,10 +1,15 @@
 ---
 import { Image } from "astro:assets";
+import type { GetStaticPaths } from "astro";
+import ProfileImage from "@/assets/images/profile.jpg";
 import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
+import Footer from "@/components/Footer.astro";
+import Gtm from "@/components/Gtm.astro";
+import OpenSource from "@/components/resume/OpenSource.astro";
 import Profiles from "@/components/resume/Profiles.astro";
 import Skills from "@/components/resume/Skills.astro";
-import ProfileImage from "@/assets/images/profile.jpg";
+import WorkExperience from "@/components/resume/WorkExperience.astro";
 import {
   OPEN_SOURCE,
   SITE_DESCRIPTION,
@@ -13,11 +18,6 @@ import {
 } from "@/consts";
 import { getTranslation } from "@/i18n/utils";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
-import type { GetStaticPaths } from "astro";
-import WorkExperience from "@/components/resume/WorkExperience.astro";
-import OpenSource from "@/components/resume/OpenSource.astro";
-import Footer from "@/components/Footer.astro";
-import Gtm from "@/components/Gtm.astro";
 
 export const getStaticPaths = (async () => {
   return Object.values(SUPPORTED_LANGUAGES).map((lang) => ({
@@ -119,24 +119,24 @@ const t = getTranslation(Astro.params.lang);
     <Footer />
     <script>
       function scrollTo(id: string) {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }
+              const element = document.getElementById(id);
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+              }
+            }
 
-      document
-        .getElementById("jump_to_profile")
-        ?.addEventListener("click", () => scrollTo("profile"));
-      document
-        .getElementById("jump_to_qualifications")
-        ?.addEventListener("click", () => scrollTo("qualifications"));
-      document
-        .getElementById("jump_to_experience")
-        ?.addEventListener("click", () => scrollTo("experience"));
-      document
-        .getElementById("jump_to_open_source")
-        ?.addEventListener("click", () => scrollTo("open_source"));
+            document
+              .getElementById("jump_to_profile")
+              ?.addEventListener("click", () => scrollTo("profile"));
+            document
+              .getElementById("jump_to_qualifications")
+              ?.addEventListener("click", () => scrollTo("qualifications"));
+            document
+              .getElementById("jump_to_experience")
+              ?.addEventListener("click", () => scrollTo("experience"));
+            document
+              .getElementById("jump_to_open_source")
+              ?.addEventListener("click", () => scrollTo("open_source"));
     </script>
   </body>
 </html>

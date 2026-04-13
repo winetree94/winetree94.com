@@ -2,8 +2,8 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "@/styles/global.css";
-import { getLanguageHeadLinks, type LanguageHeadLink } from "../i18n/ui";
 import type { SupportedLanguageCodes } from "@/lib/language";
+import { getLanguageHeadLinks, type LanguageHeadLink } from "../i18n/ui";
 
 interface Props {
   lang?: SupportedLanguageCodes;
@@ -21,29 +21,20 @@ const {
   description,
   ogImageUrl = `/og/index/${Astro.props.lang}.png`,
 } = Astro.props;
-// const multilangUrls = getMultilangUrlInfo(Astro.url);
 ---
 
-<!-- {multilangUrls.map(info => (
-  <link
-    rel="alternate"
-    hreflang={info.code}
-    href={info.url}
-  />
-))}
-
-<link rel="alternate" hreflang="x-default" href={multilangUrls[0].url} /> --><!-- Global Metadata --><!-- Google Tag Manager -->
+<!-- Global Metadata --><!-- Google Tag Manager -->
 <script is:inline>
   ((w, d, s, l, i) => {
-    w[l] = w[l] || [];
-    w[l].push({ "gtm.start": Date.now(), event: "gtm.js" });
-    var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s),
-      dl = l !== "dataLayer" ? `&l=${l}` : "";
-    j.async = true;
-    j.src = `https://www.googletagmanager.com/gtm.js?id=${i}${dl}`;
-    f.parentNode.insertBefore(j, f);
-  })(window, document, "script", "dataLayer", "GTM-5NJV8H34");
+      w[l] = w[l] || [];
+      w[l].push({ "gtm.start": Date.now(), event: "gtm.js" });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l !== "dataLayer" ? `&l=${l}` : "";
+      j.async = true;
+      j.src = `https://www.googletagmanager.com/gtm.js?id=${i}${dl}`;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, "script", "dataLayer", "GTM-5NJV8H34");
 </script>
 <!-- End Google Tag Manager -->
 <meta charset="utf-8" />
@@ -88,10 +79,8 @@ const {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(ogImageUrl, Astro.url)} />
 
-<!-- <ViewTransitions /> -->
-
 <script>
   import { setupTheme } from "@/lib/theme";
 
-  setupTheme();
+    setupTheme();
 </script>

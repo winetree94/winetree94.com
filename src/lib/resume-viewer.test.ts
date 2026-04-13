@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 import {
-  MAX_ZOOM_LEVEL,
-  MIN_ZOOM_LEVEL,
-  ZOOM_STEP,
   clampScale,
   getNextScale,
   getScreenMatchedScale,
   getWheelScaleDelta,
+  MAX_ZOOM_LEVEL,
+  MIN_ZOOM_LEVEL,
   shouldTrackZoomModifierKey,
+  ZOOM_STEP,
 } from "./resume-viewer";
 
 describe("resume viewer helpers", () => {

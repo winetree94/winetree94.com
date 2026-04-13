@@ -1,23 +1,23 @@
 ---
+import type { GetStaticPaths } from "astro";
 import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
-import type { GetStaticPaths } from "astro";
+import ContentImage from "@/components/ContentImage.astro";
+import Footer from "@/components/Footer.astro";
+import Gtm from "@/components/Gtm.astro";
+import TextDate from "@/components/TextDate.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
+import { TRANSLATIONS } from "@/i18n";
+import {
+  type ArticleEntry,
+  getArticlesByTag,
+  getTagPages,
+  type TagEntry,
+} from "@/lib/content";
 import {
   SUPPORTED_LANGUAGES,
   type SupportedLanguageCodes,
 } from "@/lib/language";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
-import Footer from "@/components/Footer.astro";
-import ContentImage from "@/components/ContentImage.astro";
-import TextDate from "@/components/TextDate.astro";
-import { TRANSLATIONS } from "@/i18n";
-import Gtm from "@/components/Gtm.astro";
-import {
-  getArticlesByTag,
-  getTagPages,
-  type ArticleEntry,
-  type TagEntry,
-} from "@/lib/content";
 
 type Props = {
   tag: TagEntry;

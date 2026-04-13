@@ -3,9 +3,9 @@ import { render } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import BlogArticle from "@/components/BlogArticle.astro";
 import {
+  type ArticleEntry,
   getAllArticles,
   getArticleAlternatives,
-  type ArticleEntry,
 } from "@/lib/content";
 
 type Props = {

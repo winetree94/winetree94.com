@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 
 async function openDrawer(page: Page) {
   await page.locator("#global-drawer").evaluate((element) => {

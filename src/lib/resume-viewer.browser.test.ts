@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
+  getViewerScale,
   MAX_ZOOM_LEVEL,
   MIN_ZOOM_LEVEL,
-  getViewerScale,
   setupResumeViewer,
 } from "./resume-viewer";
 

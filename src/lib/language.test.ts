@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
+  defaultLangCode,
   LOCALE_INFO,
   SUPPORTED_LANGUAGE_CODES,
   SUPPORTED_LANGUAGES,
-  defaultLangCode,
 } from "./language";
 
 describe("language constants", () => {
