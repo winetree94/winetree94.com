@@ -1,4 +1,4 @@
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import type { SupportedLanguageCodes } from "@/lib/language";
 
 const LANGUAGE_TAGS = new Set(["en", "ko"]);
@@ -36,16 +36,6 @@ export async function getAllArticles(): Promise<ArticleEntry[]> {
   return sortByPublishedAtDesc(entries);
 }
 
-export async function getArticle(
-  lang: SupportedLanguageCodes,
-  slug: string,
-): Promise<ArticleEntry | undefined> {
-  const entries = await getAllArticles();
-  return entries.find(
-    (entry) => entry.data.lang === lang && entry.data.routeSlug === slug,
-  );
-}
-
 export async function getArticleAlternatives(
   translationKey: string,
   lang: SupportedLanguageCodes,
@@ -60,16 +50,6 @@ export async function getArticleAlternatives(
 
 export async function getAllPages(): Promise<PageEntry[]> {
   return getCollection("pages");
-}
-
-export async function getPage(
-  lang: SupportedLanguageCodes,
-  slug: string,
-): Promise<PageEntry | undefined> {
-  const entries = await getAllPages();
-  return entries.find(
-    (entry) => entry.data.lang === lang && entry.data.routeSlug === slug,
-  );
 }
 
 export async function getPageAlternatives(
@@ -97,11 +77,6 @@ export async function getArticlesByTag(
 export async function getAllTags(): Promise<TagEntry[]> {
   const entries = await getCollection("tags");
   return sortTags(entries);
-}
-
-export async function getTag(slug: string): Promise<TagEntry | undefined> {
-  const entries = await getAllTags();
-  return entries.find((entry) => entry.data.slug === slug);
 }
 
 export async function getNavigationTags(): Promise<TagEntry[]> {

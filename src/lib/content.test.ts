@@ -3,13 +3,10 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   getAllArticles,
   getAllTags,
-  getArticle,
   getArticleAlternatives,
   getArticlesByTag,
-  getPage,
-  getPageAlternatives,
   getNavigationTags,
-  getTag,
+  getPageAlternatives,
   getTagPages,
 } from "./content";
 
@@ -98,25 +95,6 @@ describe("content helpers", () => {
     ]);
   });
 
-  it("finds one article by language and route slug", async () => {
-    const articles = [
-      createArticleEntry({ lang: "en", routeSlug: "hello-world" }),
-      createArticleEntry({ lang: "ko", routeSlug: "hello-world" }),
-    ];
-
-    getCollectionMock.mockImplementation(async (_collection, filter) => {
-      const typedFilter = filter as CollectionFilter<(typeof articles)[number]>;
-
-      return typedFilter
-        ? articles.filter((entry) => typedFilter(entry))
-        : articles;
-    });
-
-    await expect(getArticle("ko", "hello-world")).resolves.toMatchObject({
-      data: { lang: "ko", routeSlug: "hello-world" },
-    });
-  });
-
   it("returns alternative translations for an article", async () => {
     const articles = [
       createArticleEntry({ lang: "en", translationKey: "astro-testing" }),
@@ -167,19 +145,6 @@ describe("content helpers", () => {
     ]);
   });
 
-  it("finds one page by language and route slug", async () => {
-    const pages = [
-      createPageEntry({ lang: "en", routeSlug: "about" }),
-      createPageEntry({ lang: "ko", routeSlug: "about" }),
-    ];
-
-    getCollectionMock.mockImplementation(async () => pages);
-
-    await expect(getPage("ko", "about")).resolves.toMatchObject({
-      data: { lang: "ko", routeSlug: "about" },
-    });
-  });
-
   it("returns alternative translations for a page", async () => {
     const pages = [
       createPageEntry({ lang: "en", translationKey: "about" }),
@@ -210,19 +175,6 @@ describe("content helpers", () => {
       { data: { slug: "blog" } },
       { data: { slug: "web" } },
     ]);
-  });
-
-  it("finds one tag by slug", async () => {
-    const tags = [
-      createTagEntry({ slug: "blog" }),
-      createTagEntry({ slug: "project" }),
-    ];
-
-    getCollectionMock.mockImplementation(async () => tags);
-
-    await expect(getTag("project")).resolves.toMatchObject({
-      data: { slug: "project" },
-    });
   });
 
   it("sorts tag pages and excludes hidden or language tags from navigation", async () => {
