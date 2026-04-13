@@ -7,7 +7,7 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       include: ["src/**/*.{ts,js}"],
-      exclude: ["src/**/*.test.ts", "src/**/*.test.tsx"],
+      exclude: ["src/**/*.test.ts"],
       reporter: ["text", "html", "lcov"],
     },
     projects: [
@@ -18,11 +18,7 @@ export default defineConfig({
           environment: "node",
           setupFiles: ["./vitest.setup.ts"],
           include: ["src/**/*.test.ts"],
-          exclude: [
-            "src/components/react/**/*.test.tsx",
-            "src/**/*.browser.test.ts",
-            "tests/**",
-          ],
+          exclude: ["src/**/*.browser.test.ts", "tests/**"],
         },
       },
       {
@@ -30,10 +26,7 @@ export default defineConfig({
         test: {
           name: "browser",
           setupFiles: ["./vitest.setup.ts"],
-          include: [
-            "src/components/react/**/*.test.tsx",
-            "src/**/*.browser.test.ts",
-          ],
+          include: ["src/**/*.browser.test.ts"],
           browser: {
             enabled: true,
             provider: playwright(),
