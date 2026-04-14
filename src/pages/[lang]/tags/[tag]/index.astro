@@ -43,6 +43,7 @@ export const getStaticPaths = (async () => {
     ),
   );
 }) satisfies GetStaticPaths;
+
 const { tag, posts } = Astro.props as Props;
 const tagTranslation = tag.data.translations[Astro.params.lang];
 const t = (key: string) => {
