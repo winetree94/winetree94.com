@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import ProfileImage from "@/assets/images/profile.jpg";
-import { getTranslation } from "@/i18n/utils";
+import { t as translate } from "@/i18n";
 import type { SupportedLanguageCodes } from "@/lib/language";
 import Skills from "../resume/Skills.astro";
 
@@ -9,7 +9,7 @@ type Props = {
   lang: SupportedLanguageCodes;
 };
 
-const t = getTranslation(Astro.props.lang);
+const t = (key: string) => translate(Astro.props.lang, key);
 ---
 
 <div class="flex h-full w-full flex-col justify-center text-left">

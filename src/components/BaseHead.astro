@@ -2,8 +2,8 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "@/styles/global.css";
+import { LANGUAGE_HEAD_LINKS } from "@/i18n";
 import type { SupportedLanguageCodes } from "@/lib/language";
-import { LANGUAGE_HEAD_LINKS } from "../i18n/ui";
 
 interface Props {
   lang?: SupportedLanguageCodes;
@@ -45,7 +45,7 @@ const {
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-{headLinks.map((link) => (
+{headLinks.map((link: { rel: string; href: string; as?: string; type?: string; crossorigin?: boolean }) => (
   <link
     rel={link.rel}
     href={link.href}

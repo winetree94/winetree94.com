@@ -16,8 +16,8 @@ import {
   SITE_TITLE,
   WORK_EXPERIENCE,
 } from "@/consts";
-import { getTranslation } from "@/i18n/utils";
 import { SUPPORTED_LANGUAGES } from "@/lib/language";
+import { t as translate } from "@/i18n";
 
 export const getStaticPaths = (async () => {
   return Object.values(SUPPORTED_LANGUAGES).map((lang) => ({
@@ -27,7 +27,7 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-const t = getTranslation(Astro.params.lang);
+const t = (key: string) => translate(Astro.params.lang, key);
 ---
 
 <html lang={Astro.params.lang}>

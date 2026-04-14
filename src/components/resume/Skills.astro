@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { badgeIcons } from "@/assets/badges";
-import { getTranslation } from "@/i18n/utils";
+import { t as translate } from "@/i18n";
 import type { SupportedLanguageCodes } from "@/lib/language";
 import IndentLine from "../IndentLine.astro";
 
@@ -9,7 +9,7 @@ type Props = {
   lang: SupportedLanguageCodes;
 };
 
-const t = getTranslation(Astro.props.lang);
+const t = (key: string) => translate(Astro.props.lang, key);
 
 const badges = [
   { label: "Typescript", slug: "typescript" },

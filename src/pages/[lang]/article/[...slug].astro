@@ -35,7 +35,7 @@ export const getStaticPaths = (async () => {
           })
           .map((candidate) => ({
             href: `/${candidate.data.lang}/article/${candidate.data.routeSlug}/`,
-            label: LOCALE_INFO[candidate.data.lang].nativeName,
+            label: LOCALE_INFO[candidate.data.lang],
             lang: candidate.data.lang,
           })),
       },

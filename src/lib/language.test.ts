@@ -14,9 +14,7 @@ describe("language constants", () => {
   });
 
   it("exposes locale labels for each language", () => {
-    expect(LOCALE_INFO.en.nativeName).toBe("English");
-    expect(LOCALE_INFO.en.localeNames.ko).toBe("영어");
-    expect(LOCALE_INFO.ko.nativeName).toBe("한국어");
-    expect(LOCALE_INFO.ko.localeNames.en).toBe("Korean");
+    expect(LOCALE_INFO.en).toBe("English");
+    expect(LOCALE_INFO.ko).toBe("한국어");
   });
 });

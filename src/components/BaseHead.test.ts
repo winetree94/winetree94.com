@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { LANGUAGE_HEAD_LINKS } from "@/i18n/ui";
+import { LANGUAGE_HEAD_LINKS } from "@/i18n";
 
 describe("BaseHead", () => {
   it("provides English font preload links", () => {

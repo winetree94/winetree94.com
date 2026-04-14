@@ -1,18 +1,18 @@
 import { describe, expect, it } from "vitest";
-import { getTranslation } from "./utils";
+import { t } from "./index";
 
-describe("getTranslation", () => {
-  it("returns English translation values", () => {
-    const t = getTranslation("en");
-
-    expect(t("theme")).toBe("Theme");
-    expect(t("theme.dark")).toBe("Dark");
+describe("i18n t function", () => {
+  it("should return correct English translations", () => {
+    expect(t("en", "theme")).toBe("Theme");
+    expect(t("en", "theme.light")).toBe("Light");
   });
 
-  it("returns Korean translation values", () => {
-    const t = getTranslation("ko");
+  it("should return correct Korean translations", () => {
+    expect(t("ko", "theme")).toBe("테마");
+    expect(t("ko", "theme.light")).toBe("밝은 색상");
+  });
 
-    expect(t("theme")).toBe("테마");
-    expect(t("theme.light")).toBe("밝은 색상");
+  it("should return key as fallback for missing translations", () => {
+    expect(t("en", "nonexistent.key")).toBe("nonexistent.key");
   });
 });

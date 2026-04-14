@@ -7,7 +7,7 @@ import Footer from "@/components/Footer.astro";
 import Gtm from "@/components/Gtm.astro";
 import TextDate from "@/components/TextDate.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
-import { TRANSLATIONS } from "@/i18n";
+import { t as translate } from "@/i18n";
 import { type ArticleEntry, getAllArticles, getAllTags, type TagEntry } from "@/lib/content";
 import {
   SUPPORTED_LANGUAGES,
@@ -56,9 +56,7 @@ export const getStaticPaths = (async () => {
 
 const { tag, posts } = Astro.props as Props;
 const tagTranslation = tag.data.translations[Astro.params.lang];
-const t = (key: string) => {
-  return TRANSLATIONS[Astro.params.lang as SupportedLanguageCodes][key];
-};
+const t = (key: string) => translate(Astro.params.lang as SupportedLanguageCodes, key);
 ---
 
 <!doctype html>

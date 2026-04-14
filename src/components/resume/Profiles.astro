@@ -1,6 +1,6 @@
 ---
 import { PERSONAL_LINKS } from "@/consts";
-import { getTranslation } from "@/i18n/utils";
+import { t as translate } from "@/i18n";
 import type { SupportedLanguageCodes } from "@/lib/language";
 import IndentLine from "../IndentLine.astro";
 
@@ -8,7 +8,7 @@ type Props = {
   lang: SupportedLanguageCodes;
 };
 
-const t = getTranslation(Astro.props.lang);
+const t = (key: string) => translate(Astro.props.lang, key);
 ---
 
 <h3 id="profile" class="text-2xl font-bold">{t("about.profile")}</h3>

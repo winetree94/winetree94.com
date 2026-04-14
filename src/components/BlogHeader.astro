@@ -1,7 +1,8 @@
 ---
-import { getTranslation } from "@/i18n/utils";
+import { t } from "@/i18n";
 import { getNavigationTags } from "@/lib/content";
-import { LOCALE_INFO, type SupportedLanguageCodes } from "@/lib/language";
+import { LOCALE_INFO } from "@/lib/language";
+import type { SupportedLanguageCodes } from "@/lib/language";
 import ThemeSwitcher from "./ThemeSwitcher.astro";
 
 type Props = {
@@ -10,7 +11,12 @@ type Props = {
 
 const tags = await getNavigationTags();
 
-const t = getTranslation(Astro.props.lang);
+const labels = {
+  theme: t(Astro.props.lang, "theme"),
+  light: t(Astro.props.lang, "theme.light"),
+  dark: t(Astro.props.lang, "theme.dark"),
+  auto: t(Astro.props.lang, "theme.auto"),
+};
 ---
 
 <div class="drawer">
@@ -74,14 +80,7 @@ const t = getTranslation(Astro.props.lang);
           <div class="divider m-0 p-0"></div>
 
           <!-- Theme Toggle -->
-          <ThemeSwitcher
-            labels={{
-              theme: t("theme"),
-              light: t("theme.light"),
-              dark: t("theme.dark"),
-              auto: t("theme.auto"),
-            }}
-          />
+          <ThemeSwitcher labels={labels} />
 
           <!-- Language Toggle -->
           <div class="dropdown dropdown-top">
@@ -91,16 +90,16 @@ const t = getTranslation(Astro.props.lang);
               class="btn btn-ghost w-full justify-start font-medium"
             >
               <i class="ri-translate"></i>
-              {LOCALE_INFO[Astro.props.lang].nativeName}
+              {LOCALE_INFO[Astro.props.lang]}
             </button>
             <ul
               tabindex="-1"
               class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
               {
-                Object.entries(LOCALE_INFO).map(([code, info]) => (
+                Object.entries(LOCALE_INFO).map(([code, name]) => (
                   <li>
-                    <a href={`/${code}/`}>{info.nativeName}</a>
+                    <a href={`/${code}/`}>{name}</a>
                   </li>
                 ))
               }

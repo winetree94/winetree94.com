@@ -1,6 +1,6 @@
 ---
 import type { WorkExperience } from "@/consts";
-import { getTranslation } from "@/i18n/utils";
+import { t as translate } from "@/i18n";
 import type { SupportedLanguageCodes } from "@/lib/language";
 import IndentLine from "../IndentLine.astro";
 
@@ -11,7 +11,7 @@ type Props = {
 };
 const props = Astro.props as Props;
 
-const t = getTranslation(Astro.props.lang);
+const t = (key: string) => translate(Astro.props.lang, key);
 ---
 
 <h3 id="experience" class="text-left text-2xl font-bold">
