@@ -8,14 +8,10 @@ import Gtm from "@/components/Gtm.astro";
 import TextDate from "@/components/TextDate.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 import { TRANSLATIONS } from "@/i18n";
-import {
-  type ArticleEntry,
-  getArticlesByTag,
-  getTagPages,
-  type TagEntry,
-} from "@/lib/content";
+import { type ArticleEntry, getAllArticles, getAllTags, type TagEntry } from "@/lib/content";
 import {
   SUPPORTED_LANGUAGES,
+  SUPPORTED_LANGUAGE_CODES,
   type SupportedLanguageCodes,
 } from "@/lib/language";
 
@@ -25,22 +21,36 @@ type Props = {
 };
 
 export const getStaticPaths = (async () => {
-  const tags = await getTagPages();
+  const [articles, allTags] = await Promise.all([getAllArticles(), getAllTags()]);
+  const languageTags = new Set<string>(SUPPORTED_LANGUAGE_CODES);
+  const tags = allTags.filter((tag) => !languageTags.has(tag.data.slug));
   const langs = Object.values(SUPPORTED_LANGUAGES);
+  const postsByLangAndTag = new Map<string, ArticleEntry[]>();
 
-  return Promise.all(
-    langs.flatMap((lang) =>
-      tags.map(async (tag) => ({
+  for (const article of articles) {
+    for (const tag of article.data.tags) {
+      const key = `${article.data.lang}:${tag}`;
+      const posts = postsByLangAndTag.get(key);
+
+      if (posts) {
+        posts.push(article);
+      } else {
+        postsByLangAndTag.set(key, [article]);
+      }
+    }
+  }
+
+  return langs.flatMap((lang) =>
+      tags.map((tag) => ({
         params: {
           lang,
           tag: tag.data.slug,
         },
         props: {
           tag,
-          posts: await getArticlesByTag(lang, tag.data.slug),
+          posts: postsByLangAndTag.get(`${lang}:${tag.data.slug}`) ?? [],
         },
       })),
-    ),
   );
 }) satisfies GetStaticPaths;
 

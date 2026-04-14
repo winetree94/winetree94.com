@@ -1,5 +1,4 @@
 import { type CollectionEntry, getCollection } from "astro:content";
-import type { SupportedLanguageCodes } from "@/lib/language";
 
 const LANGUAGE_TAGS = new Set(["en", "ko"]);
 
@@ -36,42 +35,8 @@ export async function getAllArticles(): Promise<ArticleEntry[]> {
   return sortByPublishedAtDesc(entries);
 }
 
-export async function getArticleAlternatives(
-  translationKey: string,
-  lang: SupportedLanguageCodes,
-): Promise<ArticleEntry[]> {
-  const entries = await getAllArticles();
-  return entries.filter((entry) => {
-    return (
-      entry.data.translationKey === translationKey && entry.data.lang !== lang
-    );
-  });
-}
-
 export async function getAllPages(): Promise<PageEntry[]> {
   return getCollection("pages");
-}
-
-export async function getPageAlternatives(
-  translationKey: string,
-  lang: SupportedLanguageCodes,
-): Promise<PageEntry[]> {
-  const entries = await getAllPages();
-  return entries.filter((entry) => {
-    return (
-      entry.data.translationKey === translationKey && entry.data.lang !== lang
-    );
-  });
-}
-
-export async function getArticlesByTag(
-  lang: SupportedLanguageCodes,
-  tag: string,
-): Promise<ArticleEntry[]> {
-  const entries = await getAllArticles();
-  return entries.filter((entry) => {
-    return entry.data.lang === lang && entry.data.tags.includes(tag);
-  });
 }
 
 export async function getAllTags(): Promise<TagEntry[]> {
@@ -87,9 +52,4 @@ export async function getNavigationTags(): Promise<TagEntry[]> {
       entry.data.visibility !== "internal"
     );
   });
-}
-
-export async function getTagPages(): Promise<TagEntry[]> {
-  const entries = await getAllTags();
-  return entries.filter((entry) => !LANGUAGE_TAGS.has(entry.data.slug));
 }

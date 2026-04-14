@@ -1,14 +1,6 @@
 import { getCollection } from "astro:content";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import {
-  getAllArticles,
-  getAllTags,
-  getArticleAlternatives,
-  getArticlesByTag,
-  getNavigationTags,
-  getPageAlternatives,
-  getTagPages,
-} from "./content";
+import { getAllArticles, getAllTags, getNavigationTags } from "./content";
 
 vi.mock("astro:content", () => ({
   getCollection: vi.fn(),
@@ -50,21 +42,6 @@ function createTagEntry(overrides: Record<string, unknown> = {}) {
   } as never;
 }
 
-function createPageEntry(overrides: Record<string, unknown> = {}) {
-  return {
-    id: `page-${Math.random()}`,
-    collection: "pages",
-    data: {
-      lang: "en",
-      routeSlug: "about",
-      translationKey: "about",
-      title: "About",
-      excerpt: "About page",
-      ...overrides,
-    },
-  } as never;
-}
-
 describe("content helpers", () => {
   beforeEach(() => {
     getCollectionMock.mockReset();
@@ -95,70 +72,6 @@ describe("content helpers", () => {
     ]);
   });
 
-  it("returns alternative translations for an article", async () => {
-    const articles = [
-      createArticleEntry({ lang: "en", translationKey: "astro-testing" }),
-      createArticleEntry({ lang: "ko", translationKey: "astro-testing" }),
-      createArticleEntry({ lang: "en", translationKey: "another-post" }),
-    ];
-
-    getCollectionMock.mockImplementation(async (_collection, filter) => {
-      const typedFilter = filter as CollectionFilter<(typeof articles)[number]>;
-
-      return typedFilter
-        ? articles.filter((entry) => typedFilter(entry))
-        : articles;
-    });
-
-    await expect(
-      getArticleAlternatives("astro-testing", "en"),
-    ).resolves.toMatchObject([
-      { data: { lang: "ko", translationKey: "astro-testing" } },
-    ]);
-  });
-
-  it("filters articles by tag and language", async () => {
-    const articles = [
-      createArticleEntry({
-        lang: "en",
-        routeSlug: "browser-tests",
-        tags: ["blog", "testing"],
-      }),
-      createArticleEntry({ lang: "en", routeSlug: "infra", tags: ["devops"] }),
-      createArticleEntry({
-        lang: "ko",
-        routeSlug: "browser-tests-ko",
-        tags: ["blog", "testing"],
-      }),
-    ];
-
-    getCollectionMock.mockImplementation(async (_collection, filter) => {
-      const typedFilter = filter as CollectionFilter<(typeof articles)[number]>;
-
-      return typedFilter
-        ? articles.filter((entry) => typedFilter(entry))
-        : articles;
-    });
-
-    await expect(getArticlesByTag("en", "testing")).resolves.toMatchObject([
-      { data: { routeSlug: "browser-tests" } },
-    ]);
-  });
-
-  it("returns alternative translations for a page", async () => {
-    const pages = [
-      createPageEntry({ lang: "en", translationKey: "about" }),
-      createPageEntry({ lang: "ko", translationKey: "about" }),
-      createPageEntry({ lang: "en", translationKey: "resume" }),
-    ];
-
-    getCollectionMock.mockImplementation(async () => pages);
-
-    await expect(getPageAlternatives("about", "en")).resolves.toMatchObject([
-      { data: { lang: "ko", translationKey: "about" } },
-    ]);
-  });
-
   it("sorts all tags by order and slug", async () => {
     const tags = [
       createTagEntry({ slug: "web" }),
@@ -177,7 +90,7 @@ describe("content helpers", () => {
     ]);
   });
 
-  it("sorts tag pages and excludes hidden or language tags from navigation", async () => {
+  it("excludes hidden or language tags from navigation", async () => {
     const tags = [
       createTagEntry({ slug: "ko", name: "Korean", order: 0 }),
       createTagEntry({ slug: "infra", name: "Infra" }),
@@ -194,13 +107,6 @@ describe("content helpers", () => {
     getCollectionMock.mockImplementation(async () => tags);
 
     await expect(getNavigationTags()).resolves.toMatchObject([
-      { data: { slug: "blog" } },
-      { data: { slug: "project" } },
-      { data: { slug: "infra" } },
-    ]);
-
-    await expect(getTagPages()).resolves.toMatchObject([
-      { data: { slug: "internal" } },
       { data: { slug: "blog" } },
       { data: { slug: "project" } },
       { data: { slug: "infra" } },
