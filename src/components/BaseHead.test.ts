@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { getLanguageHeadLinks } from "@/i18n/ui";
+import { LANGUAGE_HEAD_LINKS } from "@/i18n/ui";
 
 describe("BaseHead", () => {
   it("provides English font preload links", () => {
-    expect(getLanguageHeadLinks("en")).toEqual([
+    expect(LANGUAGE_HEAD_LINKS.en).toEqual([
       {
         rel: "preload",
         href: "/fonts/Agave-Regular.ttf",
@@ -23,7 +23,7 @@ describe("BaseHead", () => {
   });
 
   it("provides Korean external font links", () => {
-    expect(getLanguageHeadLinks("ko")).toEqual([
+    expect(LANGUAGE_HEAD_LINKS.ko).toEqual([
       {
         rel: "preconnect",
         href: "https://fonts.googleapis.com",
@@ -43,9 +43,5 @@ describe("BaseHead", () => {
         href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=block",
       },
     ]);
-  });
-
-  it("returns no language links when lang is omitted", () => {
-    expect(getLanguageHeadLinks()).toEqual([]);
   });
 });

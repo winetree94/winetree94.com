@@ -3,7 +3,7 @@
 // all pages through the use of the <BaseHead /> component.
 import "@/styles/global.css";
 import type { SupportedLanguageCodes } from "@/lib/language";
-import { getLanguageHeadLinks, type LanguageHeadLink } from "../i18n/ui";
+import { LANGUAGE_HEAD_LINKS } from "../i18n/ui";
 
 interface Props {
   lang?: SupportedLanguageCodes;
@@ -12,9 +12,7 @@ interface Props {
   ogImageUrl?: string;
 }
 
-const headLinks: readonly LanguageHeadLink[] = getLanguageHeadLinks(
-  Astro.props.lang,
-);
+const headLinks = Astro.props.lang ? LANGUAGE_HEAD_LINKS[Astro.props.lang] : [];
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const {
   title,
