@@ -1,18 +1,4 @@
-import { LOCALE_INFO, type SupportedLanguageCodes } from "./language";
-
 export const GISCUS_ORIGIN = "https://giscus.app";
-
-export function buildAlternativeLanguageHref(
-  pathname: string,
-  currentLang: SupportedLanguageCodes,
-  targetLang: SupportedLanguageCodes,
-) {
-  return pathname.replace(`/${currentLang}/`, `/${targetLang}/`);
-}
-
-export function getAlternativeLanguageLabel(lang: SupportedLanguageCodes) {
-  return LOCALE_INFO[lang].nativeName;
-}
 
 export function resolveGiscusTheme(theme: string | null | undefined) {
   return theme === "black" ? "dark" : "light";

@@ -6,64 +6,31 @@ import BlogHeader from "@/components/BlogHeader.astro";
 import ContentImage from "@/components/ContentImage.astro";
 import Footer from "@/components/Footer.astro";
 import { getTranslation } from "@/i18n/utils";
-import {
-  buildAlternativeLanguageHref,
-  getAlternativeLanguageLabel,
-} from "@/lib/blog-article";
-import type { ArticleEntry, PageEntry } from "@/lib/content";
 import type { SupportedLanguageCodes } from "@/lib/language";
-import ArticleAuthor from "./ArticleAuthor.astro";
 import Gtm from "./Gtm.astro";
-import TextDate from "./TextDate.astro";
 
 type Props = {
   lang: SupportedLanguageCodes;
-  entry: ArticleEntry | PageEntry;
-  alternativeEntries: Array<
-    | {
-        lang: SupportedLanguageCodes;
-      }
-    | ArticleEntry
-    | PageEntry
-  >;
-  slug: string;
-  usePublishedDate?: boolean;
-  useAuthor?: boolean;
-  useComments?: boolean;
-};
-
-type RenderableEntryData = {
   title: string;
-  excerpt?: string;
+  description: string;
   featureImage?: ImageMetadata;
-  publishedAt?: string;
+  alternativeLanguageLinks?: Array<{
+    href: string;
+    label: string;
+    lang: SupportedLanguageCodes;
+  }>;
 };
 
 const props = Astro.props as Props;
-const { entry } = props;
-const entryData = entry.data as RenderableEntryData;
-const alternativeEntries = props.alternativeEntries
-  .map((alternativeEntry) => {
-    const lang = (
-      "lang" in alternativeEntry
-        ? alternativeEntry.lang
-        : ((alternativeEntry.data as { lang: SupportedLanguageCodes }).lang as SupportedLanguageCodes)
-    ) as SupportedLanguageCodes;
-
-    return { lang };
-  })
-  .filter((alternativeEntry) => alternativeEntry.lang !== props.lang);
-const publishedAt =
-  typeof entryData.publishedAt === "string" ? entryData.publishedAt : undefined;
 const t = getTranslation(props.lang);
 ---
 
 <html lang={props.lang}>
   <head>
     <BaseHead
-      title={entryData.title}
-      description={entryData.excerpt || entryData.title}
-      ogImageUrl={entryData.featureImage?.src}
+      title={props.title}
+      description={props.description}
+      ogImageUrl={props.featureImage?.src}
       lang={props.lang}
     />
   </head>
@@ -73,11 +40,11 @@ const t = getTranslation(props.lang);
     <BlogHeader lang={props.lang} />
     <main class="w-full max-w-full">
       <article>
-        {entryData.featureImage && (
+        {props.featureImage && (
           <ContentImage
             class="mx-auto aspect-video w-full max-h-80 object-cover"
-            src={entryData.featureImage as ImageMetadata}
-            alt={entryData.title}
+            src={props.featureImage}
+            alt={props.title}
             loading="eager"
             widths={[720, 1280, 1600]}
             sizes="100vw"
@@ -85,29 +52,21 @@ const t = getTranslation(props.lang);
         )}
         <div class="m-auto max-w-[720px] px-4">
           <div class:list={["mt-4 flex flex-col py-4 text-center"]}>
-            <h1 class="text-4xl">{entryData.title}</h1>
-            {props.usePublishedDate && publishedAt && (
-              <div class="mt-2">
-                <TextDate lang={props.lang} date={publishedAt} />
-              </div>
-            )}
-            {alternativeEntries.length > 0 && (
+            <h1 class="text-4xl">{props.title}</h1>
+            <slot name="headerMeta" />
+            {props.alternativeLanguageLinks && props.alternativeLanguageLinks.length > 0 && (
               <div class="mt-8 flex items-center justify-end text-sm">
                 {t("article.alternative-language-available")}
                 <div class="ml-1 flex gap-2">
-                  {alternativeEntries.map((alternativeEntry) => (
-                      <a
-                        class:list={["badge badge-neutral badge-ghost text-sm"]}
-                        href={buildAlternativeLanguageHref(
-                          Astro.url.pathname,
-                          props.lang,
-                          alternativeEntry.lang,
-                        )}
-                      >
-                        {getAlternativeLanguageLabel(alternativeEntry.lang)}
-                      </a>
-                    ))}
-                  </div>
+                  {props.alternativeLanguageLinks.map((alternativeEntry) => (
+                       <a
+                         class:list={["badge badge-neutral badge-ghost text-sm"]}
+                         href={alternativeEntry.href}
+                       >
+                         {alternativeEntry.label}
+                       </a>
+                     ))}
+                   </div>
               </div>
             )}
             <div class="divider"></div>
@@ -115,41 +74,7 @@ const t = getTranslation(props.lang);
           <ArticleContent>
             <slot />
           </ArticleContent>
-          {props.useAuthor && (
-            <div class="mt-12">
-              <ArticleAuthor lang={props.lang} />
-            </div>
-          )}
-          {
-            props.useComments && (
-              <div class="mt-16">
-                <script
-                  is:inline
-                  class="discus"
-                  src="https://giscus.app/client.js"
-                  data-repo="winetree94/winetree94.com"
-                  data-repo-id="R_kgDOMQZteg"
-                  data-category="Announcements"
-                  data-category-id="DIC_kwDOMQZtes4Cg0or"
-                  data-mapping="specific"
-                  data-term={props.slug}
-                  data-strict="1"
-                  data-reactions-enabled="1"
-                  data-emit-metadata="0"
-                  data-input-position="bottom"
-                  data-theme="dark"
-                  data-lang={props.lang}
-                  crossorigin="anonymous"
-                  async
-                />
-                <script>
-                  import { setupGiscusThemeSync } from "@/lib/blog-article";
-
-                  setupGiscusThemeSync();
-                </script>
-              </div>
-            )
-          }
+          <slot name="afterContent" />
         </div>
       </article>
     </main>
