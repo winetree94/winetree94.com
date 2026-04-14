@@ -7,7 +7,7 @@ translationKey: "vector-optimizer"
 publishedAt: "2023-01-16T00:00:00.000+00:00"
 updatedAt: "2025-12-07T10:54:52.000+00:00"
 tags: ["project", "frontend"]
-featureImage: "./ko/feature-image.gif"
+featureImage: "./images/feature-image.gif"
 commentsTerm: "vector-optimizer"
 draft: false
 ---
@@ -24,11 +24,11 @@ Vector Optimizer 는 벡터 최적화 유틸리티입니다. 점들의 상관관
 
 먼저, 사용자가 브라우저에서 펜이나 마우스를 사용해 무언가를 그리는 기능을 제공한다고 가정해봅시다. 보통은 사용자의 커서 움직임을 추적하여 점들을 기록하게 되고 점들은 아래와 같이 기록됩니다.
 
-![](./ko/raw-input-points.png)
+![](./images/raw-input-points.png)
 
 사용자가 원하는 결과는 점이 아니라 하나의 선일 것입니다. 그림을 완성하기 위해 이 점들을 직선으로 잇는다면 결과는 아래와 같이 표현됩니다.
 
-![](./ko/straight-line-connection.png)
+![](./images/straight-line-connection.png)
 
 이는 어느 정도는 볼만 합니다. 하지만 몇가지 문제가 발생합니다.
 
@@ -40,10 +40,10 @@ Vector Optimizer 는 벡터 최적화 유틸리티입니다. 점들의 상관관
 
 Vector Optimizer 는 위 문제를 해결합니다. 먼저 사용자가 그린 점들의 상관관계를 파악하고, 이를 최적화하여 일정한 간격으로 점을 줄입니다. 이 과정에서 선형 보간법(Linear Interpolation)을 사용합니다. 최적화된 점의 모습은 다음과 같습니다.
 
-![](./ko/optimized-points.png)
+![](./images/optimized-points.png)
 
 그리고 이전 과정을 바탕으로 가장 최적화된 3차 베지어 곡선(Cubic Bézier Curve)을 찾아 최종적인 그림을 완성합니다. 완성된 그림은 다음과 같습니다.
 
-![](./ko/optimized-bezier-curve.png)
+![](./images/optimized-bezier-curve.png)
 
 최종 결과를 보면 선의 개수가 크게 감소했으면서도 사용자가 그린 곡선을 잘 표현하고 있음을 볼 수 있습니다. 필요하다면 최적화 정도를 조절하여 사용자의 입력을 더욱 자연스럽게 표현할 수 있습니다.

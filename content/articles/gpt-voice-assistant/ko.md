@@ -7,7 +7,7 @@ translationKey: "gpt-voice-assistant"
 publishedAt: "2023-11-10T00:00:00.000+00:00"
 updatedAt: "2025-12-07T10:54:19.000+00:00"
 tags: ["project", "python", "ai"]
-featureImage: "./ko/feature-image.png"
+featureImage: "./images/feature-image.png"
 commentsTerm: "gpt-voice-assistant"
 draft: false
 ---

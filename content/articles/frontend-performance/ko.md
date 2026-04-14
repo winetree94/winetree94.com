@@ -7,7 +7,7 @@ translationKey: "frontend-performance"
 publishedAt: "2022-02-04T19:04:00.000+00:00"
 updatedAt: "2025-12-06T19:05:30.000+00:00"
 tags: ["blog", "frontend"]
-featureImage: "./ko/feature-image.webp"
+featureImage: "./images/feature-image.webp"
 commentsTerm: "frontend-performance"
 draft: false
 ---
@@ -38,7 +38,7 @@ draft: false
 
 결국 문제는 서버에서 데이터베이스로 정보를 요청하는 과정을 수정하여 해결했습니다. 즉, 애초에 자바스크립트 코드의 성능 문제는 전체 과정에서 극히 일부로써 작용했다는 것 입니다.
 
-![User interaction flow](./ko/user-interaction-flow.svg)
+![User interaction flow](./images/user-interaction-flow.svg)
 
 위 이미지는 브라우저에서 팝업에 필요한 데이터를 요청하고 다시 이를 받아서 화면에 보여주는 과정을 시간과 함께 간략하게 나타내고 있습니다. 제가 성능을 테스트하고 개선했던 부분은 이미지에서 마지막 부분인 ‘서버로부터 수신받은 데이터를 화면에서 보여주는 과정’ 단 하나 입니다.
 
@@ -84,7 +84,7 @@ var sum = array.map((i) => i + offsetHeight);
 console.timeEnd('세번째 방법');
 ```
 
-![benchmark result](./ko/offset-height-benchmark-results.webp)
+![benchmark result](./images/offset-height-benchmark-results.webp)
 
 결과를 보면, 반복문은 개선하지 않고 심지어 코드 한줄을 추가했음에도 기존 대비 비교할 수 없을 정도의 성능 향상이 이루어 진 것을 확인할 수 있습니다.
 
@@ -104,7 +104,7 @@ console.timeEnd('세번째 방법');
 
 위 코드가 빠른 이유를 알고, 이해할 수 있는지의 여부는 본문에서는 중요치 않습니다. 이 사례의 핵심은 브라우저별 동작 특성과 최적화 알고리즘, 각 API 별로 성능에 대한 지식 등을 모두 암기하는 것이 꽤나 고역인 일이라는 것과, **눈에 보이는 코드의 효율성만 개선하는 것은 성능 개선 실효성이 매우 떨어지는 방법**이라는 것 입니다.
 
-![The browser’s high level structure](./ko/browser-high-level-architecture.svg)
+![The browser’s high level structure](./images/browser-high-level-architecture.svg)
 
 위 이미지는 흔히 볼 수 있는 브라우저의 고수준 설계의 다이어그램입니다. 현대의 브라우저는 코드 복잡성이 이미 운영체제와 비슷한 수준이라고도 합니다. 저도 그렇고 다른 분들도 이러한 브라우저의 구조와 동작 원리를 모두 외우고 이해하고 있는 개발자는 많지 않으리라 생각됩니다.
 
@@ -120,17 +120,17 @@ console.timeEnd('세번째 방법');
 
 결국은 어떻게든 스스로 문제를 진단하며 해결해야 하는데, 이를 도와줄 수 있도록 시중에는 여러 가지의 성능 평가 및 진단 도구들이 많이 출시되어 있습니다. 그리고 가장 유명하면서도 무료이며 대부분의 PC 에 이미 설치되어 있는 도구가 **‘크롬 개발자 도구’** 입니다.
 
-![Chrome DevTools Performance Tab](./ko/chrome-devtools-performance-tab.webp)
+![Chrome DevTools Performance Tab](./images/chrome-devtools-performance-tab.webp)
 
-![Chrome DevTools Memory Tab](./ko/chrome-devtools-memory-tab.webp)
+![Chrome DevTools Memory Tab](./images/chrome-devtools-memory-tab.webp)
 
 크롬 개발자 도구는 이미 많이 사용하시겠지만 **‘성능’**과 **‘메모리'** 탭을 사용해본 경험은 아마 적으실 겁니다. 성능 탭은 현재 사이트의 성능을 평가하여 어디에서 얼마만큼의 시간 지연이 발생했는가를 시각적으로 확인할 수 있도록 도와주며, 메모리 탭에서는 메모리에 담겨있는 정보들을 시각적으로 확인할 수 있도록 도와주고 있습니다.
 
 이 도구를 통해 성능을 평가한 자료를 토대로 개발자는 네트워크 통신이나 특정 요소의 렌더링 등 성능 문제가 발생하는 구간을 진단할 수 있으며, 크롬 디버그 모드와 적절하게 연계하면 **내 코드의 특정 부분에서 소요된 시간까지도 정확하게 측정할 수 있습니다.**
 
-![Chrome DevTools Cumulative Layout Shift](./ko/chrome-devtools-cumulative-layout-shift.webp)
+![Chrome DevTools Cumulative Layout Shift](./images/chrome-devtools-cumulative-layout-shift.webp)
 
-![Cumulative Layout Shift Guide](./ko/cumulative-layout-shift-guide.webp)
+![Cumulative Layout Shift Guide](./images/cumulative-layout-shift-guide.webp)
 
 그리고 더 좋은 부분은 크롬이 인식 가능한 문제의 경우는 링크를 통해 원인과 해결 방법까지도 먼저 제시해 준다는 것 입니다. 현재의 저는 거의 대부분의 성능 문제를 먼저 크롬 개발자 도구를 통해 평가하고, 평가된 데이터를 기반으로 문제에 객관적으로 접근하여 해결하는 방법을 가장 선호하고 있습니다.
 

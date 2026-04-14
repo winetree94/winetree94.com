@@ -7,7 +7,7 @@ translationKey: "journey-for-legacy-browsers"
 publishedAt: "2021-09-11T00:00:00.000+00:00"
 updatedAt: "2025-12-07T10:55:47.000+00:00"
 tags: ["blog", "frontend"]
-featureImage: "./en/feature-image.png"
+featureImage: "./images/feature-image.png"
 commentsTerm: "journey-for-legacy-browsers"
 draft: false
 ---
@@ -33,7 +33,7 @@ alert('Hello, World!');
 Object.assign({});
 ```
 
-![](./en/object-assign-runtime-error.png)
+![](./images/object-assign-runtime-error.png)
 
 ### Example 2
 
@@ -42,7 +42,7 @@ alert('Hello, World!');
 async function a() {}
 ```
 
-![](./en/async-function-syntax-error.png)
+![](./images/async-function-syntax-error.png)
 
 Both examples result in errors, but there is a significant difference between the two errors.
 

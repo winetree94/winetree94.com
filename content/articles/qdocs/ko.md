@@ -7,7 +7,7 @@ translationKey: "qdocs"
 publishedAt: "2023-07-22T00:00:00.000+00:00"
 updatedAt: "2025-12-06T14:24:28.000+00:00"
 tags: ["project", "frontend"]
-featureImage: "./ko/feature-image.gif"
+featureImage: "./images/feature-image.gif"
 commentsTerm: "qdocs"
 draft: false
 ---
@@ -30,7 +30,7 @@ draft: false
 
 위 프레젠테이션을 표현하기 위해 사용된 애니메이션은 물체의 이동과 Fade In/Out 효과가 대부분입니다. 하지만 이를 작성하기 위해 실제 작성된 PPT 파일을 열면 아래와 같은 형태로 작성되어 있습니다.
 
-![](./ko/presentation-animation-pane.png)
+![](./images/presentation-animation-pane.png)
 
 우리가 사용하는 PowerPoint / Keynote 등 대부분의 도구에서, 물체의 애니메이션은 해당 페이지 내에서 한번에 관리 / 표시되도록 제공하고 있습니다. 하지만 이는 특정 '**장면(Scene)**'에서의 모습은 편집 과정 중 확인하기 어렵습니다. 이 때문에 조금만 애니메이션이 복잡해지더라도 수정이 어려울 정도로 UI 가 난잡해지게 됩니다.
 

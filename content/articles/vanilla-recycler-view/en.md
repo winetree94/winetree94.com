@@ -7,7 +7,7 @@ translationKey: "vanilla-recycler-view"
 publishedAt: "2022-05-08T00:00:00.000+00:00"
 updatedAt: "2025-12-06T18:04:17.000+00:00"
 tags: ["project", "frontend"]
-featureImage: "./en/feature-image.gif"
+featureImage: "./images/feature-image.gif"
 commentsTerm: "vanilla-recycler-view"
 draft: false
 ---

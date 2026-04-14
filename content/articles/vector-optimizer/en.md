@@ -7,7 +7,7 @@ translationKey: "vector-optimizer"
 publishedAt: "2023-01-16T00:00:00.000+00:00"
 updatedAt: "2025-12-07T10:55:00.000+00:00"
 tags: ["project", "frontend"]
-featureImage: "./en/feature-image.gif"
+featureImage: "./images/feature-image.gif"
 commentsTerm: "vector-optimizer"
 draft: false
 ---
@@ -24,11 +24,11 @@ Vector Optimizer is a vector optimization utility that analyzes the relationship
 
 Let's assume you provide functionality for users to draw with a pen or mouse in a browser. Typically, the cursor movements are tracked and points are recorded, resulting in a series of points like this:
 
-![](./en/raw-input-points.png)
+![](./images/raw-input-points.png)
 
 The desired outcome for users is usually a smooth line, not just points. If we connect these points with straight lines, the result looks like this:
 
-![](./en/straight-line-connection.png)
+![](./images/straight-line-connection.png)
 
 This is somewhat acceptable, but several issues arise:
 
@@ -40,10 +40,10 @@ This is somewhat acceptable, but several issues arise:
 
 Vector Optimizer solves these problems. It first analyzes the relationships between the points the user drew and optimizes them by reducing the number of points at regular intervals using linear interpolation. The optimized points look like this:
 
-![](./en/optimized-points.png)
+![](./images/optimized-points.png)
 
 Based on this optimization, it then finds the most optimal cubic Bézier curve to complete the drawing. The final result looks like this:
 
-![](./en/optimized-bezier-curve.png)
+![](./images/optimized-bezier-curve.png)
 
 The final result shows a significant reduction in the number of lines while still accurately representing the user's intended curves. If needed, the degree of optimization can be adjusted to make the user's input appear even more natural.

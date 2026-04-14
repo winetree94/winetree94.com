@@ -7,7 +7,7 @@ translationKey: "over-engineered-cloud"
 publishedAt: "2024-07-06T13:41:00.000+00:00"
 updatedAt: "2025-12-06T19:10:31.000+00:00"
 tags: ["blog", "cloud"]
-featureImage: "./en/feature-image.webp"
+featureImage: "./images/feature-image.webp"
 commentsTerm: "over-engineered-cloud"
 draft: false
 ---

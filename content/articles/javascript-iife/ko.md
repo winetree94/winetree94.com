@@ -7,7 +7,7 @@ translationKey: "javascript-iife"
 publishedAt: "2020-09-15T00:00:00.000+00:00"
 updatedAt: "2025-12-06T19:15:14.000+00:00"
 tags: ["blog", "frontend"]
-featureImage: "./ko/feature-image.png"
+featureImage: "./images/feature-image.png"
 commentsTerm: "javascript-iife"
 draft: false
 ---

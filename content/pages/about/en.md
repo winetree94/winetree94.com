@@ -4,7 +4,7 @@ excerpt: "My day job is mainly front-end web development. But outside of work, I
 lang: "en"
 routeSlug: "about"
 translationKey: "about"
-featureImage: "./en/feature-image.jpg"
+featureImage: "./images/feature-image.jpg"
 updatedAt: "2025-12-20T15:18:56.000+00:00"
 ---
 
@@ -18,7 +18,7 @@ The hobby I'm most deeply invested in is, without a doubt, homelabbing. I self-h
 
 So I'm also a mini DevOps engineer of sorts. I have the (sole) responsibility of managing networking, hardware, virtual environments, and even Kubernetes—all within my home. Thanks to this setup, whenever a service goes down due to a power outage or (more often) my own mistakes, I get to experience the delightful feeling of my entire life crumbling down.
 
-![](./en/homelab-hardware-repair.jpg)
+![](./images/homelab-hardware-repair.jpg)
 
 And when hardware decides to act up, it turns my room into a complete disaster zone like this.
 
@@ -26,7 +26,7 @@ It's a pretty odd hobby for a front-end developer, I'll admit, but surprisingly,
 
 ---
 
-![](./en/homelab-kubernetes-dashboard.png)
+![](./images/homelab-kubernetes-dashboard.png)
 
 ## On-premise Kubernetes
 
@@ -40,7 +40,7 @@ I know this is way more than necessary for a home setup. But hobbies always tend
 
 ---
 
-![](./en/ubuntu-neofetch-desktop.png)
+![](./images/ubuntu-neofetch-desktop.png)
 
 ## Linux
 
@@ -54,7 +54,7 @@ I live in hope that one day Linux will win the desktop OS war against Windows an
 
 ## Embedded Computer
 
-![](./en/embedded-computer-boards.jpg)
+![](./images/embedded-computer-boards.jpg)
 
 I'm also a huge fan of small, low-power embedded computers. There's something deeply satisfying about watching what these affordable, sub-10W machines can accomplish. That's why I'm always excited to follow the development of ARM and RISC-V based CPUs.
 
@@ -64,7 +64,7 @@ The product I'm most interested in lately is CIX's CD8180 CPU, which supports fu
 
 ---
 
-![](./en/github-sponsors-dashboard.png)
+![](./images/github-sponsors-dashboard.png)
 
 ## Open Source Sponsor
 
@@ -74,7 +74,7 @@ Modern software development can no longer be done from scratch—most new softwa
 
 ---
 
-![](./en/tinyrack-forum-homepage.png)
+![](./images/tinyrack-forum-homepage.png)
 
 ## tinyrack
 

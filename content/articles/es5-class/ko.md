@@ -7,7 +7,7 @@ translationKey: "es5-class"
 publishedAt: "2020-12-17T00:00:00.000+00:00"
 updatedAt: "2025-12-06T19:09:48.000+00:00"
 tags: ["blog", "frontend"]
-featureImage: "./ko/feature-image.png"
+featureImage: "./images/feature-image.png"
 commentsTerm: "es5-class"
 draft: false
 ---

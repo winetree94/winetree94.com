@@ -7,7 +7,7 @@ translationKey: "qdocs"
 publishedAt: "2023-07-22T00:00:00.000+00:00"
 updatedAt: "2025-12-07T10:54:45.000+00:00"
 tags: ["project", "frontend"]
-featureImage: "./en/feature-image.gif"
+featureImage: "./images/feature-image.gif"
 commentsTerm: "qdocs"
 draft: false
 ---
@@ -30,7 +30,7 @@ However, creating such content with existing presentation tools isn't easy. Belo
 
 The animations used in the presentation above mainly involve moving objects and fade-in/out effects. But if you open the actual PPT file, it looks like this:
 
-![](./en/presentation-animation-pane.png)
+![](./images/presentation-animation-pane.png)
 
 In tools like PowerPoint or Keynote, animations for objects are managed and displayed all at once within the same page. This makes it hard to see how a specific '**scene**' will look during the editing process. As a result, the UI becomes cluttered and difficult to manage as soon as the animations get a bit complex.
 
