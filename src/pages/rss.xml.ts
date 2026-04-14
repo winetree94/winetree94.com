@@ -1,15 +1,21 @@
 import rss from "@astrojs/rss";
+import type { APIRoute } from "astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import { getAllArticles } from "../lib/content";
 
-export async function GET(context) {
+export const GET: APIRoute = async ({ site }) => {
+  if (!site) {
+    throw new Error("Astro site is required for RSS generation.");
+  }
+
   const enPosts = (await getAllArticles()).filter(
     (post) => post.data.lang === "en",
   );
+
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    site: context.site,
+    site,
     items: enPosts.map((post) => {
       return {
         title: post.data.title,
@@ -19,4 +25,4 @@ export async function GET(context) {
       };
     }),
   });
-}
+};
