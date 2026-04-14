@@ -1,7 +1,27 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-import type { WorkExperience } from "./types/work-experience";
+export type OpenSourceExperience = {
+  projectName: string;
+  description: string;
+  period: string;
+  features: string[];
+  publicLink: string;
+};
+
+export type WorkExperience = {
+  companyName: string;
+  country: string;
+  position: string;
+  period: string;
+  main: string;
+  projects: {
+    title: string;
+    description: string;
+    period: string;
+    goals: string[];
+  }[];
+};
 
 export const SITE_TITLES = {
   en: "winetree94",
@@ -45,13 +65,7 @@ export const PERSONAL_LINKS = [
   },
 ];
 
-export const OPEN_SOURCE: {
-  projectName: string;
-  description: string;
-  period: string;
-  features: string[];
-  publicLink: string;
-}[] = [
+export const OPEN_SOURCE: OpenSourceExperience[] = [
   {
     projectName: "about.open_source.edybara.title",
     description: "about.open_source.edybara.description",
