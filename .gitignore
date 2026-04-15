@@ -44,3 +44,7 @@ node_modules
 .wrangler
 
 .opencode
+
+# Obsidian local workspace state
+content/.obsidian/*
+!content/.obsidian/core-plugins.json
