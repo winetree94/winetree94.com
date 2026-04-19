@@ -37,7 +37,10 @@ const t = (key: string) => translate(props.lang, key);
 
   <body>
     <Gtm />
-    <BlogHeader lang={props.lang} />
+    <BlogHeader
+      lang={props.lang}
+      alternativeLanguageLinks={props.alternativeLanguageLinks}
+    />
     <main class="w-full max-w-full">
       <article>
         {props.featureImage && (

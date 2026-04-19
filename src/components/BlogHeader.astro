@@ -7,15 +7,22 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
 
 type Props = {
   lang: SupportedLanguageCodes;
+  alternativeLanguageLinks?: Array<{
+    href: string;
+    label: string;
+    lang: SupportedLanguageCodes;
+  }>;
 };
+
+const { lang, alternativeLanguageLinks } = Astro.props;
 
 const tags = await getNavigationTags();
 
 const labels = {
-  theme: t(Astro.props.lang, "theme"),
-  light: t(Astro.props.lang, "theme.light"),
-  dark: t(Astro.props.lang, "theme.dark"),
-  auto: t(Astro.props.lang, "theme.auto"),
+  theme: t(lang, "theme"),
+  light: t(lang, "theme.light"),
+  dark: t(lang, "theme.dark"),
+  auto: t(lang, "theme.auto"),
 };
 ---
 
@@ -39,23 +46,23 @@ const labels = {
           <!-- Sidebar content here -->
           <li class="my-2 font-bold text-neutral-600">winetree94</li>
           <li>
-            <a href={`/${Astro.props.lang}/`}>Hello</a>
+            <a href={`/${lang}/`}>Hello</a>
           </li>
           <li>
-            <a href={`/${Astro.props.lang}/resume/`}>Resume</a>
+            <a href={`/${lang}/resume/`}>Resume</a>
           </li>
           <li>
-            <a href={`/${Astro.props.lang}/about/`}>About Me</a>
+            <a href={`/${lang}/about/`}>About Me</a>
           </li>
           <li class="my-2 font-bold text-neutral-600">Contents</li>
-          <li><a href={`/${Astro.props.lang}/tags/project/`}>Projects</a></li>
-          <li><a href={`/${Astro.props.lang}/tags/blog/`}>Blog</a></li>
+          <li><a href={`/${lang}/tags/project/`}>Projects</a></li>
+          <li><a href={`/${lang}/tags/blog/`}>Blog</a></li>
           <li class="my-2 font-bold text-neutral-600">Tags</li>
         </ul>
         <div class="mt-2 flex flex-wrap gap-2">
           {
             tags.map((tag) => (
-              <a class="badge badge-soft" href={`/${Astro.props.lang}/tags/${tag.data.slug}/`}>
+              <a class="badge badge-soft" href={`/${lang}/tags/${tag.data.slug}/`}>
                 {tag.data.name}
               </a>
             ))
@@ -90,18 +97,38 @@ const labels = {
               class="btn btn-ghost w-full justify-start font-medium"
             >
               <i class="ri-translate"></i>
-              {LOCALE_INFO[Astro.props.lang]}
+              {LOCALE_INFO[lang]}
             </button>
             <ul
               tabindex="-1"
               class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
               {
-                Object.entries(LOCALE_INFO).map(([code, name]) => (
-                  <li>
-                    <a href={`/${code}/`}>{name}</a>
-                  </li>
-                ))
+                Object.entries(LOCALE_INFO).map(([code, name]) => {
+                  const targetLang = code as SupportedLanguageCodes;
+                  let href = `/${targetLang}/`;
+
+                  if (alternativeLanguageLinks) {
+                    const altLink = alternativeLanguageLinks.find((link) => link.lang === targetLang);
+                    if (altLink) {
+                      href = altLink.href;
+                    } else if (targetLang === lang) {
+                      href = Astro.url.pathname;
+                    }
+                  } else {
+                    const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
+                    if (pathSegments.length > 0 && pathSegments[0] === lang) {
+                      pathSegments[0] = targetLang;
+                      href = `/${pathSegments.join("/")}/`;
+                    }
+                  }
+
+                  return (
+                    <li>
+                      <a href={href}>{name}</a>
+                    </li>
+                  );
+                })
               }
             </ul>
           </div>
