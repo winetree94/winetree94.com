@@ -5,12 +5,12 @@
   "order": 11,
   "translations": {
     "en": {
-      "title": "Blog",
-      "description": "Blog description"
+      "title": "Accidental Musings",
+      "description": "A collection of survival logs and records that barely made it past my procrastination."
     },
     "ko": {
-      "title": "블로그",
-      "description": "블로그에 대한 설명입니다."
+      "title": "어쩌다 보니 쓰게 된 글들",
+      "description": "수많은 작심삼일을 뚫고 간신히 남긴 생존 신고이자 기록입니다."
     }
   }
 }
