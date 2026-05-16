@@ -1,13 +1,14 @@
 ---
+
 import type { ImageMetadata } from "astro";
 import ArticleContent from "@/components/ArticleContent.astro";
 import BaseHead from "@/components/BaseHead.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
 import ContentImage from "@/components/ContentImage.astro";
 import Footer from "@/components/Footer.astro";
-import Gtm from "./Gtm.astro";
 import { t as translate } from "@/i18n";
 import type { SupportedLanguageCodes } from "@/lib/language";
+import Gtm from "./Gtm.astro";
 
 type Props = {
   lang: SupportedLanguageCodes;
