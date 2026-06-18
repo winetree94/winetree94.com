@@ -4,7 +4,7 @@ excerpt: "저의 회사에서의 직무는 주로 웹의 프론트엔트 개발�
 lang: "ko"
 routeSlug: "about"
 translationKey: "about"
-featureImage: "./images/feature-image.jpg"
+featureImage: "./attachments/feature-image.jpg"
 updatedAt: "2025-12-20T15:17:34.000+00:00"
 ---
 
@@ -18,7 +18,7 @@ updatedAt: "2025-12-20T15:17:34.000+00:00"
 
 그래서 저는 작은 데브옵스 개발자이기도 해요. 집 안에서 네트워크, 하드웨어, 가상 환경, 그리고 쿠버네티스까지 관리하는 (저 혼자만) 막중한 임무를 가지고 있거든요. 덕분에 가끔 정전같은 천재지변이나 제 실수로 인해 서비스가 망가지면 제 삶이 무너져 내리는 기분을 겪고는 해요.
 
-![](./images/homelab-hardware-repair.jpg)
+![](./attachments/homelab-hardware-repair.jpg)
 
 가끔 하드웨어가 말썽부리면 이렇게 집 안을 난장판으로 만들어 버리기도 하구요.
 
@@ -26,7 +26,7 @@ updatedAt: "2025-12-20T15:17:34.000+00:00"
 
 ---
 
-![](./images/homelab-kubernetes-dashboard.png)
+![](./attachments/homelab-kubernetes-dashboard.png)
 
 ## 온프레미스 쿠버네티스
 
@@ -40,7 +40,7 @@ updatedAt: "2025-12-20T15:17:34.000+00:00"
 
 ---
 
-![](./images/ubuntu-neofetch-desktop.png)
+![](./attachments/ubuntu-neofetch-desktop.png)
 
 ## 리눅스
 
@@ -54,7 +54,7 @@ updatedAt: "2025-12-20T15:17:34.000+00:00"
 
 ## 임베디드 컴퓨터
 
-![](./images/embedded-computer-boards.jpg)
+![](./attachments/embedded-computer-boards.jpg)
 
 저는 또한, 소형 저전력 임베디드 컴퓨터의 덕후이기도 해요. 저렴한 가격과 10W 미만의 저전력 컴퓨터로 해낼 수 있는 일들을 지켜보며 뿌듯함을 느끼곤 하거든요. 그래서 ARM 이나 RISC-V 기반의 CPU를 가진 컴퓨터의 발전을 늘 재미있게 지켜보고 있어요.
 
@@ -64,7 +64,7 @@ updatedAt: "2025-12-20T15:17:34.000+00:00"
 
 ---
 
-![](./images/github-sponsors-dashboard.png)
+![](./attachments/github-sponsors-dashboard.png)
 
 ## 오픈소스 후원가
 
@@ -74,7 +74,7 @@ updatedAt: "2025-12-20T15:17:34.000+00:00"
 
 ---
 
-![](./images/tinyrack-forum-homepage.png)
+![](./attachments/tinyrack-forum-homepage.png)
 
 ## 타이니랙
 

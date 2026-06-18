@@ -7,7 +7,7 @@ translationKey: "google-feed-recommends-illegal-gambling-sites-to-me"
 publishedAt: "2024-06-21T00:00:00.000+00:00"
 updatedAt: "2025-12-06T18:00:16.000+00:00"
 tags: ["blog", "web"]
-featureImage: "./images/feature-image.png"
+featureImage: "./attachments/feature-image.png"
 commentsTerm: "google-feed-recommends-illegal-gambling-sites-to-me"
 draft: false
 ---
@@ -26,7 +26,7 @@ draft: false
 
 ## _사기 사이트의 동작 원리 알아내기_
 
-![](./images/scam-site-desktop-access-failure.png)
+![](./attachments/scam-site-desktop-access-failure.png)
 
 사기 사이트의 동작 원리를 파악하기 위해서 먼저 해당 사이트에 접속해 개발자 도구를 사용하려 했습니다. 사이트의 HTML 구조와 자바스크립트 동작을 확인하면 도움이 될 것 같았기 때문입니다.
 
@@ -40,7 +40,7 @@ draft: false
 
 모든 상황에서 접속한 URL은 동일했습니다. 구글 피드에서만 접속이 가능한 이유는 모르겠지만, 우선은 이 서버가 다음 그림과 같이 일반적인 브라우저의 요청은 거절하고 있다는 사실을 기억하고 가겠습니다.
 
-![](./images/scam-site-browser-filtering-diagram.png)
+![](./attachments/scam-site-browser-filtering-diagram.png)
 
 ---
 
@@ -64,7 +64,7 @@ Nginx 는 요청 URL과 Method가 같더라도 HTTP 요청의 헤더에 따라 �
 
 마지막으로 시도한 방법은 안드로이드 VM과 크롬 브라우저의 원격 디버깅을 사용하는 것 입니다. 모바일 크롬의 시작 화면에서 원격 디버깅만 가능하다면, 데스크탑 브라우저처럼 네트워크 요청을 확인할 수 있을 것이라 생각했습니다.
 
-![](./images/android-remote-debugging-network-inspection.png)
+![](./attachments/android-remote-debugging-network-inspection.png)
 
 결과는 아주 잘 동작했습니다. 개발자 도구에서 사기 사이트에 정상 접근되는 요청의 `curl` 명령어를 가져올 수 있었습니다. 가져온 명령어는 다음과 같습니다.
 
@@ -113,7 +113,7 @@ curl 'https://alfa.sklep.pl/bucosvpltrhz/' \
 
 이제 이 서버는 아래의 그림처럼 구글 피드 사용자에게 사기 컨텐츠를 반환하고 있음을 알았습니다.
 
-![](./images/google-feed-user-redirect-flow.png)
+![](./attachments/google-feed-user-redirect-flow.png)
 
 ---
 
@@ -149,7 +149,7 @@ curl 'https://alfa.sklep.pl/bucosvpltrhz/' \
 
 이제 이 사기 사이트는 모두를 완벽하게 속였습니다. 구글에서 높은 평가를 받는 컨텐츠가 되었고, 사용자에게 추천됩니다. 그리고 이를 보려는 사용자는 불법 도박 사이트로 리다이렉트됩니다. 완성된 그림은 아래와 같습니다.
 
-![](./images/google-feed-crawler-cloaking-flow.png)
+![](./attachments/google-feed-crawler-cloaking-flow.png)
 
 마지막으로 이 사기 사이트 동작하는 전체 과정을 정리해보겠습니다.
 

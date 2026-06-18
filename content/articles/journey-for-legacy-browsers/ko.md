@@ -7,7 +7,7 @@ translationKey: "journey-for-legacy-browsers"
 publishedAt: "2021-09-11T00:00:00.000+00:00"
 updatedAt: "2025-12-07T10:55:40.000+00:00"
 tags: ["blog", "frontend"]
-featureImage: "./images/feature-image.png"
+featureImage: "./attachments/feature-image.png"
 commentsTerm: "journey-for-legacy-browsers"
 draft: false
 ---

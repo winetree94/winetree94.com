@@ -7,7 +7,7 @@ translationKey: "edybara"
 publishedAt: "2024-01-08T00:00:00.000+00:00"
 updatedAt: "2025-12-07T10:54:08.000+00:00"
 tags: ["project", "frontend"]
-featureImage: "./images/feature-image.gif"
+featureImage: "./attachments/feature-image.gif"
 commentsTerm: "edybara"
 draft: false
 ---
