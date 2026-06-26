@@ -1,0 +1,14 @@
+# Keep text files LF on every platform so Biome/CI behave the same on Windows and Linux.
+* text=auto eol=lf
+
+# Binary assets must never be line-ending normalized.
+*.gif binary
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
