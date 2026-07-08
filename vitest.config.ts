@@ -1,16 +1,16 @@
 import { fileURLToPath } from "node:url";
 import { playwright } from "@vitest/browser-playwright";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
-const resolveAlias = {
+const resolveConfig = {
   alias: {
     "@": fileURLToPath(new URL("./src", import.meta.url)),
   },
+  tsconfigPaths: true,
 };
 
 export default defineConfig({
-  resolve: resolveAlias,
+  resolve: resolveConfig,
   test: {
     coverage: {
       provider: "v8",
@@ -20,8 +20,7 @@ export default defineConfig({
     },
     projects: [
       {
-        plugins: [tsconfigPaths()],
-        resolve: resolveAlias,
+        resolve: resolveConfig,
         test: {
           name: "unit",
           environment: "node",
@@ -31,8 +30,7 @@ export default defineConfig({
         },
       },
       {
-        plugins: [tsconfigPaths()],
-        resolve: resolveAlias,
+        resolve: resolveConfig,
         test: {
           name: "browser",
           setupFiles: ["./vitest.setup.ts"],
