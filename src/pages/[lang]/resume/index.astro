@@ -79,16 +79,32 @@ const t = (key: string) => translate(Astro.params.lang, key);
         <div
           class="mt-4 flex flex-col justify-center gap-2 sm:flex-row sm:gap-4"
         >
-          <a id="jump_to_profile" class="cursor-pointer text-blue-400">
+          <a
+            id="jump_to_profile"
+            class="cursor-pointer text-blue-400"
+            href="#profile"
+          >
             {t("about.profile")}
           </a>
-          <a id="jump_to_qualifications" class="cursor-pointer text-blue-400">
+          <a
+            id="jump_to_qualifications"
+            class="cursor-pointer text-blue-400"
+            href="#qualifications"
+          >
             {t("about.qualifications")}
           </a>
-          <a id="jump_to_experience" class="cursor-pointer text-blue-400">
+          <a
+            id="jump_to_experience"
+            class="cursor-pointer text-blue-400"
+            href="#experience"
+          >
             {t("about.experience")}
           </a>
-          <a id="jump_to_open_source" class="cursor-pointer text-blue-400">
+          <a
+            id="jump_to_open_source"
+            class="cursor-pointer text-blue-400"
+            href="#open_source"
+          >
             {t("about.open_source")}
           </a>
         </div>
