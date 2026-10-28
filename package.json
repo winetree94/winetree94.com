@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "content:pull": "node scripts/content-pull.ts",
+    "content:check": "node scripts/content-pull.ts --check",
     "content:fixtures": "node scripts/content-fixtures.ts",
     "deploy": "wrangler deploy",
     "test": "vitest",
