@@ -45,9 +45,6 @@ node_modules
 
 .opencode
 
-# Obsidian local workspace state
-content/.obsidian/*
-!content/.obsidian/core-plugins.json
 
 # Articles are pulled from Outline (pnpm content:pull) or fixtures (pnpm content:fixtures)
 /content/articles/
