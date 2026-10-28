@@ -10,7 +10,7 @@
 - Articles are authored in Outline (`Articles / winetree94` on notes.winetree94.com), not in this repo. `content/articles` is generated and gitignored: `pnpm content:pull` (needs `OUTLINE_API_KEY`) writes the real articles, `pnpm content:fixtures` copies the test fixtures from `fixtures/articles`. Never edit generated article files; fix the article in Outline or the converter in `scripts/content-pull.ts`.
 - Tests and pull-request builds use the fixtures. Only deploy runs pull from Outline. Article tags must exist in `content/tags`.
 - Article/page routing depends on frontmatter fields, especially `lang`, `routeSlug`, and `translationKey`. Articles also require `publishedAt` and `commentsTerm`.
-- Tag files with slug `en` and `ko` are reserved language tags. `src/lib/content.ts` filters them out of navigation and tag pages.
+- Tag files with slug `en`, `ko`, and `ja` are reserved language tags. Every tag file needs `en`, `ko`, and `ja` translations. `src/lib/content.ts` filters them out of navigation and tag pages.
 
 ## App Wiring
 - Main route entrypoints are under `src/pages/[lang]/...`; dynamic article and about pages are generated from content collections with `getStaticPaths`.

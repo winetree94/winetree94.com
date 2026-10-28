@@ -26,16 +26,19 @@ export type WorkExperience = {
 export const SITE_TITLES = {
   en: "winetree94",
   ko: "winetree94",
+  ja: "winetree94",
 };
 
 export const SITE_DESCRIPTIONS = {
   en: "winetree94's blog",
   ko: "winetree94's blog",
+  ja: "winetree94's blog",
 };
 
 export const SITE_IMAGES = {
   en: "/og/index/en.png",
   ko: "/og/index/ko.png",
+  ja: "/og/index/ja.png",
 };
 
 export const PERSONAL_LINKS = [

@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { t } from "./index";
+import en from "./translations/en.json";
+import ko from "./translations/ko.json";
 
 describe("i18n t function", () => {
   it("should return correct English translations", () => {
@@ -10,6 +12,20 @@ describe("i18n t function", () => {
   it("should return correct Korean translations", () => {
     expect(t("ko", "theme")).toBe("테마");
     expect(t("ko", "theme.light")).toBe("밝은 색상");
+  });
+
+  it("should return correct Japanese translations", () => {
+    expect(t("ja", "theme")).toBe("テーマ");
+    expect(t("ja", "theme.light")).toBe("ライト");
+  });
+
+  it("should translate every Korean key into English and Japanese", () => {
+    for (const key of Object.keys(ko)) {
+      expect(t("ja", key), key).not.toBe(key);
+    }
+    for (const key of Object.keys(en)) {
+      expect(t("ja", key), key).not.toBe(key);
+    }
   });
 
   it("should return key as fallback for missing translations", () => {
