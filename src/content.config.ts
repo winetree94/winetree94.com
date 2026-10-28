@@ -2,7 +2,7 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
-const languageSchema = z.enum(["en", "ko"]);
+const languageSchema = z.enum(["en", "ko", "ja"]);
 
 const articles = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./content/articles" }),
@@ -49,6 +49,10 @@ const tags = defineCollection({
         description: z.string().default(""),
       }),
       ko: z.object({
+        title: z.string(),
+        description: z.string().default(""),
+      }),
+      ja: z.object({
         title: z.string(),
         description: z.string().default(""),
       }),

@@ -28,7 +28,7 @@ const SITE = {
   parentDocumentId: "f64c04de-62e7-4007-9a00-9a1e73bc2b6d",
   /** Outline collection that contains the parent document. */
   collectionId: "6bbfb285-728f-482b-9aaf-6b63df7e27d7",
-  languages: ["ko", "en"],
+  languages: ["ko", "en", "ja"],
   extension: "md",
   outputDir: "content/articles",
   tagsDir: "content/tags",

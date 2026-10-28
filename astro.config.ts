@@ -6,6 +6,7 @@ const defaultLocale = "en";
 const locales = {
   en: "en-US",
   ko: "ko-KR",
+  ja: "ja-JP",
 };
 
 // https://astro.build/config

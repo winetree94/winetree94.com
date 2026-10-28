@@ -12,11 +12,11 @@
 
 ---
 
-A bilingual Astro site for articles, project notes, and resume pages.
+A trilingual (English, Korean, Japanese) Astro site for articles, project notes, and resume pages.
 
 ## Features
 
-- **Bilingual routes** for English and Korean content
+- **Localized routes** for English, Korean, and Japanese content
 - **Content collections** for articles, pages, and tags
 - **RSS, sitemap, and robots.txt** generated at build time
 - **Cloudflare deployment** via Wrangler and GitHub Actions
@@ -25,7 +25,7 @@ A bilingual Astro site for articles, project notes, and resume pages.
 
 Articles live in Outline under `Articles / winetree94`, not in this repository.
 
-- The original is the article document; translations are its child documents. Document titles are used as-is.
+- The original is the article document; translations (`en`, `ja`) are its child documents. Document titles are used as-is.
 - Drafts are unpublished Outline documents and are never deployed.
 - Each body starts with a `yaml` block. Every document declares its language with `lang` (for example `lang: "en"`). The original also holds `routeSlug`, `publishedAt`, `updatedAt`, `tags`, `featureImage`, `commentsTerm`, and `excerpt`; translations may only override `publishedAt`, `updatedAt`, or `excerpt` and inherit the rest.
 - `pnpm content:pull` converts them into `content/articles` (gitignored). Tests use `pnpm content:fixtures` instead.

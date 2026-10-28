@@ -1,10 +1,12 @@
 import type { SupportedLanguageCodes } from "@/lib/language";
 import en from "./translations/en.json";
+import ja from "./translations/ja.json";
 import ko from "./translations/ko.json";
 
 const translations: Record<SupportedLanguageCodes, Record<string, string>> = {
   en,
   ko,
+  ja,
 };
 
 /**
@@ -62,6 +64,26 @@ export const LANGUAGE_HEAD_LINKS: Record<
     {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=block",
+    },
+  ],
+  ja: [
+    {
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com",
+    },
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossorigin: true,
+    },
+    {
+      rel: "preload",
+      href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&display=block",
+      as: "style",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&display=block",
     },
   ],
 };

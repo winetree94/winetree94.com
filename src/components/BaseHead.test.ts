@@ -44,4 +44,27 @@ describe("BaseHead", () => {
       },
     ]);
   });
+
+  it("provides Japanese external font links", () => {
+    expect(LANGUAGE_HEAD_LINKS.ja).toEqual([
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: true,
+      },
+      {
+        rel: "preload",
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&display=block",
+        as: "style",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&display=block",
+      },
+    ]);
+  });
 });

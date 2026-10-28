@@ -1,0 +1,20 @@
+{
+  "slug": "ja",
+  "name": "#ja",
+  "visibility": "internal",
+  "order": 13,
+  "translations": {
+    "en": {
+      "title": "#ja",
+      "description": ""
+    },
+    "ko": {
+      "title": "#ja",
+      "description": ""
+    },
+    "ja": {
+      "title": "#ja",
+      "description": ""
+    }
+  }
+}
