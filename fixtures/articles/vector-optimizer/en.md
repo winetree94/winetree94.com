@@ -32,11 +32,9 @@ The desired outcome for users is usually a smooth line, not just points. If we c
 
 This is somewhat acceptable, but several issues arise:
 
-- There are too many points and lines, increasing the data size of the drawing, leading to higher storage costs.
-
-- The number of vector operations increases significantly, causing performance degradation as the drawing becomes more complex.
-
-- Users end up with jagged lines instead of the smooth curves they intended to draw.
+* There are too many points and lines, increasing the data size of the drawing, leading to higher storage costs.
+* The number of vector operations increases significantly, causing performance degradation as the drawing becomes more complex.
+* Users end up with jagged lines instead of the smooth curves they intended to draw.
 
 Vector Optimizer solves these problems. It first analyzes the relationships between the points the user drew and optimizes them by reducing the number of points at regular intervals using linear interpolation. The optimized points look like this:
 

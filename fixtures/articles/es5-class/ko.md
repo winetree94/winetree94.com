@@ -1,6 +1,6 @@
 ---
 title: "자바스크립트 ES5로 ES6 Class 완벽하게 구현하기"
-excerpt: "서론\n\n\n1. 문법적 설탕인 클래스\n\nclass A {}\n\n\n자바스크립트 ES6 명세의 클래스는 문법적 설탕으로 실제로는 함수와, 프로토타입을 통해 객체지향 프로그래밍을 구현하고 있습니다. 따라서 위의 코드는 내부적으로는 아래와 같이 변환되어 사용됩니다.\n\nfunction A () {}\n\n\n이렇듯 자바스크립트의 클래스는 실제로는 함수이며, 이는 곧 함수만으로도 클래스와 동일한 기능을 구현할 수 있음을 의미합니다.\n\n\n2. 생성자와 메소드\n\nclass Person {\n\t/* 생성자 */\n\tconstructor(name) {\n\t\tthis.name = name;\n\t}\n\n  /* 메소드 */\n  getName() {\n\t\treturn this.name;\n\t}\n}\n\n/* 인스턴스 생성 */\nconst person1 = new Person('winetree94');\nconst name1 = person1.getName();\nconsole.log(name1); // => 'winetree94';\n"
+excerpt: "ES6 클래스가 함수와 프로토타입 위에 얹힌 문법적 설탕이라는 점을 이용해, 생성자·메소드·extends·super까지 갖춘 클래스를 ES5 함수만으로 구현해 봅니다."
 lang: "ko"
 routeSlug: "es5-class"
 translationKey: "es5-class"
@@ -410,10 +410,8 @@ if (extend) {
 
 1. new 키워드를 통해 인스턴스인 빈 객체 `{}` 가 생성되고, 새로운 생성자 함수의 `this` 에 생성된 인스턴스가 할당됩니다.
 2. 새로운 생성자 함수는, sufer 함수를 만들어 원본 생성자 함수를 호출합니다.
-
 3. 원본 생성자 함수는 가장 먼저 sufer 함수를 호출합니다.
 4. sufer 함수는 부모 생성자를 호출하고 이 생성자가 최초로 인스턴스에 값을 할당합니다.
-
 5. sufer 함수의 호출이 끝나면 남은 원본 생성자의 과정을 통해 인스턴스에 값이 할당됩니다.
 
 이렇게 구성될 경우 2중 상속 이상의 상속 관계에서도 모든 부모의 생성자를 순서대로 거치면서 인스턴스에 값을 할당할 수 있게 됩니다.
@@ -588,4 +586,4 @@ class B extends a{
 
 # 전체 코드 한눈에 보기
 
-[https://gist.github.com/winetree94/2500ec8248a2d4d97c346860b7e78e79](https://gist.github.com/winetree94/2500ec8248a2d4d97c346860b7e78e79)
+<https://gist.github.com/winetree94/2500ec8248a2d4d97c346860b7e78e79>
