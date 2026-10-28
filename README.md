@@ -21,10 +21,27 @@ A bilingual Astro site for articles, project notes, and resume pages.
 - **RSS, sitemap, and robots.txt** generated at build time
 - **Cloudflare deployment** via Wrangler and GitHub Actions
 
+## Content
+
+Articles live in Outline under `Articles / winetree94`, not in this repository.
+
+- The Korean original is the article document; translations are child documents titled `<title> (en)`.
+- Drafts are unpublished Outline documents and are never deployed.
+- Each body starts with a `yaml` block. The original holds `routeSlug`, `publishedAt`, `updatedAt`, `tags`, `featureImage`, `commentsTerm`, and `excerpt`; translations only override `publishedAt`, `updatedAt`, or `excerpt`.
+- `pnpm content:pull` converts them into `content/articles` (gitignored). Tests use `pnpm content:fixtures` instead.
+
+To publish content-only changes, run the **Web Deployment** workflow manually:
+
+```bash
+gh workflow run deployment.yaml --ref main
+```
+
 ## Development
 
 ```bash
 pnpm install
+export OUTLINE_API_KEY=...   # read-only Outline API key
+pnpm content:pull            # or: pnpm content:fixtures
 pnpm dev
 ```
 
